@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 13: Data Types and Structures – MES Computer Science AS Level</title>
+<style>
+    body {
+        background-color: #0d0d0d;
+        color: #e6f1ff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px 60px;
+    }
+    h1, h2, h3 {
+        color: #00ffff;
+    }
+    h1 {
+        text-align: center;
+        margin-top: 0;
+        text-transform: uppercase;
+    }
+    h2 {
+        border-bottom: 1px solid #00ffff;
+        padding-bottom: 5px;
+        margin-top: 40px;
+    }
+    pre {
+        background-color: #111;
+        border-left: 4px solid #00ffff;
+        color: #fff;
+        padding: 10px;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+    }
+    th, td {
+        border: 1px solid #00ffff;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #001f1f;
+        color: #00ffff;
+    }
+    ul {
+        list-style-type: square;
+        margin-left: 30px;
+    }
+    .section-divider {
+        border-bottom: 1px solid #00ffff;
+        margin: 30px 0;
+    }
+    .checkpoint, .task, .example, .discussion, .challenge {
+        background-color: #111;
+        border: 1px solid #00ffff;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 14px;
+        color: #aaa;
+        border-top: 1px solid #00ffff;
+        padding-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Prepared by Ravi Raju</h1>
+<h1>🌟 Chapter 13: Data Types and Structures</h1>
+
+<div class="section-divider"></div>
+
+<h2>🔹 13.01 Data Types</h2>
+<h3>🧠 What is a Data Type?</h3>
+<p>Every piece of data stored in a computer has a type, which determines:</p>
+<ul>
+<li>The kind of value that can be stored.</li>
+<li>The operations that can be performed on it.</li>
+<li>The amount of memory required.</li>
+</ul>
+<p>When we declare variables in pseudocode or any programming language, we must specify what type of data they hold.</p>
+
+<pre>DECLARE Miles : INTEGER
+DECLARE Km : REAL
+Km ← Miles * 1.61</pre>
+
+<p>Here:</p>
+<ul>
+<li>Miles holds whole numbers (INTEGER)</li>
+<li>Km may hold decimal values (REAL)</li>
+</ul>
+
+<div class="section-divider"></div>
+
+<h3>⚙️ Primitive (Atomic) Data Types</h3>
+<p>Primitive data types are built into the programming language. They store simple, indivisible values.</p>
+
+<table>
+<tr><th>Data Type</th><th>Description</th><th>Example Values</th><th>When to Use</th></tr>
+<tr><td>INTEGER</td><td>Whole numbers (positive or negative)</td><td>-12, 0, 99</td><td>Counting items, loop counters</td></tr>
+<tr><td>REAL</td><td>Numbers with decimal points</td><td>3.14, -7.5, 0.0</td><td>Measurements, currency, averages</td></tr>
+<tr><td>CHAR</td><td>A single character</td><td>'A', 'z', '3'</td><td>Storing letters or digits individually</td></tr>
+<tr><td>STRING</td><td>A sequence of characters (text)</td><td>"Hello", "123", "" (empty string)</td><td>Names, messages, words</td></tr>
+<tr><td>BOOLEAN</td><td>Logical values (TRUE or FALSE)</td><td>TRUE, FALSE</td><td>Conditions, control statements</td></tr>
+<tr><td>DATE</td><td>Date values (day, month, year, optionally time)</td><td>03/02/2018, 25/12/2024 10:30</td><td>Birthdays, timestamps</td></tr>
+</table>
+
+<div class="example">
+<h3>🧩 Example: Integer vs Real</h3>
+<pre>DECLARE Counter : INTEGER
+DECLARE Temperature : REAL
+
+Counter ← 12
+Temperature ← 36.6</pre>
+<ul>
+<li>Counter is suitable for counting whole numbers.</li>
+<li>Temperature is suitable for precise measurements.</li>
+</ul>
+</div>
+
+<div class="example">
+<h3>⚠️ String vs Number</h3>
+<table>
+<tr><th>Expression</th><th>Meaning</th></tr>
+<tr><td>"12"</td><td>A string of two characters, not a number</td></tr>
+<tr><td>12</td><td>A number that can be used in calculations</td></tr>
+</table>
+<pre>OUTPUT "12" + "5"   // outputs "125"
+OUTPUT 12 + 5       // outputs 17</pre>
+</div>
+
+<div class="checkpoint">
+<h3>💬 Interactive Checkpoint</h3>
+<p>Q1. Identify the suitable data type:</p>
+<ul>
+<li>Student’s height: ______</li>
+<li>Student’s name: ______</li>
+<li>Passed exam or not: ______</li>
+<li>Number of books borrowed: ______</li>
+</ul>
+<p>✅ Answer: REAL, STRING, BOOLEAN, INTEGER</p>
+</div>
+
+<p>🧠 Remember:</p>
+<ul>
+<li>Primitive = Atomic (cannot be broken down further)</li>
+<li>Structured = Composite (made up of smaller parts like strings, records, or arrays)</li>
+</ul>
+
+<div class="section-divider"></div>
+
+<h2>🔹 13.02 The Record Type (User-Defined Type)</h2>
+<p>Sometimes, we want to group different types of data that belong together logically.</p>
+<p><strong>Example Scenario:</strong><br>Data about a student includes:</p>
+<ul>
+<li>Name → STRING</li>
+<li>DateOfBirth → DATE</li>
+<li>Height → REAL</li>
+<li>NumberOfSiblings → INTEGER</li>
+<li>IsFullTimeStudent → BOOLEAN</li>
+</ul>
+
+<pre>TYPE PersonType
+    Name : STRING
+    DateOfBirth : DATE
+    Height : REAL
+    NumberOfSiblings : INTEGER
+    IsFullTimeStudent : BOOLEAN
+ENDTYPE
+
+DECLARE Person : PersonType
+Person.Name ← "Fred"
+Person.NumberOfSiblings ← 3
+Person.IsFullTimeStudent ← TRUE
+OUTPUT Person.Name</pre>
+
+<p>💡 <strong>Key Points:</strong></p>
+<ul>
+<li>Records are composite data types — they combine multiple fields.</li>
+<li>Access fields using dot notation (Person.Name).</li>
+<li>Each field can have a different data type.</li>
+</ul>
+
+<div class="task">
+<h3>🧮 TASK 13.02</h3>
+<p>Define a record type to store book details:</p>
+<ul>
+<li>Title</li>
+<li>Year of Publication</li>
+<li>Price</li>
+<li>ISBN</li>
+</ul>
+
+<pre>TYPE BookType
+    Title : STRING
+    Year : INTEGER
+    Price : REAL
+    ISBN : STRING
+ENDTYPE
+
+DECLARE Book : BookType
+Book.Title ← "Computer Science"
+Book.Year ← 2019
+Book.Price ← 44.95
+Book.ISBN ← "9781108733755"</pre>
+</div>
+
+<div class="section-divider"></div>
+
+<h2>🔹 13.03 Arrays</h2>
+<p>An array is an ordered collection of data items, usually of the same data type.</p>
+<p><strong>Example:</strong> A list of 10 exam scores or names.</p>
+
+<h3>⚙️ Definition</h3>
+<pre>DECLARE Marks : ARRAY[1:10] OF INTEGER</pre>
+<ul>
+<li>Marks → name of the array</li>
+<li>ARRAY[1:10] → indices from 1 to 10</li>
+<li>INTEGER → data type of each element</li>
+</ul>
+
+<div class="example">
+<h3>💬 Key Terms</h3>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Array Index</td><td>Position number of an element in the array</td></tr>
+<tr><td>Lower Bound</td><td>Smallest index value</td></tr>
+<tr><td>Upper Bound</td><td>Largest index value</td></tr>
+</table>
+</div>
+<!-- SECTION: 13.05 Two-Dimensional Arrays -->
+<section id="sec-13-05-two-dimensional-arrays">
+  <div class="section-divider"></div>
+
+  <h2>🔹 13.05 Two-Dimensional Arrays</h2>
+
+  <div class="example">
+    <h3>🧩 Introduction</h3>
+    <p>A two-dimensional (2D) array is an array of arrays — it can be visualized as a <strong>table or matrix</strong> consisting of rows and columns. Each cell in this table stores a value, which can be accessed using two indices:</p>
+    <ul>
+      <li>The <strong>row number</strong></li>
+      <li>The <strong>column number</strong></li>
+    </ul>
+    <p>For example, a <strong>6×7 grid</strong> (like a game board) has:</p>
+    <ul>
+      <li>6 rows</li>
+      <li>7 columns</li>
+    </ul>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>🧮 Declaring a 2D Array in Pseudocode</h3>
+  <p>A 2D array requires two dimensions — each having lower and upper bounds.</p>
+  <p><strong>Syntax:</strong></p>
+  <pre>DECLARE &lt;identifier&gt; : ARRAY[&lt;lBound1&gt;:&lt;uBound1&gt;, &lt;lBound2&gt;:&lt;uBound2&gt;] OF &lt;dataType&gt;</pre>
+
+  <p><strong>✅ Example:</strong></p>
+  <pre>DECLARE Board : ARRAY[1:6, 1:7] OF INTEGER</pre>
+
+  <p>This declares a table (matrix) named <code>Board</code> with:</p>
+  <ul>
+    <li>6 rows (1 → 6)</li>
+    <li>7 columns (1 → 7)</li>
+    <li>Each element storing an integer</li>
+  </ul>
+
+  <div class="section-divider"></div>
+
+  <h3>🔍 Accessing Elements in a 2D Array</h3>
+  <p>You can access or modify a specific element using row and column indices:</p>
+  <pre>&lt;arrayIdentifier&gt;[row, column]</pre>
+  <p><strong>Example:</strong></p>
+  <pre>Board[3, 4] &larr; 0</pre>
+  <p>This sets the element in the <strong>3rd row</strong> and <strong>4th column</strong> to zero.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>🔁 Traversing a 2D Array (Nested Loops)</h3>
+  <p>When you need to process all elements of a 2D array, you use nested loops:</p>
+  <ul>
+    <li>The <strong>outer loop</strong> iterates through rows.</li>
+    <li>The <strong>inner loop</strong> iterates through columns.</li>
+  </ul>
+
+  <p><strong>Pseudocode Example (Initialization):</strong></p>
+  <pre>FOR Row &larr; 0 TO MaxRowIndex
+    FOR Column &larr; 0 TO MaxColumnIndex
+        ThisTable[Row, Column] &larr; 0
+    NEXT Column
+NEXT Row</pre>
+
+  <h4>Identifiers:</h4>
+  <table>
+    <tr><th>Identifier</th><th>Data Type</th><th>Explanation</th></tr>
+    <tr><td>ThisTable</td><td>ARRAY[0:3, 0:5] OF INTEGER</td><td>The 2D table</td></tr>
+    <tr><td>MaxRowIndex</td><td>INTEGER</td><td>Highest row index</td></tr>
+    <tr><td>MaxColumnIndex</td><td>INTEGER</td><td>Highest column index</td></tr>
+    <tr><td>Row</td><td>INTEGER</td><td>Loop counter for rows</td></tr>
+    <tr><td>Column</td><td>INTEGER</td><td>Loop counter for columns</td></tr>
+  </table>
+
+  <div class="section-divider"></div>
+
+  <h3>🖨️ Outputting 2D Array Contents</h3>
+  <p>To print or display the array:</p>
+  <pre>FOR Row &larr; 0 TO MaxRowIndex
+    FOR Column &larr; 0 TO MaxColumnIndex
+        OUTPUT ThisTable[Row, Column] // stay on same line
+    NEXT Column
+    OUTPUT Newline // move to next row
+NEXT Row</pre>
+  <p>This ensures that all values in one row are printed on the same line before moving to the next row.</p>
+
+  <div class="task">
+    <h3>🧩 TASK 13.06 — Noughts and Crosses (Tic-Tac-Toe)</h3>
+    <ol>
+      <li>Declare a 2D array to represent the game board:</li>
+      <pre>Board : ARRAY[1:3, 1:3] OF CHAR</pre>
+      <li>Initialise each element to a space <code>" "</code> (empty square).</li>
+      <li>Represent Player A’s counter with <code>"O"</code> and Player B’s with <code>"X"</code>.</li>
+      <li>Example statements:</li>
+      <pre>Board[1,1] &larr; "O"   // Player A places in top-left
+Board[2,2] &larr; "X"   // Player B places in middle</pre>
+    </ol>
+  </div>
+</section>
+
+<!-- SECTION: WORKED EXAMPLE 13.05 — Connect 4 -->
+<section id="sec-13-05-connect4">
+  <div class="section-divider"></div>
+
+  <h2>WORKED EXAMPLE 13.05 — Connect 4 Game</h2>
+
+  <div class="example">
+    <h3>🎮 Overview</h3>
+    <ul>
+      <li>Connect 4 is a two-player game played on a <strong>6×7 grid</strong>.</li>
+      <li>Player ‘O’ and Player ‘X’ take turns dropping tokens into columns.</li>
+      <li>Tokens stack from the bottom.</li>
+      <li>The winner connects four consecutive tokens horizontally, vertically, or diagonally.</li>
+    </ul>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h3>🧠 Algorithm Structure (Top Level)</h3>
+  <pre>CALL InitialiseBoard
+CALL SetUpGame
+CALL OutputBoard
+WHILE GameFinished = FALSE DO
+    CALL PlayerMakesMove
+    CALL OutputBoard
+    CALL CheckGameFinished
+    IF GameFinished = FALSE THEN
+        CALL SwapThisPlayer
+    ENDIF
+ENDWHILE</pre>
+
+  <p>This modular structure allows code reuse — for example, <code>OutputBoard</code> is called in multiple places.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>🧾 Identifier Table (Main Program)</h3>
+  <table>
+    <tr><th>Identifier</th><th>Data Type</th><th>Explanation</th></tr>
+    <tr><td>Board</td><td>ARRAY[1:6,1:7] OF CHAR</td><td>Represents the game grid</td></tr>
+    <tr><td>InitialiseBoard</td><td>Procedure</td><td>Sets up blank board</td></tr>
+    <tr><td>SetUpGame</td><td>Procedure</td><td>Initializes player turn and game state</td></tr>
+    <tr><td>GameFinished</td><td>BOOLEAN</td><td>TRUE if game ends, otherwise FALSE</td></tr>
+    <tr><td>ThisPlayer</td><td>CHAR</td><td>Current player (‘O’ or ‘X’)</td></tr>
+    <tr><td>OutputBoard</td><td>Procedure</td><td>Displays the board</td></tr>
+    <tr><td>PlayerMakesMove</td><td>Procedure</td><td>Handles player’s turn</td></tr>
+    <tr><td>CheckGameFinished</td><td>Procedure</td><td>Checks for winner or draw</td></tr>
+    <tr><td>SwapThisPlayer</td><td>Procedure</td><td>Alternates turns</td></tr>
+  </table>
+
+  <div class="section-divider"></div>
+
+  <h3>⚙️ Procedure 1: InitialiseBoard</h3>
+  <pre>PROCEDURE InitialiseBoard
+    FOR Row &larr; 1 TO 6
+        FOR Column &larr; 1 TO 7
+            Board[Row, Column] &larr; BLANK
+        NEXT Column
+    NEXT Row
+ENDPROCEDURE</pre>
+
+  <h4>Identifiers:</h4>
+  <table>
+    <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+    <tr><td>Row, Column</td><td>INTEGER</td><td>Loop counters</td></tr>
+    <tr><td>BLANK</td><td>CHAR</td><td>Represents empty cell</td></tr>
+  </table>
+
+  <div class="section-divider"></div>
+
+  <h3>⚙️ Procedure 2: SetUpGame</h3>
+  <pre>PROCEDURE SetUpGame
+    ThisPlayer &larr; 'O'
+    GameFinished &larr; FALSE
+ENDPROCEDURE</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>⚙️ Procedure 3: OutputBoard</h3>
+  <pre>PROCEDURE OutputBoard
+    FOR Row &larr; 6 DOWNTO 1
+        FOR Column &larr; 1 TO 7
+            OUTPUT Board[Row, Column]
+        NEXT Column
+        OUTPUT Newline
+    NEXT Row
+ENDPROCEDURE</pre>
+
+  <p>This prints the board from top to bottom (Row 6 to Row 1) to match how tokens drop in the game.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>⚙️ Procedure 4: PlayerMakesMove</h3>
+  <pre>PROCEDURE PlayerMakesMove
+    ValidColumn &larr; PlayerChoosesColumn
+    ValidRow &larr; FindFreeRow
+    Board[ValidRow, ValidColumn] &larr; ThisPlayer
+ENDPROCEDURE</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>🧩 Supporting Function: PlayerChoosesColumn</h3>
+  <pre>FUNCTION PlayerChoosesColumn RETURNS INTEGER
+    OUTPUT "Player ", ThisPlayer, "'s turn."
+    REPEAT
+        OUTPUT "Enter a valid column number: "
+        INPUT ColumnNumber
+    UNTIL ColumnNumberValid = TRUE
+    RETURN ColumnNumber
+ENDFUNCTION</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>🧩 Supporting Function: ColumnNumberValid</h3>
+  <pre>FUNCTION ColumnNumberValid RETURNS BOOLEAN
+    Valid &larr; FALSE
+    IF ColumnNumber &gt;= 1 AND ColumnNumber &lt;= 7 THEN
+        IF Board[6, ColumnNumber] = BLANK THEN
+            Valid &larr; TRUE
+        ENDIF
+    ENDIF
+    RETURN Valid
+ENDFUNCTION</pre>
+
+  <p>Checks if the chosen column is within range and not full.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>🧩 Supporting Function: FindFreeRow</h3>
+  <pre>FUNCTION FindFreeRow RETURNS INTEGER
+    ThisRow &larr; 1
+    WHILE Board[ThisRow, ValidColumn] &lt;&gt; BLANK DO
+        ThisRow &larr; ThisRow + 1
+    ENDWHILE
+    RETURN ThisRow
+ENDFUNCTION</pre>
+
+  <p>Finds the lowest empty position in the chosen column.</p>
+
+  <div class="section-divider"></div>
+
+  <h3>🧩 Procedure: CheckGameFinished</h3>
+  <pre>PROCEDURE CheckGameFinished
+    WinnerFound &larr; FALSE
+    CALL CheckIfPlayerHasWon
+    IF WinnerFound = TRUE THEN
+        GameFinished &larr; TRUE
+        OUTPUT ThisPlayer, " is the winner"
+    ELSE
+        CALL CheckForFullBoard
+    ENDIF
+ENDPROCEDURE</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>🧩 Procedure: CheckIfPlayerHasWon</h3>
+  <pre>PROCEDURE CheckIfPlayerHasWon
+    WinnerFound &larr; FALSE
+    CALL CheckHorizontalLine
+    IF WinnerFound = FALSE THEN
+        CALL CheckVerticalLine
+    ENDIF
+ENDPROCEDURE</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>🧩 Checking for Horizontal and Vertical Wins</h3>
+
+  <h4>Horizontal:</h4>
+  <pre>PROCEDURE CheckHorizontalLine
+    FOR i &larr; 1 TO 4
+        IF Board[ValidRow, i] = ThisPlayer AND
+           Board[ValidRow, i + 1] = ThisPlayer AND
+           Board[ValidRow, i + 2] = ThisPlayer AND
+           Board[ValidRow, i + 3] = ThisPlayer THEN
+            WinnerFound &larr; TRUE
+        ENDIF
+    NEXT i
+ENDPROCEDURE</pre>
+
+  <h4>Vertical:</h4>
+  <pre>PROCEDURE CheckVerticalLine
+    IF ValidRow &gt;= 4 THEN
+        IF Board[ValidRow, ValidColumn] = ThisPlayer AND
+           Board[ValidRow - 1, ValidColumn] = ThisPlayer AND
+           Board[ValidRow - 2, ValidColumn] = ThisPlayer AND
+           Board[ValidRow - 3, ValidColumn] = ThisPlayer THEN
+            WinnerFound &larr; TRUE
+        ENDIF
+    ENDIF
+ENDPROCEDURE</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>⚙️ Procedure: CheckForFullBoard</h3>
+  <pre>PROCEDURE CheckForFullBoard
+    BlankFound &larr; FALSE
+    ThisRow &larr; 0
+    REPEAT
+        ThisRow &larr; ThisRow + 1
+        ThisColumn &larr; 0
+        REPEAT
+            ThisColumn &larr; ThisColumn + 1
+            IF Board[ThisRow, ThisColumn] = BLANK THEN
+                BlankFound &larr; TRUE
+            ENDIF
+        UNTIL ThisColumn = 7 OR BlankFound = TRUE
+    UNTIL ThisRow = 6 OR BlankFound = TRUE
+    IF BlankFound = FALSE THEN
+        OUTPUT "It is a draw"
+        GameFinished &larr; TRUE
+    ENDIF
+ENDPROCEDURE</pre>
+
+  <div class="section-divider"></div>
+
+  <h3>⚙️ Procedure: SwapThisPlayer</h3>
+  <pre>PROCEDURE SwapThisPlayer
+    IF ThisPlayer = 'O' THEN
+        ThisPlayer &larr; 'X'
+    ELSE
+        ThisPlayer &larr; 'O'
+    ENDIF
+ENDPROCEDURE</pre>
+
+</section>
+
+<!-- SECTION: Arrays of Records & TASK 13.07 -->
+<section id="sec-arrays-of-records">
+  <div class="section-divider"></div>
+
+  <h2>Arrays of Records</h2>
+
+  <p>Just as we can have arrays of integers or strings, we can also have <strong>arrays of records</strong> — where each record holds multiple fields.</p>
+
+  <p><strong>Example:</strong></p>
+  <pre>DECLARE Person : ARRAY[1:100] OF PersonType
+Person[1].Name &larr; "Fred"
+OUTPUT Person[1].Name</pre>
+
+  <p>This approach is efficient for handling multiple structured data items such as students, books, or customers.</p>
+
+  <div class="task">
+    <h3>TASK 13.07</h3>
+    <ol>
+      <li>Declare an array of <code>BookType</code> for 200 books.</li>
+      <pre>DECLARE Books : ARRAY[1:200] OF BookType</pre>
+      <li>Set the first book’s details to the values provided in Task 13.02.</li>
+    </ol>
+  </div>
+
+</section>
+
+<!-- SECTION: Text Files (also included here as part of chunk) -->
+<section id="sec-text-files">
+  <div class="section-divider"></div>
+
+  <h2>1. Text Files</h2>
+
+  <ul>
+    <li>Text files allow data to be stored permanently on secondary storage.</li>
+    <li>Data is written sequentially and can be read back later by a program.</li>
+    <li>Used when data must persist after program termination (e.g., saving scores, student records).</li>
+  </ul>
+
+  <h3>File Modes:</h3>
+  <ul>
+    <li><code>OPENFILE(file, FORREAD)</code> – open a file for reading.</li>
+    <li><code>OPENFILE(file, FORWRITE)</code> – open a file for writing (erases existing content).</li>
+    <li><code>OPENFILE(file, FORAPPEND)</code> – open a file to add new data at the end.</li>
+    <li><code>CLOSEFILE(file)</code> – close the file after use.</li>
+  </ul>
+
+  <h3>Example – Writing to a file:</h3>
+  <pre>OPENFILE "Marks.txt" FORWRITE
+WRITEFILE "Marks.txt", "Ravi,85"
+WRITEFILE "Marks.txt", "Ali,90"
+CLOSEFILE "Marks.txt"</pre>
+
+  <h3>Example – Reading from a file:</h3>
+  <pre>OPENFILE "Marks.txt" FORREAD
+WHILE NOT EOF("Marks.txt")
+    READFILE "Marks.txt", Line
+    OUTPUT Line
+ENDWHILE
+CLOSEFILE "Marks.txt"</pre>
+
+  <p>[Diagram – Flow: Input → Processing → File Storage → Output]</p>
+
+  <div class="section-divider"></div>
+</section>
+<!-- ===================== CHAPTER 13 — CONTINUATION ===================== -->
+<section id="abstract-data-types" class="content-section">
+  <h2>13.06 Abstract Data Types (ADTs)</h2>
+  <p>
+    <strong>Definition:</strong> An Abstract Data Type defines a logical structure and a set of operations 
+    without specifying how it is implemented. It focuses on <em>what</em> operations can be performed rather than 
+    <em>how</em> they are executed.
+  </p>
+
+  <h3>Examples of ADTs:</h3>
+  <ul>
+    <li>Stack</li>
+    <li>Queue</li>
+    <li>Linked List</li>
+    <li>Tree</li>
+    <li>Graph</li>
+  </ul>
+
+  <p><strong>Key Idea:</strong> ADTs provide a clear interface for data manipulation, hiding implementation details from the programmer.</p>
+</section>
+
+<!-- ===================== STACKS ===================== -->
+<section id="stacks" class="content-section">
+  <h2>13.07 Stacks</h2>
+  <p>
+    A <strong>Stack</strong> is a <strong>LIFO (Last In, First Out)</strong> structure where elements are added and removed 
+    only from the top.
+  </p>
+
+  <h3>Operations:</h3>
+  <ul>
+    <li><code>Push(Item)</code> → Adds an item to the top of the stack.</li>
+    <li><code>Pop()</code> → Removes the top item.</li>
+    <li><code>IsEmpty()</code> → Checks if stack is empty.</li>
+    <li><code>IsFull()</code> → Checks if stack is full.</li>
+  </ul>
+
+  <div class="diagram">
+    <em>[Diagram – Stack of plates with Push and Pop arrows]</em>
+  </div>
+
+  <h3>Example (Pseudocode)</h3>
+  <pre><code>DECLARE Stack[5] : ARRAY OF STRING
+DECLARE TopPointer : INTEGER ← 0
+
+PROCEDURE Push(Item)
+    IF TopPointer < 5 THEN
+        TopPointer ← TopPointer + 1
+        Stack[TopPointer] ← Item
+    ELSE
+        OUTPUT "Stack Overflow"
+    ENDIF
+ENDPROCEDURE
+</code></pre>
+
+  <h4>Use Cases:</h4>
+  <ul>
+    <li>Undo/Redo operations</li>
+    <li>Function call management</li>
+    <li>Expression evaluation</li>
+  </ul>
+</section>
+
+<!-- ===================== QUEUES ===================== -->
+<section id="queues" class="content-section">
+  <h2>13.08 Queues</h2>
+  <p>
+    A <strong>Queue</strong> is a <strong>FIFO (First In, First Out)</strong> structure where items are added at the rear 
+    and removed from the front.
+  </p>
+
+  <h3>Operations:</h3>
+  <ul>
+    <li><code>Enqueue(Item)</code> – Add item to rear</li>
+    <li><code>Dequeue()</code> – Remove item from front</li>
+    <li><code>IsEmpty()</code> – Checks if queue is empty</li>
+  </ul>
+
+  <div class="diagram">
+    <em>[Diagram – Queue of people entering and leaving a line]</em>
+  </div>
+
+  <h3>Example (Pseudocode)</h3>
+  <pre><code>DECLARE Queue[5] : ARRAY OF STRING
+DECLARE FrontPointer : INTEGER ← 0
+DECLARE RearPointer : INTEGER ← -1
+
+PROCEDURE Enqueue(Item)
+    IF RearPointer < 4 THEN
+        RearPointer ← RearPointer + 1
+        Queue[RearPointer] ← Item
+    ELSE
+        OUTPUT "Queue Full"
+    ENDIF
+ENDPROCEDURE
+</code></pre>
+
+  <h4>Types of Queues:</h4>
+  <ul>
+    <li><strong>Linear Queue:</strong> Once full, no new item can be added until front elements are removed.</li>
+    <li><strong>Circular Queue:</strong> Pointers wrap around to reuse free spaces.</li>
+  </ul>
+</section>
+
+<!-- ===================== LINKED LISTS ===================== -->
+<section id="linked-lists" class="content-section">
+  <h2>13.09 Linked Lists</h2>
+  <p>
+    A <strong>Linked List</strong> consists of nodes, each containing:
+  </p>
+  <ul>
+    <li>Data field</li>
+    <li>Pointer to the next node</li>
+  </ul>
+
+  <div class="diagram">
+    <em>[Diagram – Nodes with Data and NextPointer arrows]</em>
+  </div>
+
+  <h3>Features:</h3>
+  <ul>
+    <li>Size can grow or shrink dynamically.</li>
+    <li>Memory is allocated as needed.</li>
+    <li>No need for contiguous memory allocation.</li>
+  </ul>
+
+  <h3>Example Structure:</h3>
+  <table>
+    <thead>
+      <tr><th>Node</th><th>Data</th><th>NextPointer</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A</td><td>2</td></tr>
+      <tr><td>2</td><td>B</td><td>3</td></tr>
+      <tr><td>3</td><td>C</td><td>Null</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Example – Traversing a Linked List</h3>
+  <pre><code>Pointer ← StartPointer
+WHILE Pointer ≠ Null
+    OUTPUT NodeData[Pointer]
+    Pointer ← NextPointer[Pointer]
+ENDWHILE
+</code></pre>
+</section>
+
+<!-- ===================== LINKED LISTS USING ARRAYS ===================== -->
+<section id="linked-lists-arrays" class="content-section">
+  <h2>13.10 Linked Lists Using Arrays</h2>
+  <p>
+    When dynamic memory isn’t available, linked lists can be implemented using arrays.
+    Two arrays are used:
+  </p>
+  <ol>
+    <li><strong>DataArray</strong> – Stores values</li>
+    <li><strong>PointerArray</strong> – Stores indices to next nodes</li>
+  </ol>
+
+  <h3>Example:</h3>
+  <table>
+    <thead>
+      <tr><th>Index</th><th>DataArray</th><th>PointerArray</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>A</td><td>2</td></tr>
+      <tr><td>2</td><td>B</td><td>4</td></tr>
+      <tr><td>3</td><td>C</td><td>–1</td></tr>
+      <tr><td>4</td><td>D</td><td>3</td></tr>
+    </tbody>
+  </table>
+  <p><strong>StartPointer = 1</strong> → Represents A → B → D → C</p>
+  <div class="diagram"><em>[Diagram – Parallel arrays linked via pointer indices]</em></div>
+</section>
+
+<!-- ===================== FREE LISTS ===================== -->
+<section id="free-lists" class="content-section">
+  <h2>13.11 Free Lists and Combined Example</h2>
+  <p>
+    A <strong>Free List</strong> tracks unused nodes in a linked list implementation.
+    When a new node is needed, one is taken from the Free List.
+    When a node is deleted, it is returned to the Free List.
+  </p>
+
+  <div class="diagram"><em>[Diagram – Two lists: Main List and Free List with arrows showing transfer of nodes]</em></div>
+
+  <h3>Combined Example:</h3>
+  <pre><code>StartPointer = 1
+FreeListPointer = 6
+
+NodeData = ["A","B","C","D","E","F"]
+NextPointer = [2,3,4,Null,6,Null]
+</code></pre>
+  <ul>
+    <li>Removing a node adds its position to the Free List.</li>
+    <li>Adding a node uses the first free slot from Free List.</li>
+  </ul>
+</section>
+
+<!-- ===================== SUMMARY ===================== -->
+<section id="summary-reflection" class="content-section">
+  <h2>13.12 Summary and Reflection</h2>
+  <ul>
+    <li><strong>Text Files</strong> store data permanently.</li>
+    <li><strong>ADTs</strong> describe data handling independent of implementation.</li>
+    <li><strong>Stacks (LIFO)</strong> and <strong>Queues (FIFO)</strong> manage sequential data processing.</li>
+    <li><strong>Linked Lists</strong> allow dynamic data management using pointers.</li>
+    <li><strong>Free Lists</strong> enable efficient re-use of memory in array-based linked lists.</li>
+  </ul>
+</section>
+<!-- ===================== END OF CHAPTER ===================== -->
+
+<!-- Continue your next chunks here -->
+<footer>MES Computer Science AS Level | Chapter 13: Data Types and Structures | Prepared by Ravi Raju</footer>
+</body>
+</html>
