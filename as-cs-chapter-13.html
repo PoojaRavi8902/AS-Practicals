@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 13 – Data Types and Structures (Part 1)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #004080;
+    }
+    .prepared {
+      text-align: right;
+      font-style: italic;
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .example {
+      background: #eef6ff;
+      border-left: 5px solid #004080;
+      padding: 10px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #004080;
+      color: #fff;
+    }
+    .task {
+      background: #fff7e6;
+      border-left: 5px solid #ff9800;
+      padding: 10px;
+      margin: 15px 0;
+    }
+    .quiz {
+      margin: 10px 0;
+    }
+    .quiz button {
+      background: #004080;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      margin-top: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .quiz button:hover {
+      background: #0066cc;
+    }
+    .answer {
+      display: none;
+      margin-top: 5px;
+      padding: 8px;
+      background: #e6ffe6;
+      border-left: 5px solid #4CAF50;
+    }
+  </style>
+  <script>
+    function toggleAnswer(id) {
+      var ans = document.getElementById(id);
+      if (ans.style.display === "none") {
+        ans.style.display = "block";
+      } else {
+        ans.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <div class="prepared">Prepared by Ravi Raju</div>
+  <h1>Chapter 13 – Data Types and Structures (Part 1)</h1>
+  <h2>13.01 Data Types</h2>
+  <p>
+    Every programming language needs to store and process data. 
+    A <b>data type</b> defines what kind of values a variable can hold and 
+    what operations can be performed on it.  
+    This section introduces the <b>primitive</b> and <b>further</b> data types used in pseudocode.
+  </p>
+
+  <h3>Primitive Data Types</h3>
+
+  <div class="card">
+    <h4>INTEGER</h4>
+    <p>Whole numbers (positive or negative, no decimals).</p>
+    <div class="example">age ← 16<br>score ← -5</div>
+  </div>
+
+  <div class="card">
+    <h4>REAL</h4>
+    <p>Numbers with decimal/fractional parts.</p>
+    <div class="example">temperature ← 36.7<br>pi ← 3.14159</div>
+  </div>
+
+  <div class="card">
+    <h4>CHAR</h4>
+    <p>A single character (letter, digit, or symbol).</p>
+    <div class="example">middleInitial ← 'R'<br>symbol ← '#'</div>
+  </div>
+
+  <div class="card">
+    <h4>BOOLEAN</h4>
+    <p>Logical values: TRUE or FALSE.</p>
+    <div class="example">isEven ← TRUE<br>finished ← FALSE</div>
+  </div>
+
+  <div class="quiz">
+    <p><b>Quick Check:</b> What data type is <code>price ← 250</code>?</p>
+    <button onclick="toggleAnswer('q1')">Show Answer</button>
+    <div id="q1" class="answer">INTEGER (whole number, no decimal).</div>
+  </div>
+
+  <h3>Further Data Types</h3>
+
+  <div class="card">
+    <h4>STRING</h4>
+    <p>A sequence of characters (letters, numbers, spaces, symbols).</p>
+    <div class="example">name ← "Ravi Raju"<br>phone ← "0123456789"</div>
+  </div>
+
+  <div class="card">
+    <h4>DATE</h4>
+    <p>Represents a calendar date.</p>
+    <div class="example">dob ← 15/09/2005</div>
+  </div>
+
+  <div class="quiz">
+    <p><b>Quick Check:</b> Which data type would best store <code>"12/09/2025"</code>?</p>
+    <button onclick="toggleAnswer('q2')">Show Answer</button>
+    <div id="q2" class="answer">DATE (not STRING, because it represents a calendar date).</div>
+  </div>
+
+  <h3>Table 13.01 – Summary of Data Types</h3>
+  <table>
+    <tr>
+      <th>Data Type</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+    <tr>
+      <td>INTEGER</td>
+      <td>Whole number</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>REAL</td>
+      <td>Decimal/fractional number</td>
+      <td>3.14</td>
+    </tr>
+    <tr>
+      <td>CHAR</td>
+      <td>Single character</td>
+      <td>'A'</td>
+    </tr>
+    <tr>
+      <td>BOOLEAN</td>
+      <td>Logical TRUE/FALSE</td>
+      <td>TRUE</td>
+    </tr>
+    <tr>
+      <td>STRING</td>
+      <td>Sequence of characters</td>
+      <td>"Hello"</td>
+    </tr>
+    <tr>
+      <td>DATE</td>
+      <td>Calendar date</td>
+      <td>15/09/2025</td>
+    </tr>
+  </table>
+
+  <div class="task">
+    <h4>Task 13.01</h4>
+    <p>Identify the most appropriate data type for each variable:</p>
+    <ol>
+      <li>studentName ← "Amira"</li>
+      <li>isAdmin ← FALSE</li>
+      <li>marks ← 82</li>
+      <li>pi ← 3.14159</li>
+      <li>dob ← 10/01/2008</li>
+    </ol>
+    <button onclick="toggleAnswer('task1')">Show Suggested Answers</button>
+    <div id="task1" class="answer">
+      1. STRING <br>
+      2. BOOLEAN <br>
+      3. INTEGER <br>
+      4. REAL <br>
+      5. DATE
+    </div>
+  </div>
+
+</body>
+</html>

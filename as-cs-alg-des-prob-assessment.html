@@ -1,0 +1,612 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AS Level 9618 Year 11 - Chapter 12 Algorithms (Assessments)</title>
+  <style>
+    :root{--bg:#fbfdff;--card:#ffffff;--accent:#0b63e5;--muted:#50606f}
+    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial}
+    body{margin:0;background:linear-gradient(180deg,#eef6ff,#fbfdff);color:#0f1724}
+    header{padding:18px 22px;background:linear-gradient(90deg,#0b63e5,#0b8df0);color:white}
+    .container{max-width:1100px;margin:18px auto;padding:18px}
+    h1{margin:0;font-size:20px}
+    .prepared{font-size:14px;margin-top:6px;opacity:0.95}
+    .card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 6px 20px rgba(11,99,229,0.06)}
+    .section-title{display:flex;justify-content:space-between;align-items:center}
+    .qblock{border-left:4px solid rgba(11,99,229,0.12);padding:12px;margin:12px 0;border-radius:8px;background:linear-gradient(180deg,rgba(11,99,229,0.02),transparent)}
+    label{display:block;margin:6px 0}
+    textarea{width:100%;min-height:64px;padding:8px;border-radius:8px;border:1px solid #e6eef8}
+    button{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    button.secondary{background:#64748b}
+    .answer{display:none;margin-top:10px;padding:10px;border-radius:8px;background:#eef7ff;border:1px solid #d2e7ff;color:#02306b}
+    .exam-answer{display:none;margin-top:10px;padding:12px;border-radius:8px;background:#fff7eb;border:1px solid #ffe0b3;color:#6a4200}
+    .score{font-weight:800;color:#054a91}
+    .small{font-size:13px;color:var(--muted)}
+    pre{background:#0b1220;color:#e6eef8;padding:12px;border-radius:8px;overflow:auto}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>AS Level 9618 Year 11 - Chapter 12 Algorithms (Assessments)</h1>
+      <div class="prepared">Prepared by Ravi Raju</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- PART A: MCQs -->
+    <section id="partA" class="card">
+      <div class="section-title"><h2>Part A — Multiple Choice Questions (20)</h2><div class="small">Select one option per question. Click <strong>Submit MCQs</strong> to reveal correct answers and your score (no reset).</div></div>
+      <form id="mcqForm">
+
+<!-- Questions 1..20 -->
+<!-- 1 -->
+<div class="qblock">
+  <p><strong>1.</strong> Which loop guarantees at least one execution?</p>
+  <label><input type="radio" name="q1" value="A"> A) FOR</label>
+  <label><input type="radio" name="q1" value="B"> B) WHILE</label>
+  <label><input type="radio" name="q1" value="C"> C) REPEAT...UNTIL</label>
+  <label><input type="radio" name="q1" value="D"> D) IF...THEN</label>
+  <div class="answer">Answer: C — REPEAT...UNTIL executes body before testing.</div>
+</div>
+
+<!-- 2 -->
+<div class="qblock">
+  <p><strong>2.</strong> In pseudocode the assignment is denoted by:</p>
+  <label><input type="radio" name="q2" value="A"> A) =</label>
+  <label><input type="radio" name="q2" value="B"> B) :=</label>
+  <label><input type="radio" name="q2" value="C"> C) ←</label>
+  <label><input type="radio" name="q2" value="D"> D) ==</label>
+  <div class="answer">Answer: C — the arrow (←) denotes assignment.</div>
+</div>
+
+<!-- 3 -->
+<div class="qblock">
+  <p><strong>3.</strong> Which is NOT a basic construct (chapter)?</p>
+  <label><input type="radio" name="q3" value="A"> A) Assignment</label>
+  <label><input type="radio" name="q3" value="B"> B) Sequence</label>
+  <label><input type="radio" name="q3" value="C"> C) Recursion</label>
+  <label><input type="radio" name="q3" value="D"> D) Repetition</label>
+  <div class="answer">Answer: C — recursion is not listed as a basic construct in the chapter.</div>
+</div>
+
+<!-- 4 -->
+<div class="qblock">
+  <p><strong>4.</strong> What is a rogue value?</p>
+  <label><input type="radio" name="q4" value="A"> A) Random noise</label>
+  <label><input type="radio" name="q4" value="B"> B) A termination value outside normal input range</label>
+  <label><input type="radio" name="q4" value="C"> C) A placeholder variable</label>
+  <label><input type="radio" name="q4" value="D"> D) A debug flag</label>
+  <div class="answer">Answer: B — a rogue value terminates a sequence; must be of same type but outside normal range.</div>
+</div>
+
+<!-- 5 -->
+<div class="qblock">
+  <p><strong>5.</strong> Which flowchart shape is for decisions?</p>
+  <label><input type="radio" name="q5" value="A"> A) Rectangle</label>
+  <label><input type="radio" name="q5" value="B"> B) Oval</label>
+  <label><input type="radio" name="q5" value="C"> C) Diamond</label>
+  <label><input type="radio" name="q5" value="D"> D) Parallelogram</label>
+  <div class="answer">Answer: C — Diamond indicates decision/condition.</div>
+</div>
+
+<!-- 6 -->
+<div class="qblock">
+  <p><strong>6.</strong> Which loop is count-controlled?</p>
+  <label><input type="radio" name="q6" value="A"> A) WHILE</label>
+  <label><input type="radio" name="q6" value="B"> B) REPEAT...UNTIL</label>
+  <label><input type="radio" name="q6" value="C"> C) FOR...NEXT</label>
+  <label><input type="radio" name="q6" value="D"> D) IF</label>
+  <div class="answer">Answer: C — FOR...NEXT is count-controlled (counter managed automatically).</div>
+</div>
+
+<!-- 7 -->
+<div class="qblock">
+  <p><strong>7.</strong> Why use BiggestSoFar method?</p>
+  <label><input type="radio" name="q7" value="A"> A) Uses many variables</label>
+  <label><input type="radio" name="q7" value="B"> B) Minimises variables and is extendable</label>
+  <label><input type="radio" name="q7" value="C"> C) Avoids loops</label>
+  <label><input type="radio" name="q7" value="D"> D) Requires nested IFs</label>
+  <div class="answer">Answer: B — uses fewer variables and adapts to more numbers easily.</div>
+</div>
+
+<!-- 8 -->
+<div class="qblock">
+  <p><strong>8.</strong> Which operator yields remainder?</p>
+  <label><input type="radio" name="q8" value="A"> A) DIV</label>
+  <label><input type="radio" name="q8" value="B"> B) MOD</label>
+  <label><input type="radio" name="q8" value="C"> C) /</label>
+  <label><input type="radio" name="q8" value="D"> D) * </label>
+  <div class="answer">Answer: B — MOD returns the remainder.</div>
+</div>
+
+<!-- 9 -->
+<div class="qblock">
+  <p><strong>9.</strong> What does an identifier table document?</p>
+  <label><input type="radio" name="q9" value="A"> A) Variables and explanations</label>
+  <label><input type="radio" name="q9" value="B"> B) Flowchart shapes</label>
+  <label><input type="radio" name="q9" value="C"> C) Test data</label>
+  <label><input type="radio" name="q9" value="D"> D) Comments</label>
+  <div class="answer">Answer: A — lists identifiers, explanations and data types.</div>
+</div>
+
+<!-- 10 -->
+<div class="qblock">
+  <p><strong>10.</strong> What is stepwise refinement?</p>
+  <label><input type="radio" name="q10" value="A"> A) Breaking down tasks into smaller implementable steps</label>
+  <label><input type="radio" name="q10" value="B"> B) Writing everything in one module</label>
+  <label><input type="radio" name="q10" value="C"> C) Avoiding loops</label>
+  <label><input type="radio" name="q10" value="D"> D) A type of flowchart</label>
+  <div class="answer">Answer: A — refine steps until they map to basic constructs.</div>
+</div>
+
+<!-- 11 -->
+<div class="qblock">
+  <p><strong>11.</strong> Which is an example of abstraction?</p>
+  <label><input type="radio" name="q11" value="A"> A) Tube map showing stations and lines</label>
+  <label><input type="radio" name="q11" value="B"> B) Satellite photo showing buildings</label>
+  <label><input type="radio" name="q11" value="C"> C) Detailed street plan</label>
+  <label><input type="radio" name="q11" value="D"> D) Raw GPS coordinates</label>
+  <div class="answer">Answer: A — tube map is abstraction by removing unnecessary detail.</div>
+</div>
+
+<!-- 12 -->
+<div class="qblock">
+  <p><strong>12.</strong> Local variables are:</p>
+  <label><input type="radio" name="q12" value="A"> A) Accessible only within the module</label>
+  <label><input type="radio" name="q12" value="B"> B) Accessible everywhere</label>
+  <label><input type="radio" name="q12" value="C"> C) Global by default</label>
+  <label><input type="radio" name="q12" value="D"> D) Not allowed</label>
+  <div class="answer">Answer: A — local variables are module-scoped.</div>
+</div>
+
+<!-- 13 -->
+<div class="qblock">
+  <p><strong>13.</strong> Which pseudocode statement outputs data?</p>
+  <label><input type="radio" name="q13" value="A"> A) INPUT</label>
+  <label><input type="radio" name="q13" value="B"> B) OUTPUT</label>
+  <label><input type="radio" name="q13" value="C"> C) SET</label>
+  <label><input type="radio" name="q13" value="D"> D) READ</label>
+  <div class="answer">Answer: B — OUTPUT prints messages or variables.</div>
+</div>
+
+<!-- 14 -->
+<div class="qblock">
+  <p><strong>14.</strong> If REPEAT...UNTIL condition is true initially, what happens?</p>
+  <label><input type="radio" name="q14" value="A"> A) Body executes once then loop ends</label>
+  <label><input type="radio" name="q14" value="B"> B) Body never executes</label>
+  <label><input type="radio" name="q14" value="C"> C) Syntax error</label>
+  <label><input type="radio" name="q14" value="D"> D) Infinite loop</label>
+  <div class="answer">Answer: A — REPEAT executes body at least once before testing.</div>
+</div>
+
+<!-- 15 -->
+<div class="qblock">
+  <p><strong>15.</strong> Identifier NumberOfGuesses follows which style?</p>
+  <label><input type="radio" name="q15" value="A"> A) snake_case</label>
+  <label><input type="radio" name="q15" value="B"> B) CamelCaps</label>
+  <label><input type="radio" name="q15" value="C"> C) kebab-case</label>
+  <label><input type="radio" name="q15" value="D"> D) spaces allowed</label>
+  <div class="answer">Answer: B — CamelCaps (each word capitalised, no spaces).</div>
+</div>
+
+<!-- 16 -->
+<div class="qblock">
+  <p><strong>16.</strong> Which loop suits reading until rogue value?</p>
+  <label><input type="radio" name="q16" value="A"> A) FOR</label>
+  <label><input type="radio" name="q16" value="B"> B) REPEAT...UNTIL</label>
+  <label><input type="radio" name="q16" value="C"> C) SWITCH</label>
+  <label><input type="radio" name="q16" value="D"> D) None</label>
+  <div class="answer">Answer: B — REPEAT...UNTIL (or WHILE) is used; REPEAT is common for rogue-value sequences.</div>
+</div>
+
+<!-- 17 -->
+<div class="qblock">
+  <p><strong>17.</strong> What does Count ← Count + 1 do?</p>
+  <label><input type="radio" name="q17" value="A"> A) Sets Count to 1</label>
+  <label><input type="radio" name="q17" value="B"> B) Increments Count by 1</label>
+  <label><input type="radio" name="q17" value="C"> C) Decrements Count</label>
+  <label><input type="radio" name="q17" value="D"> D) Resets Count to zero</label>
+  <div class="answer">Answer: B — increases Count by one.</div>
+</div>
+
+<!-- 18 -->
+<div class="qblock">
+  <p><strong>18.</strong> A function differs from a procedure because:</p>
+  <label><input type="radio" name="q18" value="A"> A) It returns a value</label>
+  <label><input type="radio" name="q18" value="B"> B) It cannot be called</label>
+  <label><input type="radio" name="q18" value="C"> C) It's the same as a procedure</label>
+  <label><input type="radio" name="q18" value="D"> D) It is always faster</label>
+  <div class="answer">Answer: A — functions return a value used in expressions.</div>
+</div>
+
+<!-- 19 -->
+<div class="qblock">
+  <p><strong>19.</strong> Outer loop for printing R rows and C columns is:</p>
+  <label><input type="radio" name="q19" value="A"> A) Column loop</label>
+  <label><input type="radio" name="q19" value="B"> B) Row loop</label>
+  <label><input type="radio" name="q19" value="C"> C) Both</label>
+  <label><input type="radio" name="q19" value="D"> D) None</label>
+  <div class="answer">Answer: B — the row loop is outermost; inner loop handles columns.</div>
+</div>
+
+<!-- 20 -->
+<div class="qblock">
+  <p><strong>20.</strong> Why prefer local variables?</p>
+  <label><input type="radio" name="q20" value="A"> A) They are global</label>
+  <label><input type="radio" name="q20" value="B"> B) Prevent accidental interference and improve reusability</label>
+  <label><input type="radio" name="q20" value="C"> C) They always persist between calls</label>
+  <label><input type="radio" name="q20" value="D"> D) They are slower</label>
+  <div class="answer">Answer: B — local variables reduce side effects and make modules reusable.</div>
+</div>
+
+      <p style="text-align:center;margin-top:8px"><button type="button" id="submitMcq">Submit MCQs</button></p>
+      </form>
+    </section>
+
+    <!-- PART B: Short Answers -->
+    <section id="partB" class="card">
+      <div class="section-title"><h2>Part B — Short Answer Questions (20)</h2><div class="small">Write your responses then click <strong>Submit Short Answers</strong> to reveal model answers to all.</div></div>
+      <form id="shortForm">
+
+<!-- S1..S20 -->
+<div class="qblock">
+  <p><strong>1.</strong> Define Abstraction.</p>
+  <textarea name="s1"></textarea>
+  <div class="answer">Model answer: Abstraction is filtering out non-essential details and representing only the necessary information for solving a problem.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>2.</strong> Define Decomposition.</p>
+  <textarea name="s2"></textarea>
+  <div class="answer">Model answer: Decomposition is breaking a large problem into smaller sub-problems or modules that are easier to solve.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>3.</strong> Swap the values of A and B using a Temp variable (pseudocode).</p>
+  <textarea name="s3"></textarea>
+  <div class="answer">Model answer:
+<pre>Temp ← A
+A ← B
+B ← Temp</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>4.</strong> What is an identifier table?</p>
+  <textarea name="s4"></textarea>
+  <div class="answer">Model answer: A table listing identifiers (variables), their meanings and data types to document the algorithm's data requirements.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>5.</strong> Convert Miles to Km (1 mile = 1.61 km) — pseudocode.</p>
+  <textarea name="s5"></textarea>
+  <div class="answer">Model answer:
+<pre>INPUT Miles
+Km ← Miles * 1.61
+OUTPUT Km</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>6.</strong> Give an example of nested IF (short).</p>
+  <textarea name="s6"></textarea>
+  <div class="answer">Model answer: IF A &gt; B THEN IF A &gt; C THEN OUTPUT A ENDIF ENDIF</div>
+</div>
+
+<div class="qblock">
+  <p><strong>7.</strong> Print numbers 1 to 10 using FOR loop (pseudocode).</p>
+  <textarea name="s7"></textarea>
+  <div class="answer">Model answer:
+<pre>FOR i ← 1 TO 10
+  OUTPUT i
+NEXT i</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>8.</strong> Largest of three numbers (nested IF pseudocode).</p>
+  <textarea name="s8"></textarea>
+  <div class="answer">Model answer:
+<pre>INPUT A
+INPUT B
+INPUT C
+IF A &gt; B THEN
+  IF A &gt; C THEN OUTPUT A ELSE OUTPUT C ENDIF
+ELSE
+  IF B &gt; C THEN OUTPUT B ELSE OUTPUT C ENDIF
+ENDIF</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>9.</strong> Why use REPEAT...UNTIL for rogue value sequences?</p>
+  <textarea name="s9"></textarea>
+  <div class="answer">Model answer: REPEAT...UNTIL executes body first ensuring at least one input is read; suitable for sequences terminated by a rogue value.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>10.</strong> Validate odd input N — pseudocode.</p>
+  <textarea name="s10"></textarea>
+  <div class="answer">Model answer:
+<pre>REPEAT
+  INPUT N
+UNTIL N MOD 2 = 1</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>11.</strong> Sum and average of 10 numbers — pseudocode.</p>
+  <textarea name="s11"></textarea>
+  <div class="answer">Model answer:
+<pre>RunningTotal ← 0
+FOR i ← 1 TO 10
+  INPUT Num
+  RunningTotal ← RunningTotal + Num
+NEXT i
+OUTPUT RunningTotal
+Average ← RunningTotal / 10
+OUTPUT Average</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>12.</strong> What is a procedure? Give a simple example name.</p>
+  <textarea name="s12"></textarea>
+  <div class="answer">Model answer: A procedure is a named sequence of steps performing a sub-task (e.g., PROCEDURE OutputSymbols(Number, Symbol)).</div>
+</div>
+
+<div class="qblock">
+  <p><strong>13.</strong> Swap without Temp using arithmetic (pseudocode) and caveat.</p>
+  <textarea name="s13"></textarea>
+  <div class="answer">Model answer:
+<pre>A ← A + B
+B ← A - B
+A ← A - B</pre>
+Caveat: risk of overflow; only for numeric types where safe.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>14.</strong> Print R x C grid of '*' using nested loops (pseudocode).</p>
+  <textarea name="s14"></textarea>
+  <div class="answer">Model answer:
+<pre>INPUT R
+INPUT C
+FOR r ← 1 TO R
+  FOR c ← 1 TO C
+    OUTPUT "*"  // without newline
+  NEXT c
+  OUTPUT Newline
+NEXT r</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>15.</strong> What is the benefit of modules?</p>
+  <textarea name="s15"></textarea>
+  <div class="answer">Model answer: Modules improve reusability, organisation, testing and readability; they let you build complex solutions from smaller parts.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>16.</strong> Pseudocode to count positive inputs until 0 is entered.</p>
+  <textarea name="s16"></textarea>
+  <div class="answer">Model answer:
+<pre>PosCount ← 0
+REPEAT
+  INPUT N
+  IF N &gt; 0 THEN PosCount ← PosCount + 1 ENDIF
+UNTIL N = 0
+OUTPUT PosCount</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>17.</strong> Why prefer local over global variables?</p>
+  <textarea name="s17"></textarea>
+  <div class="answer">Model answer: Local variables avoid unintended interactions, make modules independent and easier to test and reuse.</div>
+</div>
+
+<div class="qblock">
+  <p><strong>18.</strong> Highest value in a 1D array — pseudocode using BiggestSoFar.</p>
+  <textarea name="s18"></textarea>
+  <div class="answer">Model answer:
+<pre>INPUT BiggestSoFar
+FOR i ← 2 TO n
+  INPUT NextNumber
+  IF NextNumber &gt; BiggestSoFar THEN BiggestSoFar ← NextNumber ENDIF
+NEXT i
+OUTPUT BiggestSoFar</pre></div>
+</div>
+
+<div class="qblock">
+  <p><strong>19.</strong> Define 'identifier' in pseudocode.</p>
+  <textarea name="s19"></textarea>
+  <div class="answer">Model answer: An identifier is a name used to refer to a variable, procedure or function (e.g., NumberOfGuesses).</div>
+</div>
+
+<div class="qblock">
+  <p><strong>20.</strong> Pseudocode sketch for a right-angled hollow triangle of height H.</p>
+  <textarea name="s20"></textarea>
+  <div class="answer">Model answer (sketch):
+<pre>INPUT H
+FOR r ← 1 TO H
+  IF r = 1 OR r = H THEN
+    OUTPUT '*' repeated r
+  ELSE
+    OUTPUT '*' then (r-2) spaces then '*'
+  ENDIF
+NEXT r</pre></div>
+</div>
+
+      <p style="text-align:center;margin-top:8px"><button type="button" id="submitShort">Submit Short Answers</button></p>
+      </form>
+    </section>
+
+    <!-- PART C: Exam-style -->
+    <section id="partC" class="card">
+      <div class="section-title"><h2>Part C — Exam-Style Questions (5)</h2><div class="small">Each question has its own Submit button — answer revealed only for that question.</div></div>
+
+      <!-- EXAM 1 -->
+      <div class="qblock">
+        <p><strong>Q1.</strong> Modulo-11 check digit (flowchart → pseudocode). Leftmost weight 10, nine digits. If check digit = 10 → 'X'.</p>
+        <button type="button" onclick="document.getElementById('exam1').style.display='block'">Submit Answer</button>
+        <div id="exam1" class="exam-answer">
+<pre>
+Weighting ← 10
+Total ← 0
+Count ← 1
+REPEAT
+  INPUT Digit
+  Value ← Digit * Weighting
+  Total ← Total + Value
+  Weighting ← Weighting - 1
+  Count ← Count + 1
+UNTIL Count > 9
+Remainder ← Total MOD 11
+CheckDigit ← 11 - Remainder
+IF CheckDigit = 10 THEN
+  CheckDigit ← 'X'
+ELSEIF CheckDigit = 11 THEN
+  CheckDigit ← 0
+ENDIF
+OUTPUT CheckDigit
+</pre>
+<p><strong>Worked example:</strong> Digits 0..8 → sum 156; remainder 2; check digit 9.</p>
+        </div>
+      </div>
+
+      <!-- EXAM 2 -->
+      <div class="qblock">
+        <p><strong>Q2.</strong> REPEAT until number is zero — count positives and negatives. Write pseudocode.</p>
+        <button type="button" onclick="document.getElementById('exam2').style.display='block'">Submit Answer</button>
+        <div id="exam2" class="exam-answer">
+<pre>
+PositiveCount ← 0
+NegativeCount ← 0
+REPEAT
+  INPUT Number
+  IF Number > 0 THEN
+    PositiveCount ← PositiveCount + 1
+  ELSEIF Number < 0 THEN
+    NegativeCount ← NegativeCount + 1
+  ENDIF
+UNTIL Number = 0
+OUTPUT PositiveCount
+OUTPUT NegativeCount
+</pre>
+<p><strong>Worked example:</strong> Inputs 5,-3,7,-1,0 → Positive=2, Negative=2.</p>
+        </div>
+      </div>
+
+      <!-- EXAM 3 -->
+      <div class="qblock">
+        <p><strong>Q3.</strong> Using WHILE, read numbers until rogue value -1; output average if count &gt; 0.</p>
+        <button type="button" onclick="document.getElementById('exam3').style.display='block'">Submit Answer</button>
+        <div id="exam3" class="exam-answer">
+<pre>
+RogueValue ← -1
+Total ← 0
+Count ← 0
+INPUT Number
+WHILE Number <> RogueValue DO
+  Count ← Count + 1
+  Total ← Total + Number
+  INPUT Number
+ENDWHILE
+IF Count > 0 THEN
+  Average ← Total / Count
+  OUTPUT Average
+ELSE
+  OUTPUT "No valid numbers entered"
+ENDIF
+</pre>
+<p><strong>Worked example:</strong> Inputs 10,20,-1 → Average = 15.</p>
+        </div>
+      </div>
+
+      <!-- EXAM 4 -->
+      <div class="qblock">
+        <p><strong>Q4.</strong> Stepwise refinement for a hollow triangle (Task 12.06). Provide top-level and OutputRow procedure (params: NumberOfSpaces, NumberOfSymbols, MaxNumber).</p>
+        <button type="button" onclick="document.getElementById('exam4').style.display='block'">Submit Answer</button>
+        <div id="exam4" class="exam-answer">
+<pre>
+CALL SetValues
+REPEAT
+  CALL OutputRow(NumberOfSpaces, NumberOfSymbols, MaxNumberOfSymbols, Symbol)
+  CALL AdjustValuesForNextRow
+UNTIL NumberOfSymbols > MaxNumberOfSymbols
+
+PROCEDURE OutputRow(NumberOfSpaces, NumberOfSymbols, MaxNumberOfSymbols, Symbol)
+  FOR i ← 1 TO NumberOfSpaces
+    OUTPUT Space // no newline
+  NEXT i
+  IF NumberOfSymbols = MaxNumberOfSymbols THEN
+    FOR j ← 1 TO NumberOfSymbols
+      OUTPUT Symbol
+    NEXT j
+  ELSE
+    OUTPUT Symbol
+    IF NumberOfSymbols > 1 THEN
+      FOR k ← 1 TO NumberOfSymbols - 2
+        OUTPUT Space
+      NEXT k
+      OUTPUT Symbol
+    ENDIF
+  ENDIF
+  OUTPUT Newline
+ENDPROCEDURE
+</pre>
+<p><strong>Notes:</strong> Validate MaxNumberOfSymbols is odd using REPEAT...UNTIL with MOD 2 = 1.</p>
+        </div>
+      </div>
+
+      <!-- EXAM 5 -->
+      <div class="qblock">
+        <p><strong>Q5.</strong> Function AdjustedNumberOfSymbols(NumberOfSymbols) returns NumberOfSymbols+2 and usage in top-level.</p>
+        <button type="button" onclick="document.getElementById('exam5').style.display='block'">Submit Answer</button>
+        <div id="exam5" class="exam-answer">
+<pre>
+FUNCTION AdjustedNumberOfSymbols(NumberOfSymbols) RETURNS INTEGER
+  NumberOfSymbols ← NumberOfSymbols + 2
+  RETURN NumberOfSymbols
+ENDFUNCTION
+
+// Call in top-level:
+NumberOfSymbols ← AdjustedNumberOfSymbols(NumberOfSymbols)
+</pre>
+<p><strong>Explanation:</strong> Functions return values to caller; using functions keeps code modular and testable.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <p style="text-align:center;color:var(--muted);margin-top:12px">I am using this assessment(Both MCQs and Short Answer) as class test. Submit button will not reveal the answers.</p>
+  </main>
+
+  <script>
+    // Keys for MCQs
+    const mcqKey = {
+      q1:'C',q2:'C',q3:'C',q4:'B',q5:'C',q6:'C',q7:'B',q8:'B',q9:'A',q10:'A',
+      q11:'A',q12:'A',q13:'B',q14:'A',q15:'B',q16:'B',q17:'B',q18:'A',q19:'B',q20:'B'
+    };
+
+    document.getElementById('submitMcq').addEventListener('click', function(){
+      // reveal all MCQ answers
+      document.querySelectorAll('#partA .answer').forEach(el => el.style.display='block');
+      // compute score
+      let correct=0, total=20;
+      for(let i=1;i<=20;i++){
+        const name='q'+i;
+        const sel = document.querySelector('input[name="'+name+'']:checked');
+        if(sel && sel.value === mcqKey[name]) correct++;
+      }
+      // show score (only once)
+      if(!document.getElementById('mcqScore')){
+        const scoreNode = document.createElement('div'); scoreNode.id='mcqScore'; scoreNode.className='small'; scoreNode.style.marginTop='8px'; scoreNode.innerHTML = '<strong class="score">Score: '+correct+'/'+total+'</strong>';
+        document.getElementById('partA').appendChild(scoreNode);
+      }
+    });
+
+    document.getElementById('submitShort').addEventListener('click', function(){
+      document.querySelectorAll('#partB .answer').forEach(el => el.style.display='block');
+      // no automatic grading for short answers
+    });
+  </script>
+<p><a href="as-cs-alg-des-prob-solving.html">Go to Problem Solving</a></p>
+
+</body>
+</html>

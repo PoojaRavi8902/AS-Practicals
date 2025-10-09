@@ -1,0 +1,73 @@
+<section id="exam-style-questions" class="p-8 bg-gradient-to-b from-slate-50 to-slate-200 rounded-2xl shadow-lg mt-8">
+  <h2 class="text-3xl font-bold text-blue-900 mb-4">Exam-Style Questions and Answers</h2>
+
+  <!-- Question 1 -->
+  <div class="bg-white shadow-md rounded-xl p-6 mb-6">
+    <h3 class="text-xl font-semibold text-blue-800 mb-3">Question 1</h3>
+    <p class="mb-3">Complete the following variable identifier table:</p>
+    <table class="w-full border text-sm mb-4">
+      <thead class="bg-blue-100">
+        <tr>
+          <th class="border px-2 py-1">Variable</th>
+          <th class="border px-2 py-1">Example Value</th>
+          <th class="border px-2 py-1">Data Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="border px-2 py-1">ColourCode</td><td class="border px-2 py-1">“034AB45”</td><td class="border px-2 py-1"><textarea rows="1" class="w-full border rounded p-1"></textarea></td></tr>
+        <tr><td class="border px-2 py-1">ProductionDate</td><td class="border px-2 py-1">2018/03/31</td><td class="border px-2 py-1"><textarea rows="1" class="w-full border rounded p-1"></textarea></td></tr>
+        <tr><td class="border px-2 py-1">Weight</td><td class="border px-2 py-1">67.45</td><td class="border px-2 py-1"><textarea rows="1" class="w-full border rounded p-1"></textarea></td></tr>
+        <tr><td class="border px-2 py-1">NumberInStock</td><td class="border px-2 py-1">98</td><td class="border px-2 py-1"><textarea rows="1" class="w-full border rounded p-1"></textarea></td></tr>
+        <tr><td class="border px-2 py-1">SizeCode</td><td class="border px-2 py-1">‘X’</td><td class="border px-2 py-1"><textarea rows="1" class="w-full border rounded p-1"></textarea></td></tr>
+        <tr><td class="border px-2 py-1">Completed</td><td class="border px-2 py-1">FALSE</td><td class="border px-2 py-1"><textarea rows="1" class="w-full border rounded p-1"></textarea></td></tr>
+      </tbody>
+    </table>
+    <button onclick="toggleAnswer('ans1')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl">Show Correct Answer</button>
+    <div id="ans1" class="hidden mt-4 p-3 bg-green-100 rounded-xl">
+      <b>Answer:</b><br>
+      ColourCode → STRING<br>
+      ProductionDate → DATE<br>
+      Weight → REAL<br>
+      NumberInStock → INTEGER<br>
+      SizeCode → CHAR<br>
+      Completed → BOOLEAN
+    </div>
+  </div>
+
+  <!-- Question 2 -->
+  <div class="bg-white shadow-md rounded-xl p-6 mb-6">
+    <h3 class="text-xl font-semibold text-blue-800 mb-3">Question 2</h3>
+    <p>A stack and a queue are used to reverse the order of a set of values.<br>Complete the diagram:</p>
+
+    <pre class="bg-gray-100 p-4 rounded-xl mt-2 mb-4">
+Front of Queue ⇒   A   B   C   D   E
+Base of Stack  ⇒   _____________
+Front of Queue ⇒   _____________
+    </pre>
+
+    <textarea rows="3" class="w-full border rounded p-2 mb-2" placeholder="Write your answer here..."></textarea>
+    <button onclick="toggleAnswer('ans2')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl">Show Correct Answer</button>
+    <div id="ans2" class="hidden mt-4 p-3 bg-green-100 rounded-xl">
+      <b>Answer:</b><br>
+      Stack (top to base): E D C B A<br>
+      New Queue (front to rear): E D C B A
+    </div>
+  </div>
+
+  <!-- Question 3 -->
+  <div class="bg-white shadow-md rounded-xl p-6 mb-6">
+    <h3 class="text-xl font-semibold text-blue-800 mb-3">Question 3</h3>
+    <p>Alicia uses two 1D arrays (<code>UserList</code> and <code>PasswordList</code>) for login validation.</p>
+
+    <h4 class="text-md font-semibold mt-4 mb-2">a. Complete the identifier table.</h4>
+
+    <table class="w-full border text-sm mb-4">
+      <thead class="bg-blue-100">
+        <tr>
+          <th class="border px-2 py-1">Identifier</th>
+          <th class="border px-2 py-1">Data Type</th>
+          <th class="border px-2 py-1">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="border px-2 py-1">UserList</td><td class="border px-2 py-

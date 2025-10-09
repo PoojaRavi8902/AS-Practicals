@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AS Level Computer Science — Chapter 12 (Exam-ready)</title>
+  <meta name="description" content="Chapter 12 — Algorithm design & problem-solving. Detailed notes, worked examples, interactive tasks and exam-style quizzes. Prepared by Ravi Raju.">
+  <style>
+    /* Modern clean exam-ready style */
+    :root{--bg:#0b1220;--card:#07172a;--muted:#9fb6d8;--accent:#0b61ff;--glass:rgba(255,255,255,0.03)}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#e6f2ff;background:linear-gradient(180deg,#041125 0%,#071426 60%);}
+    .container{max-width:1200px;margin:28px auto;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;box-shadow:0 12px 40px rgba(2,6,23,0.6)}
+    header{display:flex;align-items:center;gap:18px}
+    header .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#163b66,#0b1630);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+    header h1{font-size:22px;margin:0}
+    header p{margin:0;color:var(--muted)}
+    .topbar{display:flex;gap:10px;margin-top:12px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;border:none;cursor:pointer}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .layout{display:grid;grid-template-columns:300px 1fr;gap:18px;margin-top:18px}
+    nav{background:var(--card);padding:16px;border-radius:12px;height:fit-content}
+    nav h3{margin:0 0 12px 0}
+    nav a{display:block;padding:8px;border-radius:8px;color:#cfe9ff;text-decoration:none;margin-bottom:6px}
+    main{background:transparent;padding:6px}
+    section.card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));padding:16px;border-radius:12px;margin-bottom:14px}
+    h2{margin:0 0 8px 0}
+    p{line-height:1.55;color:#d7e9ff}
+    .muted{color:var(--muted);font-size:13px}
+    pre{background:#071728;color:#c7f0ff;padding:12px;border-radius:8px;overflow:auto}
+    .example{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));padding:12px;border-radius:8px;border:1px dashed rgba(255,255,255,0.03)}
+    .task{background:linear-gradient(180deg, rgba(11,22,34,0.2), rgba(11,22,34,0.08));padding:12px;border-radius:8px;border-left:4px solid var(--accent)}
+    details{background:rgba(255,255,255,0.01);padding:10px;border-radius:8px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-size:13px;margin-bottom:6px}
+    input[type=text], textarea{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#dff0ff}
+    .canvas-wrap{background:#fff;padding:10px;border-radius:8px}
+    .quiz{margin-top:10px}
+    .mcq{background:rgba(11,22,34,0.4);padding:12px;border-radius:8px;margin-bottom:8px}
+    .mcq button{margin-top:8px}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:960px){.layout{grid-template-columns:1fr}.nav{position:static}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">AS</div>
+      <div>
+        <h1>Chapter 12 — Algorithm design & problem-solving</h1>
+        <p class="muted">Prepared by Ravi Raju — comprehensive exam-ready notes, interactive tasks & quizzes</p>
+      </div>
+    </header>
+
+    <div class="topbar">
+      <button class="btn" id="toggleAnswers">Toggle All Answers</button>
+      <button class="btn secondary" id="exportHTML">Export HTML</button>
+      <button class="btn secondary" id="exportPDF">Save as PDF (print)</button>
+      <div style="margin-left:auto;color:var(--muted)">Last updated: Sep 15, 2025</div>
+    </div>
+
+    <div class="layout">
+      <nav>
+        <h3>Contents</h3>
+        <a href="#comp-thinking">12.01 Computational thinking</a>
+        <a href="#abstraction">Abstraction (map task)</a>
+        <a href="#decomposition">Decomposition & Data modelling</a>
+        <a href="#pattern">Pattern recognition</a>
+        <a href="#what-alg">12.02 What is an algorithm?</a>
+        <a href="#expressing">12.03 Expressing algorithms</a>
+        <a href="#variables">12.04 Variables & Assignments</a>
+        <a href="#logic">12.06 Logic statements</a>
+        <a href="#loops">12.07 Loops & Repetition</a>
+        <a href="#tasks">Tasks & Exam-style questions</a>
+      </nav>
+
+      <main>
+        <section id="comp-thinking" class="card">
+          <h2>12.01 — What is computational thinking?</h2>
+          <p>Computational thinking is a methodical problem-solving approach where problems are analysed and solutions are created as step-by-step procedures that humans can understand and computers can execute. The key strands are:</p>
+          <ul>
+            <li><strong>Abstraction</strong> — keep only essential details.</li>
+            <li><strong>Decomposition</strong> — split into sub-problems.</li>
+            <li><strong>Data modelling</strong> — organise data using types and structures.</li>
+            <li><strong>Pattern recognition</strong> — reuse known solutions.</li>
+            <li><strong>Algorithmic thinking</strong> — design precise step sequences.</li>
+          </ul>
+          <details>
+            <summary><strong>Exam tip</strong></summary>
+            <p>When answering long questions about computational thinking, explicitly name the strand you are using (e.g., "I used abstraction to remove irrelevant details such as exact street positions") and show the effect on the solution.</p>
+          </details>
+        </section>
+
+        <section id="abstraction" class="card">
+          <h2>Abstraction</h2>
+          <p>Abstraction filters out unnecessary information. For example, a London Underground map shows stations and connections — not the exact geographic layout. Abstraction reduces complexity and focuses on what is relevant to the task.</p>
+
+          <div class="grid2">
+            <div>
+              <div class="task">
+                <strong>Task 12.01 — Draw a simplified route from A to B</strong>
+                <p>Open the drawing canvas and create a simplified map showing only essential landmarks and routes from <strong>A</strong> to <strong>B</strong>. Save the image and upload it to your assessment portal.</p>
+                <div style="margin-top:10px" class="canvas-wrap">
+                  <canvas id="mapCanvas" width="640" height="260"></canvas>
+                  <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+                    <button class="btn" id="pen">Pen</button>
+                    <button class="btn secondary" id="eraser">Eraser</button>
+                    <button class="btn secondary" id="clearCanvas">Clear</button>
+                    <button class="btn" id="saveMap">Save Image</button>
+                    <label style="margin-left:8px;color:var(--muted)">Size <input id="brushSize" type="range" min="1" max="12" value="3"></label>
+                    <input type="color" id="brushColor" value="#0b61ff">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="example">
+                <strong>Teaching note</strong>
+                <p>Ask students to list which details they removed and why. Good answers will mention removal of streets, building detail, and non-essential labels while keeping stations, junctions and landmarks.</p>
+              </div>
+
+              <div style="margin-top:12px" class="example">
+                <strong>Model answer (short)</strong>
+                <ol>
+                  <li>Keep stations and interchange nodes.</li>
+                  <li>Mark start (A) and end (B) clearly.</li>
+                  <li>Show line connections only; remove street-level detail.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="decomposition" class="card">
+          <h2>Decomposition & Data modelling</h2>
+          <p>Decomposition breaks a problem into smaller pieces—modules, procedures or functions—each of which is easier to develop and test. Data modelling analyses required data and defines abstract data types such as stacks, queues or classes.</p>
+          <details>
+            <summary>Classroom exercise</summary>
+            <p>Decompose the task "build a student grading system" into modules (input, validation, calculation, storage, reporting). For each module list required inputs and outputs.</p>
+          </details>
+        </section>
+
+        <section id="pattern" class="card">
+          <h2>Pattern recognition</h2>
+          <p>Recognising patterns lets you apply robust standard algorithms — e.g., sorting and searching algorithms — to similar problems, saving time and reducing errors.</p>
+        </section>
+
+        <section id="what-alg" class="card">
+          <h2>12.02 — What is an algorithm?</h2>
+          <p>An <strong>algorithm</strong> is a sequence of clear, unambiguous steps for solving a problem. Everyday procedures (changing a wheel, baking a cake) are algorithms: inputs, processes, and outputs.</p>
+
+          <div class="example">
+            <strong>Wheel-change (sequence)</strong>
+            <pre>1. Loosen wheel nuts
+2. Position jack
+3. Raise car
+4. Remove wheel
+5. Fit replacement
+6. Lower car and tighten nuts</pre>
+          </div>
+
+          <p>Order matters — incorrect sequencing can make the task impossible. Algorithms may contain conditional steps (selection) or repeated steps (iteration).</p>
+
+          <div class="task" style="margin-top:10px">
+            <strong>Task 12.02</strong>
+            <p>Write structured English steps for: making a sandwich; walking from school to the shop; logging on to a computer. Save your answers for submission.</p>
+          </div>
+        </section>
+
+        <section id="expressing" class="card">
+          <h2>12.03 — Expressing algorithms</h2>
+          <p>Algorithms are expressed in structured English, pseudocode or flowcharts. Key constructs are Assignment, Sequence, Selection and Repetition. Use input/process/output model when designing solutions.</p>
+
+          <div class="grid2" style="margin-top:10px">
+            <div>
+              <div class="example">
+                <strong>Structured English vs Pseudocode</strong>
+                <pre>Structured English:
+SET A to 34
+Increment B
+
+Pseudocode:
+A ← 34
+B ← B + 1</pre>
+              </div>
+            </div>
+
+            <div>
+              <div class="example">
+                <strong>Selection & Repetition (flowchart preview)</strong>
+                <svg width="100%" height="120" viewBox="0 0 700 120" preserveAspectRatio="xMinYMid">
+                  <rect x="20" y="10" width="140" height="36" rx="6" fill="#06283d" stroke="#0b61ff" />
+                  <text x="30" y="34" fill="#bfe1ff" font-family="Courier,monospace" font-size="12">INPUT "Prompt:" A</text>
+                  <rect x="200" y="10" width="200" height="36" rx="6" fill="#042233" stroke="#0b61ff" />
+                  <text x="210" y="34" fill="#bfe1ff" font-family="Courier,monospace" font-size="12">IF A &gt; B THEN ... ELSE ... ENDIF</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="task">
+            <strong>Exam tip</strong>
+            <p>When converting pseudocode to flowchart, maintain the same level of detail. If the pseudocode shows sub-steps, reflect them in flowchart subprocess boxes.</p>
+          </div>
+        </section>
+
+        <section id="variables" class="card">
+          <h2>12.04 — Variables & 12.05 Assignments</h2>
+          <p>Variables are named memory locations. Use meaningful identifiers (CamelCaps) and only letters, digits and underscores. Assignment stores or updates values.</p>
+
+          <div class="grid2" style="margin-top:10px">
+            <div>
+              <div class="example">
+                <strong>Examples</strong>
+                <pre>INPUT Number
+NumberOfGuesses ← 1
+NumberOfGuesses ← NumberOfGuesses + 1
+Value2 ← Value1  // copy value
+Temp ← Value1
+Value1 ← Value2
+Value2 ← Temp    // swap values</pre>
+              </div>
+            </div>
+
+            <div>
+              <div class="example">
+                <strong>Worked Example 12.01 — Miles → Km</strong>
+                <p>Identifier table:</p>
+                <table style="width:100%;margin-top:8px;color:#dff0ff">
+                  <tr><th style="text-align:left">Identifier</th><th style="text-align:left">Explanation</th></tr>
+                  <tr><td>Miles</td><td>Distance in miles</td></tr>
+                  <tr><td>Km</td><td>Result (Miles * 1.61)</td></tr>
+                </table>
+                <pre style="margin-top:8px">INPUT "Enter miles:" Miles
+Km ← Miles * 1.61
+OUTPUT "Km:", Km</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice" style="margin-top:12px">
+            <strong>Practice — Pseudocode</strong>
+            <p>Write pseudocode to convert inches to centimetres (1 inch = 2.54 cm). Use an identifier table and show INPUT/OUTPUT.</p>
+            <div class="answer" id="ans-inches" style="display:none;margin-top:8px">Identifier: Inches, Cms. Pseudocode: INPUT Inches<br>Cms ← Inches * 2.54<br>OUTPUT Cms</div>
+            <button class="btn secondary" onclick="document.getElementById('ans-inches').style.display=(document.getElementById('ans-inches').style.display==='none'?'block':'none')">Show/Hide Model Answer</button>
+          </div>
+        </section>
+
+        <section id="logic" class="card">
+          <h2>12.06 — Logic statements</h2>
+          <p>Selection uses conditions to choose different steps. Conditions are TRUE or FALSE. Common relational operators: =, &lt;, &gt;, &lt;=, &gt;=, &lt;&gt; (not equal).</p>
+
+          <div class="example">
+            <strong>Number-guessing (selection)</strong>
+            <pre>SET SecretNumber
+INPUT Guess
+IF Guess = SecretNumber THEN
+   OUTPUT "Well done"
+ELSE
+   IF Guess &gt; SecretNumber THEN OUTPUT "Secret number is smaller"
+   ELSE OUTPUT "Secret number is greater"
+   ENDIF
+ENDIF</pre>
+          </div>
+
+          <div class="task" style="margin-top:8px">
+            <strong>Task 12.04 — Logic statements</strong>
+            <p>Town bus: passengers under 12 and over 60 travel free. Write logic statements for free fares.</p>
+            <div class="answer" id="ans-bus" style="display:none;margin-top:8px">IF Age &lt;= 11 OR Age &gt;= 61 THEN OUTPUT "Free fare" ELSE OUTPUT "Pay fare" ENDIF</div>
+            <button class="btn secondary" onclick="document.getElementById('ans-bus').style.display=(document.getElementById('ans-bus').style.display==='none'?'block':'none')">Show/Hide Model Answer</button>
+          </div>
+        </section>
+
+        <section id="loops" class="card">
+          <h2>12.07 — Loops & Repetition</h2>
+          <p>Use repetition constructs to repeat tasks: FOR...NEXT, REPEAT...UNTIL, WHILE...ENDWHILE. Choose based on whether count is known or whether loop must execute at least once.</p>
+
+          <div class="example">
+            <strong>Finding largest of many inputs — using FOR loop</strong>
+            <pre>INPUT BiggestSoFar
+FOR Counter ← 2 TO 10
+   INPUT NextNumber
+   IF NextNumber &gt; BiggestSoFar THEN BiggestSoFar ← NextNumber ENDIF
+NEXT Counter
+OUTPUT BiggestSoFar</pre>
+          </div>
+
+          <div class="example" style="margin-top:10px">
+            <strong>Rogue value termination (0 terminates)</strong>
+            <pre>INPUT BiggestSoFar
+REPEAT
+   INPUT NextNumber
+   IF NextNumber &gt; BiggestSoFar THEN BiggestSoFar ← NextNumber ENDIF
+UNTIL NextNumber = 0
+OUTPUT BiggestSoFar</pre>
+          </div>
+
+          <div class="task" style="margin-top:10px">
+            <strong>Task — Number-guessing with loop</strong>
+            <p>Implement this algorithm on paper using REPEAT...UNTIL and then try a pre-condition WHILE version. Explain which is safer if input may be immediately the terminating value.</p>
+          </div>
+        </section>
+
+        <section id="tasks" class="card">
+          <h2>Tasks & Exam-style questions</h2>
+          <p>Below are exam-style MCQs and short-answer questions. Use the built-in auto-check to test yourself. After each question, click "Check" to see feedback and model answer.</p>
+
+          <div class="quiz">
+            <div class="mcq" data-answer="B">
+              <strong>Q1.</strong> Which of the following best describes abstraction?
+              <ol type="A">
+                <li>Breaking a problem into smaller parts</li>
+                <li>Filtering out irrelevant details to focus on essentials</li>
+                <li>Designing step-by-step instructions</li>
+                <li>Organising data in tables</li>
+              </ol>
+              <div style="margin-top:6px">
+                <button onclick="checkMCQ(this,'B')" class="btn">Check</button>
+                <div class="answer" style="display:none">Answer: B — Abstraction filters out irrelevant details so we focus on essentials.</div>
+              </div>
+            </div>
+
+            <div class="mcq" data-answer="C">
+              <strong>Q2.</strong> What is the correct pseudocode to swap A and B using Temp?
+              <ol type="A">
+                <li>A ← B<br>B ← A</li>
+                <li>Temp ← A<br>A ← B</li>
+                <li>Temp ← A<br>A ← B<br>B ← Temp</li>
+                <li>A ← Temp<br>Temp ← B<br>B ← A</li>
+              </ol>
+              <div style="margin-top:6px">
+                <button onclick="checkMCQ(this,'C')" class="btn">Check</button>
+                <div class="answer" style="display:none">Answer: C — Use Temp to hold one value while copying.</div>
+              </div>
+            </div>
+
+            <div class="mcq" data-answer="A">
+              <strong>Q3.</strong> Which loop guarantees the body executes at least once?
+              <ol type="A">
+                <li>REPEAT...UNTIL</li>
+                <li>WHILE...ENDWHILE</li>
+                <li>FOR...NEXT</li>
+                <li>IF...ELSE</li>
+              </ol>
+              <div style="margin-top:6px">
+                <button onclick="checkMCQ(this,'A')" class="btn">Check</button>
+                <div class="answer" style="display:none">Answer: A — REPEAT...UNTIL always executes once before checking.</div>
+              </div>
+            </div>
+
+            <div class="mcq" data-answer="D">
+              <strong>Q4 (longer-answer).</strong> Write pseudocode to calculate the average of N numbers where N is input by the user. (Show identifier table too.)
+              <div style="margin-top:8px"><textarea id="q4" rows="6" placeholder="Type your pseudocode here..." style="background:transparent;color:#dff0ff;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:6px"></textarea>
+              <div style="margin-top:6px"><button class="btn" onclick="checkLongAnswer()">Check model answer</button></div>
+              <div class="answer" id="q4ans" style="display:none;margin-top:8px">Model answer: Identifier table — Counter, Sum, N, NextNumber, Average. Pseudocode:<br>INPUT N<br>Sum ← 0<br>FOR Counter ← 1 TO N<br>  INPUT NextNumber<br>  Sum ← Sum + NextNumber<br>NEXT Counter<br>Average ← Sum / N<br>OUTPUT Average</div></div>
+            </div>
+
+          </div>
+
+          <div style="margin-top:12px" class="example">
+            <strong>Exam technique</strong>
+            <ol>
+              <li>Read the question carefully — underline key requirements (e.g., "show identifiers", "show flowchart").</li>
+              <li>Structure your answer: identifier table first, then pseudocode/flowchart, then brief explanation of choice of constructs.</li>
+              <li>When asked for explanation, use short bullet points and precise terminology.</li>
+            </ol>
+          </div>
+        </section>
+
+        <footer>
+          <div class="muted">This page is designed to be exam-ready: detailed explanations, worked examples and interactive practice. You can export this page and use it offline.</div>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Simple interactivity: canvas drawing, mcq checking, export
+    (function(){
+      // Canvas drawing
+      const canvas=document.getElementById('mapCanvas');const ctx=canvas.getContext('2d');let drawing=false;let pen=true;let brushSize=document.getElementById('brushSize');let brushColor=document.getElementById('brushColor');let history=[];
+      function pos(e){const r=canvas.getBoundingClientRect();return{x:(e.touches?e.touches[0].clientX:e.clientX)-r.left,y:(e.touches?e.touches[0].clientY:e.clientY)-r.top}};
+      canvas.addEventListener('mousedown',e=>{drawing=true;ctx.beginPath();const p=pos(e);ctx.moveTo(p.x,p.y)});
+      canvas.addEventListener('mousemove',e=>{if(!drawing) return;const p=pos(e);ctx.lineTo(p.x,p.y);ctx.lineWidth=brushSize.value;ctx.lineCap='round';ctx.strokeStyle = pen?brushColor.value:'#ffffff';ctx.globalCompositeOperation = pen?'source-over':'destination-out';ctx.stroke();});
+      canvas.addEventListener('mouseup',e=>{if(!drawing) return;drawing=false;ctx.globalCompositeOperation='source-over';history.push(ctx.getImageData(0,0,canvas.width,canvas.height));});
+      document.getElementById('pen').addEventListener('click',()=>{pen=true});document.getElementById('eraser').addEventListener('click',()=>{pen=false});document.getElementById('clearCanvas').addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);history=[]});document.getElementById('saveMap').addEventListener('click',()=>{const link=document.createElement('a');link.download='task12-map.png';link.href=canvas.toDataURL();link.click();});
+
+      // MCQ check
+      window.checkMCQ=function(btn,correct){const parent=btn.closest('.mcq');const ansDiv=parent.querySelector('.answer');if(!ansDiv) return;const got=correct;ansDiv.style.display='block';}
+
+      // Long answer check show
+      window.checkLongAnswer=function(){document.getElementById('q4ans').style.display='block';}
+
+      // Toggle all answers
+      document.getElementById('toggleAnswers').addEventListener('click',()=>{document.querySelectorAll('.answer').forEach(a=>a.style.display=(a.style.display==='none'?'block':'none'))});
+
+      // Export HTML
+      document.getElementById('exportHTML').addEventListener('click',()=>{const blob=new Blob([document.documentElement.outerHTML],{type:'text/html'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Chapter12_ExamReady.html';a.click();});
+      document.getElementById('exportPDF').addEventListener('click',()=>{window.print();});
+
+    })();
+  </script>
+<!-- ===================== PART 2 ===================== -->
+<section id="variables">
+  <h2>12.04 Variables</h2>
+  <p>
+    A <strong>variable</strong> is a named memory location used to store a data value. 
+    You can think of it like a box with a label: the label is the identifier, and the 
+    contents of the box are the value.
+  </p>
+
+  <div class="keyterm"><strong>Key Term:</strong> Variable – a storage location for a data value that has an identifier.</div>
+
+  <figure>
+    <img src="images/variables.png" alt="Diagram showing variables NumberOfGuesses and ThisPlayer">
+    <figcaption>Figure 12.04 – Variables as labeled boxes</figcaption>
+  </figure>
+
+  <p>
+    Identifiers should not contain spaces. They may use letters, digits and underscores. 
+    The <em>CamelCaps</em> convention is commonly used (e.g. <code>NumberOfGuesses</code>, <code>ThisPlayer</code>).
+  </p>
+
+  <h3>Assignments</h3>
+  <p>
+    An assignment stores a value in a variable.
+  </p>
+  <pre><code>INPUT Number
+NumberOfGuesses ← 1
+NumberOfGuesses ← NumberOfGuesses + 1
+Value2 ← Value1</code></pre>
+
+  <figure>
+    <img src="images/assignment.png" alt="Variable assignment diagrams">
+    <figcaption>Figures 12.05–12.07 – Assigning, updating and copying values</figcaption>
+  </figure>
+
+  <h3>Swapping values</h3>
+  <pre><code>Temp ← Value1
+Value1 ← Value2
+Value2 ← Temp</code></pre>
+
+  <h3>Worked Example 12.01 – Miles to Kilometres</h3>
+  <p>Convert a distance in miles into kilometres.</p>
+  <table>
+    <tr><th>Identifier</th><th>Explanation</th></tr>
+    <tr><td>Miles</td><td>Input distance in miles</td></tr>
+    <tr><td>Kilometres</td><td>Result of conversion</td></tr>
+  </table>
+  <pre><code>INPUT Miles
+Km ← Miles * 1.61
+OUTPUT Km</code></pre>
+
+  <h3>Task 12.03</h3>
+  <p>
+    Write pseudocode to convert a length in inches to centimetres. 
+    (1 inch = 2.54 cm)
+  </p>
+  <details>
+    <summary>Answer</summary>
+    <table>
+      <tr><th>Identifier</th><th>Explanation</th></tr>
+      <tr><td>Inches</td><td>Input length in inches</td></tr>
+      <tr><td>Cm</td><td>Result in centimetres</td></tr>
+    </table>
+    <pre><code>INPUT Inches
+Cm ← Inches * 2.54
+OUTPUT Cm</code></pre>
+  </details>
+</section>
+
+<!-- ===================== LOGIC STATEMENTS ===================== -->
+<section id="logic-statements">
+  <h2>12.06 Logic Statements</h2>
+  <p>
+    A <strong>condition</strong> is a logical proposition that evaluates to TRUE or FALSE.
+    Selection is implemented with the IF...THEN...ELSE construct.
+  </p>
+
+  <pre><code>IF A < B THEN
+   <statements>
+ELSE
+   <statements>
+ENDIF</code></pre>
+
+  <div class="keyterm"><strong>Key Term:</strong> Nested IF – an IF statement inside another IF.</div>
+
+  <h3>Relational Operators</h3>
+  <table>
+    <tr><th>Operator</th><th>Meaning</th></tr>
+    <tr><td>=</td><td>Equal to</td></tr>
+    <tr><td><</td><td>Less than</td></tr>
+    <tr><td>></td><td>Greater than</td></tr>
+    <tr><td><=</td><td>Less than or equal to</td></tr>
+    <tr><td>>=</td><td>Greater than or equal to</td></tr>
+    <tr><td><></td><td>Not equal to</td></tr>
+  </table>
+
+  <h3>Worked Example 12.02 – Largest of Three Numbers</h3>
+  <pre><code>INPUT Number1
+INPUT Number2
+INPUT Number3
+IF Number1 > Number2 THEN
+    IF Number1 > Number3 THEN
+        OUTPUT Number1
+    ELSE
+        OUTPUT Number3
+    ENDIF
+ELSE
+    IF Number2 > Number3 THEN
+        OUTPUT Number2
+    ELSE
+        OUTPUT Number3
+    ENDIF
+ENDIF</code></pre>
+
+  <p><em>Alternative Method (Worked Example 12.03):</em> Use a variable <code>BiggestSoFar</code> 
+  and update it as new numbers are read.</p>
+
+  <h3>Task 12.04</h3>
+  <p>Bus fares are free for passengers under 12 or over 60. Write the logic statements.</p>
+  <details>
+    <summary>Answer</summary>
+    <pre><code>IF Age < 12 OR Age > 60 THEN
+    Fare ← 0
+ENDIF</code></pre>
+  </details>
+</section>
+
+<!-- ===================== LOOPS ===================== -->
+<section id="loops">
+  <h2>12.07 Loops</h2>
+  <p>
+    Repetition constructs allow instructions to be repeated.
+  </p>
+
+  <div class="keyterm"><strong>Key Term:</strong> Rogue Value – a special value used to terminate input.</div>
+
+  <h3>Worked Example 12.04 – Using REPEAT...UNTIL</h3>
+  <pre><code>INPUT BiggestSoFar
+Counter ← 1
+REPEAT
+    INPUT NextNumber
+    Counter ← Counter + 1
+    IF NextNumber > BiggestSoFar THEN
+        BiggestSoFar ← NextNumber
+    ENDIF
+UNTIL Counter = 10
+OUTPUT BiggestSoFar</code></pre>
+
+  <h3>Worked Example 12.05 – Using FOR...NEXT</h3>
+  <pre><code>INPUT BiggestSoFar
+FOR Counter ← 2 TO 10
+    INPUT NextNumber
+    IF NextNumber > BiggestSoFar THEN
+        BiggestSoFar ← NextNumber
+    ENDIF
+NEXT Counter
+OUTPUT BiggestSoFar</code></pre>
+
+  <h3>Worked Example 12.06 – Using Rogue Value</h3>
+  <pre><code>INPUT NextNumber
+BiggestSoFar ← NextNumber
+WHILE NextNumber <> 0 DO
+    INPUT NextNumber
+    IF NextNumber > BiggestSoFar THEN
+        BiggestSoFar ← NextNumber
+    ENDIF
+ENDWHILE
+OUTPUT BiggestSoFar</code></pre>
+
+  <h3>Worked Example 12.07 – Number Guessing Game</h3>
+  <pre><code>SecretNumber ← Random
+NumberOfGuesses ← 0
+REPEAT
+    INPUT Guess
+    NumberOfGuesses ← NumberOfGuesses + 1
+    IF Guess = SecretNumber THEN
+        OUTPUT "Well done!"
+    ELSEIF Guess > SecretNumber THEN
+        OUTPUT "Secret number is smaller"
+    ELSE
+        OUTPUT "Secret number is greater"
+    ENDIF
+UNTIL Guess = SecretNumber</code></pre>
+</section>
+
+<!-- ===================== RUNNING TOTALS ===================== -->
+<section id="running-totals">
+  <h2>12.08 Running Totals and Averages</h2>
+  <p>
+    Totals and averages are common algorithms that use accumulation in loops.
+  </p>
+
+  <h3>Worked Example 12.08 – Sum and Average</h3>
+  <table>
+    <tr><th>Identifier</th><th>Explanation</th></tr>
+    <tr><td>RunningTotal</td><td>Sum of all numbers so far</td></tr>
+    <tr><td>Counter</td><td>How many numbers entered</td></tr>
+    <tr><td>NextNumber</td><td>Latest number entered</td></tr>
+    <tr><td>Average</td><td>Mean of all numbers entered</td></tr>
+  </table>
+  <pre><code>RunningTotal ← 0
+FOR Counter ← 1 TO 10
+    INPUT NextNumber
+    RunningTotal ← RunningTotal + NextNumber
+NEXT Counter
+OUTPUT RunningTotal
+Average ← RunningTotal / 10
+OUTPUT Average</code></pre>
+
+  <h3>Exam Question 12.02</h3>
+  <p>Adapt the above algorithm:</p>
+  <ul>
+    <li>a. To compare 100 numbers.</li>
+    <li>b. To allow the user to input how many numbers to compare.</li>
+  </ul>
+  <details>
+    <summary>Suggested Answer</summary>
+    <p>
+      a. Change loop range from <code>1 TO 10</code> → <code>1 TO 100</code>.<br>
+      b. INPUT <code>CountLimit</code>, then use <code>FOR Counter ← 1 TO CountLimit</code>.
+    </p>
+  </details>
+</section>
+<!-- ===================== END PART 2 ===================== -->
+<!-- ===================== PART 3 ===================== -->
+<section id="modules">
+  <h2>12.09 Modules</h2>
+  <p>
+    Another method of developing a solution is to <strong>decompose</strong> the problem into sub-tasks. 
+    Each sub-task can be considered a <em>module</em> that is refined separately. Modules are of two kinds: 
+    <strong>procedures</strong> and <strong>functions</strong>.
+  </p>
+
+  <div class="keyterm"><strong>Procedure:</strong> a sequence of steps grouped together under an identifier, which can be called to perform a sub-task.</div>
+  <div class="keyterm"><strong>Function:</strong> a sequence of steps grouped under an identifier, but returns a single value; the function call is part of an expression.</div>
+
+  <figure>
+    <img src="images/procedure-flowchart.png" alt="Representation of a procedure in pseudocode and flowchart">
+    <figcaption>Figure 12.11 – Representation of a procedure in (a) pseudocode and (b) a flowchart</figcaption>
+  </figure>
+
+  <p>
+    The rules for module identifiers are the same as for variable identifiers (see Section 12.04). 
+    Functions also state the <em>data type</em> of the value they return.
+  </p>
+
+  <!-- Worked Example 12.12 -->
+  <h3>Worked Example 12.12 – Drawing a Pyramid using Modules</h3>
+  <p>Top-level solution using procedures and functions:</p>
+  <pre><code>01   CALL SetValues
+02   REPEAT
+03       CALL OutputSpaces
+04       CALL OutputSymbols
+05.1     NumberOfSpaces ← AdjustedNumberOfSpaces
+05.2     NumberOfSymbols ← AdjustedNumberOfSymbols
+06   UNTIL NumberOfSymbols > MaxNumberOfSymbols</code></pre>
+
+  <p>This top-level solution calls four procedures, which are defined below:</p>
+  <pre><code>PROCEDURE SetValues
+    INPUT Symbol
+    CALL InputMaxNumberOfSymbols // ensure odd number
+    NumberOfSpaces ← (MaxNumberOfSymbols - 1) / 2
+    NumberOfSymbols ← 1
+ENDPROCEDURE
+
+PROCEDURE InputMaxNumberOfSymbols
+    REPEAT
+        INPUT MaxNumberOfSymbols
+    UNTIL MaxNumberOfSymbols MOD 2 = 1
+ENDPROCEDURE
+
+PROCEDURE OutputSpaces
+    FOR Count1 ← 1 TO NumberOfSpaces
+        OUTPUT Space // stay on same line
+    NEXT Count1
+ENDPROCEDURE
+
+PROCEDURE OutputSymbols
+    FOR Count2 ← 1 TO NumberOfSymbols
+        OUTPUT Symbol // stay on same line
+    NEXT Count2
+    OUTPUT Newline
+ENDPROCEDURE
+
+PROCEDURE AdjustValuesForNextRow
+    NumberOfSpaces ← NumberOfSpaces – 1
+    NumberOfSymbols ← NumberOfSymbols + 2
+ENDPROCEDURE</code></pre>
+
+  <h3>Task 12.07</h3>
+  <p>Amend your algorithm for Task 12.05 to use modules.</p>
+
+  <!-- Refined version -->
+  <h3>Improved Pyramid Solution with Functions</h3>
+  <pre><code>PROCEDURE SetValues
+    INPUT Symbol
+    MaxNumberOfSymbols ← ValidatedMaxNumberOfSymbols
+    NumberOfSpaces ← (MaxNumberOfSymbols - 1) / 2
+    NumberOfSymbols ← 1
+ENDPROCEDURE
+
+FUNCTION ValidatedMaxNumberOfSymbols RETURNS INTEGER
+    REPEAT
+        INPUT MaxNumberOfSymbols
+    UNTIL MaxNumberOfSymbols MOD 2 = 1
+    RETURN MaxNumberOfSymbols
+ENDFUNCTION
+
+PROCEDURE OutputSpaces
+    FOR Count1 ← 1 TO NumberOfSpaces
+        OUTPUT Space
+    NEXT Count1
+ENDPROCEDURE
+
+PROCEDURE OutputSymbols
+    FOR Count2 ← 1 TO NumberOfSymbols
+        OUTPUT Symbol
+    NEXT Count2
+    OUTPUT Newline
+ENDPROCEDURE
+
+FUNCTION AdjustedNumberOfSpaces RETURNS INTEGER
+    NumberOfSpaces ← NumberOfSpaces – 1
+    RETURN NumberOfSpaces
+ENDFUNCTION
+
+FUNCTION AdjustedNumberOfSymbols RETURNS INTEGER
+    NumberOfSymbols ← NumberOfSymbols + 2
+    RETURN NumberOfSymbols
+ENDFUNCTION</code></pre>
+
+  <p>
+    One benefit of using modules is reusability. To maximize this, modules should be 
+    <strong>self-contained</strong>, using parameters instead of relying on external variables.
+  </p>
+
+  <!-- Worked Example 12.13 -->
+  <h3>Worked Example 12.13 – Pyramid with Parameters</h3>
+  <pre><code>REPEAT
+    CALL SetValues(Symbol, MaxNumberOfSymbols, NumberOfSpaces, NumberOfSymbols)
+    CALL OutputSpaces(NumberOfSpaces)
+    CALL OutputSymbols(NumberOfSymbols, Symbol)
+    NumberOfSpaces ← AdjustedNumberOfSpaces(NumberOfSpaces)
+    NumberOfSymbols ← AdjustedNumberOfSymbols(NumberOfSymbols)
+UNTIL NumberOfSymbols > MaxNumberOfSymbols</code></pre>
+
+  <p>Definitions of modules with parameters:</p>
+  <pre><code>PROCEDURE SetValues(Symbol, MaxNumberOfSymbols, NumberOfSpaces, NumberOfSymbols)
+    INPUT Symbol
+    MaxNumberOfSymbols ← ValidatedMaxNumberOfSymbols
+    NumberOfSpaces ← (MaxNumberOfSymbols - 1) / 2
+    NumberOfSymbols ← 1
+ENDPROCEDURE
+
+FUNCTION ValidatedMaxNumberOfSymbols RETURNS INTEGER
+    REPEAT
+        INPUT MaxNumberOfSymbols
+    UNTIL MaxNumberOfSymbols MOD 2 = 1
+    RETURN MaxNumberOfSymbols
+ENDFUNCTION
+
+PROCEDURE OutputSpaces(NumberOfSpaces)
+    FOR Count1 ← 1 TO NumberOfSpaces
+        OUTPUT Space
+    NEXT Count1
+ENDPROCEDURE
+
+PROCEDURE OutputSymbols(NumberOfSymbols, Symbol)
+    FOR Count2 ← 1 TO NumberOfSymbols
+        OUTPUT Symbol
+    NEXT Count2
+    OUTPUT Newline
+ENDPROCEDURE
+
+FUNCTION AdjustedNumberOfSpaces(NumberOfSpaces) RETURNS INTEGER
+    NumberOfSpaces ← NumberOfSpaces – 1
+    RETURN NumberOfSpaces
+ENDFUNCTION
+
+FUNCTION AdjustedNumberOfSymbols(NumberOfSymbols) RETURNS INTEGER
+    NumberOfSymbols ← NumberOfSymbols + 2
+    RETURN NumberOfSymbols
+ENDFUNCTION</code></pre>
+
+  <div class="keyterm"><strong>Local Variable:</strong> accessible only within its module.</div>
+  <div class="keyterm"><strong>Global Variable:</strong> accessible from all modules.</div>
+
+  <div class="tip">Good design prefers local variables, making modules independent and reusable.</div>
+</section>
+
+<!-- ===================== SUMMARY ===================== -->
+<section id="summary">
+  <h2>Summary</h2>
+  <ul>
+    <li>Abstraction filters out unnecessary detail.</li>
+    <li>Decomposition breaks problems into sub-problems (modules).</li>
+    <li>An algorithm is a sequence of steps expressed with assignment, sequence, selection, repetition.</li>
+    <li>Pseudocode is used to document algorithms.</li>
+    <li>Logic statements use relational (=, <, >, <>, <=, >=) and logical (AND, OR, NOT) operators.</li>
+    <li>Selection constructs and conditional loops depend on conditions.</li>
+    <li>Stepwise refinement breaks down outline solutions into finer steps.</li>
+  </ul>
+</section>
+
+<!-- ===================== EXAM QUESTIONS ===================== -->
+<section id="exam-questions">
+  <h2>Exam-Style Questions</h2>
+
+  <h3>Question 1 – Modulo-11 Check Digit [9]</h3>
+  <p>Write pseudocode to calculate a Modulo-11 check digit from a 9-digit sequence as per the flowchart.</p>
+  <details>
+    <summary>Suggested Answer</summary>
+    <pre><code>Weighting ← 10
+Total ← 0
+FOR Count ← 1 TO 9
+    INPUT Digit
+    Value ← Digit * Weighting
+    Total ← Total + Value
+    Weighting ← Weighting - 1
+NEXT Count
+Remainder ← Total MOD 11
+CheckDigit ← 11 - Remainder
+IF CheckDigit = 10 THEN
+    CheckDigit ← "X"
+ENDIF
+OUTPUT CheckDigit</code></pre>
+  </details>
+
+  <h3>Question 2 – Counting Positives/Negatives</h3>
+  <p>Write pseudocode for the following problem in structured English:</p>
+  <blockquote>
+    REPEAT until the number input is zero  
+    INPUT a number  
+    Check whether positive or negative  
+    Increment counters accordingly
+  </blockquote>
+  <details>
+    <summary>Suggested Answer</summary>
+    <pre><code>PositiveCount ← 0
+NegativeCount ← 0
+REPEAT
+    INPUT Number
+    IF Number > 0 THEN
+        PositiveCount ← PositiveCount + 1
+    ELSEIF Number < 0 THEN
+        NegativeCount ← NegativeCount + 1
+    ENDIF
+UNTIL Number = 0
+OUTPUT PositiveCount, NegativeCount</code></pre>
+  </details>
+
+  <h3>Question 3 – Average with Rogue Value [7–8]</h3>
+  <p>Write pseudocode from the given flowchart using a WHILE loop.</p>
+  <details>
+    <summary>Suggested Answer</summary>
+    <pre><code>RogueValue ← -1
+Total ← 0
+Count ← 0
+INPUT Number
+WHILE Number <> RogueValue DO
+    Count ← Count + 1
+    Total ← Total + Number
+    INPUT Number
+ENDWHILE
+IF Count > 0 THEN
+    Average ← Total / Count
+    OUTPUT Average
+ENDIF</code></pre>
+  </details>
+</section>
+<!-- ===================== END PART 3 ===================== -->
+
+</body>
+</html>

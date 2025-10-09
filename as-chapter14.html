@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chapter 14: Programming and Data Representation</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+h1, h2, h3 { color: #2F4F4F; }
+pre { background: #f4f4f4; padding: 10px; border: 1px solid #ccc; overflow-x: auto; }
+table { border-collapse: collapse; margin: 10px 0; width: 100%; }
+table, th, td { border: 1px solid #888; }
+th, td { padding: 8px; text-align: left; }
+.task { background: #eef; padding: 10px; margin: 10px 0; border-left: 5px solid #88f; }
+</style>
+</head>
+<body>
+
+<h1>Chapter 14: Programming and Data Representation</h1>
+<p><strong>Prepared by Ravi Raju</strong></p>
+
+<h2>14.01 Programming Languages</h2>
+<p>Programming languages allow us to write instructions for the computer. High-level languages are easier to read and write than low-level languages. Java is a high-level, object-oriented language.</p>
+
+<h3>Example: Hello World in Java</h3>
+<pre>
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
+</pre>
+
+<div class="task">
+<strong>TASK 14.01:</strong> Modify the program to print your name and age.
+</div>
+
+<h2>14.02 Programming Basics</h2>
+
+<h3>Variables and Constants</h3>
+<pre>
+int number = 10;
+double average = 3.5;
+String name = "Ravi";
+final double PI = 3.14159; // constant
+boolean isActive = true;
+char grade = 'A';
+</pre>
+
+<h3>Input/Output</h3>
+<pre>
+import java.util.Scanner;
+
+Scanner input = new Scanner(System.in);
+System.out.print("Enter your name: ");
+String yourName = input.nextLine();
+System.out.println("Hello, " + yourName);
+</pre>
+
+<h3>Arithmetic Operators</h3>
+<table>
+<tr><th>Operation</th><th>Symbol</th></tr>
+<tr><td>Addition</td><td>+</td></tr>
+<tr><td>Subtraction</td><td>-</td></tr>
+<tr><td>Multiplication</td><td>*</td></tr>
+<tr><td>Division</td><td>/</td></tr>
+<tr><td>Modulus</td><td>%</td></tr>
+<tr><td>Exponent</td><td>Math.pow(a,b)</td></tr>
+</table>
+
+<div class="task">
+<strong>TASK 14.02:</strong> Write a Java program to ask the user for two numbers and display their sum, difference, product, quotient, and remainder.
+</div>
+
+<h2>14.03 Data Types</h2>
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>int</td><td>Whole numbers</td></tr>
+<tr><td>double</td><td>Decimal numbers</td></tr>
+<tr><td>char</td><td>Single character</td></tr>
+<tr><td>String</td><td>Text</td></tr>
+<tr><td>boolean</td><td>true/false</td></tr>
+</table>
+
+<div class="task">
+<strong>TASK 14.03:</strong> Declare variables of each type and print them.
+</div>
+
+<h2>14.04 Boolean Expressions</h2>
+
+<h3>Comparison Operators</h3>
+<table>
+<tr><th>Operator</th><th>Meaning</th></tr>
+<tr><td>==</td><td>Equal</td></tr>
+<tr><td>!=</td><td>Not equal</td></tr>
+<tr><td>&gt;</td><td>Greater than</td></tr>
+<tr><td>&lt;</td><td>Less than</td></tr>
+<tr><td>&gt;=</td><td>Greater or equal</td></tr>
+<tr><td>&lt;=</td><td>Less or equal</td></tr>
+</table>
+
+<h3>Logical Operators</h3>
+<table>
+<tr><th>Operator</th><th>Meaning</th></tr>
+<tr><td>&&</td><td>AND</td></tr>
+<tr><td>||</td><td>OR</td></tr>
+<tr><td>!</td><td>NOT</td></tr>
+</table>
+
+<div class="task">
+<strong>TASK 14.04:</strong> Write a program to check if a number is between 10 and 20 inclusive.
+</div>
+
+<h2>14.05 Selection</h2>
+
+<h3>If…Then</h3>
+<pre>
+int x = -5;
+if (x < 0) {
+    System.out.println("Negative number");
+}
+</pre>
+
+<h3>If…Then…Else</h3>
+<pre>
+if (x < 0) {
+    System.out.println("Negative number");
+} else {
+    System.out.println("Positive number");
+}
+</pre>
+
+<h3>Nested If</h3>
+<pre>
+if (x < 0) {
+    System.out.println("Negative");
+} else if (x == 0) {
+    System.out.println("Zero");
+} else {
+    System.out.println("Positive");
+}
+</pre>
+
+<h3>Switch Statement</h3>
+<pre>
+char grade = 'B';
+switch (grade) {
+    case 'A': System.out.println("Excellent"); break;
+    case 'B': case 'C': System.out.println("Good"); break;
+    case 'D': case 'E': System.out.println("Pass"); break;
+    case 'F': System.out.println("Fail"); break;
+    default: System.out.println("Invalid grade");
+}
+</pre>
+
+<div class="task">
+<strong>TASK 14.05:</strong> Write a program to input a month number and year, then display the number of days in that month (consider leap years).
+</div>
+
+<pre>
+import java.util.Scanner;
+
+public class MonthDays {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter month number: ");
+        int month = input.nextInt();
+        System.out.print("Enter year: ");
+        int year = input.nextInt();
+        int days;
+
+        switch(month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                days = 31; break;
+            case 4: case 6: case 9: case 11:
+                days = 30; break;
+            case 2:
+                if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
+                    days = 29;
+                else
+                    days = 28;
+                break;
+            default:
+                System.out.println("Invalid month number");
+                return;
+        }
+        System.out.println("Number of days: " + days);
+    }
+}
+</pre>
+
+<h2>14.06 Iteration</h2>
+
+<h3>Count-controlled (FOR) loops</h3>
+<p>Pseudocode example:</p>
+<pre>
+FOR x ← 1 TO 5
+    OUTPUT x
+NEXT x
+
+FOR x = 2 TO 14 STEP 3
+    OUTPUT x
+NEXT x
+
+FOR x = 5 TO 1 STEP -1
+    OUTPUT x
+NEXT x
+</pre>
+
+<p>Java examples:</p>
+<pre>
+for (int x = 1; x < 6; x++) {
+    System.out.print(x); 
+}
+// Output: 12345
+
+for (int x = 2; x < 15; x = x + 3) {
+    System.out.print(x + "  "); 
+}
+// Output: 2  5  8  11  14 
+
+for (int x = 5; x > 0; x--) {
+    System.out.print(x + "  "); 
+}
+// Output: 5  4  3  2  1
+
+for (double x = 1; x < 3; x = x + 0.5) {
+    System.out.print(x + "  "); 
+}
+// Output: 1.0  1.5  2.0  2.5
+
+char[] letter = {'a', 'b', 'c'};
+for (char x : letter) {
+    System.out.print(x); 
+}
+// Output: abc
+</pre>
+
+<div class="task">
+<h4>TASK 14.06</h4>
+<ol>
+<li>Write program code to implement the pseudocode from Worked Example 12.05 in Chapter 12.</li>
+<li>Write program code to implement the pseudocode from Worked Example 12.08 in Chapter 12.</li>
+<li>Write program code to implement the pseudocode from Worked Example 12.09 in Chapter 12.</li>
+</ol>
+</div>
+
+<h3>Post-condition loops</h3>
+<p>Pseudocode example:</p>
+<pre>
+REPEAT
+    INPUT "Enter Y or N: " Answer
+UNTIL Answer = "Y"
+</pre>
+
+<p>Java example:</p>
+<pre>
+do {
+    System.out.print("Enter Y or N: ");
+    answer = console.next();
+} while (!(answer.equals("Y")));
+</pre>
+
+<div class="task">
+<h4>TASK 14.07</h4>
+<ol>
+<li>Write program code to implement the pseudocode from Worked Example 12.04 in Chapter 12.</li>
+<li>Write program code to implement the first algorithm from Worked Example 12.06 in Chapter 12.</li>
+</ol>
+</div>
+
+<h3>Pre-condition loops</h3>
+<p>Pseudocode example:</p>
+<pre>
+Answer ← "" 
+WHILE Answer <> "Y" DO
+    INPUT "Enter Y or N: " Answer
+ENDWHILE
+</pre>
+
+<p>Java example:</p>
+<pre>
+String answer = "";
+while(answer.equals("Y") == false) {
+    System.out.print("Enter Y or N: ");
+    answer = console.next();
+}
+</pre>
+
+<div class="task">
+<h4>TASK 14.08</h4>
+<p>Write program code to implement the second algorithm from Worked Example 12.06 in Chapter 12.</p>
+</div>
+
+<h2>14.07 Built-in functions</h2>
+
+<h3>String manipulation functions (Java)</h3>
+<table>
+<tr>
+<th>Description</th>
+<th>Java</th>
+</tr>
+<tr>
+<td>Access a character at position P</td>
+<td>char ch = ThisString.charAt(P); // Counts from 0</td>
+</tr>
+<tr>
+<td>Character from ASCII value i</td>
+<td>char ch = (char)i;</td>
+</tr>
+<tr>
+<td>ASCII value of character ch</td>
+<td>int value = (int)ch;</td>
+</tr>
+<tr>
+<td>Length of string S</td>
+<td>int len = S.length();</td>
+</tr>
+<tr>
+<td>Leftmost L characters</td>
+<td>String left = S.substring(0, L);</td>
+</tr>
+<tr>
+<td>Rightmost L characters</td>
+<td>String right = S.substring(S.length() - L);</td>
+</tr>
+<tr>
+<td>Substring of length L starting at P</td>
+<td>String mid = S.substring(P, P + L);</td>
+</tr>
+<tr>
+<td>Lowercase of character Ch</td>
+<td>char lower = Character.toLowerCase(Ch);</td>
+</tr>
+<tr>
+<td>Uppercase of character Ch</td>
+<td>char upper = Character.toUpperCase(Ch);</td>
+</tr>
+<tr>
+<td>Convert string to upper case</td>
+<td>String upper = S.toUpperCase();</td>
+</tr>
+<tr>
+<td>Convert string to lower case</td>
+<td>String lower = S.toLowerCase();</td>
+</tr>
+<tr>
+<td>Concatenate strings S1 and S2</td>
+<td>String s = S1 + S2;</td>
+</tr>
+</table>
+<h2>14.08 Procedures</h2>
+
+<p>Pseudocode procedure definition:</p>
+<pre>
+PROCEDURE InputOddNumber
+    REPEAT
+        INPUT "Enter an odd number: " Number
+    UNTIL Number MOD 2 = 1
+    OUTPUT "Valid number entered"
+ENDPROCEDURE
+
+CALL InputOddNumber
+</pre>
+
+<p>Java procedure example:</p>
+<pre>
+void inputOddNumber() {
+    int number;
+    do {
+        System.out.print("Enter an odd number: ");
+        number = console.nextInt();
+    } while (number % 2 == 0);
+    System.out.println("Valid number entered");
+}
+</pre>
+
+<div class="task">
+<h4>TASK 14.10</h4>
+<p>Write program code to implement the pseudocode from Worked Example 12.11 in Chapter 12.</p>
+</div>
+
+<h2>14.09 Functions</h2>
+
+<p>Pseudocode function definition:</p>
+<pre>
+FUNCTION InputOddNumber RETURNS INTEGER
+    REPEAT
+        INPUT "Enter an odd number: " Number
+    UNTIL Number MOD 2 = 1
+    OUTPUT "Valid number entered"
+    RETURN Number
+ENDFUNCTION
+</pre>
+
+<p>Java function example:</p>
+<pre>
+int inputOddNumberFunction() {
+    int number;
+    do {
+        System.out.print("Enter an odd number: ");
+        number = console.nextInt();
+    } while (number % 2 == 0);
+    System.out.println("Valid number entered");
+    return number;
+}
+</pre>
+
+<p>Notes:</p>
+<ul>
+<li>Variables declared inside a function/procedure are <strong>local</strong> and not accessible outside.</li>
+<li>Java does not support global variables; only class-level static variables can be shared.</li>
+<li>Use local variables within subroutines for good programming practice.</li>
+</ul>
+
+<div class="task">
+<h4>TASK 14.11</h4>
+<p>Write program code to implement the pseudocode from Worked Example 13.05 in Chapter 13. Identify which variables are global and which are local. Consider only Java.</p>
+</div>
+<h2>14.10–14.12 Passing Parameters to Subroutines and Functions</h2>
+
+<p>Passing parameters to functions:</p>
+<pre>
+int sumRange(int firstValue, int lastValue) {
+    int sum = 0;
+    for (int thisValue = firstValue; thisValue <= lastValue; thisValue++) {
+        sum += thisValue;
+    }
+    return sum;
+}
+</pre>
+
+<div class="task">
+<h4>TASK 14.12</h4>
+<p>Write a function to implement the pseudocode:</p>
+<pre>
+FUNCTION Factorial(Number : INTEGER) RETURNS INTEGER
+    DECLARE Product : INTEGER
+    Product ← 1
+    FOR n ← 2 TO Number
+        Product ← Product * n
+    NEXT n
+    RETURN Product
+ENDFUNCTION
+</pre>
+<p>Java implementation:</p>
+<pre>
+int factorial(int number) {
+    int product = 1;
+    for (int n = 2; n <= number; n++) {
+        product *= n;
+    }
+    return product;
+}
+</pre>
+</div>
+
+<p>Passing parameters to procedures (by value):</p>
+<pre>
+void outputSymbols(int numberOfSymbols, char symbol) {
+    for (int count = 1; count <= numberOfSymbols; count++) {
+        System.out.print(symbol);
+    }
+    System.out.println();
+}
+</pre>
+
+<p>Passing parameters by reference:</p>
+<pre>
+// Java does not support passing primitive types by reference
+// Arrays and objects can be passed by reference
+
+void adjustValuesForNextRow(int[] values) { // values[0] = Spaces, values[1] = Symbols
+    values[0] = values[0] - 1;
+    values[1] = values[1] + 2;
+}
+
+// Calling the procedure:
+int[] rowValues = {numberOfSpaces, numberOfSymbols};
+adjustValuesForNextRow(rowValues);
+// rowValues[0] and rowValues[1] are updated
+</pre>
+
+<p>TIP:</p>
+<ul>
+<li>To return multiple values from a Java subroutine, group them in an array or create a class and return an object.</li>
+<li>If only one value needs to be returned, write it as a function.</li>
+<li>Preferably, write multiple functions for clarity rather than returning complex objects.</li>
+</ul>
+<h2>14.13 Putting it all together – Pyramid Program in Java</h2>
+
+<p>The pyramid-drawing program demonstrates passing parameters, local vs main program variables, and using subroutines.</p>
+
+<pre>
+package ex1;
+import java.util.Scanner;
+
+public class Ex1 {
+
+    static final char SPACE = ' ';
+
+    // Get symbol from user
+    public static char getSymbol() {
+        Scanner console = new Scanner(System.in);
+        System.out.print("What symbol do you want to use? ");
+        String response = console.next();
+        return response.charAt(0);
+    }
+
+    // Input max number of symbols (must be odd)
+    public static int inputMaxNumberOfSymbols() {
+        Scanner console = new Scanner(System.in);
+        int number = 0;
+        while ((number % 2) == 0) {
+            System.out.print("How many symbols make the base? ");
+            number = console.nextInt();
+        }
+        return number;
+    }
+
+    // Output characters (spaces or symbols)
+    public static void outputChars(int number, char symbol) {
+        for (int count = 0; count < number; count++) {
+            System.out.print(symbol);
+        }
+    }
+
+    // Adjust number of spaces for next row
+    public static int adjustSpacesForNextRow(int spaces) {
+        spaces--;
+        return spaces;
+    }
+
+    // Adjust number of symbols for next row
+    public static int adjustSymbolsForNextRow(int symbols) {
+        symbols = symbols + 2;
+        return symbols;
+    }
+
+    public static void main(String[] args) {
+        char thisSymbol = getSymbol();
+        int maxNumberOfSymbols = inputMaxNumberOfSymbols();
+        int numberOfSpaces = (maxNumberOfSymbols + 1) / 2;
+        int numberOfSymbols = 1;
+
+        while (numberOfSymbols <= maxNumberOfSymbols) {
+            outputChars(numberOfSpaces, SPACE);
+            outputChars(numberOfSymbols, thisSymbol);
+            System.out.println(); // move to new line
+            numberOfSpaces = adjustSpacesForNextRow(numberOfSpaces);
+            numberOfSymbols = adjustSymbolsForNextRow(numberOfSymbols);
+        }
+    }
+}
+</pre>
+
+<p><strong>Discussion Point:</strong></p>
+<ul>
+<li>The procedures <code>OutputSpaces</code> and <code>OutputSymbols</code> from earlier examples have been replaced by a single procedure <code>outputChars</code> without changing the program’s effect.</li>
+<li>The identifiers used inside the subroutines are independent of the main program’s variable names, showing the distinction between parameters/local variables and main program variables.</li>
+<li>Passing parameters by value (for primitives) ensures changes inside a subroutine do not affect the original variable unless returned.</li>
+</ul>
+
+<h2>14.14 Arrays</h2>
+
+<p>Arrays are used to store multiple values of the same type in a single variable. They can be one-dimensional (1D) or two-dimensional (2D).</p>
+
+<h3>Creating 1D Arrays</h3>
+<p>In Java, a 1D array can be declared and initialized as follows:</p>
+
+<pre><code>// 1D array declaration and initialization
+String[] list1 = {"Fred", "Jack", "Ali"}; // 3 elements
+int[] list2 = new int[6];                 // 6 elements, default 0
+int[] list3 = new int[100];               // 100 elements, default 0
+String[] aList = new String[26];          // 26 elements, default null
+</code></pre>
+
+<p>You can access or modify elements using an index (0-based):</p>
+
+<pre><code>// Accessing and modifying elements
+list2[0] = 10;
+list2[1] = 20;
+list3[99] = 500;
+aList[3] = "D";
+</code></pre>
+
+<p>To print the contents of an array, use a loop:</p>
+
+<pre><code>// Printing 1D arrays
+System.out.println("1D array list1:");
+for (int i = 0; i &lt; list1.length; i++) {
+    System.out.print(list1[i] + " ");
+}
+System.out.println();
+</code></pre>
+
+<h3>Creating 2D Arrays</h3>
+<p>2D arrays represent data in rows and columns. Declaration and initialization in Java:</p>
+
+<pre><code>// 2D array (6 rows x 7 columns)
+int[][] board = new int[6][7];
+
+// Assigning values
+board[0][0] = 1;
+board[5][6] = 2;
+board[2][3] = 5;
+</code></pre>
+
+<p>Access elements using two indices (row and column, 0-based):</p>
+
+<pre><code>// Accessing a specific element
+board[3][4] = 0;
+</code></pre>
+
+<p>Print the 2D array:</p>
+
+<pre><code>// Printing 2D array
+System.out.println("2D array board:");
+for (int i = 0; i &lt; board.length; i++) {
+    for (int j = 0; j &lt; board[i].length; j++) {
+        System.out.print(board[i][j] + " ");
+    }
+    System.out.println();
+}
+</code></pre>
+
+<h3>Dynamic Filling Example</h3>
+<p>Fill the array with a calculation (row + column):</p>
+
+<pre><code>// Dynamic filling
+for (int i = 0; i &lt; board.length; i++) {
+    for (int j = 0; j &lt; board[i].length; j++) {
+        board[i][j] = i + j;
+    }
+}
+</code></pre>
+
+<h3>Tasks</h3>
+
+<p><strong>Task 14.13:</strong> Work with 1D arrays</p>
+
+<pre><code>// Example: sum of list2 elements
+int sum = 0;
+for (int i = 0; i &lt; list2.length; i++) {
+    sum += list2[i];
+}
+System.out.println("Sum of list2 = " + sum);
+</code></pre>
+
+<p><strong>Task 14.14:</strong> Work with 2D arrays</p>
+
+<pre><code>// Row sums
+for (int i = 0; i &lt; board.length; i++) {
+    int rowSum = 0;
+    for (int j = 0; j &lt; board[i].length; j++) {
+        rowSum += board[i][j];
+    }
+    System.out.println("Sum of row " + i + " = " + rowSum);
+}
+
+// Column sums
+for (int j = 0; j &lt; board[0].length; j++) {
+    int colSum = 0;
+    for (int i = 0; i &lt; board.length; i++) {
+        colSum += board[i][j];
+    }
+    System.out.println("Sum of column " + j + " = " + colSum);
+}
+</code></pre>
+
+<p><strong>Example: Simple 6x7 Game Board</strong></p>
+
+<pre><code>int[][] gameBoard = new int[6][7];
+gameBoard[0][0] = 1; // Player 1
+gameBoard[5][6] = 2; // Player 2
+
+System.out.println("Game board state:");
+for (int i = 0; i &lt; gameBoard.length; i++) {
+    for (int j = 0; j &lt; gameBoard[i].length; j++) {
+        System.out.print(gameBoard[i][j] + " ");
+    }
+    System.out.println();
+}
+</code></pre>
+<h2>14.15 Text Files</h2>
+
+<h3>Writing to a Text File</h3>
+<p>In Java, you can write to a text file using <code>FileWriter</code> and <code>PrintWriter</code>. 
+If the file already exists, it will be overwritten unless you open it in append mode.</p>
+
+<pre><code class="language-java">
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+public class WriteTextFileExample {
+    public static void main(String[] args) throws IOException {
+        // Create a FileWriter (false = overwrite)
+        FileWriter fileHandle = new FileWriter("SampleFile.TXT", false);
+        PrintWriter printLine = new PrintWriter(fileHandle);
+
+        // Text to write
+        String lineOfText = "Hello, this is a sample text line.";
+
+        // Write line to file
+        printLine.printf("%s%n", lineOfText);
+
+        // Close the file
+        printLine.close();
+    }
+}
+</code></pre>
+
+<h3>Reading from a Text File</h3>
+<p>To read from an existing text file in Java, use <code>FileReader</code> and <code>BufferedReader</code>. 
+Reading stops when the end of the file is reached.</p>
+
+<pre><code class="language-java">
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class ReadTextFileExample {
+    public static void main(String[] args) throws IOException {
+        FileReader fileHandle = new FileReader("SampleFile.TXT");
+        BufferedReader textReader = new BufferedReader(fileHandle);
+
+        String lineOfText = textReader.readLine();
+        while (lineOfText != null) {
+            System.out.println(lineOfText);
+            lineOfText = textReader.readLine();
+        }
+
+        textReader.close();
+    }
+}
+</code></pre>
+
+<h3>Appending to a Text File</h3>
+<p>To append text to an existing file, pass <code>true</code> as the second parameter to <code>FileWriter</code>.</p>
+
+<pre><code class="language-java">
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+public class AppendTextFileExample {
+    public static void main(String[] args) throws IOException {
+        // Open file in append mode
+        FileWriter fileHandle = new FileWriter("SampleFile.TXT", true);
+        PrintWriter printLine = new PrintWriter(fileHandle);
+
+        // Text to append
+        String lineOfText = "This line will be appended.";
+
+        printLine.printf("%s%n", lineOfText);
+        printLine.close();
+    }
+}
+</code></pre>
+
+<h3>End-of-File (EOF) Example</h3>
+<p>Reading a file until EOF can be done by checking if <code>readLine()</code> returns <code>null</code>.</p>
+
+<pre><code class="language-java">
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class ReadUntilEOF {
+    public static void main(String[] args) throws IOException {
+        FileReader fileHandle = new FileReader("Test.txt");
+        BufferedReader textReader = new BufferedReader(fileHandle);
+
+        String lineOfText = textReader.readLine();
+        while (lineOfText != null) {
+            System.out.println(lineOfText);
+            lineOfText = textReader.readLine();
+        }
+
+        textReader.close();
+    }
+}
+</code></pre>
+
+<h3>Example Task: Tally Chart</h3>
+<p>Fred wants to tally student hobbies. Each hobby is represented by an index in an array.</p>
+
+<pre><code class="language-java">
+import java.util.Scanner;
+
+public class HobbyTally {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Initialize tally array for 5 hobbies
+        int[] tally = new int[6]; // index 0 unused
+
+        int choice;
+        System.out.println("Enter hobby choices (1-5, 0 to end):");
+        do {
+            choice = sc.nextInt(); // Input hobby number
+            if (choice >= 1 && choice <= 5) {
+                tally[choice]++; // Increment tally
+            }
+        } while (choice != 0);
+
+        // Output total for each hobby
+        System.out.println("\nTally of hobbies:");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Hobby " + i + ": " + tally[i]);
+        }
+
+        sc.close();
+    }
+}
+</code></pre>
+<h2>Answers: Text File and Array Tasks (Java)</h2>
+
+<h3>Task 1: Declare and Initialise Tally Array</h3>
+<pre><code class="language-java">
+// Declare and initialise an array Tally for 5 hobbies
+int[] tally = new int[6]; // index 0 unused
+// Initially all elements are 0 by default
+</code></pre>
+
+<h3>Task 2: Implement the Algorithm (Data Entry and Tally)</h3>
+<pre><code class="language-java">
+import java.util.Scanner;
+
+Scanner sc = new Scanner(System.in);
+int choice;
+do {
+    System.out.println("Enter hobby choice (1-5, 0 to end):");
+    choice = sc.nextInt();
+    if (choice >= 1 && choice <= 5) {
+        tally[choice]++; // Increment tally count
+    }
+} while (choice != 0);
+
+// Output totals
+System.out.println("\nTally results:");
+for (int i = 1; i <= 5; i++) {
+    System.out.println("Hobby " + i + ": " + tally[i]);
+}
+sc.close();
+</code></pre>
+
+<h3>Task 3: Use Hobby Titles and Output Them</h3>
+<pre><code class="language-java">
+// Declare array of hobby titles
+String[] hobbyTitles = new String[6]; // index 0 unused
+hobbyTitles[1] = "Reading books";
+hobbyTitles[2] = "Play computer games";
+hobbyTitles[3] = "Sport";
+hobbyTitles[4] = "Programming";
+hobbyTitles[5] = "Watching TV";
+
+// Output tally with hobby titles
+System.out.println("\nTally with hobby names:");
+for (int i = 1; i <= 5; i++) {
+    System.out.println(hobbyTitles[i] + ": " + tally[i]);
+}
+</code></pre>
+
+<h3>Task 4: Save Array Data to a Text File</h3>
+<pre><code class="language-java">
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+FileWriter fileWriter = new FileWriter("HobbyTally.txt", false); // overwrite
+PrintWriter printLine = new PrintWriter(fileWriter);
+
+for (int i = 1; i <= 5; i++) {
+    printLine.printf("%s %d%n", hobbyTitles[i], tally[i]);
+}
+
+printLine.close();
+</code></pre>
+
+<h3>Task 5: Read Array Data Back from the Text File</h3>
+<pre><code class="language-java">
+import java.io.FileReader;
+import java.io.BufferedReader;
+
+FileReader fileReader = new FileReader("HobbyTally.txt");
+BufferedReader textReader = new BufferedReader(fileReader);
+
+String line;
+int[] tallyFromFile = new int[6]; // index 0 unused
+
+while ((line = textReader.readLine()) != null) {
+    String[] parts = line.split(" "); // split hobby title and number
+    // Extract index from hobbyTitles array
+    for (int i = 1; i <= 5; i++) {
+        if (line.startsWith(hobbyTitles[i])) {
+            tallyFromFile[i] = Integer.parseInt(parts[parts.length - 1]);
+        }
+    }
+}
+
+textReader.close();
+
+// Output loaded data
+System.out.println("\nTally loaded from file:");
+for (int i = 1; i <= 5; i++) {
+    System.out.println(hobbyTitles[i] + ": " + tallyFromFile[i]);
+}
+</code></pre>
+<h2>Exam-Style Answers</h2>
+
+<h3>Question 1: Ounces to Grams Conversion Table [7]</h3>
+<p><strong>Explanation:</strong> We need a loop from 1 to 30 ounces, calculate grams, round it to whole numbers, and output a tabulated table.</p>
+<pre><code>
+// Pseudocode
+OUTPUT "Ounces    Grams"
+FOR Ounces FROM 1 TO 30
+    Grams ← ROUND(Ounces * 28.35)
+    OUTPUT Ounces & "    " & Grams
+NEXT Ounces
+</code></pre>
+
+<h3>Question 2: UserID Validation [5]</h3>
+<p><strong>Explanation:</strong> Check that the UserID has exactly 3 uppercase letters followed by 4 digits, and output whether it is valid.</p>
+<pre><code>
+// Pseudocode
+INPUT UserID
+IF LENGTH(UserID) = 7 AND 
+   ISUPPER(UserID[1..3]) AND 
+   ISDIGIT(UserID[4..7]) THEN
+    OUTPUT "Valid UserID"
+ELSE
+    OUTPUT "Invalid UserID"
+ENDIF
+</code></pre>
+
+<h3>Question 3: OutputTimesTable Procedure [6]</h3>
+<p><strong>Explanation:</strong> Create a procedure that takes an integer n and prints the first 10 multiples of n in formatted style.</p>
+<pre><code>
+// Pseudocode
+PROCEDURE OutputTimesTable(n)
+    FOR i FROM 1 TO 10
+        OUTPUT i & " × " & n & " = " & (i * n)
+    NEXT i
+ENDPROCEDURE
+</code></pre>
+
+<h3>Question 4: isDivisible() Function [6]</h3>
+<p><strong>Explanation:</strong> Check if x is divisible by y using the modulus operator. Return True or False.</p>
+<pre><code>
+// Pseudocode
+FUNCTION isDivisible(x, y)
+    IF x MOD y = 0 THEN
+        RETURN TRUE
+    ELSE
+        RETURN FALSE
+    ENDIF
+ENDFUNCTION
+</code></pre>
+
+<h3>Question 5: EggsIntoBoxes Procedure [9]</h3>
+<p><strong>Explanation:</strong> Divide NumberOfEggs by 6 to get NumberOfBoxes, remainder is EggsLeftOver.</p>
+<pre><code>
+// Pseudocode
+PROCEDURE EggsIntoBoxes(NumberOfEggs, OUT NumberOfBoxes, OUT EggsLeftOver)
+    NumberOfBoxes ← NumberOfEggs DIV 6
+    EggsLeftOver ← NumberOfEggs MOD 6
+ENDPROCEDURE
+</code></pre>
+
+<h3>Question 6: Car Registration Validation Function [7]</h3>
+<p><strong>Explanation:</strong> Validate format based on two possible patterns: LLNNLLL or LLLNNLL. Use string checks for letters and digits.</p>
+<pre><code>
+// Pseudocode
+FUNCTION IsValidRegistration(reg)
+    IF LENGTH(reg) ≠ 7 THEN
+        RETURN FALSE
+    ENDIF
+
+    // Pattern 1: LLNNLLL
+    IF ISUPPER(reg[1..2]) AND ISDIGIT(reg[3..4]) AND ISUPPER(reg[5..7]) THEN
+        RETURN TRUE
+    ENDIF
+
+    // Pattern 2: LLLNNLL
+    IF ISUPPER(reg[1..3]) AND ISDIGIT(reg[4..5]) AND ISUPPER(reg[6..7]) THEN
+        RETURN TRUE
+    ENDIF
+
+    RETURN FALSE
+ENDFUNCTION
+</code></pre>
+
+
+</body>
+</html>
