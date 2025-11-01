@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chapter 9 Assessment — Problem Solving & Programming</title>
+  <style>
+    :root{--bg:#FFFACD;--fg:#004400;--accent:#2a7a2a;--card:#ffffffcc}
+    body{margin:0;padding:22px;background:var(--bg);color:var(--fg);font-family:Inter, system-ui, -apple-system,'Segoe UI',Roboto,Arial}
+    .container{max-width:1100px;margin:0 auto}
+    h1{text-align:center;margin-bottom:6px}
+    p.meta{text-align:center;margin-top:0;margin-bottom:18px}
+    .section{background:var(--card);padding:14px;border-radius:10px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    h2{margin:0 0 8px 0}
+    .mcq{margin-bottom:10px}
+    label.choice{display:block;margin:4px 0;padding:6px;border-radius:6px}
+    input[type=text], textarea{width:100%;padding:8px;border:1px solid rgba(0,68,0,0.12);border-radius:6px}
+    textarea{min-height:110px}
+    .submit-row{text-align:center;margin:16px 0}
+    button.submit{background:var(--fg);color:var(--bg);border:none;padding:10px 18px;border-radius:8px;font-size:1rem;cursor:pointer}
+    .answers{display:none;margin-top:18px;background:#ffffffcc;padding:12px;border-radius:8px}
+    .answer-block{margin-bottom:12px}
+    .small{font-size:0.9rem;color:rgba(0,68,0,0.8)}
+    .note{font-size:0.95rem;margin-bottom:8px}
+    footer{text-align:center;margin-top:18px;font-weight:600}
+    pre{background:rgba(0,0,0,0.04);padding:10px;border-radius:6px;overflow:auto}
+    @media (max-width:700px){body{padding:12px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapter 9 — Assessment</h1>
+    <p class="meta">Problem Solving & Programming (Structured Programming Concepts) — 30 MCQs • 20 Fill-in • 10 Short Answer • 5 Long Answer</p>
+
+    <form id="assessment">
+
+      <div class="section" id="mcq-section">
+        <h2>Part A — 30 Multiple Choice Questions (choose one)</h2>
+        <ol>
+          <li class="mcq">Top‑down design is best described as:<div>
+            <label class="choice"><input type="radio" name="mcq1" value="A"> A) Writing code first and refactoring later</label>
+            <label class="choice"><input type="radio" name="mcq1" value="B"> B) Breaking a system into modules from high level down</label>
+            <label class="choice"><input type="radio" name="mcq1" value="C"> C) Combining modules into one large function</label>
+            <label class="choice"><input type="radio" name="mcq1" value="D"> D) Using global variables extensively</label>
+          </div></li>
+
+          <li class="mcq">A procedure differs from a function in that:<div>
+            <label class="choice"><input type="radio" name="mcq2" value="A"> A) Procedures return values, functions do not</label>
+            <label class="choice"><input type="radio" name="mcq2" value="B"> B) Functions return values, procedures may not</label>
+            <label class="choice"><input type="radio" name="mcq2" value="C"> C) Procedures cannot take parameters</label>
+            <label class="choice"><input type="radio" name="mcq2" value="D"> D) There is no difference</label>
+          </div></li>
+
+          <li class="mcq">Which parameter passing method updates the caller's variable when changed inside the function?<div>
+            <label class="choice"><input type="radio" name="mcq3" value="A"> A) Pass by value</label>
+            <label class="choice"><input type="radio" name="mcq3" value="B"> B) Pass by reference</label>
+            <label class="choice"><input type="radio" name="mcq3" value="C"> C) Pass by copy</label>
+            <label class="choice"><input type="radio" name="mcq3" value="D"> D) Pass by name</label>
+          </div></li>
+
+          <li class="mcq">A local variable's scope is:<div>
+            <label class="choice"><input type="radio" name="mcq4" value="A"> A) Visible throughout the entire program</label>
+            <label class="choice"><input type="radio" name="mcq4" value="B"> B) Visible only within the function/procedure where declared</label>
+            <label class="choice"><input type="radio" name="mcq4" value="C"> C) Visible in other programs too</label>
+            <label class="choice"><input type="radio" name="mcq4" value="D"> D) Visible in the compiler only</label>
+          </div></li>
+
+          <li class="mcq">Which is a benefit of modular programming?<div>
+            <label class="choice"><input type="radio" name="mcq5" value="A"> A) Harder to test modules separately</label>
+            <label class="choice"><input type="radio" name="mcq5" value="B"> B) Encourages code duplication</label>
+            <label class="choice"><input type="radio" name="mcq5" value="C"> C) Improves maintainability and reuse</label>
+            <label class="choice"><input type="radio" name="mcq5" value="D"> D) Prevents documentation</label>
+          </div></li>
+
+          <li class="mcq">Which construct is best when the number of iterations is known beforehand?<div>
+            <label class="choice"><input type="radio" name="mcq6" value="A"> A) FOR loop</label>
+            <label class="choice"><input type="radio" name="mcq6" value="B"> B) WHILE loop</label>
+            <label class="choice"><input type="radio" name="mcq6" value="C"> C) REPEAT UNTIL loop</label>
+            <label class="choice"><input type="radio" name="mcq6" value="D"> D) Conditional IF</label>
+          </div></li>
+
+          <li class="mcq">Which is true about arrays?<div>
+            <label class="choice"><input type="radio" name="mcq7" value="A"> A) All elements may be different types</label>
+            <label class="choice"><input type="radio" name="mcq7" value="B"> B) Elements are indexed and usually of the same type</label>
+            <label class="choice"><input type="radio" name="mcq7" value="C"> C) Arrays cannot be traversed</label>
+            <label class="choice"><input type="radio" name="mcq7" value="D"> D) Arrays have unknown length at declaration</label>
+          </div></li>
+
+          <li class="mcq">A record (struct) is useful because it:<div>
+            <label class="choice"><input type="radio" name="mcq8" value="A"> A) Stores only single values</label>
+            <label class="choice"><input type="radio" name="mcq8" value="B"> B) Groups related fields of different types</label>
+            <label class="choice"><input type="radio" name="mcq8" value="C"> C) Acts as a loop construct</label>
+            <label class="choice"><input type="radio" name="mcq8" value="D"> D) Replaces functions</label>
+          </div></li>
+
+          <li class="mcq">Which searching method must be used on sorted arrays to be efficient?<div>
+            <label class="choice"><input type="radio" name="mcq9" value="A"> A) Linear search</label>
+            <label class="choice"><input type="radio" name="mcq9" value="B"> B) Binary search</label>
+            <label class="choice"><input type="radio" name="mcq9" value="C"> C) Random search</label>
+            <label class="choice"><input type="radio" name="mcq9" value="D"> D) No search needed</label>
+          </div></li>
+
+          <li class="mcq">Which is a clear sign of poor variable naming in pseudocode?<div>
+            <label class="choice"><input type="radio" name="mcq10" value="A"> A) Using TotalMarks</label>
+            <label class="choice"><input type="radio" name="mcq10" value="B"> B) Using x1, x2, x3 with no meaning</label>
+            <label class="choice"><input type="radio" name="mcq10" value="C"> C) Using StudentName</label>
+            <label class="choice"><input type="radio" name="mcq10" value="D"> D) Using count</label>
+          </div></li>
+
+          <li class="mcq">Which of these is an example of white‑box testing?<div>
+            <label class="choice"><input type="radio" name="mcq11" value="A"> A) Testing user input only</label>
+            <label class="choice"><input type="radio" name="mcq11" value="B"> B) Inspecting internal branches and paths</label>
+            <label class="choice"><input type="radio" name="mcq11" value="C"> C) Checking UI layout</label>
+            <label class="choice"><input type="radio" name="mcq11" value="D"> D) Writing design documents</label>
+          </div></li>
+
+          <li class="mcq">A function header should include:<div>
+            <label class="choice"><input type="radio" name="mcq12" value="A"> A) Purpose, parameters and return value</label>
+            <label class="choice"><input type="radio" name="mcq12" value="B"> B) Compiler flags only</label>
+            <label class="choice"><input type="radio" name="mcq12" value="C"> C) Processor speed</label>
+            <label class="choice"><input type="radio" name="mcq12" value="D"> D) UI colour scheme</label>
+          </div></li>
+
+          <li class="mcq">Which of the following best helps avoid hidden dependencies between modules?<div>
+            <label class="choice"><input type="radio" name="mcq13" value="A"> A) Use many global variables</label>
+            <label class="choice"><input type="radio" name="mcq13" value="B"> B) Pass data explicitly via parameters</label>
+            <label class="choice"><input type="radio" name="mcq13" value="C"> C) Write monolithic code</label>
+            <label class="choice"><input type="radio" name="mcq13" value="D"> D) Avoid comments</label>
+          </div></li>
+
+          <li class="mcq">What is DRY in programming practice?<div>
+            <label class="choice"><input type="radio" name="mcq14" value="A"> A) Don't Repeat Yourself</label>
+            <label class="choice"><input type="radio" name="mcq14" value="B"> B) Debug Regularly, Yes</label>
+            <label class="choice"><input type="radio" name="mcq14" value="C"> C) Data Run Yield</label>
+            <label class="choice"><input type="radio" name="mcq14" value="D"> D) Delete Redundant Yields</label>
+          </div></li>
+
+          <li class="mcq">Which of these is true about pass‑by‑value?<div>
+            <label class="choice"><input type="radio" name="mcq15" value="A"> A) The caller's variable is modified by the function</label>
+            <label class="choice"><input type="radio" name="mcq15" value="B"> B) The function receives a copy; original unchanged</label>
+            <label class="choice"><input type="radio" name="mcq15" value="C"> C) It always uses less memory than pass-by-reference</label>
+            <label class="choice"><input type="radio" name="mcq15" value="D"> D) It is the same as pass-by-reference</label>
+          </div></li>
+
+          <li class="mcq">When should you prefer a function over a procedure?<div>
+            <label class="choice"><input type="radio" name="mcq16" value="A"> A) When you need to return a computed value</label>
+            <label class="choice"><input type="radio" name="mcq16" value="B"> B) When you only print output</label>
+            <label class="choice"><input type="radio" name="mcq16" value="C"> C) When you never reuse code</label>
+            <label class="choice"><input type="radio" name="mcq16" value="D"> D) When you need global variables</label>
+          </div></li>
+
+          <li class="mcq">Which data structure is best for storing student records with fields (ID, Name, Mark)?<div>
+            <label class="choice"><input type="radio" name="mcq17" value="A"> A) Array of records</label>
+            <label class="choice"><input type="radio" name="mcq17" value="B"> B) Single integer</label>
+            <label class="choice"><input type="radio" name="mcq17" value="C"> C) Floating point number</label>
+            <label class="choice"><input type="radio" name="mcq17" value="D"> D) Boolean flag</label>
+          </div></li>
+
+          <li class="mcq">Which is a good test case for boundary testing on age input 0–120?<div>
+            <label class="choice"><input type="radio" name="mcq18" value="A"> A) Age = -1</label>
+            <label class="choice"><input type="radio" name="mcq18" value="B"> B) Age = 0</label>
+            <label class="choice"><input type="radio" name="mcq18" value="C"> C) Age = 120</label>
+            <label class="choice"><input type="radio" name="mcq18" value="D"> D) All of the above</label>
+          </div></li>
+
+          <li class="mcq">Which is an example of a modular interface in pseudocode?<div>
+            <label class="choice"><input type="radio" name="mcq19" value="A"> A) FUNCTION CalculateTotal(items) RETURNS total</label>
+            <label class="choice"><input type="radio" name="mcq19" value="B"> B) Global variable TotalItems</label>
+            <label class="choice"><input type="radio" name="mcq19" value="C"> C) Inline code block only</label>
+            <label class="choice"><input type="radio" name="mcq19" value="D"> D) No documentation</label>
+          </div></li>
+
+          <li class="mcq">Which describes a good practice for comments?<div>
+            <label class="choice"><input type="radio" name="mcq20" value="A"> A) Write comments only once at start of program</label>
+            <label class="choice"><input type="radio" name="mcq20" value="B"> B) Use meaningful comments near complex logic</label>
+            <label class="choice"><input type="radio" name="mcq20" value="C"> C) Remove all comments before submission</label>
+            <label class="choice"><input type="radio" name="mcq20" value="D"> D) Use comments to replace variable names</label>
+          </div></li>
+
+          <li class="mcq">Which is true about nested loops regarding performance?<div>
+            <label class="choice"><input type="radio" name="mcq21" value="A"> A) They always run faster than single loops</label>
+            <label class="choice"><input type="radio" name="mcq21" value="B"> B) They can increase time complexity significantly</label>
+            <label class="choice"><input type="radio" name="mcq21" value="C"> C) They reduce memory usage</label>
+            <label class="choice"><input type="radio" name="mcq21" value="D"> D) They avoid the need for functions</label>
+          </div></li>
+
+          <li class="mcq">Which statement is true about records and arrays combined? (array of records)<div>
+            <label class="choice"><input type="radio" name="mcq22" value="A"> A) Cannot store multiple students</label>
+            <label class="choice"><input type="radio" name="mcq22" value="B"> B) Allows storing multiple structured entities like students</label>
+            <label class="choice"><input type="radio" name="mcq22" value="C"> C) Is same as single integer variable</label>
+            <label class="choice"><input type="radio" name="mcq22" value="D"> D) Is not useful</label>
+          </div></li>
+
+          <li class="mcq">Which helps reveal logic errors before coding? (choose best)<div>
+            <label class="choice"><input type="radio" name="mcq23" value="A"> A) Writing pseudocode and trace tables</label>
+            <label class="choice"><input type="radio" name="mcq23" value="B"> B) Changing variable names randomly</label>
+            <label class="choice"><input type="radio" name="mcq23" value="C"> C) Running without tests</label>
+            <label class="choice"><input type="radio" name="mcq23" value="D"> D) Deleting comments</label>
+          </div></li>
+
+          <li class="mcq">Which is true about using global variables sparingly?<div>
+            <label class="choice"><input type="radio" name="mcq24" value="A"> A) They make debugging easier</label>
+            <label class="choice"><input type="radio" name="mcq24" value="B"> B) They can create hidden dependencies and bugs</label>
+            <label class="choice"><input type="radio" name="mcq24" value="C"> C) They are required for modularity</label>
+            <label class="choice"><input type="radio" name="mcq24" value="D"> D) They always speed up execution</label>
+          </div></li>
+
+          <li class="mcq">Which pseudocode keyword indicates loop termination when a condition becomes true?<div>
+            <label class="choice"><input type="radio" name="mcq25" value="A"> A) ENDIF</label>
+            <label class="choice"><input type="radio" name="mcq25" value="B"> B) BREAK</label>
+            <label class="choice"><input type="radio" name="mcq25" value="C"> C) NEXT</label>
+            <label class="choice"><input type="radio" name="mcq25" value="D"> D) RETURN</label>
+          </div></li>
+
+          <li class="mcq">What is a recommended element to include in module documentation?<div>
+            <label class="choice"><input type="radio" name="mcq26" value="A"> A) Purpose/description</label>
+            <label class="choice"><input type="radio" name="mcq26" value="B"> B) Unrelated TODOs</label>
+            <label class="choice"><input type="radio" name="mcq26" value="C"> C) Binary executable</label>
+            <label class="choice"><input type="radio" name="mcq26" value="D"> D) Passwords</label>
+          </div></li>
+
+          <li class="mcq">Which strategy helps maintainable code? <div>
+            <label class="choice"><input type="radio" name="mcq27" value="A"> A) Large monolithic functions</label>
+            <label class="choice"><input type="radio" name="mcq27" value="B"> B) Small focused functions with clear interfaces</label>
+            <label class="choice"><input type="radio" name="mcq27" value="C"> C) Avoiding tests</label>
+            <label class="choice"><input type="radio" name="mcq27" value="D"> D) Mixing UI and logic everywhere</label>
+          </div></li>
+
+          <li class="mcq">What should you do if an algorithm requires many similar steps repeated? <div>
+            <label class="choice"><input type="radio" name="mcq28" value="A"> A) Copy-paste code multiple times</label>
+            <label class="choice"><input type="radio" name="mcq28" value="B"> B) Encapsulate the repeated step into a procedure/function</label>
+            <label class="choice"><input type="radio" name="mcq28" value="C"> C) Use global variables only</label>
+            <label class="choice"><input type="radio" name="mcq28" value="D"> D) Disable testing</label>
+          </div></li>
+
+          <li class="mcq">Which of these is part of a good test case description?<div>
+            <label class="choice"><input type="radio" name="mcq29" value="A"> A) Input, expected output, and purpose</label>
+            <label class="choice"><input type="radio" name="mcq29" value="B"> B) Only input</label>
+            <label class="choice"><input type="radio" name="mcq29" value="C"> C) Only variable names</label>
+            <label class="choice"><input type="radio" name="mcq29" value="D"> D) Compiler logs</label>
+          </div></li>
+
+          <li class="mcq">Which is true about function side effects? <div>
+            <label class="choice"><input type="radio" name="mcq30" value="A"> A) Side effects make functions always pure</label>
+            <label class="choice"><input type="radio" name="mcq30" value="B"> B) Side effects modify global state or inputs</label>
+            <label class="choice"><input type="radio" name="mcq30" value="C"> C) Side effects are always desirable</label>
+            <label class="choice"><input type="radio" name="mcq30" value="D"> D) Side effects are compiler optimisations</label>
+          </div></li>
+        </ol>
+      </div>
+
+      <div class="section" id="fib-section">
+        <h2>Part B — 20 Fill in the Blanks</h2>
+        <ol>
+          <li>A ___________ chart shows the top‑down module hierarchy. <input type="text" name="fib1"></li>
+          <li>___________ is splitting a problem into smaller parts. <input type="text" name="fib2"></li>
+          <li>A ___________ returns a value; a procedure may not. <input type="text" name="fib3"></li>
+          <li>Passing a copy of the variable is called pass‑by‑_________. <input type="text" name="fib4"></li>
+          <li>Variables declared inside a function are called __________ variables. <input type="text" name="fib5"></li>
+          <li>Using many global variables often creates hidden __________. <input type="text" name="fib6"></li>
+          <li>An array element is accessed by its __________. <input type="text" name="fib7"></li>
+          <li>A __________ groups fields of different types under one name. <input type="text" name="fib8"></li>
+          <li>Testing that examines internal logic is called __________‑box testing. <input type="text" name="fib9"></li>
+          <li>A __________ test checks edge values such as 0, 1, or max. <input type="text" name="fib10"></li>
+          <li>Function documentation should include parameters and __________. <input type="text" name="fib11"></li>
+          <li>To avoid repetition, follow the __________ principle (abbreviation). <input type="text" name="fib12"></li>
+          <li>Use __________ loops (nested) for traversing a 2D matrix. <input type="text" name="fib13"></li>
+          <li>Binary search requires a __________ list. <input type="text" name="fib14"></li>
+          <li>A trace table records variable values after each __________. <input type="text" name="fib15"></li>
+          <li>When choosing algorithms consider time and __________ complexity. <input type="text" name="fib16"></li>
+          <li>Changing the value of a global variable inside a function is an example of a __________. <input type="text" name="fib17"></li>
+          <li>Module interfaces should be __________ and well documented. <input type="text" name="fib18"></li>
+          <li>One benefit of modular design is easier __________ and reuse. <input type="text" name="fib19"></li>
+          <li>Combining modules into one big block is called __________. <input type="text" name="fib20"></li>
+        </ol>
+      </div>
+
+      <div class="section" id="short-section">
+        <h2>Part C — 10 Short Answer Questions (brief answers)</h2>
+        <ol>
+          <li>Explain top‑down design in one sentence. <input type="text" name="sa1"></li>
+          <li>Give two differences between a procedure and a function. <input type="text" name="sa2"></li>
+          <li>Write pseudocode for swapping two variables using pass‑by‑reference (conceptual). <textarea name="sa3"></textarea></li>
+          <li>What is the scope of a global variable? <input type="text" name="sa4"></li>
+          <li>Give one advantage of using records over parallel arrays. <input type="text" name="sa5"></li>
+          <li>List three elements to include in a module's documentation. <input type="text" name="sa6"></li>
+          <li>Give a short definition of 'off‑by‑one' error. <input type="text" name="sa7"></li>
+          <li>State one difference between linear and binary search. <input type="text" name="sa8"></li>
+          <li>Provide a simple pseudocode function header for CalculateSum(Array, N). <input type="text" name="sa9"></li>
+          <li>Name two types of test cases you would include for a login function. <input type="text" name="sa10"></li>
+        </ol>
+      </div>
+
+      <div class="section" id="long-section">
+        <h2>Part D — 5 Long Answer Questions (detailed answers)</h2>
+        <ol>
+          <li>
+            (Scenario) Design a small library system: provide a top‑down module list, write pseudocode for IssueBook(MemberID, BookID), and give an identifier table. <textarea name="la1"></textarea>
+          </li>
+          <li>
+            (Scenario) Implement a function that returns the median of an array of odd length. Describe the high-level steps, pseudocode and test cases. <textarea name="la2"></textarea>
+          </li>
+          <li>
+            (Scenario) A module fails only when N=0. Explain how you'd use boundary testing and provide test cases, with expected results and a short trace of a failing run. <textarea name="la3"></textarea>
+          </li>
+          <li>
+            (Scenario) Write pseudocode for a function that accepts an array of student records and returns the ID of the student with the highest mark. Include an identifier table and explain choice of traversal. <textarea name="la4"></textarea>
+          </li>
+          <li>
+            (Scenario) Discuss pros and cons of pass‑by‑reference vs pass‑by‑value when working with large arrays in functions. Provide recommendation and reasoning. <textarea name="la5"></textarea>
+          </li>
+        </ol>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit" type="button" onclick="handleSubmit(event)">SUBMIT</button>
+      </div>
+
+      <div class="answers" id="answers">
+        <h2>Answers & Model Solutions</h2>
+
+        <div class="answer-block">
+          <h3>Part A — MCQ Answers (1–30)</h3>
+          <p class="small">1:B 2:B 3:B 4:B 5:C 6:A 7:B 8:B 9:B 10:B 11:B 12:A 13:B 14:A 15:B 16:A 17:A 18:D 19:A 20:B 21:B 22:B 23:A 24:B 25:B 26:A 27:B 28:B 29:A 30:B</p>
+        </div>
+
+        <div class="answer-block">
+          <h3>Part B — Fill in the Blanks (model answers)</h3>
+          <ol>
+            <li>Structure (or module) chart</li>
+            <li>Decomposition</li>
+            <li>Function</li>
+            <li>Value</li>
+            <li>Local</li>
+            <li>Dependencies</li>
+            <li>Index</li>
+            <li>Record</li>
+            <li>White</li>
+            <li>Boundary</li>
+            <li>Return value</li>
+            <li>DRY</li>
+            <li>Nested</li>
+            <li>Sorted</li>
+            <li>Step</li>
+            <li>Space</li>
+            <17>Side effect</17>
+            <li>Clear</li>
+            <li>Testing</li>
+            <li>Monolith</li>
+          </ol>
+        </div>
+
+        <div class="answer-block">
+          <h3>Part C — Short Answers (model answers)</h3>
+          <ol>
+            <li>Top‑down design: Start with a high‑level specification and iteratively break it into smaller modules until each is implementable.</li>
+            <li>Procedure vs Function: (1) Function returns a value; procedure may not. (2) Function is used in expressions; procedure is usually called for side effects.</li>
+            <li>Pseudocode (swap via reference):
+              <pre><code>PROCEDURE Swap(&a, &b)
+  temp ← a
+  a ← b
+  b ← temp
+ENDPROCEDURE</code></pre>
+            </li>
+            <li>Global scope: Visible throughout the program in all modules.</li>
+            <li>Records group related fields so code is clearer and less error-prone than parallel arrays.</li>
+            <li>Module documentation: Purpose, parameters, return values (and side effects).</li>
+            <li>Off‑by‑one: A loop boundary error where the loop iterates one time too many or too few (e.g., using <= N instead of < N).</li>
+            <li>Linear search scans sequentially; binary search divides sorted list and is faster on sorted data.</li>
+            <li>Function header example: FUNCTION CalculateSum(Array, N) RETURNS sum</li>
+            <li>Test cases for login: valid credentials; invalid password; missing username; SQL injection attempt (exceptional).</li>
+          </ol>
+        </div>
+
+        <div class="answer-block">
+          <h3>Part D — Long Answers (model solutions)</h3>
+
+          <h4>Q1 — Library system (model)</h4>
+          <p>Module list: Main(), LoadBooks(), LoadMembers(), IssueBook(), ReturnBook(), SearchCatalogue(), SaveData().</p>
+          <p>IssueBook pseudocode:</p>
+          <pre><code>PROCEDURE IssueBook(memberID, bookID)
+  IF NOT MemberExists(memberID) THEN
+    OUTPUT "Invalid member"
+    RETURN
+  ENDIF
+  IF BookAvailable(bookID) THEN
+    MarkBookAsIssued(bookID, memberID)
+    OUTPUT "Issued"
+  ELSE
+    OUTPUT "Not available"
+  ENDIF
+ENDPROCEDURE</code></pre>
+          <p>Identifier table (sample): memberID:String, bookID:String, issueDate:Date, dueDate:Date</p>
+
+          <h4>Q2 — Median of odd-length array (model)</h4>
+          <p>High-level: Sort array (or use selection algorithm), pick middle element. Pseudocode (simple):</p>
+          <pre><code>FUNCTION Median(array, n)
+  Sort(array)
+  mid ← n DIV 2
+  RETURN array[mid]
+ENDFUNCTION</code></pre>
+          <p>Test cases: [1,3,2] -> after sort [1,2,3] mid=1 -> 2. Edge: n=1 -> return sole element.</p>
+
+          <h4>Q3 — Boundary testing when N=0 (model)</h4>
+          <p>Include test cases: N=0 (expect error or empty result), N=1 (boundary), normal N. Trace failing run for N=0 showing where algorithm assumes non-zero and causes division by zero or index error.</p>
+
+          <h4>Q4 — Highest mark in array of records (model)</h4>
+          <pre><code>FUNCTION FindTopStudent(students, n)
+  topIndex ← 0
+  FOR i ← 1 TO n-1
+    IF students[i].Mark > students[topIndex].Mark THEN
+      topIndex ← i
+    ENDIF
+  NEXT i
+  RETURN students[topIndex].ID
+ENDFUNCTION</code></pre>
+          <p>Identifier table: students:Array of Record Student{ID,Name,Mark}, n:Integer, topIndex:Integer. Traversal: linear scan is appropriate once; efficient and simple.</p>
+
+          <h4>Q5 — Pass‑by‑reference vs pass‑by‑value for large arrays (model)</h4>
+          <p>Pass‑by‑reference avoids copying large arrays (fast, memory efficient) but risks side effects; pass‑by‑value is safe (no side effects) but costly for large data. Recommendation: use pass‑by‑reference with careful documentation or pass indices/handles to avoid full copies.</p>
+
+        </div>
+      </div>
+
+    </form>
+
+    <footer>Prepared by Ravi Raju for MESCairo</footer>
+  </div>
+
+  <script>
+    function handleSubmit(e){
+      document.getElementById('answers').style.display='block';
+      document.getElementById('answers').scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>

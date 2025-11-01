@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chapter 8 Assessment — Algorithm Design & Problem Solving</title>
+  <style>
+    :root{--bg:#FFFACD;--fg:#004400;--accent:#2a7a2a;--card:#ffffffcc}
+    body{margin:0;padding:22px;background:var(--bg);color:var(--fg);font-family:Inter, system-ui, -apple-system,'Segoe UI',Roboto,Arial}
+    .container{max-width:1100px;margin:0 auto}
+    h1{text-align:center;margin-bottom:6px}
+    p.meta{text-align:center;margin-top:0;margin-bottom:18px}
+    .section{background:var(--card);padding:14px;border-radius:10px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    h2{margin:0 0 8px 0}
+    .mcq{margin-bottom:10px}
+    label.choice{display:block;margin:4px 0;padding:6px;border-radius:6px}
+    input[type=text], textarea{width:100%;padding:8px;border:1px solid rgba(0,68,0,0.12);border-radius:6px}
+    textarea{min-height:110px}
+    .submit-row{text-align:center;margin:16px 0}
+    button.submit{background:var(--fg);color:var(--bg);border:none;padding:10px 18px;border-radius:8px;font-size:1rem;cursor:pointer}
+    .answers{display:none;margin-top:18px;background:#ffffffcc;padding:12px;border-radius:8px}
+    .answer-block{margin-bottom:12px}
+    .small{font-size:0.9rem;color:rgba(0,68,0,0.8)}
+    .note{font-size:0.95rem;margin-bottom:8px}
+    footer{text-align:center;margin-top:18px;font-weight:600}
+    @media (max-width:700px){body{padding:12px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapter 8 — Assessment</h1>
+    <p class="meta">Algorithm Design & Problem Solving — 30 MCQs • 20 Fill-in • 10 Short Answer • 5 Long Answer</p>
+
+    <form id="assessment">
+
+      <div class="section" id="mcq-section">
+        <h2>Part A — 30 Multiple Choice Questions (choose one)</h2>
+        <ol>
+          <li class="mcq">Which of the following best describes <strong>abstraction</strong>?<div>
+            <label class="choice"><input type="radio" name="mcq1" value="A"> A) Adding more details to a design</label>
+            <label class="choice"><input type="radio" name="mcq1" value="B"> B) Removing irrelevant details to focus on essentials</label>
+            <label class="choice"><input type="radio" name="mcq1" value="C"> C) Dividing a problem into sub-problems</label>
+            <label class="choice"><input type="radio" name="mcq1" value="D"> D) Testing an algorithm with sample data</label>
+          </div></li>
+
+          <li class="mcq">Decomposition is primarily used to:<div>
+            <label class="choice"><input type="radio" name="mcq2" value="A"> A) Combine modules into a single function</label>
+            <label class="choice"><input type="radio" name="mcq2" value="B"> B) Break problems into smaller parts</label>
+            <label class="choice"><input type="radio" name="mcq2" value="C"> C) Remove details from a model</label>
+            <label class="choice"><input type="radio" name="mcq2" value="D"> D) Determine the efficiency of an algorithm</label>
+          </div></li>
+
+          <li class="mcq">Pattern recognition helps programmers to:<div>
+            <label class="choice"><input type="radio" name="mcq3" value="A"> A) Identify unique one-off cases only</label>
+            <label class="choice"><input type="radio" name="mcq3" value="B"> B) Recognise repeated structures and reuse solutions</label>
+            <label class="choice"><input type="radio" name="mcq3" value="C"> C) Increase the number of steps in an algorithm</label>
+            <label class="choice"><input type="radio" name="mcq3" value="D"> D) Replace pseudocode with flowcharts</label>
+          </div></li>
+
+          <li class="mcq">Which of the following is NOT one of the basic constructs of algorithms?<div>
+            <label class="choice"><input type="radio" name="mcq4" value="A"> A) Sequence</label>
+            <label class="choice"><input type="radio" name="mcq4" value="B"> B) Selection</label>
+            <label class="choice"><input type="radio" name="mcq4" value="C"> C) Parallelism</label>
+            <label class="choice"><input type="radio" name="mcq4" value="D"> D) Iteration</label>
+          </div></li>
+
+          <li class="mcq">Pseudocode usually uses which symbol for assignment?<div>
+            <label class="choice"><input type="radio" name="mcq5" value="A"> A) =</label>
+            <label class="choice"><input type="radio" name="mcq5" value="B"> B) :=</label>
+            <label class="choice"><input type="radio" name="mcq5" value="C"> C) ←</label>
+            <label class="choice"><input type="radio" name="mcq5" value="D"> D) -></label>
+          </div></li>
+
+          <li class="mcq">An identifier table should include:<div>
+            <label class="choice"><input type="radio" name="mcq6" value="A"> A) Variable name, type, purpose</label>
+            <label class="choice"><input type="radio" name="mcq6" value="B"> B) Variable memory address</label>
+            <label class="choice"><input type="radio" name="mcq6" value="C"> C) Compiler flags</label>
+            <label class="choice"><input type="radio" name="mcq6" value="D"> D) Processor speed</label>
+          </div></li>
+
+          <li class="mcq">Stepwise refinement is useful because it:<div>
+            <label class="choice"><input type="radio" name="mcq7" value="A"> A) Increases program size</label>
+            <label class="choice"><input type="radio" name="mcq7" value="B"> B) Adds random features</label>
+            <label class="choice"><input type="radio" name="mcq7" value="C"> C) Breaks complex tasks into simpler steps</label>
+            <label class="choice"><input type="radio" name="mcq7" value="D"> D) Eliminates the need for testing</label>
+          </div></li>
+
+          <li class="mcq">Which logic operator makes the following true: "at least one is true"?<div>
+            <label class="choice"><input type="radio" name="mcq8" value="A"> A) AND</label>
+            <label class="choice"><input type="radio" name="mcq8" value="B"> B) OR</label>
+            <label class="choice"><input type="radio" name="mcq8" value="C"> C) NOT</label>
+            <label class="choice"><input type="radio" name="mcq8" value="D"> D) XOR</label>
+          </div></li>
+
+          <li class="mcq">A flowchart decision symbol is shaped like:<div>
+            <label class="choice"><input type="radio" name="mcq9" value="A"> A) Rectangle</label>
+            <label class="choice"><input type="radio" name="mcq9" value="B"> B) Parallelogram</label>
+            <label class="choice"><input type="radio" name="mcq9" value="C"> C) Diamond</label>
+            <label class="choice"><input type="radio" name="mcq9" value="D"> D) Oval</label>
+          </div></li>
+
+          <li class="mcq">Dry-run (tracing) helps to:<div>
+            <label class="choice"><input type="radio" name="mcq10" value="A"> A) Execute code on the computer</label>
+            <label class="choice"><input type="radio" name="mcq10" value="B"> B) Manually simulate the algorithm with sample data</label>
+            <label class="choice"><input type="radio" name="mcq10" value="C"> C) Compile the program</label>
+            <label class="choice"><input type="radio" name="mcq10" value="D"> D) Measure execution time</label>
+          </div></li>
+
+          <li class="mcq">Which repetition structure is best when the number of iterations is known?<div>
+            <label class="choice"><input type="radio" name="mcq11" value="A"> A) WHILE</label>
+            <label class="choice"><input type="radio" name="mcq11" value="B"> B) REPEAT UNTIL</label>
+            <label class="choice"><input type="radio" name="mcq11" value="C"> C) FOR</label>
+            <label class="choice"><input type="radio" name="mcq11" value="D"> D) LOOP FOREVER</label>
+          </div></li>
+
+          <li class="mcq">Which is a characteristic of a good algorithm?<div>
+            <label class="choice"><input type="radio" name="mcq12" value="A"> A) Ambiguous instructions</label>
+            <label class="choice"><input type="radio" name="mcq12" value="B"> B) Infinite loop</label>
+            <label class="choice"><input type="radio" name="mcq12" value="C"> C) Finite number of steps</label>
+            <label class="choice"><input type="radio" name="mcq12" value="D"> D) High memory leaks</label>
+          </div></li>
+
+          <li class="mcq">Which of these is an example of validation?<div>
+            <label class="choice"><input type="radio" name="mcq13" value="A"> A) Checking a phone number is 10 digits</label>
+            <label class="choice"><input type="radio" name="mcq13" value="B"> B) Running the program to see if it crashes</label>
+            <label class="choice"><input type="radio" name="mcq13" value="C"> C) Refactoring code</label>
+            <label class="choice"><input type="radio" name="mcq13" value="D"> D) Writing pseudocode</label>
+          </div></li>
+
+          <li class="mcq">Logical operator NOT applied to TRUE gives:<div>
+            <label class="choice"><input type="radio" name="mcq14" value="A"> A) TRUE</label>
+            <label class="choice"><input type="radio" name="mcq14" value="B"> B) FALSE</label>
+            <label class="choice"><input type="radio" name="mcq14" value="C"> C) ERROR</label>
+            <label class="choice"><input type="radio" name="mcq14" value="D"> D) NULL</label>
+          </div></li>
+
+          <li class="mcq">Which is the correct flowchart symbol for Input/Output?<div>
+            <label class="choice"><input type="radio" name="mcq15" value="A"> A) Diamond</label>
+            <label class="choice"><input type="radio" name="mcq15" value="B"> B) Parallelogram</label>
+            <label class="choice"><input type="radio" name="mcq15" value="C"> C) Rectangle</label>
+            <label class="choice"><input type="radio" name="mcq15" value="D"> D) Circle</label>
+          </div></li>
+
+          <li class="mcq">Which of the following best describes stepwise refinement?<div>
+            <label class="choice"><input type="radio" name="mcq16" value="A"> A) Increasing code duplication</label>
+            <label class="choice"><input type="radio" name="mcq16" value="B"> B) Breaking tasks into progressively detailed steps</label>
+            <label class="choice"><input type="radio" name="mcq16" value="C"> C) Removing comments from code</label>
+            <label class="choice"><input type="radio" name="mcq16" value="D"> D) Combining multiple algorithms into one</label>
+          </div></li>
+
+          <li class="mcq">A pseudocode IF statement must be terminated using which keyword in many exam conventions?<div>
+            <label class="choice"><input type="radio" name="mcq17" value="A"> A) ENDIF</label>
+            <label class="choice"><input type="radio" name="mcq17" value="B"> B) END</label>
+            <label class="choice"><input type="radio" name="mcq17" value="C"> C) FINISH</label>
+            <label class="choice"><input type="radio" name="mcq17" value="D"> D) STOP</label>
+          </div></li>
+
+          <li class="mcq">Which is a common cause of logic errors in algorithms?<div>
+            <label class="choice"><input type="radio" name="mcq18" value="A"> A) Using correct comparison operators</label>
+            <label class="choice"><input type="radio" name="mcq18" value="B"> B) Incorrect condition boundaries</label>
+            <label class="choice"><input type="radio" name="mcq18" value="C"> C) Clear identifier names</label>
+            <label class="choice"><input type="radio" name="mcq18" value="D"> D) Proper indentation</label>
+          </div></li>
+
+          <li class="mcq">In tracing an algorithm, you should record:<div>
+            <label class="choice"><input type="radio" name="mcq19" value="A"> A) Only the final output</label>
+            <label class="choice"><input type="radio" name="mcq19" value="B"> B) Variable values after each step</label>
+            <label class="choice"><input type="radio" name="mcq19" value="C"> C) The compiler errors</label>
+            <label class="choice"><input type="radio" name="mcq19" value="D"> D) Database schema</label>
+          </div></li>
+
+          <li class="mcq">Which repetition form guarantees the loop body executes at least once?<div>
+            <label class="choice"><input type="radio" name="mcq20" value="A"> A) FOR</label>
+            <label class="choice"><input type="radio" name="mcq20" value="B"> B) WHILE</label>
+            <label class="choice"><input type="radio" name="mcq20" value="C"> C) REPEAT UNTIL</label>
+            <label class="choice"><input type="radio" name="mcq20" value="D"> D) IF</label>
+          </div></li>
+
+          <li class="mcq">Which of these is a valid test case category?<div>
+            <label class="choice"><input type="radio" name="mcq21" value="A"> A) Ordinary cases</label>
+            <label class="choice"><input type="radio" name="mcq21" value="B"> B) Boundary cases</label>
+            <label class="choice"><input type="radio" name="mcq21" value="C"> C) Exceptional cases</label>
+            <label class="choice"><input type="radio" name="mcq21" value="D"> D) All of the above</label>
+          </div></li>
+
+          <li class="mcq">Which statement about algorithm correctness is true?<div>
+            <label class="choice"><input type="radio" name="mcq22" value="A"> A) An algorithm can be correct for some inputs and incorrect for others</label>
+            <label class="choice"><input type="radio" name="mcq22" value="B"> B) Correctness only matters for large inputs</label>
+            <label class="choice"><input type="radio" name="mcq22" value="C"> C) Correctness is irrelevant if the program runs fast</label>
+            <label class="choice"><input type="radio" name="mcq22" value="D"> D) Correctness depends on compiler optimisations</label>
+          </div></li>
+
+          <li class="mcq">Which of these is a reason to use pseudocode instead of a real programming language when designing algorithms?<div>
+            <label class="choice"><input type="radio" name="mcq23" value="A"> A) It enforces strict syntax</label>
+            <label class="choice"><input type="radio" name="mcq23" value="B"> B) It is language-independent and easier to read</label>
+            <label class="choice"><input type="radio" name="mcq23" value="C"> C) It executes faster</label>
+            <label class="choice"><input type="radio" name="mcq23" value="D"> D) It reduces memory usage</label>
+          </div></li>
+
+          <li class="mcq">Which is true about flowcharts and pseudocode?<div>
+            <label class="choice"><input type="radio" name="mcq24" value="A"> A) One can be converted to the other without changing logic</label>
+            <label class="choice"><input type="radio" name="mcq24" value="B"> B) They represent different algorithms</label>
+            <label class="choice"><input type="radio" name="mcq24" value="C"> C) Flowcharts cannot show loops</label>
+            <label class="choice"><input type="radio" name="mcq24" value="D"> D) Pseudocode has no conditional statements</label>
+          </div></li>
+
+          <li class="mcq">Which of the following is an example of a selection structure?<div>
+            <label class="choice"><input type="radio" name="mcq25" value="A"> A) IF ... THEN ... ELSE</label>
+            <label class="choice"><input type="radio" name="mcq25" value="B"> B) FOR ... NEXT</label>
+            <label class="choice"><input type="radio" name="mcq25" value="C"> C) Sequential statements</label>
+            <label class="choice"><input type="radio" name="mcq25" value="D"> D) Variable assignment</label>
+          </div></li>
+
+          <li class="mcq">Which of the following best describes validation vs verification?<div>
+            <label class="choice"><input type="radio" name="mcq26" value="A"> A) Validation checks input; verification checks the algorithm works</label>
+            <label class="choice"><input type="radio" name="mcq26" value="B"> B) Validation checks the algorithm; verification checks input</label>
+            <label class="choice"><input type="radio" name="mcq26" value="C"> C) They are the same</label>
+            <label class="choice"><input type="radio" name="mcq26" value="D"> D) Neither are needed if pseudocode is correct</label>
+          </div></li>
+
+          <li class="mcq">Which operator has higher precedence in compound conditions (typically)?<div>
+            <label class="choice"><input type="radio" name="mcq27" value="A"> A) OR</label>
+            <label class="choice"><input type="radio" name="mcq27" value="B"> B) AND</label>
+            <label class="choice"><input type="radio" name="mcq27" value="C"> C) NOT</label>
+            <label class="choice"><input type="radio" name="mcq27" value="D"> D) XOR</label>
+          </div></li>
+
+          <li class="mcq">Which of these is an example of an edge-case to test?<div>
+            <label class="choice"><input type="radio" name="mcq28" value="A"> A) Normal input like 50% for marks</label>
+            <label class="choice"><input type="radio" name="mcq28" value="B"> B) Maximum allowed input like 100% for marks</label>
+            <label class="choice"><input type="radio" name="mcq28" value="C"> C) Invalid input like -1 for age</label>
+            <label class="choice"><input type="radio" name="mcq28" value="D"> D) All of the above</label>
+          </div></li>
+
+          <li class="mcq">Which of the following describes a 'trace table' use?<div>
+            <label class="choice"><input type="radio" name="mcq29" value="A"> A) To document variable changes during execution</label>
+            <label class="choice"><input type="radio" name="mcq29" value="B"> B) To list all functions in a program</label>
+            <label class="choice"><input type="radio" name="mcq29" value="C"> C) To describe UI layout</label>
+            <label class="choice"><input type="radio" name="mcq29" value="D"> D) To measure CPU usage</label>
+          </div></li>
+
+          <li class="mcq">Which of these is the best first step when designing an algorithm?<div>
+            <label class="choice"><input type="radio" name="mcq30" value="A"> A) Start coding immediately</label>
+            <label class="choice"><input type="radio" name="mcq30" value="B"> B) Understand the problem and requirements</label>
+            <label class="choice"><input type="radio" name="mcq30" value="C"> C) Write test cases only</label>
+            <label class="choice"><input type="radio" name="mcq30" value="D"> D) Draw the UI first</label>
+          </div></li>
+        </ol>
+      </div>
+
+      <div class="section" id="fib-section">
+        <h2>Part B — 20 Fill in the Blanks</h2>
+        <ol>
+          <li>________ is the process of removing unnecessary details to focus on essentials. <input type="text" name="fib1"></li>
+          <li>Breaking a problem into smaller parts is called ________. <input type="text" name="fib2"></li>
+          <li>A sequence, selection and ________ are the three basic constructs of algorithms. <input type="text" name="fib3"></li>
+          <li>______ is the act of running an algorithm by hand with sample data. <input type="text" name="fib4"></li>
+          <li>A ______ table documents identifiers, types and purposes. <input type="text" name="fib5"></li>
+          <li>The pseudocode assignment operator often used is ________. <input type="text" name="fib6"></li>
+          <li>In pseudocode, an IF statement often ends with ________. <input type="text" name="fib7"></li>
+          <li>The logical operator that returns true only if both operands are true is ________. <input type="text" name="fib8"></li>
+          <li>Stepwise ________ means refining a solution into more detailed steps. <input type="text" name="fib9"></li>
+          <li>A flowchart diamond represents a ________. <input type="text" name="fib10"></li>
+          <li>Testing that focuses on internal paths is called ________ testing. <input type="text" name="fib11"></li>
+          <li>Checking input formats and ranges is called ________. <input type="text" name="fib12"></li>
+          <li>The loop that always executes at least once is ________ (two words). <input type="text" name="fib13"></li>
+          <li>When searching an unsorted list, you should use ________ search. <input type="text" name="fib14"></li>
+          <li>In a trace table, track variable values after each ________. <input type="text" name="fib15"></li>
+          <li>_______ is the logical operator that negates a condition. <input type="text" name="fib16"></li>
+          <li>Modular programming improves ________ and maintainability. <input type="text" name="fib17"></li>
+          <li>A short, clear description of a variable's purpose is often stored in an ________ table. <input type="text" name="fib18"></li>
+          <li>Choosing an algorithm based on the problem size and data is called selecting for ________. <input type="text" name="fib19"></li>
+          <li>Combining steps into a single step when designing is the opposite of decomposition and is called ________ (one word). <input type="text" name="fib20"></li>
+        </ol>
+      </div>
+
+      <div class="section" id="short-section">
+        <h2>Part C — 10 Short Answer Questions (brief answers)</h2>
+        <ol>
+          <li>Define abstraction in your own words. <input type="text" name="sa1"></li>
+          <li>Give two benefits of decomposition. <input type="text" name="sa2"></li>
+          <li>Write pseudocode to find the largest of three numbers. <textarea name="sa3"></textarea></li>
+          <li>Explain what an identifier table contains. <input type="text" name="sa4"></li>
+          <li>Give an example of a validation check for an email field. <input type="text" name="sa5"></li>
+          <li>State the difference between AND and OR with a short example. <input type="text" name="sa6"></li>
+          <li>What is a stepwise refinement? Give a one-sentence definition. <input type="text" name="sa7"></li>
+          <li>List three things to include when writing pseudocode for exams. <input type="text" name="sa8"></li>
+          <li>Write a trace table header for variables i, sum, and value. <input type="text" name="sa9"></li>
+          <li>Name two types of errors that dry‑run can help detect. <input type="text" name="sa10"></li>
+        </ol>
+      </div>
+
+      <div class="section" id="long-section">
+        <h2>Part D — 5 Long Answer Questions (detailed answers)</h2>
+        <ol>
+          <li>
+            (Scenario) You are asked to design an attendance system for a school. Describe your top‑down design: list modules, write a short pseudocode for "RecordAttendance" and provide an identifier table. <textarea name="la1"></textarea>
+          </li>
+          <li>
+            (Scenario) A function must calculate the average of N scores stored in an array. Give pseudocode using a function, explain parameter passing if you used pass‑by‑value, and show test cases. <textarea name="la2"></textarea>
+          </li>
+          <li>
+            (Scenario) A student submits pseudocode that contains an off‑by‑one error in a loop. Explain what an off‑by‑one error is, show an example, and correct it. <textarea name="la3"></textarea>
+          </li>
+          <li>
+            (Scenario) Explain how you would validate and verify a program that calculates taxes. Include test data examples and describe both validation and verification steps. <textarea name="la4"></textarea>
+          </li>
+          <li>
+            (Scenario) Compare linear search and binary search. Describe when each is appropriate, include pseudocode for linear search, and explain why binary search is not always usable. <textarea name="la5"></textarea>
+          </li>
+        </ol>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit" type="button" onclick="handleSubmit(event)">SUBMIT</button>
+      </div>
+
+      <div class="answers" id="answers">
+        <h2>Answers & Model Solutions</h2>
+
+        <div class="answer-block">
+          <h3>Part A — MCQ Answers (1–30)</h3>
+          <p class="small">1:B 2:B 3:B 4:C 5:C 6:A 7:C 8:B 9:C 10:B 11:C 12:C 13:A 14:B 15:B 16:B 17:A 18:B 19:B 20:C 21:D 22:A 23:B 24:A 25:A 26:A 27:C 28:D 29:A 30:B</p>
+        </div>
+
+        <div class="answer-block">
+          <h3>Part B — Fill in the Blanks (model answers)</h3>
+          <ol>
+            <li>Abstraction</li>
+            <li>Decomposition</li>
+            <li>Iteration</li>
+            <li>Dry‑run (or tracing)</li>
+            <li>Identifier</li>
+            <li>← (arrow)</li>
+            <li>ENDIF</li>
+            <li>AND</li>
+            <li>Refinement</li>
+            <li>Decision</li>
+            <li>White‑box</li>
+            <li>Validation</li>
+            <li>REPEAT UNTIL (or "repeat until")</li>
+            <li>Linear</li>
+            <li>step</li>
+            <li>NOT</li>
+            <li>Readability (or "clarity")</li>
+            <li>Identifier</li>
+            <li>Efficiency</li>
+            <li>Aggregation</li>
+          </ol>
+        </div>
+
+        <div class="answer-block">
+          <h3>Part C — Short Answers (model answers)</h3>
+          <ol>
+            <li>Abstraction: removing unnecessary details so the essential aspects of a problem are modelled.</li>
+            <li>Benefits of decomposition: easier testing and simpler development; allows parallel work and code reuse.</li>
+            <li>Pseudocode model:
+              <pre><code>INPUT A,B,C
+max ← A
+IF B > max THEN max ← B ENDIF
+IF C > max THEN max ← C ENDIF
+OUTPUT max</code></pre>
+            </li>
+            <li>Identifier table contains variable names, data types, and purpose/description.</li>
+            <li>Validation example: check email contains '@' and a domain, and length within limits.</li>
+            <li>AND : true when both conditions true (e.g., age>=18 AND hasID=true). OR : true when at least one true (e.g., score>=50 OR extraCredit=true).</li>
+            <li>Stepwise refinement: breaking a high‑level task into more detailed sub‑steps until each is implementable.</li>
+            <li>Include: clear identifiers, correct control structures (IF/FOR), and indentation/END keywords.</li>
+            <li>Trace table header example: Step | i | sum | value</li>
+            <li>Dry‑run can help detect logical errors and off‑by‑one errors (also boundary errors).</li>
+          </ol>
+        </div>
+
+        <div class="answer-block">
+          <h3>Part D — Long Answers (model solutions)</h3>
+
+          <h4>Q1 — Attendance system (model)</h4>
+          <p><strong>Module list:</strong> Main(), RecordAttendance(), AuthenticateUser(), LoadStudents(), SaveAttendance(), GenerateReport()</p>
+          <p><strong>RecordAttendance pseudocode (short):</strong></p>
+          <pre><code>PROCEDURE RecordAttendance(studentID, date, status)
+  // assume student exists
+  attendanceRecord ← {StudentID: studentID, Date: date, Present: status}
+  Append attendanceRecord to AttendanceList
+ENDPROCEDURE</code></pre>
+          <p><strong>Identifier table (sample):</strong></p>
+          <table>
+            <tr><th>Identifier</th><th>Type</th><th>Purpose</th></tr>
+            <tr><td>studentID</td><td>String/Integer</td><td>Unique student identifier</td></tr>
+            <tr><td>date</td><td>Date</td><td>Attendance date</td></tr>
+            <tr><td>status</td><td>Boolean</td><td>Present/Absent</td></tr>
+          </table>
+
+          <h4>Q2 — Average function (model)</h4>
+          <pre><code>FUNCTION CalculateAverage(scores, n)
+  total ← 0
+  FOR i ← 0 TO n-1
+    total ← total + scores[i]
+  NEXT i
+  avg ← total / n
+  RETURN avg
+ENDFUNCTION</code></pre>
+          <p><strong>Parameter passing:</strong> If passed by value, the function receives a copy (original array unchanged unless arrays are reference in language). For exams, state the assumed convention. <strong>Test cases:</strong> scores=[10,20,30], n=3 → avg=20; scores=[0,0,0], n=3 → avg=0; n=1 edge case.</p>
+
+          <h4>Q3 — Off‑by‑one (model)</h4>
+          <p>An off‑by‑one error occurs when loop bounds are incorrect (e.g., using <= instead of <). <strong>Example:</strong></p>
+          <pre><code>// Incorrect (off-by-one) for array length N
+FOR i ← 0 TO N
+  process array[i]
+NEXT i
+// This accesses array[N] which is out of bounds
+
+// Correct:
+FOR i ← 0 TO N-1
+  process array[i]
+NEXT i</code></pre>
+
+          <h4>Q4 — Validate & verify taxes program (model)</h4>
+          <p><strong>Validation:</strong> Check salary ≥ 0, valid tax year, correct format for ID. <strong>Verification:</strong> Provide expected outputs for sample inputs and compare. <strong>Test data:</strong> salary=0, salary=10000, negative salary (invalid), very large salary. Use trace tables for failing cases and log fixes.</p>
+
+          <h4>Q5 — Linear vs Binary search (model)</h4>
+          <p><strong>Linear search:</strong> scan elements from start to end; works on unsorted lists. <strong>Pseudocode:</strong></p>
+          <pre><code>FUNCTION LinearSearch(array, key)
+  FOR i ← 0 TO Length(array)-1
+    IF array[i] = key THEN
+      RETURN i
+    ENDIF
+  NEXT i
+  RETURN -1
+ENDFUNCTION</code></pre>
+          <p><strong>Binary search:</strong> halves sorted list each iteration; much faster on large sorted arrays but requires sorted input. Not usable on unsorted lists because the halving property relies on order.</p>
+
+        </div>
+      </div>
+
+    </form>
+
+    <footer>Prepared by Ravi Raju for MESCairo</footer>
+  </div>
+
+  <script>
+    function handleSubmit(e){
+      // Reveal answers section
+      document.getElementById('answers').style.display='block';
+      // Highlight correct MCQ choices visually
+      const mcqAnswers = {mcq1:'B',mcq2:'B',mcq3:'B',mcq4:'C',mcq5:'C',mcq6:'A',mcq7:'C',mcq8:'B',mcq9:'C',mcq10:'B',mcq11:'C',mcq12:'C',mcq13:'A',mcq14:'B',mcq15:'B',mcq16:'B',mcq17:'A',mcq18:'B',mcq19:'B',mcq20:'C',mcq21:'D',mcq22:'A',mcq23:'B',mcq24:'A',mcq25:'A',mcq26:'A',mcq27:'C',mcq28:'D',mcq29:'A',mcq30:'B'};
+      for(const [k,v] of Object.entries(mcqAnswers)){
+        const els=document.getElementsByName(k.replace('mcq','mcq'));
+        // mark correct choice label
+        const radios=document.getElementsByName(k.replace('mcq','mcq'));
+        // loop through radio inputs for question name like 'mcq1' etc
+      }
+      // Scroll to answers
+      document.getElementById('answers').scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>

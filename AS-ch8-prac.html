@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 8 — Algorithm Design & Problem Solving (AS 9618) — Prepared by Ravi Raju</title>
+  <style>
+    :root{
+      --bg:#FFFACD; /* lemon yellow */
+      --fg:#004400; /* dark green */
+      --muted: rgba(0,68,0,0.08);
+      --accent:#2a7a2a;
+      --card:#ffffffcc;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; padding:24px; background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased;
+    }
+    .container{max-width:1100px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{margin:0;font-size:1.6rem; color:var(--fg)}
+    .meta{font-size:0.95rem; color:var(--fg)}
+    .nav{display:flex;gap:8px}
+    button.btn{background:var(--fg); color:var(--bg); border:none; padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    /* Collapsible styles */
+    .section{margin-top:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);overflow:hidden}
+    .section .head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(90deg,var(--card),var(--muted));cursor:pointer}
+    .section .head h2{margin:0;font-size:1.05rem}
+    .section .head small{opacity:0.9}
+    .section .body{padding:16px;border-top:1px solid rgba(0,68,0,0.06);display:none;background:var(--card)}
+
+    /* sub-collapsible */
+    .sub{margin:10px 0;border-radius:10px;background:transparent}
+    .sub .subhead{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:8px;background:rgba(0,68,0,0.04);cursor:pointer}
+    .sub .subbody{padding:12px 16px;display:none;background:transparent}
+
+    pre{background:rgba(0,0,0,0.04);padding:12px;border-radius:8px;overflow:auto}
+    code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
+
+    .examples, .exercises{margin-top:10px}
+    .example, .exercise{padding:10px;margin:8px 0;border-radius:8px;background:rgba(0,68,0,0.03)}
+    .teacher{border-left:4px solid var(--accent);padding:10px;margin:8px 0;background:rgba(42,122,42,0.04)}
+
+    .show-answer{margin-top:8px}
+    .answer{display:none;padding:10px;border-radius:6px;background:rgba(0,0,0,0.04)}
+
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{border:1px solid rgba(0,68,0,0.08);padding:8px;text-align:left}
+
+    footer{margin-top:26px;padding:12px 18px;text-align:center;font-size:0.95rem;color:var(--fg)}
+
+    /* small helpers */
+    .flex{display:flex;gap:8px;align-items:center}
+    .muted{opacity:0.85;font-size:0.95rem}
+    .badge{background:var(--fg);color:var(--bg);padding:4px 8px;border-radius:6px;font-size:0.85rem}
+
+    /* responsive */
+    @media (max-width:700px){body{padding:12px}.container{padding:0 6px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Chapter 8 — Algorithm Design & Problem Solving</h1>
+        <div class="meta">Cambridge AS Level Computer Science (9618) — Comprehensive teacher + student page</div>
+      </div>
+      <div class="nav">
+        <button class="btn" onclick="expandAll()">Expand All</button>
+        <button class="btn" onclick="collapseAll()">Collapse All</button>
+      </div>
+    </header>
+
+    <!-- Section 8.1 -->
+    <section class="section" id="s8-1">
+      <div class="head" onclick="toggleSection('s8-1')">
+        <div>
+          <h2>8.1 — Computational Thinking Skills</h2>
+          <small class="muted">Abstraction · Decomposition · Pattern recognition · Algorithmic thinking</small>
+        </div>
+        <div class="badge">Collapsed</div>
+      </div>
+      <div class="body">
+        <!-- Sub 8.1.1 -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s811')">
+            <div><strong>8.1.1 Abstraction</strong> — the need, benefits & producing abstract models</div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s811">
+            <p><strong>Definition:</strong> Abstraction removes unneeded details and keeps only essential features of a problem.</p>
+            <p><strong>Teacher notes:</strong></p>
+            <div class="teacher">When teaching: use several real-world examples — e.g., mapping a car to attributes vs describing the engine internals. Ask students to practise by abstracting everyday objects (phone, classroom, library).</div>
+
+            <h4>Clear example</h4>
+            <p>Problem: Create an attendance system for a school. Abstract model:</p>
+            <pre><code>Student: { ID, Name, Class, Status }
+Class: { Name, RoomNumber, Teacher }
+AttendanceRecord: { StudentID, Date, Present }
+</code></pre>
+
+            <h4>Exercise 1 (short)</h4>
+            <div class="exercise">
+              <b>Task:</b> Abstract the following system: <i>a hospital patient-tracking system</i>. List 5 core entities and 2 attributes for each.
+              <div class="show-answer"><button onclick="toggleAnswer('a811e1')">Show / Hide model</button></div>
+              <div class="answer" id="a811e1">
+                <ul>
+                  <li>Patient: {PatientID, Name, DOB}</li>
+                  <li>Doctor: {DoctorID, Name, Specialty}</li>
+                  <li>Appointment: {AppID, PatientID, Date}</li>
+                  <li>Ward: {WardID, Name, Capacity}</li>
+                  <li>Prescription: {PrescID, PatientID, Medication}</li>
+                </ul>
+              </div>
+            </div>
+
+            <h4>Teaching tip</h4>
+            <p class="muted">Ask students to compare their models — there is not a single correct abstraction; the aim is to capture essentials for the system's purpose.</p>
+          </div>
+        </div>
+
+        <!-- Sub 8.1.2 -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s812')">
+            <div><strong>8.1.2 Decomposition</strong> — breaking down a problem into sub-problems & modules</div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s812">
+            <p><strong>Definition:</strong> Decomposition divides a complex task into smaller, manageable parts, each of which can be implemented and tested separately.</p>
+            <h4>Worked example (Library system)</h4>
+            <ol>
+              <li>Search catalogue</li>
+              <li>Borrow / Issue book</li>
+              <li>Return book & update availability</li>
+              <li>Calculate fines</li>
+              <li>Manage member records</li>
+            </ol>
+            <p><strong>Module mapping (procedures/functions):</strong></p>
+            <pre><code>PROCEDURE SearchCatalogue(query)
+PROCEDURE IssueBook(memberID, bookID)
+PROCEDURE ReturnBook(bookID)
+FUNCTION CalculateFine(daysLate)
+PROCEDURE UpdateMember(memberID)
+</code></pre>
+
+            <h4>Exercise 2 (medium)</h4>
+            <div class="exercise">
+              <b>Task:</b> Decompose an online quiz platform into at least 6 modules (name & purpose). Then suggest which could be functions vs procedures.
+              <div class="show-answer"><button onclick="toggleAnswer('a812e2')">Show / Hide sample decomposition</button></div>
+              <div class="answer" id="a812e2">
+                <ol>
+                  <li>UserAuth(): handles login/registration (procedure)</li>
+                  <li>LoadQuiz(quizID): fetches questions (function)</li>
+                  <li>StartTimer(duration): controls timing (procedure)</li>
+                  <li>SubmitAnswers(userID, answers): records responses (procedure)</li>
+                  <li>GradeQuiz(answers): returns score (function)</li>
+                  <li>ShowResults(userID): displays feedback (procedure)</li>
+                </ol>
+              </div>
+            </div>
+
+            <p class="muted">Teacher: emphasise how decomposition simplifies testing — unit test each module.</p>
+          </div>
+        </div>
+
+        <!-- Sub 8.1.3 -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s813')">
+            <div><strong>8.1.3 Pattern recognition</strong> — identify patterns & reuse solutions</div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s813">
+            <p>Pattern recognition helps spot repeated logic that can be made into subroutines.</p>
+            <h4>Example</h4>
+            <p>Validation logic (e.g., email format) appears in many systems — write a single ValidateEmail() function and reuse it.</p>
+
+            <h4>Exercise 3 (short)</h4>
+            <div class="exercise">
+              <b>Task:</b> Identify a pattern in the two problems below and suggest a reusable subroutine.
+              <ul>
+                <li>Find the maximum temperature in a week</li>
+                <li>Find the highest score in a tournament</li>
+              </ul>
+              <div class="show-answer"><button onclick="toggleAnswer('a813e3')">Show / Hide answer</button></div>
+              <div class="answer" id="a813e3">Subroutine: FindMax(list) — returns the largest element.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub 8.1.4 -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s814')">
+            <div><strong>8.1.4 Algorithmic thinking</strong> — plan step-by-step logic before coding</div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s814">
+            <p>Teach students to write the steps in plain language or structured English before converting to pseudocode.</p>
+
+            <h4>Worked example — Average of N numbers (structured English → pseudocode)</h4>
+            <pre><code>Structured English:
+1. Read the number of items N
+2. Set Total to 0
+3. Repeat N times: Read a number and add to Total
+4. Calculate Average = Total / N
+5. Output Average
+
+Pseudocode:
+INPUT N
+Total ← 0
+FOR I ← 1 TO N
+  INPUT Value
+  Total ← Total + Value
+NEXT I
+Average ← Total / N
+OUTPUT Average
+</code></pre>
+
+            <h4>Exercise 4 (exam-style)</h4>
+            <div class="exercise">
+              <b>Task:</b> Write structured English and then pseudocode for: "Given a list of student marks, count how many students scored >= 75%".
+              <div class="show-answer"><button onclick="toggleAnswer('a814e4')">Show / Hide model answer</button></div>
+              <div class="answer" id="a814e4">
+                <pre><code>Structured English:
+1. Read number of students N
+2. Set Count to 0
+3. Repeat N times: Read Mark. If Mark >= 75 then Count ← Count + 1
+4. Output Count
+
+Pseudocode:
+INPUT N
+Count ← 0
+FOR I ← 1 TO N
+  INPUT Mark
+  IF Mark >= 75 THEN
+    Count ← Count + 1
+  ENDIF
+NEXT I
+OUTPUT Count
+</code></pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 8.2 -->
+    <section class="section" id="s8-2">
+      <div class="head" onclick="toggleSection('s8-2')">
+        <div>
+          <h2>8.2 — Algorithms</h2>
+          <small class="muted">Definitions · Methods · Identifier tables · Constructs · Refinement · Logic</small>
+        </div>
+        <div class="badge">Collapsed</div>
+      </div>
+      <div class="body">
+
+        <!-- 8.2.1 Definition -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s821')">
+            <div><strong>8.2.1 — Definition of an algorithm</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s821">
+            <p>An algorithm is a finite, unambiguous sequence of steps to solve a problem. It must terminate and be correct for all valid inputs.</p>
+            <h4>Quick checklist for a valid algorithm</h4>
+            <ul>
+              <li>Clear start and end</li>
+              <li>No ambiguous instructions</li>
+              <li>Terminates in finite steps</li>
+              <li>Handles edge cases</li>
+            </ul>
+
+            <h4>Exercise 5 (short)</h4>
+            <div class="exercise">
+              <b>Task:</b> Which of the following is NOT an algorithm? Explain briefly.
+              <ol type="a">
+                <li>A recipe for baking a cake</li>
+                <li>A list of all prime numbers (without rules)</li>
+                <li>A step-by-step assembly guide for furniture</li>
+              </ol>
+              <div class="show-answer"><button onclick="toggleAnswer('a821e5')">Show / Hide answer</button></div>
+              <div class="answer" id="a821e5">(b) A list of primes without a generating rule is not an algorithm because it does not describe a procedure to produce primes; it's only data.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2.2 Methods of writing -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s822')">
+            <div><strong>8.2.2 — Methods: Structured English, Pseudocode, Flowchart</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s822">
+            <p>Use the representation that best communicates the algorithm. For exams, pseudocode and flowcharts are common.</p>
+
+            <h4>Common pseudocode keywords & examples</h4>
+            <pre><code>INPUT, OUTPUT, IF, THEN, ELSE, ENDIF, FOR, WHILE, REPEAT, UNTIL, RETURN, CALL
+
+Example:
+INPUT A, B
+IF A > B THEN
+  OUTPUT "A is larger"
+ELSE
+  OUTPUT "B is larger"
+ENDIF
+</code></pre>
+
+            <h4>Flowchart mini-diagram (textual)</h4>
+            <pre><code>Start -> [Input A,B] -> <(Decision A>B?)> -> yes -> [Output A is larger] -> End
+                                                   -> no  -> [Output B is larger] -> End
+</code></pre>
+
+            <h4>Exercise 6 (medium)</h4>
+            <div class="exercise">
+              <b>Task:</b> Convert the following pseudocode to structured English and to a simple flowchart description:
+              <pre><code>INPUT N
+Sum ← 0
+FOR I ← 1 TO N
+  Sum ← Sum + I
+NEXT I
+OUTPUT Sum</code></pre>
+              <div class="show-answer"><button onclick="toggleAnswer('a822e6')">Show / Hide answer</button></div>
+              <div class="answer" id="a822e6">
+                <p><strong>Structured English:</strong> Read N. Set Sum to 0. For I from 1 to N add I to Sum. Display Sum.</p>
+                <p><strong>Flowchart description:</strong> Start → Input N → Set Sum=0 → Loop (I=1..N: Sum=Sum+I) → Output Sum → End.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2.3 Identifier table -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s823')">
+            <div><strong>8.2.3 — Identifier table</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s823">
+            <p>Always document identifiers: name, type, purpose. This avoids confusion.</p>
+            <table>
+              <thead><tr><th>Identifier</th><th>Type</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>Num</td><td>Integer</td><td>Holds input number</td></tr>
+                <tr><td>Total</td><td>Integer</td><td>Stores running total</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Exercise 7 (short)</h4>
+            <div class="exercise">
+              <b>Task:</b> Write an identifier table for an algorithm that records temperature readings every hour for 24 hours.
+              <div class="show-answer"><button onclick="toggleAnswer('a823e7')">Show / Hide sample</button></div>
+              <div class="answer" id="a823e7">
+                <ul>
+                  <li>Hour: Integer — current hour (1..24)</li>
+                  <li>Temp: Real — temperature reading</li>
+                  <li>Readings: Array[24] of Real — stores all readings</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2.4 Basic constructs -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s824')">
+            <div><strong>8.2.4 — Basic constructs (assignment, sequence, selection, repetition)</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s824">
+            <h4>Assignment</h4>
+            <pre><code>Total ← 0
+x ← x + 1
+</code></pre>
+
+            <h4>Selection</h4>
+            <pre><code>IF Score >= 50 THEN
+  Output "Pass"
+ELSE
+  Output "Fail"
+ENDIF
+</code></pre>
+
+            <h4>Repetition examples</h4>
+            <pre><code>WHILE Count < 10 DO
+  Count ← Count + 1
+ENDWHILE
+
+FOR I ← 1 TO 5
+  OUTPUT I
+NEXT I
+</code></pre>
+
+            <h4>Exercise 8 (exam-style)</h4>
+            <div class="exercise">
+              <b>Task:</b> Write pseudocode using a FOR loop to calculate factorial of N (N!). Also provide a WHILE loop version.
+              <div class="show-answer"><button onclick="toggleAnswer('a824e8')">Show / Hide answers</button></div>
+              <div class="answer" id="a824e8">
+                <pre><code>FOR loop:
+INPUT N
+Fact ← 1
+FOR I ← 1 TO N
+  Fact ← Fact * I
+NEXT I
+OUTPUT Fact
+
+WHILE loop:
+INPUT N
+Fact ← 1
+I ← 1
+WHILE I <= N DO
+  Fact ← Fact * I
+  I ← I + 1
+ENDWHILE
+OUTPUT Fact
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2.5 Stepwise refinement -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s825')">
+            <div><strong>8.2.5 — Stepwise refinement</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s825">
+            <p>Refine high-level tasks into detailed steps and subroutines until ready for implementation.</p>
+            <h4>Example — Payment processing</h4>
+            <ol>
+              <li>Validate card details</li>
+              <li>Check account balance</li>
+              <li>Authorise transaction</li>
+              <li>Update records & send receipt</li>
+            </ol>
+
+            <h4>Exercise 9 (medium)</h4>
+            <div class="exercise">
+              <b>Task:</b> Provide stepwise refinement for: "Process student course registration" — include at least 5 steps and name at least two subroutines.
+              <div class="show-answer"><button onclick="toggleAnswer('a825e9')">Show / Hide sample</button></div>
+              <div class="answer" id="a825e9">
+                <ol>
+                  <li>Input studentID and selected courses</li>
+                  <li>CALL ValidateCourses(list)</li>
+                  <li>CALL CheckPrerequisites(studentID, course)</li>
+                  <li>Register student and update records</li>
+                  <li>Output confirmation</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8.2.6 Logic statements -->
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s826')">
+            <div><strong>8.2.6 — Logic statements & Boolean logic</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s826">
+            <p>Combine conditions using AND, OR, NOT when controlling program flow.</p>
+            <pre><code>IF Age >= 18 AND HasID = TRUE THEN
+  Output "Allowed"
+ENDIF
+
+IF (Score >= 80 OR Grade = 'A') THEN
+  Output "Distinction"
+ENDIF
+</code></pre>
+
+            <h4>Exercise 10 (short)</h4>
+            <div class="exercise">
+              <b>Task:</b> What is the result of the condition: IF NOT (A OR B) when A=false and B=true? Explain.
+              <div class="show-answer"><button onclick="toggleAnswer('a826e10')">Show / Hide answer</button></div>
+              <div class="answer" id="a826e10">A OR B = true, NOT(true) = false. So the condition is false.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 8.3 -->
+    <section class="section" id="s8-3">
+      <div class="head" onclick="toggleSection('s8-3')">
+        <div>
+          <h2>8.3 — Pseudocode, Flowcharts & Structured English</h2>
+          <small class="muted">Syntax · Conversions · Identifier tables</small>
+        </div>
+        <div class="badge">Collapsed</div>
+      </div>
+      <div class="body">
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s831')">
+            <div><strong>8.3.1 — Pseudocode syntax & conventions</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s831">
+            <p>Use clear keywords, assignment arrow, meaningful names, and indentation. Avoid language-specific syntax.</p>
+            <pre><code>// Good style example
+INPUT Name
+Age ← INT(INPUT("Enter age:"))
+IF Age >= 18 THEN
+  OUTPUT Name & " is an adult"
+ELSE
+  OUTPUT Name & " is a minor"
+ENDIF
+</code></pre>
+
+            <h4>Exercise 11 (style check)</h4>
+            <div class="exercise">
+              <b>Task:</b> Identify and correct poor pseudocode: "read x\nif x>0 output yes"
+              <div class="show-answer"><button onclick="toggleAnswer('a831e11')">Show / Hide correction</button></div>
+              <div class="answer" id="a831e11">
+                <pre><code>INPUT x
+IF x > 0 THEN
+  OUTPUT "yes"
+ENDIF
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s832')">
+            <div><strong>8.3.2 — Flowchart conventions</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s832">
+            <p>Use standard symbols. Keep flow left-to-right or top-to-bottom. Avoid crossing arrows when possible.</p>
+            <h4>Teacher example (diagram sketch)</h4>
+            <pre><code>Start --> [Input A,B] --> <(A>B?)> --> yes --> [Output A] --> End
+                                   \-> no --> [Output B] --> End
+</code></pre>
+
+            <h4>Exercise 12 (draw)</h4>
+            <div class="exercise">
+              <b>Task:</b> Draw a flowchart for computing the sum of first N natural numbers. (Use the pseudocode provided earlier.)
+              <div class="show-answer"><button onclick="toggleAnswer('a832e12')">Show / Hide hint</button></div>
+              <div class="answer" id="a832e12">Hint: Start → Input N → Set Sum=0 → Loop (I=1..N add I to Sum) → Output Sum → End</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s833')">
+            <div><strong>8.3.3 — Converting representations</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s833">
+            <p>Practice converting between structured English, pseudocode and flowchart. Keep logic identical when converting.</p>
+            <h4>Exercise 13 (conversion)</h4>
+            <div class="exercise">
+              <b>Task:</b> Convert this structured English into pseudocode and then into a flowchart description:
+              <pre><code>Read three numbers. Output their average.</code></pre>
+              <div class="show-answer"><button onclick="toggleAnswer('a833e13')">Show / Hide answer</button></div>
+              <div class="answer" id="a833e13">
+                <pre><code>Pseudocode:
+INPUT A, B, C
+Average ← (A + B + C) / 3
+OUTPUT Average
+
+Flowchart description: Start -> Input A,B,C -> Process: Average=(A+B+C)/3 -> Output Average -> End
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s834')">
+            <div><strong>8.3.4 — Identifier tables</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s834">
+            <p>Maintain a table for every algorithm — improves clarity and grading in exams.</p>
+            <h4>Exercise 14 (practical)</h4>
+            <div class="exercise">
+              <b>Task:</b> Create an identifier table for a program that converts Celsius temperatures to Fahrenheit for 10 readings.
+              <div class="show-answer"><button onclick="toggleAnswer('a834e14')">Show / Hide sample</button></div>
+              <div class="answer" id="a834e14">
+                <ul>
+                  <li>Index: Integer — loop counter</li>
+                  <li>C: Real — Celsius value</li>
+                  <li>F: Real — Fahrenheit value</li>
+                  <li>Readings: Array[10] of Real — store results</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 8.4 -->
+    <section class="section" id="s8-4">
+      <div class="head" onclick="toggleSection('s8-4')">
+        <div>
+          <h2>8.4 — Tracing & Testing Algorithms</h2>
+          <small class="muted">Dry-run · Debugging · Validation & Verification</small>
+        </div>
+        <div class="badge">Collapsed</div>
+      </div>
+      <div class="body">
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s841')">
+            <div><strong>8.4.1 — Dry-run / Tracing algorithms</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s841">
+            <p>Tracing is the manual simulation of an algorithm using sample data and a trace table.</p>
+            <h4>Trace table example (FindMax algorithm)</h4>
+            <pre><code>Input array: [4, 9, 1, 6]
+Initial Max ← array[0] (4)
+Step through each item updating Max when larger found.
+Trace table columns: Index, CurrentValue, MaxAfterStep
+</code></pre>
+            <table>
+              <thead><tr><th>Index</th><th>Current</th><th>Max</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>4</td><td>4</td></tr>
+                <tr><td>1</td><td>9</td><td>9</td></tr>
+                <tr><td>2</td><td>1</td><td>9</td></tr>
+                <tr><td>3</td><td>6</td><td>9</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Exercise 15 (trace)</h4>
+            <div class="exercise">
+              <b>Task:</b> Trace the pseudocode: Find the sum of odd numbers in the list [2,3,5,8,7]
+              <div class="show-answer"><button onclick="toggleAnswer('a841e15')">Show / Hide answer</button></div>
+              <div class="answer" id="a841e15">
+                <pre><code>Trace: Sum starts 0
+2 -> even -> Sum 0
+3 -> odd -> Sum 3
+5 -> odd -> Sum 8
+8 -> even -> Sum 8
+7 -> odd -> Sum 15
+Final Sum = 15
+</code></pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s842')">
+            <div><strong>8.4.2 — Identifying errors & debugging</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s842">
+            <p>Common errors and how to find them using trace tables and boundary tests.</p>
+            <h4>Example — Off-by-one error</h4>
+            <p>Pseudocode that loops from 1 to N but uses array indexing starting at 0 can skip or cause errors. Teach students to check loop bounds.</p>
+
+            <h4>Exercise 16 (debugging)</h4>
+            <div class="exercise">
+              <b>Task:</b> The following pseudocode is intended to reverse a list but gives incorrect results. Spot the error:
+              <pre><code>FOR I ← 1 TO Length(list)
+  Reversed[I] ← list[Length(list) - I]
+NEXT I
+</code></pre>
+              <div class="show-answer"><button onclick="toggleAnswer('a842e16')">Show / Hide correction</button></div>
+              <div class="answer" id="a842e16">Indexing is inconsistent. Correct (0-based): FOR I ← 0 TO Length(list)-1
+  Reversed[I] ← list[Length(list)-1 - I]
+NEXT I</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s843')">
+            <div><strong>8.4.3 — Validation & Verification</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s843">
+            <p><strong>Validation</strong>: checks input correctness (range, type, format). Example: Age between 0 and 120.</p>
+            <p><strong>Verification</strong>: ensure algorithm meets specification—e.g., comparing output with expected results.</p>
+
+            <h4>Exercise 17 (validation)</h4>
+            <div class="exercise">
+              <b>Task:</b> Suggest validations for an input field "Phone number". Provide at least 3 checks.
+              <div class="show-answer"><button onclick="toggleAnswer('a843e17')">Show / Hide sample</button></div>
+              <div class="answer" id="a843e17">
+                <ol>
+                  <li>Presence check (not empty)</li>
+                  <li>Length check (e.g., exactly 10 digits)</li>
+                  <li>Numeric check (contains digits only)</li>
+                </ol>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 8.5 -->
+    <section class="section" id="s8-5">
+      <div class="head" onclick="toggleSection('s8-5')">
+        <div>
+          <h2>8.5 — Efficiency & Complexity (AS-level overview)</h2>
+          <small class="muted">Qualitative efficiency · Choosing algorithms</small>
+        </div>
+        <div class="badge">Collapsed</div>
+      </div>
+      <div class="body">
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s851')">
+            <div><strong>8.5.1 — Basic measure of efficiency</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s851">
+            <p>Explain time & space informally. Use examples like linear vs binary search (qualitative explanation only).</p>
+            <h4>Example — Linear vs Binary search</h4>
+            <p>Linear search checks each item until found (O(n) conceptually). Binary search splits sorted list each time (faster for large sorted lists).</p>
+
+            <h4>Exercise 18 (conceptual)</h4>
+            <div class="exercise">
+              <b>Task:</b> For a sorted list of 1,000 names, which search is preferable and why? (short answer)
+              <div class="show-answer"><button onclick="toggleAnswer('a851e18')">Show / Hide answer</button></div>
+              <div class="answer" id="a851e18">Binary search — it halves the search space each step, so far fewer comparisons than checking every name.</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="sub">
+          <div class="subhead" onclick="toggleSub('s852')">
+            <div><strong>8.5.2 — Choosing appropriate algorithm</strong></div>
+            <div class="muted">Expand</div>
+          </div>
+          <div class="subbody" id="s852">
+            <p>Balance simplicity, correctness and performance. For AS-level prefer clear, testable algorithms.</p>
+            <h4>Exercise 19 (exam-style)</h4>
+            <div class="exercise">
+              <b>Task:</b> Suggest an approach to sort a small list (<=20 items) for classroom use and justify your choice.
+              <div class="show-answer"><button onclick="toggleAnswer('a852e19')">Show / Hide answer</button></div>
+              <div class="answer" id="a852e19">Use Bubble sort or Insertion sort — simple to understand and easy to trace in class despite not being optimal for large datasets.</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      Prepared by Ravi Raju for MESCairo
+    </footer>
+
+  </div>
+
+  <script>
+    // Utility toggles
+    function toggleSection(id){
+      const sec = document.getElementById(id);
+      const body = sec.querySelector('.body');
+      const badge = sec.querySelector('.badge');
+      if(body.style.display === 'block'){
+        body.style.display = 'none'; badge.textContent = 'Collapsed';
+      } else { body.style.display = 'block'; badge.textContent = 'Expanded'; }
+    }
+    function toggleSub(id){
+      const el = document.getElementById(id);
+      if(el.style.display === 'block') el.style.display = 'none'; else el.style.display = 'block';
+    }
+    function toggleAnswer(id){
+      const el = document.getElementById(id);
+      if(el.style.display === 'block') el.style.display = 'none'; else el.style.display = 'block';
+    }
+    function expandAll(){
+      document.querySelectorAll('.section .body').forEach(b=>b.style.display='block');
+      document.querySelectorAll('.section .badge').forEach(b=>b.textContent='Expanded');
+      document.querySelectorAll('.sub .subbody').forEach(s=>s.style.display='block');
+    }
+    function collapseAll(){
+      document.querySelectorAll('.section .body').forEach(b=>b.style.display='none');
+      document.querySelectorAll('.section .badge').forEach(b=>b.textContent='Collapsed');
+      document.querySelectorAll('.sub .subbody').forEach(s=>s.style.display='none');
+    }
+    // Start collapsed by default (ensured in CSS), but ensure all subbodies hidden
+    collapseAll();
+  </script>
+</body>
+</html>

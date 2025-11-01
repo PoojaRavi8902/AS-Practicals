@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chapter 9 — Problem‑Solving & Programming (Structured Programming Concepts) — Prepared by Ravi Raju</title>
+<style>
+:root{--bg:#FFFACD;--fg:#004400;--accent:#2a7a2a;--card:#ffffffcc}
+*{box-sizing:border-box}
+body{margin:0;padding:22px;background:var(--bg);color:var(--fg);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial}
+.container{max-width:1100px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{margin:0;font-size:1.6rem}
+.meta{font-size:0.95rem}
+.nav{display:flex;gap:8px}
+button.btn{background:var(--fg);color:var(--bg);border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.section{margin-top:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);overflow:hidden}
+.section .head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(90deg,var(--card),rgba(0,68,0,0.03));cursor:pointer}
+.section .head h2{margin:0;font-size:1.05rem}
+.section .head small{opacity:0.9}
+.section .body{padding:16px;border-top:1px solid rgba(0,68,0,0.06);display:none;background:var(--card)}
+.sub{margin:10px 0;border-radius:10px}
+.sub .subhead{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:8px;background:rgba(0,68,0,0.04);cursor:pointer}
+.sub .subbody{padding:12px 16px;display:none;background:transparent}
+pre{background:rgba(0,0,0,0.04);padding:12px;border-radius:8px;overflow:auto}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,'Roboto Mono',monospace}
+.example,.exercise,.mytip{margin-top:10px;padding:10px;border-radius:8px;background:rgba(42,122,42,0.04);border-left:4px solid var(--accent)}
+.answer{display:none;padding:10px;border-radius:6px;background:rgba(0,0,0,0.04);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{border:1px solid rgba(0,68,0,0.08);padding:8px;text-align:left}
+footer{margin-top:26px;padding:12px 18px;text-align:center;font-size:0.95rem;color:var(--fg)}
+@media (max-width:700px){body{padding:12px}.container{padding:0 6px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div>
+    <h1>Chapter 9 — Problem‑Solving & Programming (Structured Programming Concepts)</h1>
+    <div class="meta">Cambridge AS Level Computer Science (9618) — My notes & teaching page</div>
+  </div>
+  <div class="nav">
+    <button class="btn" onclick="expandAll()">Expand All</button>
+    <button class="btn" onclick="collapseAll()">Collapse All</button>
+  </div>
+</header>
+
+<!-- 9.1 -->
+<section class="section" id="s9-1">
+  <div class="head" onclick="toggleSection('s9-1')">
+    <div>
+      <h2>9.1 — Program Structure and Modularity</h2>
+      <small class="muted">Top‑down design · Procedures & functions · Parameters · Scope · Benefits</small>
+    </div>
+    <div class="badge">Collapsed</div>
+  </div>
+  <div class="body">
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s911')"><div><strong>9.1.1 — Top‑down design & modular programming</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s911">
+        <p>Top‑down design (also called stepwise refinement) begins with a high‑level description of the program and repeatedly breaks it down into smaller modules until each module is simple enough to implement. Modular programming organises code into independent units (procedures, functions, modules) with clear responsibilities. This approach reduces complexity, encourages reuse, and makes testing manageable.</p>
+        <div class="mytip"><strong>My tip:</strong> When planning, draw a module hierarchy chart — it makes dependencies and data flow obvious to students.</div>
+        <div class="example"><strong>Example:</strong> For a simple banking system start with: ProcessTransaction(); within it: AuthenticateUser(), CheckBalance(), UpdateAccount(), PrintReceipt().</div>
+        <div class="exercise"><strong>Exercise:</strong> Decompose an online exam platform into at least six modules and state what each should do.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s912')"><div><strong>9.1.2 — Procedures and Functions</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s912">
+        <p>Procedures (sometimes called subroutines) perform actions but do not necessarily return a value. Functions compute and return a value. Both are used to encapsulate behaviour: a procedure might print a report, while a function might calculate and return a total.</p>
+        <pre><code>// Pseudocode examples
+PROCEDURE PrintReceipt(accountID)
+  // fetch and print details
+ENDPROCEDURE
+
+FUNCTION CalculateInterest(balance, rate)
+  interest ← balance * rate / 100
+  RETURN interest
+ENDFUNCTION</code></pre>
+        <div class="mytip"><strong>My tip:</strong> Teach students to ask: "Does this unit need to return data?" — if yes, make it a function; if no, a procedure is fine.</div>
+        <div class="exercise"><strong>Exercise:</strong> Convert the earlier module UpdateAccount() into a procedure and CalculateInterest() into a function; write pseudocode for both.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s913')"><div><strong>9.1.3 — Parameters and Arguments (Pass by value / reference)</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s913">
+        <p>Parameters are named variables in the procedure/function definition; arguments are the actual values passed during a call. There are two conceptual passing methods: by value (a copy is passed; changes do not affect the caller) and by reference (a reference to the original variable is passed; changes affect the caller). Many exam pseudocode frameworks assume pass-by-value unless specified otherwise — but students should understand both concepts.</p>
+        <pre><code>// By value (conceptual)
+PROCEDURE Increase(x)
+  x ← x + 1
+ENDPROCEDURE
+// Calling with n: Increase(n)  -> n unchanged if pass-by-value
+
+// By reference (conceptual)
+PROCEDURE IncreaseRef(&x)
+  x ← x + 1
+ENDPROCEDURE
+// Calling with n: IncreaseRef(n) -> n is incremented if pass-by-reference
+</code></pre>
+        <div class="mytip"><strong>My tip:</strong> Use simple number examples to show the difference. Avoid language‑specific jargon; emphasise the effect on the original variable.</div>
+        <div class="exercise"><strong>Exercise:</strong> Write pseudocode showing a function that swaps two variables using pass-by-reference. Then explain why pass-by-value alone cannot swap them.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s914')"><div><strong>9.1.4 — Variable scope and lifetime</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s914">
+        <p>Scope defines where a variable is visible. Local variables exist only within a procedure/function; global variables are accessible from any module. Lifetime refers to how long a variable exists in memory — local variables typically exist only while the procedure runs, whereas global variables persist for the program's duration. Scope and lifetime affect correctness and maintainability: excessive use of globals can create hidden dependencies and bugs.</p>
+        <table>
+          <tr><th>Variable</th><th>Scope</th><th>Lifetime</th></tr>
+          <tr><td>temp</td><td>Local to CalculateAverage()</td><td>During CalculateAverage execution</td></tr>
+          <tr><td>configFilePath</td><td>Global</td><td>Program lifetime</td></tr>
+        </table>
+        <div class="mytip"><strong>My tip:</strong> Recommend minimal use of globals — prefer passing parameters explicitly for clarity and testing.</div>
+        <div class="exercise"><strong>Exercise:</strong> Identify scope and lifetime for variables in a pseudocode that reads 10 temperatures into an array and computes their average.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s915')"><div><strong>9.1.5 — Advantages of structured programming</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s915">
+        <p>Structured programming promotes readability, maintainability, and easier debugging. It reduces complexity through modularisation and clarifies data flow and control flow. For exam answers, clearly describe modular decomposition and justify choices — examiners reward systematic design and clear identifier tables.</p>
+        <div class="example"><strong>Example (exam tip):</strong> When asked to design a system, include a module list, brief pseudocode for each module, and an identifier table.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 9.2 -->
+<section class="section" id="s9-2">
+  <div class="head" onclick="toggleSection('s9-2')">
+    <div><h2>9.2 — Programming Constructs (detailed examples)</h2><small class="muted">Sequence · Selection · Iteration · Structured examples</small></div>
+    <div class="badge">Collapsed</div>
+  </div>
+  <div class="body">
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s921')"><div><strong>9.2.1 — Sequence</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s921">
+        <p>Sequence is the default execution order: statements run one after another. Most algorithms are a mix of sequence with selection and iteration. Emphasise clear assignments and initialization.</p>
+        <pre><code>// Pseudocode: Calculate sum of first N natural numbers
+INPUT N
+sum ← 0
+FOR i ← 1 TO N
+  sum ← sum + i
+NEXT i
+OUTPUT sum</code></pre>
+        <div class="exercise"><strong>Exercise:</strong> Rewrite the above using a WHILE loop instead of FOR.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s922')"><div><strong>9.2.2 — Selection (IF / CASE)</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s922">
+        <p>Selection lets the program choose between alternatives. Use IF…ELSE for simple branching and CASE (or SELECT) for multiple alternatives. Teach students to handle all possible branches and provide default cases.</p>
+        <pre><code>IF score >= 90 THEN
+  grade ← 'A'
+ELSE IF score >= 75 THEN
+  grade ← 'B'
+ELSE
+  grade ← 'C'
+ENDIF</code></pre>
+        <div class="mytip"><strong>My tip:</strong> In exams, always state what happens for boundary values (e.g., score = 75) — this prevents lost marks.</div>
+        <div class="exercise"><strong>Exercise:</strong> Convert the IF ladder above into a CASE/SELECT structure (pseudocode style).</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s923')"><div><strong>9.2.3 — Iteration (FOR, WHILE, REPEAT UNTIL)</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s923">
+        <p>Iterations repeat steps. FOR loops are used when the number of iterations is known; WHILE and REPEAT UNTIL are used when the continuation condition depends on runtime data. Teach students to avoid infinite loops by ensuring the loop variable changes correctly.</p>
+        <pre><code>// WHILE example: Read numbers until a negative number entered
+sum ← 0
+INPUT x
+WHILE x >= 0 DO
+  sum ← sum + x
+  INPUT x
+ENDWHILE
+OUTPUT sum</code></pre>
+        <div class="exercise"><strong>Exercise:</strong> Explain an off‑by‑one error with a simple FOR loop example and show how to fix it.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 9.3 -->
+<section class="section" id="s9-3">
+  <div class="head" onclick="toggleSection('s9-3')">
+    <div><h2>9.3 — Using Arrays and Records in Algorithms</h2><small class="muted">Arrays · Records · Traversal · Searching · Updating</small></div>
+    <div class="badge">Collapsed</div>
+  </div>
+  <div class="body">
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s931')"><div><strong>9.3.1 — Single‑dimensional arrays</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s931">
+        <p>An array is an indexed collection of elements of the same type. Single‑dimensional arrays are used for lists. Operations include traversal, insertion, deletion (logical or physical), and searching.</p>
+        <pre><code>// Pseudocode: Find maximum in an array
+max ← array[0]
+FOR i ← 1 TO Length(array)-1
+  IF array[i] > max THEN
+    max ← array[i]
+  ENDIF
+NEXT i
+OUTPUT max</code></pre>
+        <div class="exercise"><strong>Exercise:</strong> Write pseudocode to compute the average of numbers stored in array Readings with N elements.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s932')"><div><strong>9.3.2 — Multi‑dimensional arrays (overview)</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s932">
+        <p>Multi‑dimensional arrays (e.g., 2D arrays) model tables or matrices. Traversal uses nested loops. For AS level, treat them conceptually and provide simple examples like a 2D grid of scores.</p>
+        <pre><code>// Example: Sum all elements in a 2D matrix
+sum ← 0
+FOR r ← 0 TO rows-1
+  FOR c ← 0 TO cols-1
+    sum ← sum + matrix[r][c]
+  NEXT c
+NEXT r
+OUTPUT sum</code></pre>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s933')"><div><strong>9.3.3 — Records (structured data)</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s933">
+        <p>Records (also called structs) group related fields of different types under a single identifier. They are useful for representing entities such as Students with fields (ID, Name, Marks).</p>
+        <pre><code>// Example record
+RECORD Student
+  ID: Integer
+  Name: String
+  Mark: Integer
+ENDRECORD
+
+students[0].Name ← "Aisha"</code></pre>
+        <div class="exercise"><strong>Exercise:</strong> Show how to search for a student by ID in an array of Student records.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s934')"><div><strong>9.3.4 — Traversal, searching, and updating</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s934">
+        <p>Traversal visits each element; searching looks for an element (linear search or binary search for sorted arrays); updating modifies data in place. For AS, focus on linear search and simple traversal algorithms.</p>
+        <pre><code>// Linear search
+FOUND ← FALSE
+FOR i ← 0 TO Length(array)-1
+  IF array[i] = KEY THEN
+    FOUND ← TRUE
+    BREAK
+  ENDIF
+NEXT i
+</code></pre>
+        <div class="mytip"><strong>My tip:</strong> Teach students to check sorted/unsorted status — choose binary search only if array is sorted; otherwise use linear search.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 9.4 -->
+<section class="section" id="s9-4">
+  <div class="head" onclick="toggleSection('s9-4')">
+    <div><h2>9.4 — Program Development and Testing</h2><small class="muted">Development stages · Testing strategies · Test data</small></div>
+    <div class="badge">Collapsed</div>
+  </div>
+  <div class="body">
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s941')"><div><strong>9.4.1 — Stages of program development</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s941">
+        <p>Typical stages: Requirements → Design → Implementation → Testing → Deployment → Maintenance. Emphasise documentation at each stage and maintaining identifier tables and module descriptions for exam answers.</p>
+        <div class="example"><strong>Example:</strong> For an online shop, specify input (productID, quantity), process (check stock, calculate price), and output (order confirmation).</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s942')"><div><strong>9.4.2 — Testing strategies (black‑box, white‑box, boundary)</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s942">
+        <p>Black‑box testing focuses on input/output behaviour without reference to internal code; white‑box testing examines internal paths and branches; boundary testing checks edge values (e.g., 0, 1, max). Use a mix of all for robust testing.</p>
+        <div class="exercise"><strong>Exercise:</strong> Provide test cases for a function that calculates grade based on score: 0–100. Include valid, invalid, and boundary cases.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s943')"><div><strong>9.4.3 — Producing and using test data sets</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s943">
+        <p>Good test sets include normal cases, boundary cases, and exceptional cases. Document expected output for each test and use trace tables to show step‑by‑step variable changes for failing tests.</p>
+        <div class="example"><strong>Example test set:</strong> For input age: [-1 (invalid), 0 (boundary), 17 (normal), 120 (boundary), 121 (invalid)].</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s944')"><div><strong>9.4.4 — Debugging and code maintenance</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s944">
+        <p>Debugging is an iterative process of locating defects and correcting them. Good maintenance practices include comments, modularity, and versioning. Show students how to record a bug log: description, steps to reproduce, expected vs actual, fix applied.</p>
+        <div class="mytip"><strong>My tip:</strong> Encourage students to write clear commit messages and short comments above complex logic blocks.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 9.5 -->
+<section class="section" id="s9-5">
+  <div class="head" onclick="toggleSection('s9-5')">
+    <div><h2>9.5 — Good Programming Practice</h2><small class="muted">Readability · Naming · Documentation · Reusability</small></div>
+    <div class="badge">Collapsed</div>
+  </div>
+  <div class="body">
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s951')"><div><strong>9.5.1 — Readability, indentation, comments</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s951">
+        <p>Readable code uses consistent indentation, meaningful names and concise comments. For pseudocode in exams, use consistent indentation to show structure clearly — examiners expect neat, well‑organised answers.</p>
+        <div class="example"><strong>Example:</strong> Show the difference between unindented and properly indented pseudocode for nested IFs.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s952')"><div><strong>9.5.2 — Naming conventions and documentation</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s952">
+        <p>Use descriptive names: TotalMarks, StudentID. Document functions with a short header: purpose, parameters, return value, side effects. Maintain identifier tables and module descriptions for full marks in design questions.</p>
+        <div class="exercise"><strong>Exercise:</strong> Provide a documentation header for a function SortList(List) describing its behaviour, parameters and return value.</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="subhead" onclick="toggleSub('s953')"><div><strong>9.5.3 — Reusability and maintainability</strong></div><div class="muted">Expand</div></div>
+      <div class="subbody" id="s953">
+        <p>Write small, well‑tested modules with clear interfaces so they can be reused in future programs. Avoid tight coupling between modules; prefer well‑defined parameter lists and return values. Keep code DRY (Don't Repeat Yourself).</p>
+        <div class="mytip"><strong>My tip:</strong> Encourage writing small helper functions even for classroom exercises — students will thank you during tests.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>Prepared by Ravi Raju for MESCairo</footer>
+</div>
+
+<script>
+function toggleSection(id){
+  const sec=document.getElementById(id);const body=sec.querySelector('.body');const badge=sec.querySelector('.badge');
+  if(body.style.display==='block'){body.style.display='none';badge.textContent='Collapsed'}else{body.style.display='block';badge.textContent='Expanded'}
+}
+function toggleSub(id){const el=document.getElementById(id);el.style.display=(el.style.display==='block')?'none':'block'}
+function expandAll(){document.querySelectorAll('.section .body').forEach(b=>b.style.display='block');document.querySelectorAll('.section .badge').forEach(b=>b.textContent='Expanded');document.querySelectorAll('.sub .subbody').forEach(s=>s.style.display='block')}
+function collapseAll(){document.querySelectorAll('.section .body').forEach(b=>b.style.display='none');document.querySelectorAll('.section .badge').forEach(b=>b.textContent='Collapsed');document.querySelectorAll('.sub .subbody').forEach(s=>s.style.display='none')}
+collapseAll()
+</script>
+</body>
+</html>
