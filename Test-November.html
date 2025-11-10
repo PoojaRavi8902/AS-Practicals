@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IGCSE 0984 — Chapters 1 & 2: Self-test (v2)</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;background:#fff;color:#111;max-width:980px;margin:18px auto;padding:20px}
+    h1{font-size:1.4rem;margin-bottom:6px}
+    .header-row{display:flex;gap:12px;align-items:center}
+    label{font-weight:600}
+    fieldset{margin:14px 0;padding:12px;border-radius:8px;border:1px solid #ddd}
+    .q{margin:10px 0}
+    .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .submit-wrap{text-align:center;margin:18px 0}
+    .score{font-weight:700;margin-left:8px}
+    .correct{color:green}
+    .wrong{color:#b22222}
+    input[type="text"], input[type="number"], select{padding:6px;margin-top:6px;width:100%;box-sizing:border-box}
+    .small{width:240px}
+    .answers{margin-top:10px;padding:10px;border-radius:6px;background:#f9f9f9;border:1px solid #eee}
+    @media print{ .submit-wrap, #studentName, label[for="studentName"]{display:none !important} }
+  </style>
+</head>
+<body>
+  <h1>IGCSE Computer Science (0984) — Chapters 1 & 2: Self-test</h1>
+  <div class="header-row">
+    <label for="studentName">Name:</label>
+    <input id="studentName" type="text" placeholder="Enter your name to begin" class="small" />
+    <div id="scoreDisplay" style="margin-left:auto;font-weight:600">&nbsp;</div>
+  </div>
+
+  <p><em>Instructions:</em> Enter your name to enable the test. Complete all questions and click the single <strong>SUBMIT</strong> button at the end. Answers and your total marks (out of 50) will be revealed only after submission. <strong>No RESET button</strong> is provided.</p>
+
+  <form id="quizForm">
+    <fieldset id="objectives" disabled>
+      <legend>Section A — Objective questions (30 marks)</legend>
+
+      <h3>Part 1 — Multiple choice (10 × 1 = 10)</h3>
+
+      <!-- 10 MCQs (strictly textbook topics: number systems, ASCII, bytes, image & sound basics, transmission, error detection) -->
+      <div class="q">1. Hexadecimal 0x1A equals which decimal?<br>
+        <label><input type="radio" name="mcq1" value="A"> A) 16</label><br>
+        <label><input type="radio" name="mcq1" value="B"> B) 26</label><br>
+        <label><input type="radio" name="mcq1" value="C"> C) 30</label><br>
+        <label><input type="radio" name="mcq1" value="D"> D) 12</label>
+      </div>
+
+      <div class="q">2. ASCII is primarily used to encode which of the following?<br>
+        <label><input type="radio" name="mcq2" value="A"> A) Images</label><br>
+        <label><input type="radio" name="mcq2" value="B"> B) Text characters</label><br>
+        <label><input type="radio" name="mcq2" value="C"> C) Audio</label><br>
+        <label><input type="radio" name="mcq2" value="D"> D) Video</label>
+      </div>
+
+      <div class="q">3. Which unit correctly orders these from smallest to largest?<br>
+        <label><input type="radio" name="mcq3" value="A"> A) bit, byte, kilobyte</label><br>
+        <label><input type="radio" name="mcq3" value="B"> B) byte, bit, kilobyte</label><br>
+        <label><input type="radio" name="mcq3" value="C"> C) kilobyte, byte, bit</label><br>
+        <label><input type="radio" name="mcq3" value="D"> D) bit, kilobyte, byte</label>
+      </div>
+
+      <div class="q">4. Colour depth refers to:<br>
+        <label><input type="radio" name="mcq4" value="A"> A) number of pixels in an image</label><br>
+        <label><input type="radio" name="mcq4" value="B"> B) number of bits used per pixel</label><br>
+        <label><input type="radio" name="mcq4" value="C"> C) how often audio is sampled</label><br>
+        <label><input type="radio" name="mcq4" value="D"> D) bytes per second</label>
+      </div>
+
+      <div class="q">5. Serial transmission sends bits:<br>
+        <label><input type="radio" name="mcq5" value="A"> A) simultaneously on several wires</label><br>
+        <label><input type="radio" name="mcq5" value="B"> B) one after another on a single wire</label><br>
+        <label><input type="radio" name="mcq5" value="C"> C) only in wireless links</label><br>
+        <label><input type="radio" name="mcq5" value="D"> D) encoded as hexadecimal</label>
+      </div>
+
+      <div class="q">6. Parity check is an error detection method that:<br>
+        <label><input type="radio" name="mcq6" value="A"> A) adds up bytes and stores sum</label><br>
+        <label><input type="radio" name="mcq6" value="B"> B) adds a single bit to make number of 1s even/odd</label><br>
+        <label><input type="radio" name="mcq6" value="C"> C) uses polynomial division</label><br>
+        <label><input type="radio" name="mcq6" value="D"> D) encrypts data</label>
+      </div>
+
+      <div class="q">7. The binary number 1101 (unsigned) equals which decimal?<br>
+        <label><input type="radio" name="mcq7" value="A"> A) 10</label><br>
+        <label><input type="radio" name="mcq7" value="B"> B) 13</label><br>
+        <label><input type="radio" name="mcq7" value="C"> C) 7</label><br>
+        <label><input type="radio" name="mcq7" value="D"> D) 14</label>
+      </div>
+
+      <div class="q">8. A byte equals how many bits?<br>
+        <label><input type="radio" name="mcq8" value="A"> A) 4</label><br>
+        <label><input type="radio" name="mcq8" value="B"> B) 8</label><br>
+        <label><input type="radio" name="mcq8" value="C"> C) 16</label><br>
+        <label><input type="radio" name="mcq8" value="D"> D) 32</label>
+      </div>
+
+      <div class="q">9. Sampling rate for audio is measured in:<br>
+        <label><input type="radio" name="mcq9" value="A"> A) samples per second (Hz)</label><br>
+        <label><input type="radio" name="mcq9" value="B"> B) bits per pixel</label><br>
+        <label><input type="radio" name="mcq9" value="C"> C) bytes per packet</label><br>
+        <label><input type="radio" name="mcq9" value="D"> D) number of channels</label>
+      </div>
+
+      <div class="q">10. Which method gives stronger error detection than simple parity?<br>
+        <label><input type="radio" name="mcq10" value="A"> A) Repeating bits</label><br>
+        <label><input type="radio" name="mcq10" value="B"> B) Simple checksum</label><br>
+        <label><input type="radio" name="mcq10" value="C"> C) Cyclic redundancy check (CRC)</label><br>
+        <label><input type="radio" name="mcq10" value="D"> D) Using fewer bits</label>
+      </div>
+
+      <h3>Part 2 — Fill in the blanks (10 × 1 = 10)</h3>
+
+      <div class="q">11. The binary number 1010 equals _____ in decimal.<br><input type="text" name="fb11" /></div>
+      <div class="q">12. Hex digit 'F' equals _____ in decimal.<br><input type="text" name="fb12" /></div>
+      <div class="q">13. One kilobyte (approx) using powers of two is _____ bytes.<br><input type="text" name="fb13" /></div>
+      <div class="q">14. The standard 7-bit code for English characters is called _____.<br><input type="text" name="fb14" /></div>
+      <div class="q">15. Converting an analogue wave into digital values is called _____ (two words).<br><input type="text" name="fb15" /></div>
+      <div class="q">16. The number of bits used to store each pixel is called _____ depth.<br><input type="text" name="fb16" /></div>
+      <div class="q">17. Data sent as fixed-size units on a network are called _____.<br><input type="text" name="fb17" /></div>
+      <div class="q">18. Transmission that only allows one-way flow is called _____ (one word).<br><input type="text" name="fb18" /></div>
+      <div class="q">19. The ASCII code for uppercase 'A' in decimal is _____.<br><input type="text" name="fb19" /></div>
+      <div class="q">20. Bits sent simultaneously across multiple wires describe _____ transmission.<br><input type="text" name="fb20" /></div>
+
+      <h3>Part 3 — Match the following (10 × 1 = 10)</h3>
+      <p>Write the letter (A–J) next to each number.</p>
+
+      <div class="match-grid">
+        <div>
+          <div>21. Parity check</div>
+          <div>22. Checksum</div>
+          <div>23. CRC</div>
+          <div>24. Serial</div>
+          <div>25. Parallel</div>
+        </div>
+        <div>
+          <div>A) Sends bits one after another along a single wire</div>
+          <div>B) Adds groups of data together to detect errors</div>
+          <div>C) Uses polynomial remainder technique</div>
+          <div>D) Sends several bits at the same time on multiple wires</div>
+          <div>E) Adds one extra bit to make number of 1s even/odd</div>
+        </div>
+      </div>
+      <div style="margin-top:8px">
+        <label>21: <input type="text" name="m21" class="small" /></label>
+        <label>22: <input type="text" name="m22" class="small" /></label>
+        <label>23: <input type="text" name="m23" class="small" /></label>
+        <label>24: <input type="text" name="m24" class="small" /></label>
+        <label>25: <input type="text" name="m25" class="small" /></label>
+      </div>
+
+      <div class="match-grid" style="margin-top:10px">
+        <div>
+          <div>26. Sample rate</div>
+          <div>27. Bit depth</div>
+          <div>28. Pixel</div>
+          <div>29. Byte</div>
+          <div>30. Bandwidth</div>
+        </div>
+        <div>
+          <div>F) Amount of data that can be sent per second</div>
+          <div>G) Smallest addressable part of an image</div>
+          <div>H) Number of bits used to represent one audio sample</div>
+          <div>I) 8 bits</div>
+          <div>J) Number of samples taken per second</div>
+        </div>
+      </div>
+      <div style="margin-top:8px">
+        <label>26: <input type="text" name="m26" class="small" /></label>
+        <label>27: <input type="text" name="m27" class="small" /></label>
+        <label>28: <input type="text" name="m28" class="small" /></label>
+        <label>29: <input type="text" name="m29" class="small" /></label>
+        <label>30: <input type="text" name="m30" class="small" /></label>
+      </div>
+
+    </fieldset>
+
+    <fieldset id="examQs" disabled>
+      <legend>Section B — Exam-style (20 marks)</legend>
+
+      <div class="q">31. (5) A grayscale image is 160 pixels wide and 120 pixels high. Each pixel uses 8 bits. What is the file size in bytes? (Enter numeric answer only.)<br><input type="number" name="q31" /></div>
+
+      <div class="q">32. (5) A mono audio clip is sampled at 22,050 Hz with 16-bit samples. What is the data rate in kb/s? (Kilobits per second; round to nearest whole number.)<br><input type="number" name="q32" /></div>
+
+      <div class="q">33. (5) Convert hex 7B to 8-bit binary (enter 8 digits, e.g., 00101100).<br><input type="text" name="q33" /></div>
+
+      <div class="q">34. (5) A packet of 1024 bytes is sent and parity is used per byte. If 3 bytes have incorrect parity on receipt, how many bytes fail parity? (Enter numeric answer.)<br><input type="number" name="q34" /></div>
+
+    </fieldset>
+
+    <div class="submit-wrap">
+      <button id="submitBtn" type="button" disabled>SUBMIT</button>
+    </div>
+
+  </form>
+
+  <div id="results" class="answers" style="display:none">
+    <h3>Results for <span id="resName"></span> — <span id="resScore"></span>/50</h3>
+    <div id="details"></div>
+  </div>
+
+  <script>
+    // Wait until DOM is ready (script is at end of body so elements exist) — defensive checks
+    const nameInput = document.getElementById('studentName');
+    const objectives = document.getElementById('objectives');
+    const examQs = document.getElementById('examQs');
+    const submitBtn = document.getElementById('submitBtn');
+    const quizForm = document.getElementById('quizForm');
+    const results = document.getElementById('results');
+    const resName = document.getElementById('resName');
+    const resScore = document.getElementById('resScore');
+    const details = document.getElementById('details');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+
+    if(!nameInput || !objectives || !examQs || !submitBtn || !quizForm){
+      console.error('Essential form elements missing from the page.');
+    }
+
+    nameInput.addEventListener('input', ()=>{
+      const name = nameInput.value.trim();
+      if(name.length>0){
+        objectives.disabled = false;
+        examQs.disabled = false;
+        submitBtn.disabled = false;
+        scoreDisplay.textContent = name + ' (not yet scored)';
+      } else {
+        objectives.disabled = true;
+        examQs.disabled = true;
+        submitBtn.disabled = true;
+        scoreDisplay.textContent = '';
+      }
+    });
+
+    function grade(){
+      let score=0;
+      const out = [];
+
+      // MCQ key (1 mark each)
+      const mcqKey = {mcq1:'B',mcq2:'B',mcq3:'A',mcq4:'B',mcq5:'B',mcq6:'B',mcq7:'B',mcq8:'B',mcq9:'A',mcq10:'C'};
+      for(let i=1;i<=10;i++){
+        const name = 'mcq'+i;
+        const el = quizForm.elements[name];
+        const val = el && el.value ? el.value.toString().toUpperCase() : '';
+        const correct = mcqKey[name];
+        if(val===correct){ score++; out.push(`<div>Q${i}: <span class="correct">Correct</span></div>`); }
+        else{ out.push(`<div>Q${i}: <span class="wrong">Wrong</span> — answer: ${correct}</div>`); }
+      }
+
+      // Fill blanks key (1 mark each) — tolerant of case/whitespace
+      const fbKey = {'fb11':'10','fb12':'15','fb13':'1024','fb14':'ASCII','fb15':'analog to digital','fb16':'colour','fb17':'packet','fb18':'simplex','fb19':'65','fb20':'parallel'};
+      for(let i=11;i<=20;i++){
+        const name='fb'+i;
+        const el = quizForm.elements[name];
+        const val = el && el.value ? el.value.toString().trim().toLowerCase() : '';
+        const correct = fbKey[name].toString().trim().toLowerCase();
+        if(val===correct){ score++; out.push(`<div>Q${i}: <span class="correct">Correct</span></div>`); }
+        else{ out.push(`<div>Q${i}: <span class="wrong">Wrong</span> — answer: ${fbKey[name]}</div>`); }
+      }
+
+      // Matching (21-30) keys
+      const mKey={'m21':'E','m22':'B','m23':'C','m24':'A','m25':'D','m26':'J','m27':'H','m28':'G','m29':'I','m30':'F'};
+      for(let i=21;i<=30;i++){
+        const name='m'+i;
+        const el = quizForm.elements[name];
+        const val = el && el.value ? el.value.toString().trim().toUpperCase() : '';
+        const correct = mKey[name];
+        if(val===correct){ score++; out.push(`<div>Q${i}: <span class="correct">Correct</span></div>`); }
+        else{ out.push(`<div>Q${i}: <span class="wrong">Wrong</span> — answer: ${correct}</div>`); }
+      }
+
+      // Exam-style (31-34) each 5 marks
+      // Q31: 160*120 pixels * 8 bits -> bits = 153600 -> bytes = 153600/8 = 19200
+      const q31 = Number(quizForm.elements['q31'].value);
+      if(q31===19200){ score+=5; out.push(`<div>Q31: <span class="correct">Correct</span> — 19200 bytes</div>`);} else { out.push(`<div>Q31: <span class="wrong">Wrong</span> — answer: 19200 bytes</div>`); }
+
+      // Q32: 22050 * 16 bits = 352800 bits/sec -> kb/s = 352800/1000 = 353 kb/s (rounded)
+      const q32 = Math.round(Number(quizForm.elements['q32'].value));
+      if(q32===353){ score+=5; out.push(`<div>Q32: <span class="correct">Correct</span> — 353 kb/s</div>`);} else { out.push(`<div>Q32: <span class="wrong">Wrong</span> — answer: 353 kb/s</div>`); }
+
+      // Q33: hex 7B -> binary 01111011
+      const q33 = (quizForm.elements['q33'].value||'').toString().trim();
+      if(q33==='01111011'){ score+=5; out.push(`<div>Q33: <span class="correct">Correct</span> — 01111011</div>`);} else { out.push(`<div>Q33: <span class="wrong">Wrong</span> — answer: 01111011</div>`); }
+
+      // Q34: if 3 bytes have incorrect parity -> 3 bytes fail
+      const q34 = Number(quizForm.elements['q34'].value);
+      if(q34===3){ score+=5; out.push(`<div>Q34: <span class="correct">Correct</span> — 3</div>`);} else { out.push(`<div>Q34: <span class="wrong">Wrong</span> — answer: 3</div>`); }
+
+      return {score,out};
+    }
+
+    submitBtn.addEventListener('click', ()=>{
+      const name = nameInput.value.trim();
+      if(!name){ alert('Please enter your name to begin.'); return; }
+      const result = grade();
+      resName.textContent = name;
+      resScore.textContent = result.score;
+      scoreDisplay.textContent = name + ' — ' + result.score + '/50';
+      results.style.display = 'block';
+      details.innerHTML = result.out.join('');
+
+      // disable all inputs after submission to prevent changes
+      Array.from(quizForm.elements).forEach(el=>el.disabled=true);
+      submitBtn.disabled = true;
+
+      // open print dialog after a short delay so the revealed answers render
+      setTimeout(()=>{ window.print(); }, 450);
+    });
+
+  </script>
+</body>
+</html>
