@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IGCSE ICT 0983 — Self-marking Assessment</title>
+<style>
+  :root{--accent:#0b78d1}
+  body{font-family:Inter,Segoe UI,Arial,sans-serif;margin:18px;line-height:1.45;color:#111}
+  h1{text-align:center;margin-bottom:4px}
+  .topbar{display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+  label{font-weight:600}
+  input[type="text"],input[type="password"],input[readonly]{padding:6px;border:1px solid #ccc;border-radius:4px}
+  input[readonly]{background:#f4f4f6}
+  button{background:var(--accent);color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer}
+  button:disabled{opacity:.6;cursor:not-allowed}
+  .container{max-width:950px;margin:0 auto}
+  fieldset{border:1px solid #ddd;padding:12px;border-radius:8px;margin-bottom:14px}
+  legend{font-weight:700;padding:0 6px}
+  .question{margin:8px 0}
+  .mcq label{display:block;margin:4px 0;cursor:pointer}
+  textarea{width:100%;min-height:80px;padding:8px;border-radius:6px;border:1px solid #ccc}
+  .hidden{display:none}
+  .scorebox{min-width:210px;padding:7px;border-radius:6px;border:1px solid #ddd;background:#fbfbfd;text-align:center}
+  .reveal {margin-top:12px;padding:10px;border-radius:6px;background:#fffef6;border:1px solid #f2e3b6}
+  .keyword {display:inline-block;background:#eef6ff;color:#024; padding:3px 6px;border-radius:4px;margin:3px 4px 0 0;font-size:0.9rem}
+  .matched{background:#e6ffe6}
+  .answer-block{margin-top:10px;border-top:1px dashed #eee;padding-top:8px}
+  @media print {
+    button, #startBtn, .input-controls {display:none !important}
+    body {margin: 6mm}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>IGCSE ICT 0983 — Assessment (Chapters: Input/Output, Storage, File Management)</h1>
+
+  <div class="topbar">
+    <div class="input-controls">
+      <label>Name:</label>
+      <input id="studentName" type="text" placeholder="Student name" />
+      &nbsp;
+      <label>Code:</label>
+      <input id="accessCode" type="password" placeholder="Enter code" />
+      &nbsp;
+      <button id="startBtn">Unlock Test</button>
+    </div>
+
+    <div class="scorebox" title="Score will appear after submission">
+      <div><strong>Score</strong></div>
+      <div id="scoreDisplay">— / 50</div>
+      <div style="font-size:0.85rem;color:#555" id="breakdown">Auto: — / 27 · Long: — / 23</div>
+    </div>
+  </div>
+
+  <!-- Test container is hidden until correct name + code entered -->
+  <div id="testArea" class="hidden">
+    <form id="assessmentForm" onsubmit="return false;">
+      <!-- MCQs -->
+      <fieldset>
+        <legend>Multiple Choice — 18 marks (1 each)</legend>
+        <div class="mcq">
+          <!-- 18 MCQs: each radio group value "1" for correct, "0" for incorrect -->
+          <div class="question"><strong>1.</strong> Which device is best for direct text entry into a computer?<br>
+            <label><input type="radio" name="q1" value="1"> Keyboard</label>
+            <label><input type="radio" name="q1" value="0"> Speaker</label>
+            <label><input type="radio" name="q1" value="0"> Monitor</label>
+          </div>
+
+          <div class="question"><strong>2.</strong> Which pointing device is commonly used with a games console?<br>
+            <label><input type="radio" name="q2" value="0"> Trackball</label>
+            <label><input type="radio" name="q2" value="1"> Joystick</label>
+            <label><input type="radio" name="q2" value="0"> Light pen</label>
+          </div>
+
+          <div class="question"><strong>3.</strong> Which technology does an RFID reader use?<br>
+            <label><input type="radio" name="q3" value="1"> Radio waves</label>
+            <label><input type="radio" name="q3" value="0"> Infra-red</label>
+            <label><input type="radio" name="q3" value="0"> Visible light</label>
+          </div>
+
+          <div class="question"><strong>4.</strong> A laser printer is an example of a(n) ______ device.<br>
+            <label><input type="radio" name="q4" value="1"> Output</label>
+            <label><input type="radio" name="q4" value="0"> Input</label>
+            <label><input type="radio" name="q4" value="0"> Storage</label>
+          </div>
+
+          <div class="question"><strong>5.</strong> Which storage medium uses a laser to read data?<br>
+            <label><input type="radio" name="q5" value="1"> DVD</label>
+            <label><input type="radio" name="q5" value="0"> SSD</label>
+            <label><input type="radio" name="q5" value="0"> Magnetic tape</label>
+          </div>
+
+          <div class="question"><strong>6.</strong> Which file type is suitable for a compressed text file?<br>
+            <label><input type="radio" name="q6" value="1"> .zip</label>
+            <label><input type="radio" name="q6" value="0"> .jpg</label>
+            <label><input type="radio" name="q6" value="0"> .pptx</label>
+          </div>
+
+          <div class="question"><strong>7.</strong> Which input device detects light intensity in an industrial process?<br>
+            <label><input type="radio" name="q7" value="1"> Sensor</label>
+            <label><input type="radio" name="q7" value="0"> Microphone</label>
+            <label><input type="radio" name="q7" value="0"> Joystick</label>
+          </div>
+
+          <div class="question"><strong>8.</strong> What is the main advantage of SSDs compared with HDDs?<br>
+            <label><input type="radio" name="q8" value="1"> Faster access speed</label>
+            <label><input type="radio" name="q8" value="0"> Larger capacity</label>
+            <label><input type="radio" name="q8" value="0"> Cheaper cost</label>
+          </div>
+
+          <div class="question"><strong>9.</strong> Which device can be both input and output?<br>
+            <label><input type="radio" name="q9" value="1"> Touch screen</label>
+            <label><input type="radio" name="q9" value="0"> Plotter</label>
+            <label><input type="radio" name="q9" value="0"> Speaker</label>
+          </div>
+
+          <div class="question"><strong>10.</strong> Which format is a generic text file?<br>
+            <label><input type="radio" name="q10" value="1"> .txt</label>
+            <label><input type="radio" name="q10" value="0"> .docx</label>
+            <label><input type="radio" name="q10" value="0"> .pptx</label>
+          </div>
+
+          <div class="question"><strong>11.</strong> Which direct data-entry device reads characters from printed text?<br>
+            <label><input type="radio" name="q11" value="1"> OCR</label>
+            <label><input type="radio" name="q11" value="0"> OMR</label>
+            <label><input type="radio" name="q11" value="0"> Barcode scanner</label>
+          </div>
+
+          <div class="question"><strong>12.</strong> Which file type is used for a web page’s design and layout?<br>
+            <label><input type="radio" name="q12" value="1"> .css</label>
+            <label><input type="radio" name="q12" value="0"> .csv</label>
+            <label><input type="radio" name="q12" value="0"> .png</label>
+          </div>
+
+          <div class="question"><strong>13.</strong> Which printer is best for continuous stationery?<br>
+            <label><input type="radio" name="q13" value="1"> Dot matrix</label>
+            <label><input type="radio" name="q13" value="0"> Inkjet</label>
+            <label><input type="radio" name="q13" value="0"> 3D printer</label>
+          </div>
+
+          <div class="question"><strong>14.</strong> Which input device is most suitable for drawing detailed maps?<br>
+            <label><input type="radio" name="q14" value="1"> Graphics tablet</label>
+            <label><input type="radio" name="q14" value="0"> Keyboard</label>
+            <label><input type="radio" name="q14" value="0"> Microphone</label>
+          </div>
+
+          <div class="question"><strong>15.</strong> Which medium is magnetic?<br>
+            <label><input type="radio" name="q15" value="1"> Hard disk</label>
+            <label><input type="radio" name="q15" value="0"> Blu-ray</label>
+            <label><input type="radio" name="q15" value="0"> Flash drive</label>
+          </div>
+
+          <div class="question"><strong>16.</strong> Which device outputs sound?<br>
+            <label><input type="radio" name="q16" value="1"> Speaker</label>
+            <label><input type="radio" name="q16" value="0"> Scanner</label>
+            <label><input type="radio" name="q16" value="0"> Plotter</label>
+          </div>
+
+          <div class="question"><strong>17.</strong> Which advantage applies to optical storage?<br>
+            <label><input type="radio" name="q17" value="1"> Easily distributed media</label>
+            <label><input type="radio" name="q17" value="0"> Unlimited rewrite cycles</label>
+            <label><input type="radio" name="q17" value="0"> No need for light to read</label>
+          </div>
+
+          <div class="question"><strong>18.</strong> Which file type best preserves layout for printing?<br>
+            <label><input type="radio" name="q18" value="1"> .pdf</label>
+            <label><input type="radio" name="q18" value="0"> .txt</label>
+            <label><input type="radio" name="q18" value="0"> .csv</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Fill in the blanks -->
+      <fieldset>
+        <legend>Fill in the Blanks — 9 marks (1 each)</legend>
+        <div class="question"><strong>1.</strong> The device that reads marks made on paper forms is <input type="text" name="f1" /></div>
+        <div class="question"><strong>2.</strong> A <input type="text" name="f2" /> reader uses radio waves to identify items.</div>
+        <div class="question"><strong>3.</strong> <input type="text" name="f3" /> is the process of reducing file sizes.</div>
+        <div class="question"><strong>4.</strong> A <input type="text" name="f4" /> printer uses powdered ink and heat.</div>
+        <div class="question"><strong>5.</strong> <input type="text" name="f5" /> media store data using flash memory.</div>
+        <div class="question"><strong>6.</strong> The <input type="text" name="f6" /> file format is used for web pages.</div>
+        <div class="question"><strong>7.</strong> The device that captures images from paper documents is a <input type="text" name="f7" />.</div>
+        <div class="question"><strong>8.</strong> The <input type="text" name="f8" /> is a pointing device that detects light on a screen.</div>
+        <div class="question"><strong>9.</strong> A compressed archive often uses the extension <input type="text" name="f9" />.</div>
+      </fieldset>
+
+      <!-- Exam-style long answers -->
+      <fieldset>
+        <legend>Exam-Style Questions — 23 marks (auto-keyword graded)</legend>
+
+        <div class="question">
+          <strong>Q1 (5 marks)</strong> Describe how different input devices could be used in an airport self-check-in kiosk.
+          <textarea name="e1" placeholder="Type your answer here..."></textarea>
+          <div class="answer-block hidden" id="rev-e1"></div>
+        </div>
+
+        <div class="question">
+          <strong>Q2 (5 marks)</strong> Compare the use of magnetic, optical and solid-state storage in a large organisation’s backup strategy.
+          <textarea name="e2" placeholder="Type your answer here..."></textarea>
+          <div class="answer-block hidden" id="rev-e2"></div>
+        </div>
+
+        <div class="question">
+          <strong>Q3 (5 marks)</strong> Explain the advantages and disadvantages of using direct data-entry methods such as OCR and OMR in examinations.
+          <textarea name="e3" placeholder="Type your answer here..."></textarea>
+          <div class="answer-block hidden" id="rev-e3"></div>
+        </div>
+
+        <div class="question">
+          <strong>Q4 (4 marks)</strong> Discuss the suitability of different output devices for a graphic-design studio.
+          <textarea name="e4" placeholder="Type your answer here..."></textarea>
+          <div class="answer-block hidden" id="rev-e4"></div>
+        </div>
+
+        <div class="question">
+          <strong>Q5 (4 marks)</strong> Explain why generic file formats are important when exchanging data between software packages.
+          <textarea name="e5" placeholder="Type your answer here..."></textarea>
+          <div class="answer-block hidden" id="rev-e5"></div>
+        </div>
+
+      </fieldset>
+
+      <div style="text-align:center;margin-top:8px">
+        <button id="submitBtn" type="button">SUBMIT</button>
+      </div>
+    </form>
+
+    <!-- area where overall revealed answers / feedback will appear -->
+    <div id="feedbackArea" class="hidden" style="margin-top:14px"></div>
+  </div>
+</div>
+
+<script>
+/* --- Configuration: key answers and keywords for auto-marking --- */
+
+/* Fill-in correct answers (simple exact-match after trim/lowercase) */
+const fillKeys = [
+  "omr",             // f1
+  "rfid",            // f2
+  "compression",     // f3
+  "laser printer",   // f4
+  "solid-state",     // f5
+  "htm",             // f6  (accept htm OR html)
+  "scanner",         // f7
+  "light pen",       // f8
+  ".zip"             // f9 (accept zip or .zip)
+];
+
+/* Long-answer keyword lists and sample (model) answers */
+const longQuestions = [
+  /* Q1: 5 marks */
+  {
+    marks: 5,
+    keywords: ["touch screen","barcode scanner","rfid","chip and pin","keyboard","camera","camera scanner","camera","scanner","fingerprint","biometric","printer","receipt printer","touchscreen","touch-screen","card reader","card","passport scanner"],
+    sample: "Sample answer: The kiosk typically uses a touchscreen for user interaction and on-screen options, a passport/ID scanner or camera to capture identity documents, an RFID or magnetic stripe reader and chip-and-PIN reader to process frequent-flyer cards or payment cards, and a receipt printer to print boarding passes. Optional biometric (fingerprint) or passport MRZ scanning may be used to speed up identification.",
+    keywordsDisplay: ["touch screen","barcode scanner","RFID","chip and PIN","keyboard","camera","scanner","biometric","receipt printer","card reader","passport scanner"]
+  },
+
+  /* Q2: 5 marks */
+  {
+    marks: 5,
+    keywords: ["magnetic","hard disk","tape","magnetic tape","optical","cd","dvd","blu-ray","disc","solid-state","ssd","flash","speed","capacity","durability","portability","cost","backup","offsite","archival","reliability"],
+    sample: "Sample answer: Magnetic storage (hard disk, tape) is cost-effective for large-capacity backups and tape is common for long-term archival and offsite storage though slower to access. Optical discs (CD/DVD/Blu-ray) are useful for distribution and some archival purposes but have limited capacity compared with disks. Solid-state (SSD/flash) is fast and durable with quick access times, making it suitable for short-term backups and fast restores, but it is more expensive per GB for large-scale backup, so organisations often use a tiered strategy combining these media.",
+    keywordsDisplay: ["magnetic","hard disk","tape","optical","CD","DVD","Blu-ray","SSD","flash","speed","capacity","cost","archival","offsite"]
+  },
+
+  /* Q3: 5 marks */
+  {
+    marks: 5,
+    keywords: ["ocr","omr","accuracy","speed","errors","manual checking","cost","automated","legibility","handwriting","marking","efficiency","reliability","scanning","scanners"],
+    sample: "Sample answer: OCR and OMR speed up marking by automatically reading text and marked answers, improving efficiency and reducing manual workload. OCR may struggle with handwriting and poor print quality, requiring manual checking; OMR is very accurate for multiple-choice style answers but needs specially formatted answer sheets. Both systems reduce human marking time but may incur setup costs and need quality control to avoid missed or misread responses.",
+    keywordsDisplay: ["OCR","OMR","accuracy","speed","errors","manual checking","legibility","handwriting","efficiency","cost"]
+  },
+
+  /* Q4: 4 marks */
+  {
+    marks: 4,
+    keywords: ["colour accuracy","calibration","large format printer","inkjet","laser","monitor","high resolution","plotter","printer","graphic tablet","pen tablet","wide-gamut","high-resolution","plotter","3d printer"],
+    sample: "Sample answer: A graphic design studio requires high-resolution colour-accurate monitors (wide-gamut with calibration), high-quality inkjet or large-format printers for proofs, and graphics tablets for precise drawing. Low-cost laser printers are not ideal for colour-accurate prints. Plotters can be useful for very large vector-based prints.",
+    keywordsDisplay: ["colour accuracy","calibration","inkjet","large-format printer","monitor","graphics tablet","plotter","high resolution"]
+  },
+
+  /* Q5: 4 marks */
+  {
+    marks: 4,
+    keywords: ["generic","interoperability","pdf","csv","txt","open format","exchange","compatibility","standard","platform","preserve","layout","file formats","rtf","jpg"],
+    sample: "Sample answer: Generic file formats (PDF, CSV, TXT, JPG) ensure compatibility across different software and platforms; they preserve layout (PDF) or provide simple structured data (CSV/TXT) so recipients can open and use the data without the original application. This reduces export/import errors and vendor lock-in.",
+    keywordsDisplay: ["PDF","CSV","TXT","interoperability","compatibility","preserve layout","open format"]
+  }
+];
+
+/* Acceptable alternate fills mapping (for simple synonyms) */
+const fillAlternates = {
+  "htm": ["html","htm"],
+  ".zip": ["zip",".zip"]
+};
+
+/* --- Utility functions --- */
+
+function normalizeText(s){
+  return (s||"").toString().toLowerCase().replace(/\u00A0/g,' ').trim();
+}
+
+/* Check if candidate text contains a keyword (supports multi-word keywords) */
+function containsKeyword(candidateLower, keyword){
+  // simple substring match but ensure word-boundary-ish for single words
+  const kLow = keyword.toLowerCase();
+  // escape special regex chars
+  const esc = kLow.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  // if keyword contains space keep substring match; otherwise use word boundaries
+  const pattern = /\s/.test(kLow) ? esc : '\\b' + esc + '\\b';
+  const re = new RegExp(pattern,"i");
+  return re.test(candidateLower);
+}
+
+/* --- UI wiring --- */
+
+const startBtn = document.getElementById('startBtn');
+const testArea = document.getElementById('testArea');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const breakdown = document.getElementById('breakdown');
+const submitBtn = document.getElementById('submitBtn');
+const feedbackArea = document.getElementById('feedbackArea');
+
+startBtn.addEventListener('click',()=>{
+  const name = document.getElementById('studentName').value.trim();
+  const code = document.getElementById('accessCode').value.trim();
+  if(!name || code !== "8192"){
+    alert("Enter your name and the correct code (8192) to unlock the test.");
+    return;
+  }
+  testArea.classList.remove('hidden');
+  // focus first question
+  window.scrollTo({behavior:'smooth', top: testArea.offsetTop - 20});
+  startBtn.disabled = true;
+});
+
+submitBtn.addEventListener('click',()=>{
+  const name = document.getElementById('studentName').value.trim();
+  const code = document.getElementById('accessCode').value.trim();
+  if(!name || code !== "8192"){
+    alert("Access denied: name or code missing/incorrect.");
+    return;
+  }
+
+  // Disable submit to prevent double submits
+  submitBtn.disabled = true;
+
+  // Score MCQs
+  let mcqScore = 0;
+  for(let i=1;i<=18;i++){
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if(selected){
+      const val = parseInt(selected.value,10);
+      if(!isNaN(val) && val>0) mcqScore += val;
+    }
+    // unanswered -> 0
+  }
+
+  // Score Fill-ins
+  let fillScore = 0;
+  for(let i=1;i<=9;i++){
+    const elem = document.querySelector(`input[name="f${i}"]`);
+    const ans = normalizeText(elem.value);
+    if(!ans) continue; // unanswered -> 0
+    const correct = fillKeys[i-1];
+    // accept alternate forms if configured
+    if(fillAlternates[correct]){
+      const alts = fillAlternates[correct];
+      if(alts.some(a => a.toLowerCase() === ans)) {
+        fillScore += 1;
+        continue;
+      }
+    }
+    // direct match allow small normalization
+    if(correct === "laser printer"){
+      if(ans.includes("laser") && ans.includes("printer")) { fillScore += 1; continue; }
+    }
+    if(correct === "solid-state"){
+      if(ans.includes("solid") && ans.includes("state")) { fillScore += 1; continue; }
+    }
+    if(correct === "htm"){
+      if(ans === "htm" || ans === "html") { fillScore += 1; continue; }
+    }
+    if(correct === ".zip"){
+      if(ans === "zip" || ans === ".zip") { fillScore += 1; continue; }
+    }
+    if(ans === correct) {
+      fillScore +=1;
+    }
+  }
+
+  const autoScore = mcqScore + fillScore; // out of 27
+
+  // Score long answers by keyword proportion (and show which keywords matched)
+  let longScore = 0;
+  const longFeedback = [];
+
+  for(let idx=0; idx<longQuestions.length; idx++){
+    const q = longQuestions[idx];
+    const area = document.getElementsByName(`e${idx+1}`)[0];
+    const text = normalizeText(area.value);
+    const maxMarks = q.marks;
+    if(!text){
+      // unanswered => 0 marks, but still reveal sample answer
+      longFeedback.push({
+        idx: idx+1,
+        awarded: 0,
+        matched: [],
+        totalKeywords: q.keywordsDisplay.length,
+        sample: q.sample
+      });
+      continue;
+    }
+    // count unique matched keywords (avoid duplicates)
+    const matchedSet = new Set();
+    for(const k of q.keywords){
+      if(containsKeyword(text,k)){
+        matchedSet.add(k.toLowerCase());
+      }
+    }
+    const matched = Array.from(matchedSet);
+    // proportional marks: (matched / totalKeywords) * maxMarks, rounded to nearest integer
+    const totalKeywords = q.keywords.length;
+    let raw = (matched.length / totalKeywords) * maxMarks;
+    // avoid awarding > maxMarks due to rounding
+    let awarded = Math.round(raw);
+    if(awarded > maxMarks) awarded = maxMarks;
+    // ensure at least 0 and at most maxMarks
+    if(awarded < 0) awarded = 0;
+    longScore += awarded;
+    longFeedback.push({
+      idx: idx+1,
+      awarded,
+      matched: matched,
+      totalKeywords,
+      sample: q.sample,
+      keywordsDisplay: q.keywordsDisplay
+    });
+  }
+
+  // Ensure longScore cannot exceed 23
+  if(longScore > 23) longScore = 23;
+
+  // Display breakdown
+  scoreDisplay.textContent = `${autoScore + longScore} / 50`;
+  breakdown.textContent = `Auto: ${autoScore} / 27 · Long: ${longScore} / 23`;
+
+  // Reveal answers and matched keywords
+  feedbackArea.classList.remove('hidden');
+  feedbackArea.innerHTML = `<h3>Auto-marking feedback & model answers</h3>
+    <p><strong>Student:</strong> ${escapeHtml(document.getElementById('studentName').value)}</p>`;
+
+  // Show fill-in correct answers for teacher transparency
+  feedbackArea.innerHTML += `<div class="reveal"><strong>Fill-in answers (expected)</strong><div style="margin-top:6px">`;
+  for(let i=1;i<=9;i++){
+    const expected = fillKeys[i-1];
+    feedbackArea.innerHTML += `<div style="margin:3px 0"><strong>F${i}:</strong> ${escapeHtml(expected)}</div>`;
+  }
+  feedbackArea.innerHTML += `</div></div>`;
+
+  // Long answers feedback blocks
+  for(const fb of longFeedback){
+    const container = document.getElementById(`rev-e${fb.idx}`);
+    if(container){
+      container.classList.remove('hidden');
+      // matched keywords shown (use keywordsDisplay when available)
+      let matchedHtml = '';
+      if(fb.matched && fb.matched.length){
+        matchedHtml = fb.matched.map(k => `<span class="keyword matched">${escapeHtml(k)}</span>`).join(' ');
+      } else {
+        matchedHtml = '<em>No keyword matched</em>';
+      }
+      let keywordsShow = '';
+      if(Array.isArray(longQuestions[fb.idx-1].keywordsDisplay)){
+        keywordsShow = longQuestions[fb.idx-1].keywordsDisplay.map(k => `<span class="keyword">${escapeHtml(k)}</span>`).join(' ');
+      }
+      container.innerHTML = `<div><strong>Marks awarded:</strong> ${fb.awarded} / ${longQuestions[fb.idx-1].marks}</div>
+        <div style="margin-top:6px"><strong>Matched keywords:</strong> ${matchedHtml}</div>
+        <div style="margin-top:6px"><strong>Model answer / guidance:</strong>
+          <div class="answer-block">${escapeHtml(longQuestions[fb.idx-1].sample)}</div>
+        </div>
+        <div style="margin-top:6px"><small>Expected keywords (examples): ${keywordsShow}</small></div>`;
+    }
+  }
+
+  // scroll to feedback
+  window.scrollTo({top: feedbackArea.offsetTop - 8, behavior: 'smooth'});
+
+  // finally open print dialog (gives user PDF ready)
+  setTimeout(()=>{ window.print(); }, 700);
+});
+
+/* small helper to avoid injection in displayed html */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, function(m){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+  });
+}
+</script>
+</body>
+</html>
