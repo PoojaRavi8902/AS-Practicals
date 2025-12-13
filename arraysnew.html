@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arrays / Lists – Cambridge 9618</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fff9c4; /* lemon yellow */
+      color: #1b5e20; /* parrot green */
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .pane {
+      border: 2px solid #1b5e20;
+      border-radius: 10px;
+      padding: 12px;
+      background-color: #fffde7;
+    }
+
+    details {
+      margin-bottom: 12px;
+      border: 1px dashed #1b5e20;
+      border-radius: 8px;
+      padding: 8px;
+      background-color: #fffde7;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    pre {
+      background-color: #f1f8e9;
+      padding: 10px;
+      border-radius: 8px;
+      color: #33691e;
+    }
+
+    code {
+      background-color: #f1f8e9;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .note {
+      border-left: 4px solid #1b5e20;
+      padding-left: 8px;
+      font-style: italic;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align:center;">Arrays / Lists in Python – Cambridge AS Level 9618</h1>
+
+<div class="container">
+
+  <!-- TEACHER PANE -->
+  <div class="pane">
+    <h2>Teacher Pane – Concept & Explanation</h2>
+
+    <details open>
+      <summary>1. What is an Array / List?</summary>
+      <p>An <b>array</b> (called a <b>list</b> in Python) stores multiple values in a single variable.</p>
+      <p>Values are stored in <b>order</b>.</p>
+    </details>
+
+    <details>
+      <summary>2. Key Characteristics (Exam Points)</summary>
+      <ul>
+        <li>Elements are in a fixed order</li>
+        <li>Each element has an index</li>
+        <li>Same data type (theory)</li>
+        <li>Fixed size in theory</li>
+        <li>Dynamic size in Python</li>
+      </ul>
+      <div class="note">In exams, say "fixed size". In Python, explain it can grow.</div>
+    </details>
+
+    <details>
+      <summary>3. Creating a List in Python</summary>
+      <pre><code>marks = [65, 70, 80, 90]</code></pre>
+      <p>This list stores four student marks.</p>
+    </details>
+
+    <details>
+      <summary>4. Accessing Elements using Index</summary>
+      <pre><code>print(marks[0])   # First element
+print(marks[2])   # Third element</code></pre>
+      <p>Index always starts from <b>0</b>.</p>
+    </details>
+
+    <details>
+      <summary>5. Updating an Element</summary>
+      <pre><code>marks[1] = 75</code></pre>
+      <p>The second value is changed.</p>
+    </details>
+
+    <details>
+      <summary>6. Why Arrays are Important in Exams</summary>
+      <ul>
+        <li>Used in most algorithms</li>
+        <li>Easy to trace</li>
+        <li>Foundation for other structures</li>
+      </ul>
+    </details>
+
+  </div>
+
+  <!-- STUDENT PANE -->
+  <div class="pane">
+    <h2>Student Pane – Simple Examples & Practice</h2>
+
+    <details open>
+      <summary>A. Remember This</summary>
+      <p>Array / List = many values in one variable</p>
+    </details>
+
+    <details>
+      <summary>B. Simple Example</summary>
+      <pre><code>names = ["Ali", "Sara", "John"]</code></pre>
+      <p><code>names[0]</code> → Ali</p>
+    </details>
+
+    <details>
+      <summary>C. Very Common Uses</summary>
+      <ul>
+        <li>Student names</li>
+        <li>Marks list</li>
+        <li>Records</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>D. Practice Questions</summary>
+      <ol>
+        <li>Create a list of 5 marks</li>
+        <li>Display the first mark</li>
+        <li>Change the last mark</li>
+      </ol>
+    </details>
+
+    <details>
+      <summary>E. Exam Tip</summary>
+      <p>Always mention <b>index</b> and <b>order</b> in theory answers.</p>
+    </details>
+
+  </div>
+
+</div>
+
+    
+    <!-- ADDITIONAL OVERWHELMING CONTENT -->
+    <div class="container">
+      <div class="pane">
+        <h2>Teacher Pane – Advanced & Exam-Oriented Use of Lists</h2>
+
+        <details open>
+          <summary>7. Traversing a List (Core Exam Skill)</summary>
+          <pre><code>marks = [65, 70, 80, 90]
+
+for mark in marks:
+    print(mark)</code></pre>
+        </details>
+
+        <details>
+          <summary>8. Index-Based Traversal</summary>
+          <pre><code>for i in range(len(marks)):
+    print(i, marks[i])</code></pre>
+        </details>
+
+        <details>
+          <summary>9. Searching for a Value</summary>
+          <pre><code>target = 80
+found = False
+
+for mark in marks:
+    if mark == target:
+        found = True
+
+print(found)</code></pre>
+        </details>
+
+        <details>
+          <summary>10. Finding Maximum</summary>
+          <pre><code>maximum = marks[0]
+
+for mark in marks:
+    if mark > maximum:
+        maximum = mark
+
+print(maximum)</code></pre>
+        </details>
+
+      </div>
+
+      <div class="pane">
+        <h2>Student Pane – Lots of Examples & Practice</h2>
+
+        <details open>
+          <summary>A. Simple Examples</summary>
+          <pre><code>nums = [2, 4, 6, 8]
+print(nums[1])
+print(nums[3])</code></pre>
+        </details>
+
+        <details>
+          <summary>B. Modify Values</summary>
+          <pre><code>nums[0] = 10
+print(nums)</code></pre>
+        </details>
+
+        <details>
+          <summary>C. Practice Exercises</summary>
+          <ol>
+            <li>Create a list of 5 numbers</li>
+            <li>Display each number using a loop</li>
+            <li>Find the total</li>
+            <li>Find the largest number</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>D. Exam Challenge</summary>
+          <p>Write an algorithm to count values above average.</p>
+        </details>
+      </div>
+    </div>
+
+</body>
+</html>
