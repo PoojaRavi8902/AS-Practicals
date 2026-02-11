@@ -2,89 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Computer Science Learning Hub</title>
+    <title>ICT Course Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
             margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #f4f6f8;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(to right, #1f2937, #111827);
+            color: white;
         }
 
         header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 30px 20px;
             text-align: center;
+            padding: 50px 20px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.2em;
+            font-size: 2.8em;
         }
 
         header p {
-            margin-top: 8px;
-            font-size: 1.1em;
-            opacity: 0.9;
+            opacity: 0.8;
+            margin-top: 10px;
         }
 
-        main {
-            max-width: 1100px;
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
-            padding: 20px;
+            padding-bottom: 60px;
         }
 
-        section {
-            background: white;
+        .category {
+            margin-top: 50px;
+        }
+
+        .category h2 {
+            border-left: 6px solid #3b82f6;
+            padding-left: 15px;
             margin-bottom: 25px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1e293b;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-        }
-
-        section h2 {
-            border-left: 5px solid #2a5298;
-            padding-left: 12px;
-            color: #1e3c72;
-            margin-top: 0;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-            columns: 2;
-        }
-
-        li {
-            margin: 8px 0;
-        }
-
-        a {
+            border-radius: 12px;
             text-decoration: none;
-            color: #2a5298;
-            font-weight: 500;
+            color: white;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        a:hover {
-            text-decoration: underline;
-            color: #1e3c72;
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #3b82f6;
+        }
+
+        .card h3 {
+            margin-top: 0;
         }
 
         footer {
             text-align: center;
-            padding: 15px;
-            background: #e9ecf1;
+            padding: 30px;
+            opacity: 0.6;
             font-size: 0.9em;
-            color: #555;
-        }
-
-        @media (max-width: 700px) {
-            ul {
-                columns: 1;
-            }
         }
     </style>
 </head>
@@ -92,82 +82,83 @@
 <body>
 
 <header>
-    <h1>Computer Science Learning Hub</h1>
-    <p>Notes • Assessments • Practical Work • Tests</p>
+    <h1>ICT Learning Portal</h1>
+    <p>Computer Science & ICT Resources, Chapters, Tests and Assessments</p>
 </header>
 
-<main>
-<section>
-        <h2>🧠 Comprehensive Chapter by chapter</h2>
-        <ul>
-            <li><a href="Yr11_Ch1_2.html">Data Representation1</a></li>
-            <li><a href="Yr11_Ch1.html">Data Representation2</a></li>
-            <li><a href="Yr11_Ch1_3.html">Data Representation3</a></li>
-            <li><a href="Yr11_Ch11_repeat.html">Data Representation4</a></li>
+<div class="container">
 
-        </ul>
-    </section>
-    <section>
-        <h2>📘 Core Computer Science Topics</h2>
-        <ul>
-            <li><a href="as-1-information-representation.html">Information Representation</a></li>
-            <li><a href="as-2-communication.html">Communication</a></li>
-            <li><a href="as-3-hardware.html">Hardware</a></li>
-            <li><a href="as-4-processor-fundamentals.html">Processor Fundamentals</a></li>
-            <li><a href="as-5-system-software.html">System Software</a></li>
-            <li><a href="Computer-Architecture.html">Computer Architecture</a></li>
-            <li><a href="Data-Types-structure.html">Data Types & Structures</a></li>
-            <li><a href="arraysnew.html">Arrays</a></li>
-            <li><a href="ch-13-datatypes-structure.html">Chapter 13 – Data Types & Structures</a></li>
-            <li><a href="as-csc-chapter-12.html">Chapter 12 – CSC</a></li>
-            <li><a href="as-cs-chapter-13.html">Chapter 13 – CSC</a></li>
-            <li><a href="as-chapter14.html">Chapter 14</a></li>
-        </ul>
-    </section>
+    <!-- Year 11 Chapters -->
+    <div class="category">
+        <h2>Year 11 Chapters</h2>
+        <div class="grid">
+            <a href="Yr11_Ch1.html" class="card"><h3>Chapter 1</h3></a>
+            <a href="Yr11_Ch1_2.html" class="card"><h3>Chapter 1.2</h3></a>
+            <a href="Yr11_Ch1_3.html" class="card"><h3>Chapter 1.3</h3></a>
+            <a href="Yr11_Ch1_repeat.html" class="card"><h3>Chapter 1 Revision</h3></a>
+            <a href="as-chapter14.html" class="card"><h3>Chapter 14</h3></a>
+            <a href="as-csc-chapter-12.html" class="card"><h3>Chapter 12</h3></a>
+            <a href="as-cs-chapter-13.html" class="card"><h3>Chapter 13</h3></a>
+        </div>
+    </div>
 
-    <section>
-        <h2>🧠 Algorithm Design & Problem Solving</h2>
-        <ul>
-            <li><a href="8-Algorithm-Design-Assessment.html">Algorithm Design – Assessment</a></li>
-            <li><a href="9-Prob-Solving-Prog-Assessment.html">Problem Solving & Programming – Assessment</a></li>
-            <li><a href="AS-ch8-prac.html">Chapter 8 – Practical</a></li>
-            <li><a href="AS-ch9-ProbSolving-Program.html">Chapter 9 – Problem Solving</a></li>
-            <li><a href="as-cs-alg-des-prob-solving.html">Algorithm Design & Problem Solving</a></li>
-            <li><a href="as-cs-alg-des-prob-assessment.html">Algorithm Design – Assessment</a></li>
-        </ul>
-    </section>
+    <!-- Assessments -->
+    <div class="category">
+        <h2>Assessments</h2>
+        <div class="grid">
+            <a href="as-1-assessment.html" class="card"><h3>Assessment 1</h3></a>
+            <a href="as-2-assessment.html" class="card"><h3>Assessment 2</h3></a>
+            <a href="as-3-assessment.html" class="card"><h3>Assessment 3</h3></a>
+            <a href="as-4-assessment.html" class="card"><h3>Assessment 4</h3></a>
+            <a href="as-5-assessment.html" class="card"><h3>Assessment 5</h3></a>
+            <a href="8-Algorithm-Design-Assessment.html" class="card"><h3>Algorithm Design Assessment</h3></a>
+            <a href="9-Prob-Solving-Prog-Assessment.html" class="card"><h3>Problem Solving Assessment</h3></a>
+            <a href="database-assessment-7-12-2025.html" class="card"><h3>Database Assessment</h3></a>
+        </div>
+    </div>
 
-    <section>
-        <h2>📝 Assessments</h2>
-        <ul>
-            <li><a href="as-1-assessment.html">AS Level – Assessment 1</a></li>
-            <li><a href="as-2-assessment.html">AS Level – Assessment 2</a></li>
-            <li><a href="as-3-assessment.html">AS Level – Assessment 3</a></li>
-            <li><a href="as-4-assessment.html">AS Level – Assessment 4</a></li>
-            <li><a href="as-5-assessment.html">AS Level – Assessment 5</a></li>
-            <li><a href="database-assessment-7-12-2025.html">Database Assessment</a></li>
-        </ul>
-    </section>
+    <!-- Practical & Practice -->
+    <div class="category">
+        <h2>Practice & Practical Work</h2>
+        <div class="grid">
+            <a href="AS-ch8-prac.html" class="card"><h3>Chapter 8 Practice</h3></a>
+            <a href="AS-ch9-ProbSolving=Program.html" class="card"><h3>Problem Solving Practice</h3></a>
+            <a href="as-Csc-prac1.html" class="card"><h3>CSC Practice 1</h3></a>
+            <a href="arraysnew.html" class="card"><h3>Arrays Practice</h3></a>
+            <a href="SpillOvers.html" class="card"><h3>Extra Practice</h3></a>
+        </div>
+    </div>
 
-    <section>
-        <h2>💻 Practical & Test Pages</h2>
-        <ul>
-            <li><a href="as-Csc-prac1.html">CSC Practical 1</a></li>
-            <li><a href="Hardware-test.html">Hardware Test</a></li>
-            /*<li><a href="ICT-Test-16-11-2025.html">ICT Test</a></li>*/
-            <li><a href="Test-November.html">November Test</a></li>
-            <li><a href="SpillOvers.html">Spill Overs</a></li>
-        </ul>
-    </section>
+    <!-- Theory Topics -->
+    <div class="category">
+        <h2>Theory Topics</h2>
+        <div class="grid">
+            <a href="Computer-Architecture.html" class="card"><h3>Computer Architecture</h3></a>
+            <a href="Data-Types-structure.html" class="card"><h3>Data Types & Structures</h3></a>
+            <a href="as-1-information-representation.html" class="card"><h3>Information Representation</h3></a>
+            <a href="as-2-communication.html" class="card"><h3>Communication</h3></a>
+            <a href="as-3-hardware.html" class="card"><h3>Hardware</h3></a>
+            <a href="as-4-processor-fundamentals.html" class="card"><h3>Processor Fundamentals</h3></a>
+            <a href="as-5-system-software.html" class="card"><h3>System Software</h3></a>
+            <a href="ch-13-datatypes-structure.html" class="card"><h3>Data Structures (Ch 13)</h3></a>
+        </div>
+    </div>
 
-</main>
+    <!-- Tests -->
+    <div class="category">
+        <h2>Tests</h2>
+        <div class="grid">
+            <a href="Hardware-test.html" class="card"><h3>Hardware Test</h3></a>
+            <a href="ICT-Test-16-11-2025.html" class="card"><h3>ICT Test</h3></a>
+            <a href="Test-November.html" class="card"><h3>November Test</h3></a>
+        </div>
+    </div>
+
+</div>
 
 <footer>
-    © Computer Science Teaching Resources | Designed with clarity & purpose
+    © 2026 ICT Learning Portal | Designed for Students
 </footer>
 
 </body>
 </html>
-
-
-
