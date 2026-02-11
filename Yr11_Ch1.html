@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cambridge AS Level Computer Science 9618 (2026–27+) — Chapter 1.1 Data Representation (Exam-Ready)</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f1730;
+      --card:#121c38;
+      --muted:#9fb0d0;
+      --text:#eaf0ff;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --ok:#34d399;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background: radial-gradient(900px 500px at 10% 10%, rgba(125,211,252,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(167,139,250,.16), transparent 55%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(52,211,153,.10), transparent 55%),
+                  var(--bg);
+    }
+    header{
+      position:sticky; top:0; z-index:20;
+      background: rgba(11,16,32,.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+      max-width:1400px;
+      margin:0 auto;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      min-width: 280px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(125,211,252,.9), rgba(167,139,250,.9));
+      box-shadow: var(--shadow);
+    }
+    h1{
+      font-size: 16px;
+      margin:0;
+      line-height:1.2;
+    }
+    .subtitle{
+      font-size:12px; color:var(--muted); margin-top:2px;
+    }
+    .tools{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .search{
+      display:flex; gap:10px; align-items:center;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      min-width: 320px;
+    }
+    .search input{
+      background:transparent;
+      border:none;
+      outline:none;
+      color:var(--text);
+      width:100%;
+      font-size:13px;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:13px;
+      transition: .15s transform, .15s background;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); }
+    .btn.primary{
+      border-color: rgba(125,211,252,.35);
+      background: rgba(125,211,252,.12);
+    }
+    .btn.primary:hover{ background: rgba(125,211,252,.17); }
+    .btn.ghost{
+      background: transparent;
+    }
+    .wrap{
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 14px 16px 26px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: 1fr; }
+      .search{ min-width: 220px; }
+      .brand{ min-width: unset; }
+    }
+    .pane{
+      border:1px solid var(--border);
+      background: rgba(15,23,48,.55);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .paneHead{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 14px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .paneTitle{
+      font-weight: 700;
+      letter-spacing:.2px;
+      font-size: 14px;
+      display:flex; gap:10px; align-items:center;
+    }
+    .chip{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .paneBody{
+      padding: 14px;
+    }
+    .toc{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin: 0 0 12px;
+    }
+    .toc a{
+      color: var(--text);
+      text-decoration:none;
+      font-size:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius: 999px;
+      transition: .15s transform, .15s background;
+    }
+    .toc a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+    }
+    .section{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(18,28,56,.55);
+      margin: 12px 0;
+      overflow:hidden;
+    }
+    .sectionHeader{
+      padding: 12px 12px;
+      background: rgba(255,255,255,.03);
+      border-bottom: 1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      cursor:pointer;
+    }
+    .sectionHeader h2{
+      margin:0;
+      font-size: 14px;
+      line-height:1.25;
+    }
+    .kicker{
+      color: var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
+    .sectionContent{
+      padding: 12px;
+      display:none;
+    }
+    .sectionContent.open{ display:block; }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 12px;
+      margin: 10px 0;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size: 13px;
+    }
+    p{ margin: 8px 0; color: rgba(234,240,255,.92); font-size: 13px; line-height: 1.55;}
+    ul{ margin: 8px 0 8px 18px; color: rgba(234,240,255,.92); font-size: 13px; line-height: 1.55;}
+    li{ margin: 6px 0; }
+    .mono{
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.55;
+      background: rgba(0,0,0,.25);
+      border:1px solid var(--border);
+      padding: 10px;
+      border-radius: 12px;
+      overflow:auto;
+      white-space: pre;
+    }
+    .callout{
+      border-left: 3px solid rgba(125,211,252,.85);
+      padding: 10px 12px;
+      background: rgba(125,211,252,.08);
+      border-radius: 12px;
+      margin: 10px 0;
+      color: rgba(234,240,255,.95);
+      font-size: 13px;
+    }
+    .callout.warn{ border-left-color: rgba(251,191,36,.95); background: rgba(251,191,36,.08); }
+    .callout.good{ border-left-color: rgba(52,211,153,.95); background: rgba(52,211,153,.08); }
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 700px){
+      .twoCol{ grid-template-columns: 1fr; }
+    }
+    .exercise{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px;
+      margin: 10px 0;
+    }
+    .exTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .exercise h3{
+      margin:0;
+      font-size: 13px;
+      line-height:1.35;
+    }
+    .tag{
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(0,0,0,.18);
+      flex: 0 0 auto;
+    }
+    .answer{
+      display:none;
+      margin-top:10px;
+      border-top: 1px dashed rgba(255,255,255,.15);
+      padding-top:10px;
+    }
+    .answer.open{ display:block; }
+    .answer .mono{ margin-top:6px; }
+    .row{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top: 8px;
+    }
+    .field{
+      display:flex; gap:8px; align-items:center;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      border-radius: 12px;
+      padding: 8px 10px;
+    }
+    .field label{ color: var(--muted); font-size:12px; }
+    .field input, .field select{
+      background: transparent;
+      border: none;
+      outline:none;
+      color: var(--text);
+      font-size: 13px;
+      min-width: 110px;
+      font-family: var(--mono);
+    }
+    .hint{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      line-height:1.4;
+    }
+    .result{
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: rgba(234,240,255,.95);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      padding: 10px;
+      border-radius: 12px;
+      white-space: pre-wrap;
+    }
+    .footer{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.45;
+    }
+    mark{
+      background: rgba(125,211,252,.22);
+      color: var(--text);
+      padding: 0 .15em;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>AS Level Computer Science 9618 — Information Representation (1.1 Data Representation)</h1>
+        <div class="subtitle">Two student panes: left = notes & examples, right = practice (auto-check + answers)</div>
+      </div>
+    </div>
+
+    <div class="tools">
+      <div class="search" title="Search within this page (highlights matches)">
+        <span style="color:var(--muted);font-size:12px;">🔎</span>
+        <input id="searchBox" placeholder="Search: two’s complement, overflow, BCD, ASCII..." />
+      </div>
+      <button class="btn primary" id="expandAllBtn">Expand all</button>
+      <button class="btn" id="collapseAllBtn">Collapse all</button>
+      <button class="btn ghost" id="resetHighlightsBtn">Clear highlights</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+    <!-- LEFT PANE: NOTES -->
+    <section class="pane" id="leftPane">
+      <div class="paneHead">
+        <div class="paneTitle">Left Pane — Notes, definitions, worked examples <span class="chip">Exam-ready</span></div>
+        <div class="chip">9618 • Ch 1.1</div>
+      </div>
+      <div class="paneBody">
+        <div class="toc" aria-label="Table of contents">
+          <a href="#sec-prefixes">1. Binary vs Decimal Prefixes</a>
+          <a href="#sec-conversions">2. Base Conversions</a>
+          <a href="#sec-addsub">3. Binary Add & Sub</a>
+          <a href="#sec-overflow">4. Overflow</a>
+          <a href="#sec-twos">5. Two’s Complement</a>
+          <a href="#sec-hex-bcd">6. Hex & BCD Uses</a>
+          <a href="#sec-charset">7. Character Sets</a>
+        </div>
+
+        <!-- 1 Prefixes -->
+        <div class="section" id="sec-prefixes">
+          <div class="sectionHeader" data-toggle="sec-prefixes-content">
+            <div>
+              <h2>1) Binary vs Decimal Prefixes (kibi/kilo, mebi/mega, …)</h2>
+              <div class="kicker">Know when 1 KB means 1000 bytes vs when 1 KiB means 1024 bytes.</div>
+            </div>
+            <div class="chip">core skill</div>
+          </div>
+          <div class="sectionContent" id="sec-prefixes-content">
+            <div class="card">
+              <h3>Key idea</h3>
+              <p>
+                Computers store data in <mark>binary</mark>, so memory sizes often relate naturally to powers of 2.
+                However, many product labels use <mark>decimal (SI)</mark> prefixes (powers of 10).
+                Cambridge expects you to understand and use the <mark>binary prefixes</mark> (Ki, Mi, Gi, Ti) and
+                the <mark>decimal prefixes</mark> (k, M, G, T) correctly.
+              </p>
+
+              <div class="twoCol">
+                <div class="callout">
+                  <b>Decimal (SI) prefixes (powers of 10)</b><br/>
+                  kilo (k) = 10³ = 1,000<br/>
+                  mega (M) = 10⁶ = 1,000,000<br/>
+                  giga (G) = 10⁹ = 1,000,000,000<br/>
+                  tera (T) = 10¹² = 1,000,000,000,000
+                </div>
+                <div class="callout">
+                  <b>Binary (IEC) prefixes (powers of 2)</b><br/>
+                  kibi (Ki) = 2¹⁰ = 1,024<br/>
+                  mebi (Mi) = 2²⁰ = 1,048,576<br/>
+                  gibi (Gi) = 2³⁰ = 1,073,741,824<br/>
+                  tebi (Ti) = 2⁴⁰ = 1,099,511,627,776
+                </div>
+              </div>
+
+              <div class="callout warn">
+                <b>Exam trap:</b> “1 MB” and “1 MiB” are <mark>not</mark> the same. The gap grows as numbers get bigger.
+              </div>
+
+              <h3>Worked examples</h3>
+              <div class="mono">Example A: Convert 8 MiB to bytes
+8 MiB = 8 × 2^20 bytes
+     = 8 × 1,048,576
+     = 8,388,608 bytes
+
+Example B: Convert 500 GB (decimal) to bytes
+500 GB = 500 × 10^9 bytes
+       = 500,000,000,000 bytes
+
+Example C: A file is 700 MiB. Approximate decimal MB?
+700 MiB ≈ 700 × 1.048576 MB ≈ 734 MB (approx.)</div>
+
+              <p class="footer">
+                Exam wording to use: “Binary prefixes (Ki, Mi, Gi, Ti) represent powers of 2; decimal prefixes (k, M, G, T) represent powers of 10.”
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Quick conversion shortcuts (safe approximations)</h3>
+              <ul>
+                <li>1 KiB ≈ 1.024 kB (about 2.4% larger)</li>
+                <li>1 MiB ≈ 1.049 MB (about 4.9% larger)</li>
+                <li>1 GiB ≈ 1.074 GB (about 7.4% larger)</li>
+                <li>1 TiB ≈ 1.100 TB (about 10% larger)</li>
+              </ul>
+              <div class="callout good">
+                In calculations, you can usually keep 3 significant figures unless the question demands exact integer bytes.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Conversions -->
+        <div class="section" id="sec-conversions">
+          <div class="sectionHeader" data-toggle="sec-conversions-content">
+            <div>
+              <h2>2) Convert between binary, denary, hexadecimal (and BCD)</h2>
+              <div class="kicker">Be fast and accurate: show working clearly.</div>
+            </div>
+            <div class="chip">high frequency</div>
+          </div>
+          <div class="sectionContent" id="sec-conversions-content">
+            <div class="card">
+              <h3>Definitions</h3>
+              <p><b>Denary (decimal)</b> is base 10 (digits 0–9). <b>Binary</b> is base 2 (digits 0–1). <b>Hexadecimal</b> is base 16 (digits 0–9 and A–F).</p>
+              <p>In base <b>b</b>, each digit position has a place value of <b>b⁰, b¹, b², …</b> moving left.</p>
+            </div>
+
+            <div class="card">
+              <h3>Binary → Denary (place value method)</h3>
+              <div class="mono">Example: 101101₂ to denary
+Positions: 32 16 8 4 2 1
+Digits:     1  0 1 1 0 1
+Value = 1×32 + 0×16 + 1×8 + 1×4 + 0×2 + 1×1
+      = 32 + 8 + 4 + 1
+      = 45₁₀</div>
+              <p class="hint">Exam tip: write the place values above the bits, then add only the columns with 1s.</p>
+            </div>
+
+            <div class="card">
+              <h3>Denary → Binary (repeated division by 2)</h3>
+              <div class="mono">Example: 45₁₀ to binary
+45 ÷2 = 22 r1
+22 ÷2 = 11 r0
+11 ÷2 =  5 r1
+ 5 ÷2 =  2 r1
+ 2 ÷2 =  1 r0
+ 1 ÷2 =  0 r1
+Read remainders bottom-to-top: 101101₂</div>
+              <p class="hint">Alternative: subtract powers of two (greedy method) if you’re confident.</p>
+            </div>
+
+            <div class="card">
+              <h3>Binary ↔ Hex (grouping into 4 bits)</h3>
+              <p>Hex is a shortcut for binary: 1 hex digit = 4 bits.</p>
+              <div class="twoCol">
+                <div class="mono">Nibble table (0–15)
+0000=0 0001=1 0010=2 0011=3
+0100=4 0101=5 0110=6 0111=7
+1000=8 1001=9 1010=A 1011=B
+1100=C 1101=D 1110=E 1111=F</div>
+                <div class="mono">Example: 110101111001₂ to hex
+Group from right in 4s:
+1101 0111 1001
+=   D    7    9
+So: D79₁₆</div>
+              </div>
+
+              <div class="mono">Example: 3AF₁₆ to binary
+3 = 0011
+A = 1010
+F = 1111
+So: 001110101111₂</div>
+            </div>
+
+            <div class="card">
+              <h3>BCD (Binary Coded Decimal)</h3>
+              <p>
+                In <b>BCD</b>, each <mark>decimal digit</mark> is encoded separately using 4 bits.
+                So 59 in BCD is not the same as 59 in pure binary.
+              </p>
+              <div class="mono">BCD digits:
+0=0000 1=0001 2=0010 3=0011 4=0100
+5=0101 6=0110 7=0111 8=1000 9=1001
+
+Example: 59 (denary) in BCD
+5 → 0101
+9 → 1001
+BCD = 0101 1001</div>
+              <div class="callout warn">
+                BCD wastes combinations: 1010–1111 are unused for a single digit (often treated as invalid).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Add/Sub -->
+        <div class="section" id="sec-addsub">
+          <div class="sectionHeader" data-toggle="sec-addsub-content">
+            <div>
+              <h2>3) Perform binary addition and subtraction</h2>
+              <div class="kicker">Show carries/borrows clearly. Use two’s complement for negatives when asked.</div>
+            </div>
+            <div class="chip">skills</div>
+          </div>
+          <div class="sectionContent" id="sec-addsub-content">
+            <div class="card">
+              <h3>Binary addition rules</h3>
+              <div class="mono">0+0=0
+0+1=1
+1+0=1
+1+1=10 (sum 0 carry 1)
+
+With carry-in:
+1+1+1 = 11 (sum 1 carry 1)</div>
+
+              <h3>Worked addition</h3>
+              <div class="mono">  101101
++ 011011
+--------
+ 1001000
+
+Working (right to left):
+1+1=0 carry1
+0+1+1=0 carry1
+1+0+1=0 carry1
+1+1+1=1 carry1
+0+1+1=0 carry1
+1+0+1=0 carry1
+final carry=1</div>
+
+              <div class="callout good">
+                In exams, align bits, show carries above the line, and write the final carry if it exists.
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Binary subtraction rules</h3>
+              <p>Subtraction is like denary: when you subtract 1 from 0, you borrow from the next bit to the left.</p>
+              <div class="mono">0 − 0 = 0
+1 − 0 = 1
+1 − 1 = 0
+0 − 1 = (borrow) 10₂ − 1 = 1</div>
+
+              <h3>Worked subtraction (borrow method)</h3>
+              <div class="mono">  100100
+- 011011
+--------
+  001001
+
+Explanation:
+Start from right:
+0-1 borrow → 10-1 =1, next bit reduces
+(continue borrowing as needed)</div>
+
+              <h3>Subtraction using two’s complement (preview)</h3>
+              <p>To compute A − B you can do A + (two’s complement of B). This is especially useful when negatives are involved.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Overflow -->
+        <div class="section" id="sec-overflow">
+          <div class="sectionHeader" data-toggle="sec-overflow-content">
+            <div>
+              <h2>4) Overflow (unsigned and two’s complement)</h2>
+              <div class="kicker">Know the range for n bits, and how to detect overflow.</div>
+            </div>
+            <div class="chip">exam trap</div>
+          </div>
+          <div class="sectionContent" id="sec-overflow-content">
+            <div class="card">
+              <h3>What overflow means</h3>
+              <p>
+                <b>Overflow</b> happens when a calculation produces a value <mark>outside the representable range</mark> for a fixed number of bits.
+                The bits “wrap around” (the extra carry is lost), so the stored result is wrong unless overflow is detected.
+              </p>
+
+              <div class="twoCol">
+                <div class="callout">
+                  <b>Unsigned n-bit range</b><br/>
+                  min = 0<br/>
+                  max = 2ⁿ − 1
+                </div>
+                <div class="callout">
+                  <b>Two’s complement n-bit range</b><br/>
+                  min = −2ⁿ⁻¹<br/>
+                  max = 2ⁿ⁻¹ − 1
+                </div>
+              </div>
+
+              <h3>Unsigned overflow example (8-bit)</h3>
+              <div class="mono">250₁₀ = 11111010₂
+ 10₁₀ = 00001010₂
+Add:
+11111010
+00001010
+---------
+1 00000100  (needs 9 bits)
+
+Stored (8-bit) result = 00000100₂ = 4₁₀
+Overflow occurred because carry out was lost.</div>
+
+              <h3>Two’s complement overflow detection</h3>
+              <p>
+                For two’s complement addition, overflow occurs when:
+              </p>
+              <ul>
+                <li>adding two positives gives a negative result, OR</li>
+                <li>adding two negatives gives a positive result.</li>
+              </ul>
+              <div class="mono">Example (4-bit two’s complement range: -8 to +7)
++7 = 0111
++3 = 0011
+Add:
+0111
+0011
+----
+1010  (this is -6 in 4-bit two’s complement)
+
+Two positives produced a negative → overflow.</div>
+
+              <div class="callout warn">
+                Don’t use “carry out” alone for two’s complement overflow. Use the sign-change rule above (or carry into MSB vs carry out of MSB).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Two's complement -->
+        <div class="section" id="sec-twos">
+          <div class="sectionHeader" data-toggle="sec-twos-content">
+            <div>
+              <h2>5) Two’s complement (representing negative integers)</h2>
+              <div class="kicker">Steps: invert bits → add 1. Know how to decode too.</div>
+            </div>
+            <div class="chip">must know</div>
+          </div>
+          <div class="sectionContent" id="sec-twos-content">
+            <div class="card">
+              <h3>Why two’s complement?</h3>
+              <p>
+                Two’s complement is the most common way to represent signed integers in binary.
+                It has two big advantages for hardware:
+              </p>
+              <ul>
+                <li>One adder circuit can handle both addition and subtraction.</li>
+                <li>There is only one representation of zero (no “+0” and “-0”).</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>How to form a negative number (n bits)</h3>
+              <p>To represent −X in two’s complement:</p>
+              <ol style="margin:8px 0 8px 18px; color: rgba(234,240,255,.92); font-size: 13px; line-height: 1.55;">
+                <li>Write +X in binary using exactly n bits.</li>
+                <li>Invert all bits (0↔1) — this is one’s complement.</li>
+                <li>Add 1.</li>
+              </ol>
+
+              <div class="mono">Example: represent -13 using 8 bits
++13 = 00001101
+Invert: 11110010
+Add 1: 11110011
+So -13 = 11110011 (8-bit two’s complement)</div>
+
+              <div class="callout warn">
+                Always keep the bit-length fixed (e.g., 8 bits). If you change the width, the value can change.
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>How to decode a two’s complement value</h3>
+              <p>
+                If the MSB (leftmost bit) is 0, it’s positive: read normally.
+                If the MSB is 1, it’s negative: find the magnitude by doing two’s complement again.
+              </p>
+              <div class="mono">Example: 11110011 (8-bit) to denary
+MSB=1 → negative
+Invert: 00001100
+Add 1: 00001101 = 13
+So value = -13</div>
+
+              <h3>Two’s complement subtraction</h3>
+              <div class="mono">Compute 25 - 13 using 8-bit two’s complement
+25  = 00011001
+13  = 00001101
+-13 = two’s comp of 13:
+      invert 11110010
+      +1     11110011
+
+Add:
+00011001
+11110011
+--------
+00001100  (ignore carry out)
+00001100₂ = 12₁₀
+So 25-13 = 12</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Hex & BCD uses -->
+        <div class="section" id="sec-hex-bcd">
+          <div class="sectionHeader" data-toggle="sec-hex-bcd-content">
+            <div>
+              <h2>6) Uses of hexadecimal and BCD (practical applications)</h2>
+              <div class="kicker">Explain “why this representation is useful” with real examples.</div>
+            </div>
+            <div class="chip">application</div>
+          </div>
+          <div class="sectionContent" id="sec-hex-bcd-content">
+            <div class="card">
+              <h3>Hexadecimal — why it’s used</h3>
+              <ul>
+                <li><b>Compact</b>: 1 hex digit represents 4 bits → long binaries become shorter.</li>
+                <li><b>Readable</b>: easier for humans to check patterns.</li>
+                <li><b>Aligned with bytes</b>: 8 bits = 2 hex digits, 16 bits = 4 hex digits, etc.</li>
+              </ul>
+
+              <div class="callout">
+                Common real-world places you see hex:
+                memory addresses (debugging), machine code dumps, MAC addresses, IPv6 blocks, colour codes in HTML/CSS (#RRGGBB), bitmasks/flags.
+              </div>
+
+              <div class="mono">Example: RGB colour
+#RRGGBB is hex:
+#FF8800 means
+R=FF=255, G=88=136, B=00=0 → orange-ish</div>
+            </div>
+
+            <div class="card">
+              <h3>BCD — why it’s used</h3>
+              <p>
+                BCD is useful when the system needs to <mark>display</mark> decimal digits directly or handle decimal digits cleanly.
+                Each digit is kept separate (0–9), which simplifies driving displays (like seven-segment displays).
+              </p>
+              <ul>
+                <li>Digital clocks / timers</li>
+                <li>Calculators and simple decimal display hardware</li>
+                <li>Financial/measurement devices where decimal digits matter</li>
+              </ul>
+
+              <div class="mono">BCD display example:
+A two-digit display shows “42”.
+BCD stores:
+4 → 0100
+2 → 0010
+So BCD = 0100 0010</div>
+
+              <div class="callout warn">
+                Downside: BCD is less space-efficient than pure binary for large values (wastes bit patterns).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7 Character sets -->
+        <div class="section" id="sec-charset">
+          <div class="sectionHeader" data-toggle="sec-charset-content">
+            <div>
+              <h2>7) Character sets: ASCII, extended ASCII, Unicode</h2>
+              <div class="kicker">How characters become numbers (and then bits).</div>
+            </div>
+            <div class="chip">concept</div>
+          </div>
+          <div class="sectionContent" id="sec-charset-content">
+            <div class="card">
+              <h3>What a character set is</h3>
+              <p>
+                A <b>character set</b> assigns a unique number (a <mark>code</mark>) to each character.
+                Computers store those numbers in binary.
+              </p>
+
+              <div class="callout">
+                Cambridge expects familiarity with:
+                <b>ASCII</b>, <b>extended ASCII</b>, and <b>Unicode</b>.
+                You are <b>not</b> expected to memorise specific codes, but you should understand how encoding works.
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>ASCII (basic idea)</h3>
+              <p>
+                ASCII is a 7-bit coded character set (codes 0–127). It includes control codes and common English letters,
+                digits, and punctuation.
+              </p>
+              <div class="mono">Examples (common knowledge range):
+'A' = 65₁₀ = 1000001₂
+'a' = 97₁₀ = 1100001₂
+'0' = 48₁₀ = 0110000₂</div>
+              <p class="hint">Extended ASCII is typically 8-bit (0–255), but different “extended” versions vary by region/vendor.</p>
+            </div>
+
+            <div class="card">
+              <h3>Unicode (why it exists)</h3>
+              <p>
+                ASCII is too small for world languages and symbols. <b>Unicode</b> is a universal character set that assigns
+                code points for many scripts (Latin, Arabic, Hindi, Chinese, emoji, symbols, …).
+              </p>
+              <p>
+                Unicode code points can be stored using different encodings (e.g., UTF-8, UTF-16).
+                In UTF-8, basic ASCII characters use 1 byte, while many other characters use multiple bytes.
+              </p>
+
+              <div class="callout warn">
+                Exam clarity: <b>Unicode</b> = the big set of characters; <b>UTF-8/UTF-16</b> = ways of storing those code points in bytes.
+              </div>
+
+              <div class="mono">How storage works (conceptual):
+Character → code point (number) → bytes (encoding) → bits in memory</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <b>How to use this page:</b> Expand a section → study the worked examples → jump to the right pane and do the matching exercises. Use “Show answer” only after attempting.
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT PANE: EXERCISES -->
+    <section class="pane" id="rightPane">
+      <div class="paneHead">
+        <div class="paneTitle">Right Pane — Exercises (10+ per sub-topic) <span class="chip">Self-study</span></div>
+        <div class="chip">Answers hidden</div>
+      </div>
+      <div class="paneBody">
+
+        <!-- Interactive tools for students -->
+        <div class="section">
+          <div class="sectionHeader" data-toggle="tools-content">
+            <div>
+              <h2>Quick Practice Tools (auto-check)</h2>
+              <div class="kicker">Use these to verify your working after you attempt by hand.</div>
+            </div>
+            <div class="chip">interactive</div>
+          </div>
+          <div class="sectionContent open" id="tools-content" style="display:block;">
+            <div class="card">
+              <h3>Base Converter (integer)</h3>
+              <div class="row">
+                <div class="field">
+                  <label>Value</label>
+                  <input id="convValue" value="45" />
+                </div>
+                <div class="field">
+                  <label>From</label>
+                  <select id="convFrom">
+                    <option value="10" selected>Denary (10)</option>
+                    <option value="2">Binary (2)</option>
+                    <option value="16">Hex (16)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>To</label>
+                  <select id="convTo">
+                    <option value="2" selected>Binary (2)</option>
+                    <option value="10">Denary (10)</option>
+                    <option value="16">Hex (16)</option>
+                  </select>
+                </div>
+                <button class="btn primary" id="convertBtn">Convert</button>
+              </div>
+              <div class="hint">Tip: For binary input, use only 0 and 1. For hex, use 0–9 and A–F.</div>
+              <div class="result" id="convOut">Result will appear here.</div>
+            </div>
+
+            <div class="card">
+              <h3>Two’s Complement Helper (fixed width)</h3>
+              <div class="row">
+                <div class="field">
+                  <label>Denary</label>
+                  <input id="twDenary" value="-13" />
+                </div>
+                <div class="field">
+                  <label>Bits</label>
+                  <select id="twBits">
+                    <option>4</option>
+                    <option selected>8</option>
+                    <option>12</option>
+                    <option>16</option>
+                  </select>
+                </div>
+                <button class="btn primary" id="twBtn">Encode / Decode</button>
+              </div>
+              <div class="hint">Enter a denary integer (e.g., -13 or 25). Output shows range, encoding, and a decode check.</div>
+              <div class="result" id="twOut">Result will appear here.</div>
+            </div>
+
+            <div class="card">
+              <h3>Binary Add/Sub Checker (fixed width)</h3>
+              <div class="row">
+                <div class="field">
+                  <label>A (bin)</label>
+                  <input id="binA" value="0111" />
+                </div>
+                <div class="field">
+                  <label>Op</label>
+                  <select id="binOp">
+                    <option value="+">+</option>
+                    <option value="-">−</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>B (bin)</label>
+                  <input id="binB" value="0011" />
+                </div>
+                <div class="field">
+                  <label>Signed?</label>
+                  <select id="binSigned">
+                    <option value="unsigned">Unsigned</option>
+                    <option value="twos" selected>Two’s complement</option>
+                  </select>
+                </div>
+                <button class="btn primary" id="binCalcBtn">Calculate</button>
+              </div>
+              <div class="hint">Use equal bit-lengths (e.g., 8-bit). Tool reports overflow where relevant.</div>
+              <div class="result" id="binOut">Result will appear here.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 1 Prefixes -->
+        <div class="section" id="ex-prefixes">
+          <div class="sectionHeader" data-toggle="ex-prefixes-content">
+            <div>
+              <h2>Exercises Set 1 — Binary vs Decimal Prefixes (10)</h2>
+              <div class="kicker">Answer using exact values where possible; show units (bytes, bits).</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-prefixes-content">
+            <!-- 10 exercises -->
+            <div class="exercise">
+              <div class="exTop">
+                <h3>1. Convert 3 KiB to bytes.</h3><span class="tag">KiB</span>
+              </div>
+              <button class="btn" data-answer="a1">Show answer</button>
+              <div class="answer" id="a1">
+                <p><b>Answer:</b> 3 × 1024 = <b>3072 bytes</b>.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>2. Convert 5 MB (decimal) to bytes.</h3><span class="tag">MB</span>
+              </div>
+              <button class="btn" data-answer="a2">Show answer</button>
+              <div class="answer" id="a2">
+                <p><b>Answer:</b> 5 × 10⁶ = <b>5,000,000 bytes</b>.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>3. Convert 2 MiB to bytes.</h3><span class="tag">MiB</span>
+              </div>
+              <button class="btn" data-answer="a3">Show answer</button>
+              <div class="answer" id="a3">
+                <p><b>Answer:</b> 2 × 2²⁰ = 2 × 1,048,576 = <b>2,097,152 bytes</b>.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>4. A drive is labelled 500 GB. How many bytes is this (decimal)?</h3><span class="tag">GB</span>
+              </div>
+              <button class="btn" data-answer="a4">Show answer</button>
+              <div class="answer" id="a4">
+                <p><b>Answer:</b> 500 × 10⁹ = <b>500,000,000,000 bytes</b>.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>5. A file is 750 MiB. Approximate its size in MB (3 s.f.).</h3><span class="tag">approx</span>
+              </div>
+              <button class="btn" data-answer="a5">Show answer</button>
+              <div class="answer" id="a5">
+                <p><b>Answer:</b> 1 MiB ≈ 1.048576 MB → 750 MiB ≈ 750 × 1.048576 = <b>786 MB</b> (3 s.f.).</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>6. Which is larger: 1 GB or 1 GiB? Explain in one sentence.</h3><span class="tag">concept</span>
+              </div>
+              <button class="btn" data-answer="a6">Show answer</button>
+              <div class="answer" id="a6">
+                <p><b>Answer:</b> <b>1 GiB</b> is larger because GiB is 2³⁰ bytes while GB is 10⁹ bytes.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>7. Convert 1 TiB to bytes (exact).</h3><span class="tag">TiB</span>
+              </div>
+              <button class="btn" data-answer="a7">Show answer</button>
+              <div class="answer" id="a7">
+                <p><b>Answer:</b> 2⁴⁰ = <b>1,099,511,627,776 bytes</b>.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>8. Convert 2 TB (decimal) to bytes.</h3><span class="tag">TB</span>
+              </div>
+              <button class="btn" data-answer="a8">Show answer</button>
+              <div class="answer" id="a8">
+                <p><b>Answer:</b> 2 × 10¹² = <b>2,000,000,000,000 bytes</b>.</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>9. A RAM module is 8 GiB. Approximate in GB (3 s.f.).</h3><span class="tag">approx</span>
+              </div>
+              <button class="btn" data-answer="a9">Show answer</button>
+              <div class="answer" id="a9">
+                <p><b>Answer:</b> 1 GiB ≈ 1.07374 GB → 8 GiB ≈ 8.5899 GB → <b>8.59 GB</b> (3 s.f.).</p>
+              </div>
+            </div>
+
+            <div class="exercise">
+              <div class="exTop">
+                <h3>10. A file is 1,048,576 bytes. State its size in MiB.</h3><span class="tag">reverse</span>
+              </div>
+              <button class="btn" data-answer="a10">Show answer</button>
+              <div class="answer" id="a10">
+                <p><b>Answer:</b> 1,048,576 bytes = 2²⁰ bytes = <b>1 MiB</b>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 2 Conversions -->
+        <div class="section" id="ex-conversions">
+          <div class="sectionHeader" data-toggle="ex-conversions-content">
+            <div>
+              <h2>Exercises Set 2 — Base Conversions (10)</h2>
+              <div class="kicker">Show full working (place value, division method, or nibble grouping).</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-conversions-content">
+            <div class="exercise">
+              <div class="exTop"><h3>1. Convert 110101₂ to denary.</h3><span class="tag">bin→den</span></div>
+              <button class="btn" data-answer="b1">Show answer</button>
+              <div class="answer" id="b1"><p><b>Answer:</b> 32+16+4+1 = <b>53</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>2. Convert 93₁₀ to binary.</h3><span class="tag">den→bin</span></div>
+              <button class="btn" data-answer="b2">Show answer</button>
+              <div class="answer" id="b2"><p><b>Answer:</b> 93 = 64+16+8+4+1 → <b>1011101₂</b> (or 01011101 in 8-bit).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>3. Convert 2F₁₆ to binary.</h3><span class="tag">hex→bin</span></div>
+              <button class="btn" data-answer="b3">Show answer</button>
+              <div class="answer" id="b3"><p><b>Answer:</b> 2=0010, F=1111 → <b>00101111₂</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>4. Convert 101111000101₂ to hex.</h3><span class="tag">bin→hex</span></div>
+              <button class="btn" data-answer="b4">Show answer</button>
+              <div class="answer" id="b4"><p><b>Answer:</b> 1011 1100 0101 → <b>BC5₁₆</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>5. Convert 7A₁₆ to denary.</h3><span class="tag">hex→den</span></div>
+              <button class="btn" data-answer="b5">Show answer</button>
+              <div class="answer" id="b5"><p><b>Answer:</b> 7×16 + 10 = <b>122</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>6. Convert 122₁₀ to hex.</h3><span class="tag">den→hex</span></div>
+              <button class="btn" data-answer="b6">Show answer</button>
+              <div class="answer" id="b6"><p><b>Answer:</b> 122 ÷16 = 7 r10 → <b>7A₁₆</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>7. Write 59 (denary) in BCD.</h3><span class="tag">BCD</span></div>
+              <button class="btn" data-answer="b7">Show answer</button>
+              <div class="answer" id="b7"><p><b>Answer:</b> 5=0101, 9=1001 → <b>0101 1001</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>8. Decode BCD 0011 0111 to denary.</h3><span class="tag">BCD</span></div>
+              <button class="btn" data-answer="b8">Show answer</button>
+              <div class="answer" id="b8"><p><b>Answer:</b> 0011=3 and 0111=7 → <b>37</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>9. Convert 10000000₂ to denary (unsigned).</h3><span class="tag">unsigned</span></div>
+              <button class="btn" data-answer="b9">Show answer</button>
+              <div class="answer" id="b9"><p><b>Answer:</b> <b>128</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>10. Convert 00011101₂ to hex.</h3><span class="tag">bin→hex</span></div>
+              <button class="btn" data-answer="b10">Show answer</button>
+              <div class="answer" id="b10"><p><b>Answer:</b> 0001 1101 → <b>1D₁₆</b>.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 3 Add/Sub -->
+        <div class="section" id="ex-addsub">
+          <div class="sectionHeader" data-toggle="ex-addsub-content">
+            <div>
+              <h2>Exercises Set 3 — Binary Addition & Subtraction (10)</h2>
+              <div class="kicker">Show carries/borrows. Use fixed width if stated.</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-addsub-content">
+            <div class="exercise">
+              <div class="exTop"><h3>1. Add: 101101₂ + 011011₂.</h3><span class="tag">add</span></div>
+              <button class="btn" data-answer="c1">Show answer</button>
+              <div class="answer" id="c1"><p><b>Answer:</b> <b>1001000₂</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>2. Add (8-bit): 11110000₂ + 00011100₂.</h3><span class="tag">add</span></div>
+              <button class="btn" data-answer="c2">Show answer</button>
+              <div class="answer" id="c2"><p><b>Answer:</b> 1 00001100 → stored 8-bit = <b>00001100₂</b> (overflow in unsigned).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>3. Subtract: 100100₂ − 011011₂.</h3><span class="tag">sub</span></div>
+              <button class="btn" data-answer="c3">Show answer</button>
+              <div class="answer" id="c3"><p><b>Answer:</b> <b>001001₂</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>4. Subtract (8-bit): 00110010₂ − 00001101₂ using two’s complement.</h3><span class="tag">2’s comp</span></div>
+              <button class="btn" data-answer="c4">Show answer</button>
+              <div class="answer" id="c4"><p><b>Answer:</b> 50−13=37 → <b>00100101₂</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>5. Add (4-bit two’s complement): 0110 + 0101. State if overflow occurs.</h3><span class="tag">overflow?</span></div>
+              <button class="btn" data-answer="c5">Show answer</button>
+              <div class="answer" id="c5"><p><b>Answer:</b> 0110(+6)+0101(+5)=1011 (interprets as −5) → <b>overflow</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>6. Add (4-bit two’s complement): 1101 + 1110. State result in denary.</h3><span class="tag">signed</span></div>
+              <button class="btn" data-answer="c6">Show answer</button>
+              <div class="answer" id="c6"><p><b>Answer:</b> 1101=−3, 1110=−2, sum=−5 → 1011. (<b>1011</b> = −5)</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>7. Subtract (unsigned): 01000000₂ − 00000001₂.</h3><span class="tag">sub</span></div>
+              <button class="btn" data-answer="c7">Show answer</button>
+              <div class="answer" id="c7"><p><b>Answer:</b> <b>00111111₂</b> (63).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>8. Add: 1111₂ + 0001₂ (4-bit). Give stored result and comment.</h3><span class="tag">carry</span></div>
+              <button class="btn" data-answer="c8">Show answer</button>
+              <div class="answer" id="c8"><p><b>Answer:</b> 1 0000 → stored 4-bit = <b>0000</b>, carry lost (unsigned overflow).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>9. Add (8-bit): 00001010₂ + 00010110₂.</h3><span class="tag">add</span></div>
+              <button class="btn" data-answer="c9">Show answer</button>
+              <div class="answer" id="c9"><p><b>Answer:</b> <b>00100000₂</b> (32).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>10. Subtract using two’s complement (8-bit): 00011100₂ − 00100101₂. Interpret as signed.</h3><span class="tag">signed</span></div>
+              <button class="btn" data-answer="c10">Show answer</button>
+              <div class="answer" id="c10"><p><b>Answer:</b> 28−37=−9 → 8-bit two’s comp = <b>11110111₂</b>.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 4 Overflow -->
+        <div class="section" id="ex-overflow">
+          <div class="sectionHeader" data-toggle="ex-overflow-content">
+            <div>
+              <h2>Exercises Set 4 — Overflow (10)</h2>
+              <div class="kicker">State the representable range and whether overflow occurs.</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-overflow-content">
+            <div class="exercise">
+              <div class="exTop"><h3>1. State the unsigned range for 6 bits.</h3><span class="tag">range</span></div>
+              <button class="btn" data-answer="d1">Show answer</button>
+              <div class="answer" id="d1"><p><b>Answer:</b> 0 to 2⁶−1 = 0 to <b>63</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>2. State the two’s complement range for 6 bits.</h3><span class="tag">range</span></div>
+              <button class="btn" data-answer="d2">Show answer</button>
+              <div class="answer" id="d2"><p><b>Answer:</b> −2⁵ to 2⁵−1 = <b>−32 to +31</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>3. Unsigned 8-bit: does 200 + 100 overflow? Explain briefly.</h3><span class="tag">unsigned</span></div>
+              <button class="btn" data-answer="d3">Show answer</button>
+              <div class="answer" id="d3"><p><b>Answer:</b> Max is 255; 200+100=300 → <b>overflow</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>4. 4-bit two’s complement: does 7 + 3 overflow?</h3><span class="tag">signed</span></div>
+              <button class="btn" data-answer="d4">Show answer</button>
+              <div class="answer" id="d4"><p><b>Answer:</b> Range −8..+7; 7+3=10 → <b>overflow</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>5. 4-bit two’s complement: does −4 + −3 overflow?</h3><span class="tag">signed</span></div>
+              <button class="btn" data-answer="d5">Show answer</button>
+              <div class="answer" id="d5"><p><b>Answer:</b> −4+−3=−7 (within range) → <b>no overflow</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>6. 8-bit two’s complement: state if overflow occurs: 01010000 + 01010000.</h3><span class="tag">detect</span></div>
+              <button class="btn" data-answer="d6">Show answer</button>
+              <div class="answer" id="d6"><p><b>Answer:</b> 0x50=+80. 80+80=160 (outside +127) → result becomes 10100000 (negative) → <b>overflow</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>7. 8-bit two’s complement: state if overflow occurs: 11000000 + 11000000.</h3><span class="tag">detect</span></div>
+              <button class="btn" data-answer="d7">Show answer</button>
+              <div class="answer" id="d7"><p><b>Answer:</b> 11000000=−64. Sum=−128 (within range) → <b>no overflow</b> (result 10000000).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>8. 8-bit unsigned: 11111111 + 00000001 gives what stored result?</h3><span class="tag">wrap</span></div>
+              <button class="btn" data-answer="d8">Show answer</button>
+              <div class="answer" id="d8"><p><b>Answer:</b> 1 00000000 → stored 00000000 (overflow), so <b>0</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>9. Explain (1 sentence) why overflow is dangerous in control systems.</h3><span class="tag">explain</span></div>
+              <button class="btn" data-answer="d9">Show answer</button>
+              <div class="answer" id="d9"><p><b>Answer:</b> Overflow can turn a large correct value into an incorrect wrapped value, leading to wrong decisions (e.g., unsafe actuator control).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>10. For 5-bit two’s complement, what is the smallest representable integer?</h3><span class="tag">range</span></div>
+              <button class="btn" data-answer="d10">Show answer</button>
+              <div class="answer" id="d10"><p><b>Answer:</b> −2⁴ = <b>−16</b>.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 5 Two's complement -->
+        <div class="section" id="ex-twos">
+          <div class="sectionHeader" data-toggle="ex-twos-content">
+            <div>
+              <h2>Exercises Set 5 — Two’s Complement (10)</h2>
+              <div class="kicker">Always state the bit-width (4/8/16). Do NOT change width mid-solution.</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-twos-content">
+            <div class="exercise">
+              <div class="exTop"><h3>1. Write −5 in 8-bit two’s complement.</h3><span class="tag">encode</span></div>
+              <button class="btn" data-answer="e1">Show answer</button>
+              <div class="answer" id="e1"><p><b>Answer:</b> +5=00000101 → invert 11111010 → +1 = <b>11111011</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>2. Decode 11110111 (8-bit two’s complement) to denary.</h3><span class="tag">decode</span></div>
+              <button class="btn" data-answer="e2">Show answer</button>
+              <div class="answer" id="e2"><p><b>Answer:</b> invert 00001000 +1=00001001=9 → <b>−9</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>3. Write −13 in 8-bit two’s complement.</h3><span class="tag">encode</span></div>
+              <button class="btn" data-answer="e3">Show answer</button>
+              <div class="answer" id="e3"><p><b>Answer:</b> <b>11110011</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>4. Decode 10000000 (8-bit two’s complement).</h3><span class="tag">edge</span></div>
+              <button class="btn" data-answer="e4">Show answer</button>
+              <div class="answer" id="e4"><p><b>Answer:</b> This is the minimum: <b>−128</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>5. Perform (8-bit two’s complement): 00011001 + 11110011. Give denary answer.</h3><span class="tag">add</span></div>
+              <button class="btn" data-answer="e5">Show answer</button>
+              <div class="answer" id="e5"><p><b>Answer:</b> 25 + (−13) = <b>12</b> → 00001100.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>6. Perform (8-bit two’s complement): 00011100 − 00100101. Give result in binary.</h3><span class="tag">sub</span></div>
+              <button class="btn" data-answer="e6">Show answer</button>
+              <div class="answer" id="e6"><p><b>Answer:</b> 28−37=−9 → <b>11110111</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>7. State the max positive integer in 7-bit two’s complement.</h3><span class="tag">range</span></div>
+              <button class="btn" data-answer="e7">Show answer</button>
+              <div class="answer" id="e7"><p><b>Answer:</b> 2⁶−1 = <b>63</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>8. Why is there only one representation of 0 in two’s complement?</h3><span class="tag">explain</span></div>
+              <button class="btn" data-answer="e8">Show answer</button>
+              <div class="answer" id="e8"><p><b>Answer:</b> Because negating 0 (invert bits + add 1) returns 0 again, so there is no separate “−0”.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>9. Convert +46 to 8-bit binary, then write −46 in 8-bit two’s complement.</h3><span class="tag">paired</span></div>
+              <button class="btn" data-answer="e9">Show answer</button>
+              <div class="answer" id="e9"><p><b>Answer:</b> +46=00101110; invert 11010001; +1 → <b>11010010</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>10. 4-bit two’s complement: represent −8 and explain why −9 is impossible.</h3><span class="tag">limits</span></div>
+              <button class="btn" data-answer="e10">Show answer</button>
+              <div class="answer" id="e10"><p><b>Answer:</b> −8 is 1000. Range is −8..+7, so −9 is outside range → cannot be represented.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 6 Hex & BCD uses -->
+        <div class="section" id="ex-uses">
+          <div class="sectionHeader" data-toggle="ex-uses-content">
+            <div>
+              <h2>Exercises Set 6 — Uses of Hex & BCD (10)</h2>
+              <div class="kicker">These are explanation marks: answer in full sentences.</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-uses-content">
+            <div class="exercise">
+              <div class="exTop"><h3>1. Give two reasons why hex is used instead of binary when showing memory addresses.</h3><span class="tag">hex</span></div>
+              <button class="btn" data-answer="f1">Show answer</button>
+              <div class="answer" id="f1"><p><b>Answer:</b> It is shorter (4 bits per digit) and easier for humans to read/check; aligns neatly with bytes/words.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>2. Explain why BCD can be useful for driving a digital display.</h3><span class="tag">BCD</span></div>
+              <button class="btn" data-answer="f2">Show answer</button>
+              <div class="answer" id="f2"><p><b>Answer:</b> Each decimal digit is stored separately, making it straightforward to map directly to display segments for 0–9.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>3. Write the hex value for 11110000₂.</h3><span class="tag">convert</span></div>
+              <button class="btn" data-answer="f3">Show answer</button>
+              <div class="answer" id="f3"><p><b>Answer:</b> 1111 0000 → <b>F0₁₆</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>4. A colour is #00FF80. State the denary values for R, G, B.</h3><span class="tag">RGB</span></div>
+              <button class="btn" data-answer="f4">Show answer</button>
+              <div class="answer" id="f4"><p><b>Answer:</b> R=00=0, G=FF=255, B=80=128.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>5. State one disadvantage of BCD compared to pure binary.</h3><span class="tag">compare</span></div>
+              <button class="btn" data-answer="f5">Show answer</button>
+              <div class="answer" id="f5"><p><b>Answer:</b> Less space-efficient (wastes bit patterns), so larger storage for the same numeric range.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>6. Give one application where hex is used to represent bitmasks/flags.</h3><span class="tag">real world</span></div>
+              <button class="btn" data-answer="f6">Show answer</button>
+              <div class="answer" id="f6"><p><b>Answer:</b> Permissions/attributes in operating systems, register values in low-level debugging, or feature flags in protocols.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>7. Convert 255₁₀ to hex.</h3><span class="tag">convert</span></div>
+              <button class="btn" data-answer="f7">Show answer</button>
+              <div class="answer" id="f7"><p><b>Answer:</b> 255 = 15×16 + 15 → <b>FF₁₆</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>8. Convert BCD 0001 0010 0011 to denary.</h3><span class="tag">BCD</span></div>
+              <button class="btn" data-answer="f8">Show answer</button>
+              <div class="answer" id="f8"><p><b>Answer:</b> 1 2 3 → <b>123</b>.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>9. Explain (1 sentence) why “hex is base 16” helps with grouping bits.</h3><span class="tag">explain</span></div>
+              <button class="btn" data-answer="f9">Show answer</button>
+              <div class="answer" id="f9"><p><b>Answer:</b> Because 16 = 2⁴, so each hex digit corresponds exactly to 4 bits (a nibble).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>10. A device stores the decimal digits of a measurement for display. Which representation is suitable: BCD or pure binary? Justify.</h3><span class="tag">justify</span></div>
+              <button class="btn" data-answer="f10">Show answer</button>
+              <div class="answer" id="f10"><p><b>Answer:</b> <b>BCD</b>, because digits 0–9 are stored separately, simplifying direct display without complex conversion circuitry.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXERCISES: 7 Character sets -->
+        <div class="section" id="ex-charset">
+          <div class="sectionHeader" data-toggle="ex-charset-content">
+            <div>
+              <h2>Exercises Set 7 — Character Sets (ASCII / extended ASCII / Unicode) (10)</h2>
+              <div class="kicker">Focus on concepts: codes, bits, storage, and why Unicode exists.</div>
+            </div>
+            <div class="chip">10 tasks</div>
+          </div>
+          <div class="sectionContent" id="ex-charset-content">
+            <div class="exercise">
+              <div class="exTop"><h3>1. What is a character set? (1 sentence)</h3><span class="tag">define</span></div>
+              <button class="btn" data-answer="g1">Show answer</button>
+              <div class="answer" id="g1"><p><b>Answer:</b> A character set maps characters to numeric codes so they can be stored in binary.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>2. Why is ASCII described as “7-bit”?</h3><span class="tag">concept</span></div>
+              <button class="btn" data-answer="g2">Show answer</button>
+              <div class="answer" id="g2"><p><b>Answer:</b> Because it uses 7 bits to represent codes 0–127 (128 possible values).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>3. State one limitation of ASCII.</h3><span class="tag">limit</span></div>
+              <button class="btn" data-answer="g3">Show answer</button>
+              <div class="answer" id="g3"><p><b>Answer:</b> It cannot represent many world-language characters and symbols (too few codes).</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>4. What problem does Unicode solve?</h3><span class="tag">why</span></div>
+              <button class="btn" data-answer="g4">Show answer</button>
+              <div class="answer" id="g4"><p><b>Answer:</b> It provides a universal set of code points for characters across many languages and symbols.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>5. Explain the difference between “Unicode” and “UTF-8”.</h3><span class="tag">clarify</span></div>
+              <button class="btn" data-answer="g5">Show answer</button>
+              <div class="answer" id="g5"><p><b>Answer:</b> Unicode defines code points (numbers for characters); UTF-8 is an encoding that stores those code points using bytes.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>6. A string has 20 ASCII characters. How many bits minimum to store (ASCII only)?</h3><span class="tag">calc</span></div>
+              <button class="btn" data-answer="g6">Show answer</button>
+              <div class="answer" id="g6"><p><b>Answer:</b> 20 × 7 = <b>140 bits</b> (minimum). (Often stored in bytes → 160 bits.)</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>7. Why is “extended ASCII” ambiguous?</h3><span class="tag">concept</span></div>
+              <button class="btn" data-answer="g7">Show answer</button>
+              <div class="answer" id="g7"><p><b>Answer:</b> Different systems used different 8-bit extensions, so codes 128–255 can represent different characters.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>8. A text contains emojis. Which character set is required: ASCII or Unicode? Why?</h3><span class="tag">apply</span></div>
+              <button class="btn" data-answer="g8">Show answer</button>
+              <div class="answer" id="g8"><p><b>Answer:</b> Unicode, because ASCII does not include emojis or many modern symbols.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>9. What does it mean to “represent character data in internal binary form”?</h3><span class="tag">explain</span></div>
+              <button class="btn" data-answer="g9">Show answer</button>
+              <div class="answer" id="g9"><p><b>Answer:</b> Store each character’s numeric code (from the chosen character set) as bits in memory.</p></div>
+            </div>
+            <div class="exercise">
+              <div class="exTop"><h3>10. A system stores 100 characters using Unicode encoding. Explain why file size depends on the encoding method (e.g., UTF-8 vs UTF-16).</h3><span class="tag">stretch</span></div>
+              <button class="btn" data-answer="g10">Show answer</button>
+              <div class="answer" id="g10"><p><b>Answer:</b> Different encodings use different numbers of bytes per character/code point (UTF-8 is variable-length; UTF-16 often uses 2 bytes or more), so total storage varies.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <b>Teacher tip:</b> For exam practice, set a timer: 20 minutes per exercise set. Students must show working and then use “Show answer” to self-mark.
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  // ---------- Section toggles ----------
+  function toggleById(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.classList.toggle('open');
+    // support inline style if some section starts open
+    el.style.display = el.classList.contains('open') ? 'block' : 'none';
+  }
+
+  document.querySelectorAll('.sectionHeader[data-toggle]').forEach(h=>{
+    h.addEventListener('click', (e)=>{
+      // avoid toggle when clicking a link inside header
+      if(e.target && (e.target.tagName === 'A' || e.target.closest('a'))) return;
+      const target = h.getAttribute('data-toggle');
+      toggleById(target);
+    });
+  });
+
+  // set all sections (notes/exercises) collapsed by default except tools already visible
+  document.querySelectorAll('.sectionContent').forEach(sc=>{
+    if(sc.id === 'tools-content') return;
+    if(sc.classList.contains('open')){
+      sc.style.display = 'block';
+    } else {
+      sc.style.display = 'none';
+    }
+  });
+
+  document.getElementById('expandAllBtn').addEventListener('click', ()=>{
+    document.querySelectorAll('.sectionContent').forEach(sc=>{
+      sc.classList.add('open');
+      sc.style.display = 'block';
+    });
+  });
+  document.getElementById('collapseAllBtn').addEventListener('click', ()=>{
+    document.querySelectorAll('.sectionContent').forEach(sc=>{
+      sc.classList.remove('open');
+      sc.style.display = 'none';
+    });
+    // keep the tools open
+    const tools = document.getElementById('tools-content');
+    if(tools){
+      tools.classList.add('open');
+      tools.style.display = 'block';
+    }
+  });
+
+  // ---------- Answer toggles ----------
+  document.querySelectorAll('button[data-answer]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.getAttribute('data-answer');
+      const a = document.getElementById(id);
+      if(!a) return;
+      a.classList.toggle('open');
+      btn.textContent = a.classList.contains('open') ? 'Hide answer' : 'Show answer';
+    });
+  });
+
+  // ---------- Search + highlight ----------
+  const searchBox = document.getElementById('searchBox');
+  const resetHighlightsBtn = document.getElementById('resetHighlightsBtn');
+
+  function clearHighlights(){
+    document.querySelectorAll('mark[data-hl="1"]').forEach(m=>{
+      const text = document.createTextNode(m.textContent);
+      m.replaceWith(text);
+    });
+  }
+
+  function highlightTerm(term){
+    clearHighlights();
+    if(!term || term.trim().length < 2) return;
+
+    const t = term.trim().toLowerCase();
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node)=>{
+        if(!node.nodeValue) return NodeFilter.FILTER_REJECT;
+        // ignore script/style
+        if(node.parentElement && (node.parentElement.tagName === 'SCRIPT' || node.parentElement.tagName === 'STYLE')) return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.toLowerCase().includes(t) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(node=>{
+      const val = node.nodeValue;
+      const idx = val.toLowerCase().indexOf(t);
+      if(idx === -1) return;
+
+      const before = document.createTextNode(val.slice(0, idx));
+      const mid = document.createElement('mark');
+      mid.setAttribute('data-hl','1');
+      mid.textContent = val.slice(idx, idx + t.length);
+      const after = document.createTextNode(val.slice(idx + t.length));
+
+      const frag = document.createDocumentFragment();
+      frag.appendChild(before);
+      frag.appendChild(mid);
+      frag.appendChild(after);
+
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  let searchTimer = null;
+  searchBox.addEventListener('input', ()=>{
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(()=> highlightTerm(searchBox.value), 120);
+  });
+  resetHighlightsBtn.addEventListener('click', ()=>{
+    searchBox.value = '';
+    clearHighlights();
+  });
+
+  // ---------- Helper: parsing integers in base ----------
+  function parseIntBase(str, base){
+    const s = (str || '').trim().toUpperCase();
+    if(s.length === 0) return null;
+    // validate
+    if(base === 2 && /[^01]/.test(s)) return null;
+    if(base === 10 && /[^0-9\-]/.test(s)) return null;
+    if(base === 16 && /[^0-9A-F]/.test(s)) return null;
+
+    const n = parseInt(s, base);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function toBase(n, base){
+    if(base === 10) return String(n);
+    if(base === 2) return (n >>> 0).toString(2);
+    if(base === 16) return (n >>> 0).toString(16).toUpperCase();
+    return '';
+  }
+
+  // ---------- Base converter ----------
+  document.getElementById('convertBtn').addEventListener('click', ()=>{
+    const v = document.getElementById('convValue').value;
+    const from = parseInt(document.getElementById('convFrom').value, 10);
+    const to = parseInt(document.getElementById('convTo').value, 10);
+
+    const n = parseIntBase(v, from);
+    const out = document.getElementById('convOut');
+
+    if(n === null){
+      out.textContent = "Invalid input for the chosen base.\n- Binary: only 0/1\n- Hex: 0–9 A–F\n- Denary: digits (optional leading -)";
+      return;
+    }
+
+    let result;
+    if(to === 10){
+      result = `${n} (denary)`;
+    } else if(to === 2){
+      result = `${n}₁₀ = ${n.toString(2)}₂`;
+    } else if(to === 16){
+      result = `${n}₁₀ = ${n.toString(16).toUpperCase()}₁₆`;
+    }
+
+    out.textContent = `From base-${from} input: ${v.trim()}\nParsed denary: ${n}\nConverted to base-${to}: ${to===2 ? n.toString(2) : (to===16 ? n.toString(16).toUpperCase() : n)}`;
+  });
+
+  // ---------- Two's complement helper ----------
+  function twosEncode(value, bits){
+    // returns fixed-width binary string or null if out of range
+    const min = -(2 ** (bits - 1));
+    const max = (2 ** (bits - 1)) - 1;
+    if(value < min || value > max) return null;
+
+    if(value >= 0){
+      return value.toString(2).padStart(bits, '0');
+    }
+    // two's complement: add 2^bits to negative value
+    const encoded = (2 ** bits + value);
+    return encoded.toString(2).padStart(bits, '0');
+  }
+
+  function twosDecode(binStr, bits){
+    const s = (binStr || '').trim();
+    if(s.length !== bits || /[^01]/.test(s)) return null;
+    const unsigned = parseInt(s, 2);
+    const signBit = s[0] === '1';
+    if(!signBit) return unsigned;
+    // negative: subtract 2^bits
+    return unsigned - (2 ** bits);
+  }
+
+  document.getElementById('twBtn').addEventListener('click', ()=>{
+    const bits = parseInt(document.getElementById('twBits').value, 10);
+    const raw = document.getElementById('twDenary').value.trim();
+    const out = document.getElementById('twOut');
+
+    const min = -(2 ** (bits - 1));
+    const max = (2 ** (bits - 1)) - 1;
+
+    // if input looks like binary of correct length, decode; else treat as denary integer
+    if(/^[01]+$/.test(raw) && raw.length === bits){
+      const dec = twosDecode(raw, bits);
+      out.textContent =
+        `Mode: decode (two’s complement)\nBits: ${bits}\nRange: ${min} to ${max}\nInput binary: ${raw}\nDecoded denary: ${dec}`;
+      return;
+    }
+
+    const v = Number(raw);
+    if(!Number.isInteger(v)){
+      out.textContent = "Enter a denary integer (e.g., -13) OR a binary string matching the selected bit-width.";
+      return;
+    }
+    const enc = twosEncode(v, bits);
+    if(enc === null){
+      out.textContent = `Out of range.\nBits: ${bits}\nRange: ${min} to ${max}\nYour value: ${v}`;
+      return;
+    }
+    const check = twosDecode(enc, bits);
+    out.textContent =
+      `Mode: encode (two’s complement)\nBits: ${bits}\nRange: ${min} to ${max}\nDenary: ${v}\nBinary: ${enc}\nDecode check: ${check}`;
+  });
+
+  // ---------- Binary add/sub checker ----------
+  function padToWidth(s, w){
+    const t = (s || '').trim();
+    if(/[^01]/.test(t)) return null;
+    if(t.length > w) return null;
+    return t.padStart(w, '0');
+  }
+  function unsignedFromBin(b){ return parseInt(b, 2); }
+  function twosFromBin(b){ return twosDecode(b, b.length); }
+
+  function twosOverflowAdd(a, b, sum){
+    // overflow if a and b have same sign and sum has different sign
+    const sa = a[0], sb = b[0], ss = sum[0];
+    return (sa === sb) && (ss !== sa);
+  }
+
+  document.getElementById('binCalcBtn').addEventListener('click', ()=>{
+    const Araw = document.getElementById('binA').value;
+    const Braw = document.getElementById('binB').value;
+    const op = document.getElementById('binOp').value;
+    const mode = document.getElementById('binSigned').value;
+    const out = document.getElementById('binOut');
+
+    // width = max length of inputs
+    const w = Math.max(Araw.trim().length, Braw.trim().length);
+    if(w === 0){ out.textContent = "Enter binary values."; return; }
+
+    const A = padToWidth(Araw, w);
+    const B = padToWidth(Braw, w);
+    if(A === null || B === null){
+      out.textContent = "Binary inputs must contain only 0/1 and be valid lengths.";
+      return;
+    }
+
+    const Au = unsignedFromBin(A);
+    const Bu = unsignedFromBin(B);
+
+    let sumU, resultBin, overflow = false, detail = "";
+
+    if(op === '+'){
+      sumU = Au + Bu;
+      resultBin = (sumU & ((1 << w) - 1)).toString(2).padStart(w,'0');
+      if(mode === 'unsigned'){
+        overflow = sumU > ((1 << w) - 1);
+        detail = `Unsigned: max=${(1<<w)-1}`;
+      } else {
+        overflow = twosOverflowAdd(A, B, resultBin);
+        detail = `Two’s complement: range=${-(1<<(w-1))}..${(1<<(w-1))-1}`;
+      }
+    } else {
+      // subtraction A - B
+      sumU = Au - Bu;
+      // in fixed-width arithmetic, wrap by adding 2^w then mask
+      const wrapped = (sumU + (1 << w)) & ((1 << w) - 1);
+      resultBin = wrapped.toString(2).padStart(w,'0');
+
+      if(mode === 'unsigned'){
+        overflow = Au < Bu; // underflow/borrow beyond width
+        detail = `Unsigned subtraction: underflow if A < B`;
+      } else {
+        // treat as A + (-B) and apply overflow rule on signed values:
+        const negB = ((~Bu + 1) & ((1 << w) - 1)).toString(2).padStart(w,'0');
+        overflow = twosOverflowAdd(A, negB, resultBin);
+        detail = `Two’s complement subtraction via A + (two’s comp of B)`;
+      }
+    }
+
+    const Ashow = `${A} (${mode==='unsigned' ? Au : twosFromBin(A)})`;
+    const Bshow = `${B} (${mode==='unsigned' ? Bu : twosFromBin(B)})`;
+    const Rshow = `${resultBin} (${mode==='unsigned' ? unsignedFromBin(resultBin) : twosFromBin(resultBin)})`;
+
+    out.textContent =
+      `Width: ${w} bits\nMode: ${mode}\nA: ${Ashow}\nB: ${Bshow}\nOperation: A ${op} B\nResult (stored): ${Rshow}\nOverflow? ${overflow ? "YES" : "NO"}\nNotes: ${detail}`;
+  });
+</script>
+</body>
+</html>

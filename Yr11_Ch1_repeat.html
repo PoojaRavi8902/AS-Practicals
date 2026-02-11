@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cambridge AS Level Computer Science 9618 • Chapter 1: Information Representation (Learning + Practice)</title>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --ink:#111827;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --accent2:#10b981;
+      --warn:#f59e0b;
+      --danger:#ef4444;
+      --border:#e5e7eb;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:linear-gradient(180deg,#f7f8ff, var(--bg));
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(140%) blur(8px);
+      border-bottom:1px solid var(--border);
+    }
+    .wrap{max-width:1550px; margin:0 auto; padding:14px 16px;}
+    .title{
+      display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .title h1{margin:0; font-size:18px; letter-spacing:.2px;}
+    .title .meta{color:var(--muted); font-size:13px}
+    .controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .pill{
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:999px;
+      padding:8px 10px;
+      display:flex; gap:8px; align-items:center;
+      box-shadow:0 1px 0 rgba(0,0,0,.03);
+      font-size:13px;
+    }
+    .pill input[type="search"]{
+      border:none; outline:none; font-size:13px; width:310px; background:transparent;
+    }
+    .pill button{
+      border:none; background:transparent; cursor:pointer; color:var(--muted);
+      padding:2px 6px; border-radius:8px;
+    }
+    .pill button:hover{background:#f3f4f6; color:var(--ink)}
+    .btn{
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:13px;
+      box-shadow:0 1px 0 rgba(0,0,0,.03);
+    }
+    .btn:hover{border-color:#cfd6e4}
+    .btn.primary{background:var(--accent); color:white; border-color:transparent}
+    .btn.primary:hover{filter:brightness(.98)}
+    .layout{
+      max-width:1550px; margin:0 auto;
+      padding:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .panel{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-height: calc(100vh - 130px);
+      display:flex; flex-direction:column;
+    }
+    .panel-header{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .panel-header h2{margin:0; font-size:16px}
+    .panel-header .hint{color:var(--muted); font-size:12px}
+    .content{
+      padding:16px;
+      overflow:auto;
+      line-height:1.65;
+    }
+    .content h3{margin-top:22px; margin-bottom:8px}
+    .content h4{margin-top:16px; margin-bottom:6px}
+    .content p{margin:10px 0}
+    .content ul{margin:8px 0 12px 22px}
+    .content li{margin:6px 0}
+    .card{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px;
+      background:#fff;
+      margin:12px 0;
+    }
+    .callout{
+      border-left:6px solid var(--accent);
+      background:linear-gradient(180deg,#f0f6ff,#ffffff);
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid #dbeafe;
+      margin:12px 0;
+    }
+    .callout.warn{
+      border-left-color:var(--warn);
+      border-color:#fde68a;
+      background:linear-gradient(180deg,#fffbeb,#ffffff);
+    }
+    .callout.good{
+      border-left-color:var(--accent2);
+      border-color:#bbf7d0;
+      background:linear-gradient(180deg,#ecfdf5,#ffffff);
+    }
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;}
+    .mini{font-size:12px; color:var(--muted)}
+    .tag{
+      display:inline-block; padding:2px 8px; border-radius:999px;
+      background:#eef2ff; border:1px solid #e0e7ff; color:#3730a3;
+      font-size:12px; margin-right:6px; margin-top:4px;
+    }
+    table{width:100%; border-collapse:collapse; margin:10px 0 14px; font-size:14px;}
+    th, td{border:1px solid var(--border); padding:10px; vertical-align:top;}
+    th{background:#f9fafb; text-align:left}
+    details{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      margin:10px 0;
+      background:#fff;
+    }
+    summary{cursor:pointer; font-weight:800}
+    textarea{
+      width:100%;
+      min-height:90px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px;
+      font-family:var(--sans);
+      font-size:14px;
+      outline:none;
+      background:#fff;
+    }
+    textarea:focus{border-color:#c7d2fe; box-shadow:0 0 0 4px rgba(99,102,241,.12)}
+    .svgbox{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px;
+      background:#fff;
+      margin:10px 0 14px;
+      overflow:auto;
+    }
+    .q{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      background:#fff;
+      margin:10px 0;
+    }
+    .q .qn{font-weight:900}
+    .answer{margin-top:8px; padding:10px; border-radius:10px; border:1px dashed #d1d5db; background:#fafafa}
+    .bank-controls{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      border:1px solid var(--border); border-radius:12px; padding:10px; background:#fff;
+      margin:12px 0;
+    }
+    select, input[type="number"], input[type="checkbox"]{
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:8px 10px;
+      font-size:13px;
+      outline:none;
+      background:#fff;
+    }
+    input[type="number"]:focus, select:focus{border-color:#c7d2fe; box-shadow:0 0 0 4px rgba(99,102,241,.12)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+
+    /* Print-only test output */
+    @media print{
+      header, .layout, .no-print { display:none !important; }
+      #printOnlyWrapper { display:block !important; }
+      body{ background:#fff; }
+      #printOnlyWrapper{ padding:0; margin:0; color:#000; }
+      .print-page{ padding:18px; }
+      .print-page h1{font-size:18px; margin:0 0 6px}
+      .print-page .meta{font-size:12px; margin-bottom:8px}
+      .print-q{margin:10px 0; page-break-inside:avoid;}
+      .print-q .qn{font-weight:800;}
+      .ans-space{border-bottom:1px solid #000; height:22px; margin:6px 0;}
+      .ans-space.big{height:70px;}
+      .ms{border-top:2px solid #000; padding-top:10px; margin-top:14px;}
+      .ms .ms-item{margin:8px 0; page-break-inside:avoid;}
+    }
+    #printOnlyWrapper{display:none}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="title">
+      <div>
+        <h1>AS Level Computer Science (9618) • Chapter 1: Information Representation</h1>
+        <div class="meta">Two-pane page • <b>Learning</b> (complete notes + illustrations) + <b>Practice</b> (lots of exercises + printable test generator)</div>
+      </div>
+      <div class="controls">
+        <div class="pill" title="Search within the page">
+          🔎 <input id="searchBox" type="search" placeholder="Search: two’s complement, overflow, Unicode, sampling rate, RLE…" />
+          <button id="clearSearch" aria-label="Clear search">✕</button>
+        </div>
+        <button class="btn" id="toggleHighlight">Highlight matches</button>
+        <button class="btn primary" onclick="window.print()">Print current view</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- LEARNING PANE -->
+  <section class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Learning Pane</h2>
+        <div class="hint">I tried to add as much as possible. Hope it helps you.: definitions, methods, worked examples, diagrams, and exam tips.</div>
+      </div>
+      <div class="mini">Tip: Press <b>Enter</b> in search to jump.</div>
+    </div>
+
+    <div class="content" id="learnContent">
+      <div class="callout good">
+        <b>Why this chapter matters:</b> Information representation is the base of programming, data structures, networking, files, multimedia and compression.
+        In exams, it appears as conversions, arithmetic, encoding, file-size calculations and compression reasoning.
+      </div>
+
+      <h3 id="intro">1.0 Information Representation</h3>
+      <p>
+        Computers store and process <b>information</b> using two stable states (usually represented as <b>0</b> and <b>1</b>). A single 0/1 is a <b>bit</b>.
+        Bits combine to represent numbers, text, images, sound and any other data.
+      </p>
+
+      <div class="card">
+        <b>Core vocabulary</b>
+        <ul>
+          <li><b>bit</b> = 0 or 1</li>
+          <li><b>nibble</b> = 4 bits</li>
+          <li><b>byte</b> = 8 bits</li>
+          <li><b>word</b> = CPU’s natural chunk size (e.g., 32-bit, 64-bit)</li>
+          <li><b>LSB/MSB</b> = least/most significant bit</li>
+        </ul>
+      </div>
+
+      <div class="svgbox" aria-label="Bits to bytes diagram">
+        <svg width="980" height="210" viewBox="0 0 980 210" role="img" aria-label="Bits to byte to word diagram">
+          <rect x="10" y="10" width="960" height="190" rx="16" fill="#fff" stroke="#e5e7eb"/>
+          <text x="30" y="45" font-size="18" font-family="system-ui" fill="#111827" font-weight="800">Bits combine to make larger units</text>
+
+          <rect x="40" y="80" width="160" height="90" rx="14" fill="#eef2ff" stroke="#c7d2fe"/>
+          <text x="60" y="110" font-size="12" font-family="system-ui" fill="#111827" font-weight="800">1 bit</text>
+          <text x="60" y="135" font-size="12" font-family="system-ui" fill="#6b7280">0 or 1</text>
+
+          <rect x="240" y="80" width="200" height="90" rx="14" fill="#ecfdf5" stroke="#bbf7d0"/>
+          <text x="260" y="110" font-size="12" font-family="system-ui" fill="#111827" font-weight="800">1 byte</text>
+          <text x="260" y="135" font-size="12" font-family="system-ui" fill="#6b7280">8 bits</text>
+
+          <rect x="480" y="80" width="240" height="90" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+          <text x="500" y="110" font-size="12" font-family="system-ui" fill="#111827" font-weight="800">1 word</text>
+          <text x="500" y="135" font-size="12" font-family="system-ui" fill="#6b7280">e.g., 32 or 64 bits</text>
+
+          <line x1="200" y1="125" x2="240" y2="125" stroke="#9ca3af" stroke-width="2"/>
+          <polygon points="240,125 230,119 230,131" fill="#9ca3af"/>
+          <line x1="440" y1="125" x2="480" y2="125" stroke="#9ca3af" stroke-width="2"/>
+          <polygon points="480,125 470,119 470,131" fill="#9ca3af"/>
+        </svg>
+      </div>
+
+      <h3 id="data-rep">1.1 Data Representation</h3>
+
+      <h4 id="binary">1.1.1 Numbers — Binary number system</h4>
+      <p>
+        The <b>binary system</b> is base-2. Each position is a power of 2. From right to left:
+        2<sup>0</sup>, 2<sup>1</sup>, 2<sup>2</sup>, 2<sup>3</sup> … .
+      </p>
+
+      <div class="card">
+        <b>Place value example</b>
+        <p class="mini">Binary: 1 0 1 1 0 1</p>
+        <p>
+          = 1×2<sup>5</sup> + 0×2<sup>4</sup> + 1×2<sup>3</sup> + 1×2<sup>2</sup> + 0×2<sup>1</sup> + 1×2<sup>0</sup><br/>
+          = 32 + 0 + 8 + 4 + 0 + 1 = <b>45</b>
+        </p>
+      </div>
+
+      <h4 id="bin-dec">1.1.2 Conversion between binary and decimal</h4>
+      <div class="two">
+        <div class="card">
+          <b>Binary → Decimal</b>
+          <ol>
+            <li>Write the place values.</li>
+            <li>Multiply each bit by its place value.</li>
+            <li>Add the results.</li>
+          </ol>
+          <p class="mini">Example: 1100101₂ = 64 + 32 + 0 + 0 + 4 + 0 + 1 = <b>101₁₀</b></p>
+        </div>
+        <div class="card">
+          <b>Decimal → Binary</b>
+          <ol>
+            <li>Repeatedly divide by 2.</li>
+            <li>Record remainders.</li>
+            <li>Read remainders bottom to top.</li>
+          </ol>
+          <p class="mini">Example: 13₁₀ → 1101₂</p>
+        </div>
+      </div>
+
+      <details>
+        <summary>Worked example: Convert 156₁₀ to binary (division by 2)</summary>
+        <div class="card">
+          <p class="mini">156 ÷ 2 = 78 r0<br>
+          78 ÷ 2 = 39 r0<br>
+          39 ÷ 2 = 19 r1<br>
+          19 ÷ 2 = 9 r1<br>
+          9 ÷ 2 = 4 r1<br>
+          4 ÷ 2 = 2 r0<br>
+          2 ÷ 2 = 1 r0<br>
+          1 ÷ 2 = 0 r1</p>
+          <p>Read remainders bottom→top: <b>10011100₂</b></p>
+        </div>
+      </details>
+
+      <h4 id="negatives">1.1.3 Negative binary numbers</h4>
+      <p>
+        A computer must represent positive and negative integers. Two common methods are:
+        <b>sign-magnitude</b> and <b>two’s complement</b>.
+      </p>
+
+      <div class="two">
+        <div class="card">
+          <b>Sign-magnitude</b>
+          <ul>
+            <li>MSB is the sign: 0 = positive, 1 = negative.</li>
+            <li>Remaining bits store magnitude.</li>
+            <li>Problem: two zeros (+0 and -0) and arithmetic is harder.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <b>Two’s complement</b>
+          <ul>
+            <li>Most widely used for signed integers.</li>
+            <li>Single zero, arithmetic works naturally.</li>
+            <li>Range for n bits: -2<sup>n-1</sup> to + (2<sup>n-1</sup> - 1)</li>
+          </ul>
+        </div>
+      </div>
+
+      <details>
+        <summary>How to form a two’s complement negative number (step-by-step)</summary>
+        <div class="card">
+          <ol>
+            <li>Write the positive number in binary using fixed bits.</li>
+            <li>Invert all bits (0↔1).</li>
+            <li>Add 1.</li>
+          </ol>
+          <p class="mini"><b>Example:</b> Represent -18 in 8-bit two’s complement<br>
+            +18 = 00010010<br>
+            Invert → 11101101<br>
+            +1 → 11101110<br>
+            So -18 = <b>11101110</b>
+          </p>
+        </div>
+      </details>
+
+      <div class="callout warn">
+        <b>Exam trap:</b> Always use the required bit-length (e.g., 8-bit). If you forget leading zeros, your answer can be marked wrong.
+      </div>
+
+      <h4 id="hex">1.1.4 Hexadecimal representation</h4>
+      <p>
+        <b>Hexadecimal</b> is base-16 and is compact for representing binary. One hex digit = 4 bits (a nibble).
+      </p>
+
+      <div class="card">
+        <b>Hex digits</b><br/>
+        0 1 2 3 4 5 6 7 8 9 A B C D E F  (where A=10 … F=15)
+      </div>
+
+      <table>
+        <tr><th>Binary (4 bits)</th><th>Hex</th><th>Binary (4 bits)</th><th>Hex</th></tr>
+        <tr><td>0000</td><td>0</td><td>1000</td><td>8</td></tr>
+        <tr><td>0001</td><td>1</td><td>1001</td><td>9</td></tr>
+        <tr><td>0010</td><td>2</td><td>1010</td><td>A</td></tr>
+        <tr><td>0011</td><td>3</td><td>1011</td><td>B</td></tr>
+        <tr><td>0100</td><td>4</td><td>1100</td><td>C</td></tr>
+        <tr><td>0101</td><td>5</td><td>1101</td><td>D</td></tr>
+        <tr><td>0110</td><td>6</td><td>1110</td><td>E</td></tr>
+        <tr><td>0111</td><td>7</td><td>1111</td><td>F</td></tr>
+      </table>
+
+      <details>
+        <summary>Worked examples: Binary ↔ Hex ↔ Decimal</summary>
+        <div class="card">
+          <p><b>Binary → Hex:</b> 10111100₂<br/>
+          Group into 4 bits: 1011 1100 → B C → <b>BC₁₆</b></p>
+
+          <p><b>Hex → Binary:</b> 3A₁₆ → 0011 1010 → <b>00111010₂</b></p>
+
+          <p><b>Hex → Decimal:</b> 2F₁₆ = 2×16 + 15 = <b>47₁₀</b></p>
+        </div>
+      </details>
+
+      <h4 id="bin-arith">1.1.5 Binary arithmetic</h4>
+      <p>
+        Binary arithmetic follows the same idea as decimal, but with only 0 and 1. Key rules for addition:
+      </p>
+      <div class="card">
+        <ul>
+          <li>0 + 0 = 0</li>
+          <li>0 + 1 = 1</li>
+          <li>1 + 0 = 1</li>
+          <li>1 + 1 = 0 carry 1 (because 2 in decimal is 10 in binary)</li>
+          <li>1 + 1 + carry 1 = 1 carry 1 (because 3 decimal is 11 binary)</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary>Worked example: Binary addition (8-bit)</summary>
+        <div class="card" style="font-family:var(--mono);">
+          00101101<br/>
+          +00011110<br/>
+          =01001011
+          <p class="mini">45 + 30 = 75 (check: 01001011₂ = 75₁₀)</p>
+        </div>
+      </details>
+
+      <h4 id="overflow">1.1.6 Overflow and underflow</h4>
+      <p>
+        If we use a fixed number of bits, only a certain range of values is possible.
+        <b>Overflow</b> happens when the result is too large to fit in the available bits.
+        <b>Underflow</b> (in this integer context) can be thought of as the result being too small (too negative) to fit.
+      </p>
+
+      <div class="card">
+        <b>Range reminder</b>
+        <ul>
+          <li><b>Unsigned n-bit:</b> 0 to 2<sup>n</sup> − 1</li>
+          <li><b>Two’s complement n-bit:</b> −2<sup>n−1</sup> to + (2<sup>n−1</sup> − 1)</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary>Overflow example (4-bit unsigned)</summary>
+        <div class="card" style="font-family:var(--mono);">
+          1111 (15)<br/>
+          +0001 (1)<br/>
+          =1 0000 (16) → but only 4 bits allowed → stored as 0000 (overflow)
+          <p class="mini">In real systems, overflow flag may be set to indicate error.</p>
+        </div>
+      </details>
+
+      <h4 id="encoding">1.1.7 Character encoding: ASCII, Extended ASCII, Unicode</h4>
+      <p>
+        To store text, computers map characters to numbers. That mapping is a <b>character set</b>.
+      </p>
+
+      <div class="two">
+        <div class="card">
+          <b>ASCII</b>
+          <ul>
+            <li>Typically 7 bits (0–127).</li>
+            <li>Includes English letters, digits, punctuation, control codes.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <b>Unicode</b>
+          <ul>
+            <li>Supports a very large set of characters (many languages, symbols, emoji).</li>
+            <li>Implemented through encodings such as UTF-8, UTF-16.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <b>Exam-ready difference:</b> ASCII is limited (mainly English) with small code range; Unicode supports many languages and symbols so it enables consistent global text representation.
+      </div>
+
+      <div class="svgbox" aria-label="Encoding concept diagram">
+        <svg width="980" height="250" viewBox="0 0 980 250" role="img" aria-label="Character encoding mapping diagram">
+          <rect x="10" y="10" width="960" height="230" rx="16" fill="#fff" stroke="#e5e7eb"/>
+          <text x="30" y="45" font-size="18" font-family="system-ui" fill="#111827" font-weight="800">Character encoding = mapping between characters and numbers</text>
+
+          <rect x="50" y="85" width="260" height="140" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+          <text x="70" y="112" font-size="13" font-family="system-ui" fill="#1d4ed8" font-weight="800">Character</text>
+          <text x="70" y="145" font-size="28" font-family="system-ui" fill="#111827">A</text>
+          <text x="70" y="185" font-size="12" font-family="system-ui" fill="#6b7280">e.g., letter A</text>
+
+          <rect x="350" y="85" width="260" height="140" rx="14" fill="#ecfdf5" stroke="#bbf7d0"/>
+          <text x="370" y="112" font-size="13" font-family="system-ui" fill="#065f46" font-weight="800">Code point / value</text>
+          <text x="370" y="150" font-size="22" font-family="system-ui" fill="#111827">65 (ASCII)</text>
+          <text x="370" y="180" font-size="12" font-family="system-ui" fill="#6b7280">Unicode can store many more</text>
+
+          <rect x="650" y="85" width="280" height="140" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+          <text x="670" y="112" font-size="13" font-family="system-ui" fill="#9a3412" font-weight="800">Bits stored in memory</text>
+          <text x="670" y="150" font-size="20" font-family="var(--mono)" fill="#111827">01000001</text>
+          <text x="670" y="180" font-size="12" font-family="system-ui" fill="#6b7280">same concept for all characters</text>
+
+          <line x1="310" y1="155" x2="350" y2="155" stroke="#9ca3af" stroke-width="2"/>
+          <polygon points="350,155 340,149 340,161" fill="#9ca3af"/>
+          <line x1="610" y1="155" x2="650" y2="155" stroke="#9ca3af" stroke-width="2"/>
+          <polygon points="650,155 640,149 640,161" fill="#9ca3af"/>
+        </svg>
+      </div>
+
+      <h4 id="boolean">1.1.8 Representing logical values (Boolean)</h4>
+      <p>
+        A <b>Boolean</b> value has only two states: <b>TRUE</b> or <b>FALSE</b>. Computers represent these with bits, typically:
+        FALSE = 0 and TRUE = 1 (though other conventions exist in some systems).
+      </p>
+      <div class="card">
+        <b>Where Boolean values appear</b>
+        <ul>
+          <li>Conditions in programs: IF statements, loops</li>
+          <li>Logic circuits: AND, OR, NOT</li>
+          <li>Flags and status bits in hardware/software</li>
+        </ul>
+      </div>
+
+      <h3 id="multimedia">1.2 Multimedia — Graphics and Sound</h3>
+      <p>
+        Multimedia files (images and audio) must be represented as bits. Exams often test <b>quality vs size</b> trade-offs and file size calculations.
+      </p>
+
+      <h4 id="graphics">1.2.1 Graphics: pixels, resolution, colour depth</h4>
+      <p>
+        A <b>bitmap image</b> is a grid of <b>pixels</b>. Each pixel stores a colour value.
+        Two major factors control quality and file size:
+      </p>
+      <ul>
+        <li><b>Resolution</b>: number of pixels (width × height). More pixels = more detail.</li>
+        <li><b>Colour depth</b>: bits per pixel (bpp). More bits = more possible colours.</li>
+      </ul>
+
+      <div class="svgbox" aria-label="Pixels grid illustration">
+        <svg width="980" height="300" viewBox="0 0 980 300" role="img" aria-label="Pixel grid, resolution and colour depth illustration">
+          <rect x="10" y="10" width="960" height="280" rx="16" fill="#fff" stroke="#e5e7eb"/>
+          <text x="30" y="45" font-size="18" font-family="system-ui" fill="#111827" font-weight="800">Bitmap image = grid of pixels</text>
+          <text x="30" y="70" font-size="12" font-family="system-ui" fill="#6b7280">Resolution = width × height (pixels) • Colour depth = bits per pixel (possible colours = 2^bpp)</text>
+
+          <!-- grid -->
+          <g transform="translate(50,95)">
+            <rect x="0" y="0" width="210" height="210" fill="#f9fafb" stroke="#e5e7eb"/>
+            <!-- 7x7 -->
+            <g stroke="#e5e7eb">
+              <!-- vertical -->
+              <line x1="30" y1="0" x2="30" y2="210"/><line x1="60" y1="0" x2="60" y2="210"/>
+              <line x1="90" y1="0" x2="90" y2="210"/><line x1="120" y1="0" x2="120" y2="210"/>
+              <line x1="150" y1="0" x2="150" y2="210"/><line x1="180" y1="0" x2="180" y2="210"/>
+              <!-- horizontal -->
+              <line x1="0" y1="30" x2="210" y2="30"/><line x1="0" y1="60" x2="210" y2="60"/>
+              <line x1="0" y1="90" x2="210" y2="90"/><line x1="0" y1="120" x2="210" y2="120"/>
+              <line x1="0" y1="150" x2="210" y2="150"/><line x1="0" y1="180" x2="210" y2="180"/>
+            </g>
+            <text x="0" y="235" font-size="12" font-family="system-ui" fill="#6b7280">Each square is a pixel</text>
+          </g>
+
+          <!-- quality vs size -->
+          <rect x="320" y="95" width="630" height="210" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+          <text x="340" y="125" font-size="13" font-family="system-ui" fill="#1d4ed8" font-weight="800">Quality vs file size</text>
+          <text x="340" y="150" font-size="12" font-family="system-ui" fill="#111827">Increase resolution → more pixels → larger file</text>
+          <text x="340" y="172" font-size="12" font-family="system-ui" fill="#111827">Increase colour depth → more bits per pixel → larger file</text>
+          <text x="340" y="202" font-size="12" font-family="system-ui" fill="#111827" font-weight="700">Colours possible = 2^bpp</text>
+          <text x="340" y="224" font-size="12" font-family="system-ui" fill="#111827">Example: 8 bpp → 256 colours; 24 bpp → 16.7 million colours</text>
+          <text x="340" y="254" font-size="12" font-family="system-ui" fill="#111827" font-weight="700">Bitmap file size (bits) = width × height × bpp</text>
+          <text x="340" y="276" font-size="12" font-family="system-ui" fill="#6b7280">(+ metadata/header, often ignored unless specified)</text>
+        </svg>
+      </div>
+
+      <h4 id="bitmap-size">1.2.2 Bitmap file size calculation</h4>
+      <div class="card">
+        <b>Formula</b>
+        <p><span class="tag">Size (bits)</span> = width × height × colour depth (bits per pixel)</p>
+        <p><span class="tag">Size (bytes)</span> = Size(bits) ÷ 8</p>
+        <p><span class="tag">Size (KB/MB)</span> use 1 KB = 1024 bytes, 1 MB = 1024 KB (unless question says 1000).</p>
+      </div>
+
+      <details>
+        <summary>Worked example: Bitmap size</summary>
+        <div class="card">
+          <p>Image: 800 × 600, colour depth = 24 bpp</p>
+          <p>
+            Pixels = 800 × 600 = 480,000<br/>
+            Bits = 480,000 × 24 = 11,520,000 bits<br/>
+            Bytes = 11,520,000 ÷ 8 = 1,440,000 bytes<br/>
+            MB = 1,440,000 ÷ (1024×1024) ≈ <b>1.37 MB</b> (approx)
+          </p>
+        </div>
+      </details>
+
+      <h4 id="sound">1.2.3 Sound: sampling & ADC</h4>
+      <p>
+        Sound in the real world is <b>analogue</b> (continuous). Computers store sound digitally by:
+      </p>
+      <ol>
+        <li><b>Sampling</b>: measuring the amplitude at regular time intervals (sampling rate).</li>
+        <li><b>Quantisation</b>: rounding each sample to the nearest available value (sampling resolution / bit depth).</li>
+        <li><b>Encoding</b>: storing samples as binary numbers.</li>
+      </ol>
+
+      <div class="svgbox" aria-label="ADC sampling diagram">
+        <svg width="980" height="320" viewBox="0 0 980 320" role="img" aria-label="Analogue wave to sampled points diagram">
+          <rect x="10" y="10" width="960" height="300" rx="16" fill="#fff" stroke="#e5e7eb"/>
+          <text x="30" y="45" font-size="18" font-family="system-ui" fill="#111827" font-weight="800">Analogue-to-Digital Conversion (ADC): sampling + quantisation</text>
+          <text x="30" y="70" font-size="12" font-family="system-ui" fill="#6b7280">Sampling rate = samples per second (Hz) • Resolution = bits per sample (levels = 2^bits)</text>
+
+          <!-- axes -->
+          <line x1="70" y1="260" x2="930" y2="260" stroke="#9ca3af" stroke-width="2"/>
+          <line x1="70" y1="90" x2="70" y2="260" stroke="#9ca3af" stroke-width="2"/>
+
+          <!-- analogue curve -->
+          <path d="M70 200
+                   C 140 120, 220 120, 290 200
+                   C 360 280, 440 280, 510 200
+                   C 580 120, 660 120, 730 200
+                   C 800 280, 880 280, 930 200"
+                fill="none" stroke="#2563eb" stroke-width="3"/>
+
+          <!-- sample points -->
+          <g fill="#ef4444">
+            <circle cx="110" cy="170" r="5"/>
+            <circle cx="190" cy="125" r="5"/>
+            <circle cx="270" cy="175" r="5"/>
+            <circle cx="350" cy="245" r="5"/>
+            <circle cx="430" cy="245" r="5"/>
+            <circle cx="510" cy="175" r="5"/>
+            <circle cx="590" cy="125" r="5"/>
+            <circle cx="670" cy="170" r="5"/>
+            <circle cx="750" cy="245" r="5"/>
+            <circle cx="830" cy="245" r="5"/>
+            <circle cx="910" cy="175" r="5"/>
+          </g>
+
+          <!-- quantisation levels -->
+          <g stroke="#e5e7eb">
+            <line x1="70" y1="110" x2="930" y2="110"/>
+            <line x1="70" y1="140" x2="930" y2="140"/>
+            <line x1="70" y1="170" x2="930" y2="170"/>
+            <line x1="70" y1="200" x2="930" y2="200"/>
+            <line x1="70" y1="230" x2="930" y2="230"/>
+          </g>
+
+          <text x="750" y="110" font-size="11" font-family="system-ui" fill="#6b7280">quantisation levels</text>
+          <text x="90" y="285" font-size="12" font-family="system-ui" fill="#6b7280">time →</text>
+          <text x="20" y="100" font-size="12" font-family="system-ui" fill="#6b7280">amplitude</text>
+
+          <rect x="680" y="20" width="270" height="55" rx="12" fill="#fffbeb" stroke="#fde68a"/>
+          <text x="700" y="45" font-size="12" font-family="system-ui" fill="#92400e"><tspan font-weight="800">Sampling</tspan> picks points</text>
+          <text x="700" y="63" font-size="12" font-family="system-ui" fill="#92400e"><tspan font-weight="800">Quantisation</tspan> rounds them</text>
+        </svg>
+      </div>
+
+      <h4 id="sound-size">1.2.4 Sound file size calculation</h4>
+      <div class="card">
+        <b>Formula</b>
+        <p><span class="tag">Size (bits)</span> = sampling rate × duration × resolution × channels</p>
+        <p class="mini">Channels: 1 = mono, 2 = stereo</p>
+      </div>
+
+      <details>
+        <summary>Worked example: Sound size</summary>
+        <div class="card">
+          <p>Audio: 44,100 Hz, 16-bit, stereo (2 channels), duration 10 seconds</p>
+          <p>
+            Bits = 44,100 × 10 × 16 × 2 = 14,112,000 bits<br/>
+            Bytes = 14,112,000 ÷ 8 = 1,764,000 bytes<br/>
+            MB = 1,764,000 ÷ (1024×1024) ≈ <b>1.68 MB</b> (approx)
+          </p>
+        </div>
+      </details>
+
+      <div class="callout warn">
+        <b>Quality trade-offs:</b> Increasing sampling rate/resolution improves quality but increases file size.
+        Low sampling or low resolution can create distortion/“loss of detail”.
+      </div>
+
+      <h3 id="compression">1.3 Compression</h3>
+      <p>
+        Compression reduces file size for storage and transmission. Exams test:
+        <b>why</b> we compress, <b>lossless vs lossy</b>, and simple methods like <b>RLE</b>, plus the basic idea of <b>Huffman coding</b>.
+      </p>
+
+      <h4 id="why-compress">1.3.1 Why compression is needed</h4>
+      <ul>
+        <li>Smaller storage requirements (less disk/cloud space).</li>
+        <li>Faster transmission (less data to send).</li>
+        <li>Lower bandwidth usage (more efficient network use).</li>
+      </ul>
+
+      <h4 id="lossless-lossy">1.3.2 Lossless vs Lossy</h4>
+      <div class="two">
+        <div class="card">
+          <b>Lossless</b>
+          <ul>
+            <li>Original data can be perfectly reconstructed.</li>
+            <li>Used for text, programs, spreadsheets, medical/scientific data.</li>
+            <li>Examples: PNG, ZIP (conceptually).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <b>Lossy</b>
+          <ul>
+            <li>Some data is removed permanently to reduce size.</li>
+            <li>Used for images/audio/video where slight loss is acceptable.</li>
+            <li>Examples: JPEG, MP3 (conceptually).</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4 id="rle">1.3.3 Run-length encoding (RLE)</h4>
+      <p>
+        RLE is a simple lossless method for data with repeated values. It stores <b>(value, count)</b> instead of repeating the value.
+      </p>
+
+      <details>
+        <summary>Worked example: RLE on a simple sequence</summary>
+        <div class="card">
+          <p><b>Original:</b> AAAAABBBCCDAA</p>
+          <p><b>RLE:</b> 5A 3B 2C 1D 2A</p>
+          <p class="mini">In images, RLE works well on large areas of the same colour (e.g., simple graphics).</p>
+        </div>
+      </details>
+
+      <h4 id="huffman">1.3.4 Huffman coding (basic concept)</h4>
+      <p>
+        Huffman coding is lossless. It assigns <b>shorter codes</b> to more frequent symbols and <b>longer codes</b> to less frequent symbols,
+        reducing average bits per symbol.
+      </p>
+      <div class="card">
+        <b>Key idea (exam-safe)</b>
+        <ul>
+          <li>Count frequency of symbols.</li>
+          <li>Build a binary tree based on frequencies.</li>
+          <li>More frequent symbols get shorter bit codes.</li>
+          <li>Codes must be prefix-free (no code is the prefix of another).</li>
+        </ul>
+      </div>
+
+      <div class="foot mini">Learning Pane ends here.    Hope you find this useful,guys!--Ravi.</div>
+    </div>
+  </section>
+
+  <!-- PRACTICE PANE -->
+  <section class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Practice Pane</h2>
+        <div class="hint">Large exercise bank + worked answers + printable test generator.</div>
+      </div>
+      <div class="row">
+        <button class="btn primary no-print" id="openGenerator">Open Test Generator</button>
+      </div>
+    </div>
+
+    <div class="content" id="practiceContent">
+      <div class="callout">
+        <b>How to use this pane:</b> Do questions first without answers. Then open the mark scheme sections to self-check.
+      </div>
+
+      <h3>Section A — Conversions (Binary/Decimal/Hex)</h3>
+
+      <div class="q">
+        <div class="qn">A1. Convert to decimal: 10101101₂</div>
+        <textarea placeholder="Show working..."></textarea>
+        <details><summary>Answer</summary><div class="answer">173₁₀</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">A2. Convert to binary (8-bit): 209₁₀</div>
+        <textarea placeholder="Show division by 2 or place values..."></textarea>
+        <details><summary>Answer</summary><div class="answer">11010001₂</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">A3. Convert to hex: 1101 0110 1011 1001₂</div>
+        <textarea placeholder="Group in 4 bits, convert each nibble..."></textarea>
+        <details><summary>Answer</summary><div class="answer">D6B9₁₆</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">A4. Convert to binary: 7F₁₆</div>
+        <textarea placeholder="Each hex digit = 4 bits..."></textarea>
+        <details><summary>Answer</summary><div class="answer">0111 1111₂</div></details>
+      </div>
+
+      <h3>Section B — Negative numbers and range</h3>
+
+      <div class="q">
+        <div class="qn">B1. Write -37 in 8-bit two’s complement.</div>
+        <textarea placeholder="Write +37, invert, add 1..."></textarea>
+        <details><summary>Answer</summary><div class="answer">+37 = 00100101 → invert 11011010 → +1 = <b>11011011</b></div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">B2. What range of values can be represented in 8-bit two’s complement?</div>
+        <textarea placeholder="Use -2^(n-1) to + (2^(n-1)-1)..."></textarea>
+        <details><summary>Answer</summary><div class="answer">-128 to +127</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">B3. Explain why sign-magnitude is less preferred than two’s complement.</div>
+        <textarea placeholder="Mention two zeros and arithmetic complexity..."></textarea>
+        <details><summary>Mark points</summary>
+          <div class="answer">
+            Any 2–3: has +0 and -0; arithmetic harder; extra logic needed; two’s complement gives single zero and easier addition/subtraction.
+          </div>
+        </details>
+      </div>
+
+      <h3>Section C — Binary arithmetic + overflow</h3>
+
+      <div class="q">
+        <div class="qn">C1. Add (8-bit): 01101101 + 00111011</div>
+        <textarea placeholder="Show carries..."></textarea>
+        <details><summary>Answer</summary><div class="answer">10101000 (overflow for signed? depends on interpretation)</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">C2. For 4-bit unsigned, show an example of overflow and explain it.</div>
+        <textarea placeholder="e.g., 1111 + 0001..."></textarea>
+        <details><summary>Mark points</summary>
+          <div class="answer">
+            Example: 1111 (15) + 0001 (1) = 1 0000, but only 4 bits stored → 0000 with overflow flag; result exceeds max 15.
+          </div>
+        </details>
+      </div>
+
+      <h3>Section D — Character encoding</h3>
+
+      <div class="q">
+        <div class="qn">D1. State one limitation of ASCII.</div>
+        <textarea></textarea>
+        <details><summary>Answer</summary><div class="answer">Limited number of characters; mainly English; cannot represent many world languages/symbols.</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">D2. Explain one advantage of Unicode.</div>
+        <textarea></textarea>
+        <details><summary>Mark points</summary>
+          <div class="answer">
+            Supports many languages and symbols consistently; avoids incompatible character sets; enables global text representation.
+          </div>
+        </details>
+      </div>
+
+      <h3>Section E — Bitmap and sound file size calculations</h3>
+
+      <div class="q">
+        <div class="qn">E1. Calculate bitmap size (ignore header): 1024×768 at 8 bpp. Give answer in MB.</div>
+        <textarea placeholder="Show: pixels × bpp = bits → bytes → MB..."></textarea>
+        <details><summary>Answer</summary><div class="answer">1024×768=786,432 px; bits=6,291,456; bytes=786,432; MB≈0.75 MB</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">E2. Calculate sound size: 22,050 Hz, 8-bit, mono, 30 seconds. Give in KB.</div>
+        <textarea></textarea>
+        <details><summary>Answer</summary><div class="answer">Bits=22050×30×8×1=5,292,000; bytes=661,500; KB≈646 KB</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">E3. Explain how increasing sampling resolution affects quality and file size.</div>
+        <textarea></textarea>
+        <details><summary>Mark points</summary>
+          <div class="answer">
+            More bits per sample → more quantisation levels → better accuracy/less quantisation error; file size increases proportionally.
+          </div>
+        </details>
+      </div>
+
+      <h3>Section F — Compression (RLE + theory)</h3>
+
+      <div class="q">
+        <div class="qn">F1. Apply RLE to: 000001111100</div>
+        <textarea></textarea>
+        <details><summary>Answer</summary><div class="answer">5×0, 5×1, 2×0 (format may vary: 50 51 20 or 5(0) 5(1) 2(0))</div></details>
+      </div>
+
+      <div class="q">
+        <div class="qn">F2. Give two reasons why compression is useful when streaming video.</div>
+        <textarea></textarea>
+        <details><summary>Mark points</summary>
+          <div class="answer">
+            Smaller data → faster transmission; lower bandwidth usage; less buffering; reduced storage for cached segments.
+          </div>
+        </details>
+      </div>
+
+      <div class="q">
+        <div class="qn">F3. State one situation where lossless compression is required and explain why.</div>
+        <textarea></textarea>
+        <details><summary>Mark points</summary>
+          <div class="answer">
+            Programs/executables, text documents, medical images, spreadsheets: data must be identical after decompression; no errors allowed.
+          </div>
+        </details>
+      </div>
+
+      <!-- TEST GENERATOR -->
+      <div class="card no-print" id="generatorCard" style="display:none;">
+        <h3>Printable Test Generator</h3>
+        <p class="mini">Generate a full practice paper (questions + optional mark scheme) for this chapter.</p>
+
+        <div class="bank-controls">
+          <label class="mini">Paper title</label>
+          <select id="paperTitle">
+            <option value="AS Level CS (9618) • Chapter 1: Information Representation — Practice Paper">Chapter 1 Practice Paper</option>
+            <option value="AS Level CS (9618) • Information Representation — Revision Test">Revision Test</option>
+            <option value="AS Level CS (9618) • Information Representation — Mini Mock">Mini Mock</option>
+          </select>
+
+          <label class="mini">One-mark items</label>
+          <input id="oneMarkCount" type="number" min="10" max="120" value="60"/>
+
+          <label class="mini">Structured Qs</label>
+          <input id="structuredCount" type="number" min="0" max="10" value="4"/>
+
+          <label class="mini">Include mark scheme</label>
+          <input id="includeMS" type="checkbox" checked />
+
+          <label class="mini">Seed (optional)</label>
+          <input id="seed" type="number" min="1" max="999999" placeholder="e.g., 2026"/>
+
+          <button class="btn primary" id="generatePaper">Generate</button>
+          <button class="btn" id="printPaper">Print generated paper</button>
+        </div>
+
+        <div class="card" id="previewArea">
+          <div class="mini">Preview appears after you click <b>Generate</b>.</div>
+        </div>
+
+        <div class="callout warn">
+          <b>Printing note:</b> Click <b>Print generated paper</b>. The print view includes only the generated test (and mark scheme if selected).
+        </div>
+      </div>
+
+      <div class="mini" style="margin-top:14px;">
+        Prepared By Ravi
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- PRINT ONLY -->
+<div id="printOnlyWrapper"></div>
+
+<script>
+  // =========================
+  // Search + highlight
+  // =========================
+  const searchBox = document.getElementById('searchBox');
+  const clearBtn = document.getElementById('clearSearch');
+  const toggleHighlightBtn = document.getElementById('toggleHighlight');
+  let highlightOn = false;
+
+  function clearHighlights() {
+    const root = document.querySelector('main');
+    const marks = root.querySelectorAll('mark.searchHit');
+    marks.forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+  }
+
+  function highlightTerm(term) {
+    if (!term) return;
+    const panes = [document.getElementById('learnContent'), document.getElementById('practiceContent')];
+
+    panes.forEach(pane => {
+      const walker = document.createTreeWalker(pane, NodeFilter.SHOW_TEXT, {
+        acceptNode: (node) => {
+          if (!node.nodeValue) return NodeFilter.FILTER_REJECT;
+          if (node.parentElement && ['SCRIPT','STYLE'].includes(node.parentElement.tagName)) return NodeFilter.FILTER_REJECT;
+          if (node.nodeValue.toLowerCase().includes(term.toLowerCase())) return NodeFilter.FILTER_ACCEPT;
+          return NodeFilter.FILTER_REJECT;
+        }
+      });
+
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(textNode => {
+        const val = textNode.nodeValue;
+        const lower = val.toLowerCase();
+        const t = term.toLowerCase();
+        const idx = lower.indexOf(t);
+        if (idx === -1) return;
+
+        const before = document.createTextNode(val.slice(0, idx));
+        const match = document.createElement('mark');
+        match.className = 'searchHit';
+        match.textContent = val.slice(idx, idx + term.length);
+        const after = document.createTextNode(val.slice(idx + term.length));
+
+        const frag = document.createDocumentFragment();
+        frag.appendChild(before);
+        frag.appendChild(match);
+        frag.appendChild(after);
+        textNode.replaceWith(frag);
+      });
+    });
+  }
+
+  function jumpToFirstMatch(term) {
+    const content = document.querySelector('main');
+    const el = [...content.querySelectorAll('*')].find(e =>
+      e.childNodes && [...e.childNodes].some(n => n.nodeType === 3 && n.nodeValue.toLowerCase().includes(term.toLowerCase()))
+    );
+    if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  clearBtn.addEventListener('click', () => {
+    searchBox.value = '';
+    clearHighlights();
+    searchBox.focus();
+  });
+
+  searchBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const term = searchBox.value.trim();
+      if (!term) return;
+      if (highlightOn) {
+        clearHighlights();
+        highlightTerm(term);
+      }
+      jumpToFirstMatch(term);
+    }
+  });
+
+  toggleHighlightBtn.addEventListener('click', () => {
+    highlightOn = !highlightOn;
+    toggleHighlightBtn.textContent = highlightOn ? 'Highlight: ON' : 'Highlight matches';
+    clearHighlights();
+    const term = searchBox.value.trim();
+    if (highlightOn && term) highlightTerm(term);
+  });
+
+  // =========================
+  // Test generator banks
+  // =========================
+  const ONE_MARK_BANK = [
+    // Numbers & conversions
+    {q:"Define a bit.", a:"A binary digit: 0 or 1."},
+    {q:"Define a byte.", a:"8 bits."},
+    {q:"State the base of the binary number system.", a:"Base 2."},
+    {q:"State the base of hexadecimal.", a:"Base 16."},
+    {q:"How many bits are in one hexadecimal digit?", a:"4 bits."},
+    {q:"Convert 1010₂ to decimal.", a:"10."},
+    {q:"Convert 1111₂ to decimal.", a:"15."},
+    {q:"Convert 12₁₀ to binary.", a:"1100₂."},
+    {q:"Convert 2A₁₆ to decimal.", a:"42."},
+    {q:"Convert 255₁₀ to 8-bit binary.", a:"11111111."},
+    // Two's complement
+    {q:"State the range of 8-bit two’s complement integers.", a:"-128 to +127."},
+    {q:"State one advantage of two’s complement over sign-magnitude.", a:"Only one zero; easier arithmetic."},
+    {q:"What is the first step to form a two’s complement negative value?", a:"Write the positive value in fixed bits (then invert and add 1)."},
+    // Overflow
+    {q:"What is overflow?", a:"When a result exceeds the representable range for the fixed number of bits."},
+    {q:"State max value for 4-bit unsigned.", a:"15."},
+    // Encoding
+    {q:"What is ASCII used for?", a:"Representing characters as numeric codes."},
+    {q:"State one limitation of ASCII.", a:"Limited character set (mainly English)."},
+    {q:"State one advantage of Unicode.", a:"Supports many languages/symbols consistently."},
+    // Boolean
+    {q:"How many values can a Boolean take?", a:"Two: TRUE/FALSE."},
+    {q:"Commonly, what values represent FALSE and TRUE?", a:"0 for FALSE, 1 for TRUE."},
+    // Graphics
+    {q:"What is a pixel?", a:"The smallest element of a bitmap image."},
+    {q:"Define resolution (bitmap).", a:"Width × height in pixels."},
+    {q:"Define colour depth.", a:"Number of bits used per pixel."},
+    {q:"How many colours are possible with 8 bpp?", a:"256."},
+    {q:"Give the bitmap size formula in bits.", a:"Width × height × bits per pixel."},
+    // Sound
+    {q:"Define sampling rate.", a:"Samples per second (Hz)."},
+    {q:"Define sampling resolution (bit depth).", a:"Bits per sample / number of quantisation levels."},
+    {q:"Give sound size formula in bits.", a:"Sampling rate × duration × resolution × channels."},
+    {q:"What is ADC?", a:"Analogue-to-digital conversion."},
+    // Compression
+    {q:"Why compress files? (one reason)", a:"Smaller storage or faster transmission."},
+    {q:"Define lossless compression.", a:"Original can be perfectly reconstructed."},
+    {q:"Define lossy compression.", a:"Some information removed permanently."},
+    {q:"What is RLE?", a:"Run-length encoding; stores repeated values as value+count."},
+    {q:"Huffman coding is based on what idea?", a:"More frequent symbols get shorter codes."}
+  ];
+
+  const STRUCTURED_BANK = [
+    {
+      title:"Conversions and representation (10 marks)",
+      marks:10,
+      parts:[
+        {q:"(a) Convert 11010110₂ to decimal. (2)", a:"214 (2)."},
+        {q:"(b) Convert 73₁₀ to 8-bit binary. (2)", a:"01001001 (2)."},
+        {q:"(c) Convert 3C₁₆ to binary. (2)", a:"0011 1100 (2)."},
+        {q:"(d) Explain one advantage of hexadecimal for representing binary. (2)", a:"Compact; fewer digits; easier reading; maps 4 bits to 1 digit. Any explained (2)."},
+        {q:"(e) State the 8-bit two’s complement range. (2)", a:"-128 to +127 (2)."}
+      ]
+    },
+    {
+      title:"Two’s complement and overflow (8 marks)",
+      marks:8,
+      parts:[
+        {q:"(a) Write -45 in 8-bit two’s complement. Show steps. (4)", a:"+45=00101101 invert 11010010 +1 => 11010011 (4)."},
+        {q:"(b) Explain what overflow means in fixed-bit binary. (2)", a:"Result exceeds range; extra carry discarded; overflow flag set (2)."},
+        {q:"(c) Give an example of 4-bit unsigned overflow. (2)", a:"1111+0001=1 0000 (cannot store in 4 bits) (2)."}
+      ]
+    },
+    {
+      title:"Bitmap and sound calculations (10 marks)",
+      marks:10,
+      parts:[
+        {q:"(a) Calculate size of 640×480 image at 16 bpp in bytes (ignore header). (4)", a:"Pixels=307200; bits=4,915,200; bytes=614,400 (4)."},
+        {q:"(b) State how many colours are possible at 16 bpp. (2)", a:"2^16 = 65,536 (2)."},
+        {q:"(c) Calculate size of 8 s audio at 44,100 Hz, 16-bit, stereo in bytes. (4)", a:"Bits=44100×8×16×2=11,289,600; bytes=1,411,200 (4)."}
+      ]
+    },
+    {
+      title:"Compression concepts (8 marks)",
+      marks:8,
+      parts:[
+        {q:"(a) Distinguish between lossless and lossy compression. (4)", a:"Lossless reconstructs exactly; lossy removes info permanently; examples/uses; quality vs size. Any 4 points (4)."},
+        {q:"(b) Apply RLE to: AAAABCCCCDD. (2)", a:"4A 1B 4C 2D (2)."},
+        {q:"(c) Explain Huffman coding idea. (2)", a:"Shorter codes for frequent symbols, longer for rare; reduces average length (2)."}
+      ]
+    }
+  ];
+
+  // =========================
+  // Generator UI
+  // =========================
+  const generatorCard = document.getElementById('generatorCard');
+  document.getElementById('openGenerator').addEventListener('click', () => {
+    generatorCard.style.display = generatorCard.style.display === 'none' ? 'block' : 'none';
+    if (generatorCard.style.display !== 'none') generatorCard.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  function mulberry32(a){
+    return function(){
+      var t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+  }
+
+  function pickUnique(arr, n, rand){
+    const copy = arr.slice();
+    for(let i = copy.length - 1; i > 0; i--){
+      const j = Math.floor(rand() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy.slice(0, Math.min(n, copy.length));
+  }
+
+  const previewArea = document.getElementById('previewArea');
+  const printOnlyWrapper = document.getElementById('printOnlyWrapper');
+
+  function answerLines(n){ return Array.from({length:n}).map(()=>`<div class="ans-space"></div>`).join(""); }
+
+  function buildPaperHTML(opts){
+    const {title, oneMarkCount, structuredCount, includeMS, seed} = opts;
+    const rand = mulberry32(seed || Math.floor(Math.random()*1e9));
+
+    const oneQs = pickUnique(ONE_MARK_BANK, oneMarkCount, rand);
+    const structQs = pickUnique(STRUCTURED_BANK, structuredCount, rand);
+
+    let qNum = 1;
+    let totalMarks = oneQs.length + structQs.reduce((s, x)=>s + x.marks, 0);
+
+    let student = `
+      <div class="print-page">
+        <h1>${title}</h1>
+        <div class="meta">Topic: Information Representation • Total marks: <b>${totalMarks}</b> • Answer all questions.</div>
+        <div class="meta">Name: ____________________________  Class: __________  Date: __________</div>
+
+        <h2 style="margin:14px 0 8px; font-size:15px;">Section A: One-mark questions (${oneQs.length} marks)</h2>
+    `;
+
+    oneQs.forEach(it => {
+      student += `
+        <div class="print-q">
+          <div class="qn">${qNum}. ${it.q} <span style="float:right;">[1]</span></div>
+          ${answerLines(1)}
+        </div>
+      `;
+      qNum++;
+    });
+
+    if (structQs.length){
+      student += `<h2 style="margin:14px 0 8px; font-size:15px;">Section B: Structured questions (${structQs.reduce((s,x)=>s+x.marks,0)} marks)</h2>`;
+      structQs.forEach(sq => {
+        student += `<div class="print-q"><div class="qn">${qNum}. ${sq.title} <span style="float:right;">[${sq.marks}]</span></div>`;
+        sq.parts.forEach(p => {
+          const lines = p.q.includes("(4)") ? 3 : (p.q.includes("(3)") ? 2 : 1);
+          student += `<div style="margin:8px 0 0 0;">${p.q}</div>${answerLines(lines)}`;
+        });
+        student += `</div>`;
+        qNum++;
+      });
+    }
+
+    student += `</div>`;
+
+    let ms = "";
+    if (includeMS){
+      let msNum = 1;
+      ms = `<div class="print-page ms">
+        <h1>Mark Scheme — ${title}</h1>
+        <div class="meta">Accept equivalent working. Use marking points.</div>
+
+        <h2 style="margin:14px 0 8px; font-size:15px;">Section A: One-mark answers</h2>
+      `;
+      oneQs.forEach(it => {
+        ms += `<div class="ms-item"><span class="qn">${msNum}.</span> ${it.a}</div>`;
+        msNum++;
+      });
+
+      if (structQs.length){
+        ms += `<h2 style="margin:14px 0 8px; font-size:15px;">Section B: Structured mark scheme</h2>`;
+        structQs.forEach((sq, idx) => {
+          ms += `<div class="ms-item"><div class="qn">${msNum + idx}. ${sq.title} [${sq.marks}]</div>`;
+          sq.parts.forEach(p => { ms += `<div style="margin:6px 0;">${p.a}</div>`; });
+          ms += `</div>`;
+        });
+      }
+      ms += `</div>`;
+    }
+
+    const preview = `
+      <div class="card" style="border:1px solid var(--border); box-shadow:none;">
+        <div class="row" style="justify-content:space-between;">
+          <div>
+            <b>Preview</b>
+            <div class="mini">Total marks: <b>${totalMarks}</b> • One-mark: <b>${oneQs.length}</b> • Structured: <b>${structQs.length}</b></div>
+          </div>
+          <div class="mini">Generated: ${new Date().toLocaleString()}</div>
+        </div>
+      </div>
+      <div class="mini"><b>First 6 one-mark questions:</b></div>
+      ${oneQs.slice(0,6).map((it,i)=>`<div class="q"><div class="qn">${i+1}.</div>${it.q}</div>`).join("")}
+      <div class="mini">${oneQs.length>6 ? `...and ${oneQs.length-6} more.` : ""}</div>
+      <div class="mini" style="margin-top:10px;"><b>Structured included:</b> ${structQs.map(s=>s.title).join(" • ") || "None"}</div>
+    `;
+
+    return { student, ms, preview };
+  }
+
+  document.getElementById('generatePaper').addEventListener('click', () => {
+    const title = document.getElementById('paperTitle').value;
+    const oneMarkCount = Math.max(10, Math.min(120, parseInt(document.getElementById('oneMarkCount').value || "60", 10)));
+    const structuredCount = Math.max(0, Math.min(10, parseInt(document.getElementById('structuredCount').value || "4", 10)));
+    const includeMS = document.getElementById('includeMS').checked;
+    const seedVal = document.getElementById('seed').value.trim();
+    const seed = seedVal ? parseInt(seedVal, 10) : null;
+
+    const {student, ms, preview} = buildPaperHTML({title, oneMarkCount, structuredCount, includeMS, seed});
+    previewArea.innerHTML = preview;
+    printOnlyWrapper.innerHTML = student + (includeMS ? ms : "");
+  });
+
+  document.getElementById('printPaper').addEventListener('click', () => {
+    if (!printOnlyWrapper.innerHTML.trim()){
+      document.getElementById('generatePaper').click();
+    }
+    window.print();
+  });
+</script>
+</body>
+</html>
