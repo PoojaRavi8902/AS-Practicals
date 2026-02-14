@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS 9618 Chapter 2 – Learning</title>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll Progress Bar */
+#progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: var(--text-color);
+  width: 0%;
+  z-index: 2000;
+}
+.sidebar a.active {
+  background: var(--accent-color);
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+.sidebar a.active {
+  background: var(--accent-color);
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#topBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: none;
+  padding: 10px 14px;
+  font-size: 18px;
+  border-radius: 50%;
+}
+h2 {
+  font-size: 28px;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 8px;
+}
+
+/* ==============================
+   THEME VARIABLES
+============================== */
+
+:root {
+  --bg-color: #064e3b;        /* Dark Green */
+  --text-color: #ffff33;      /* Bright Yellow */
+  --accent-color: #22c55e;
+  --section-bg: #065f46;
+}
+
+.light-theme {
+  --bg-color: #fff44f;        /* Lemon Yellow */
+  --text-color: #064e3b;      /* Dark Green */
+  --accent-color: #064e3b;
+  --section-bg: #fff8a6;
+}
+
+/* ==============================
+   GLOBAL
+============================== */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.4s ease;
+}
+
+header {
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 1000;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  border-top: 2px solid var(--accent-color);
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+/* ==============================
+   LAYOUT
+============================== */
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  border-right: 2px solid var(--accent-color);
+  position: sticky;
+  top: 70px;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  max-width: 1000px;
+}
+
+.sidebar a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  opacity: 0.7;
+}
+
+/* ==============================
+   SECTIONS
+============================== */
+
+section {
+  margin-bottom: 80px;
+  padding: 25px;
+  background-color: var(--section-bg);
+  border-left: 6px solid var(--accent-color);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
+button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+/* ==============================
+   LINKS
+============================== */
+
+.page-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 14px;
+  border: 2px solid var(--accent-color);
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.page-link:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 2px solid var(--accent-color);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div id="progressBar"></div>
+
+Designed by Ravi Raju
+<div class="theme-toggle">
+  <button onclick="toggleTheme()">Switch Theme</button>
+</div>
+</header>
+
+<div class="container">
+
+  <div class="sidebar">
+    <h3>Chapter Navigation</h3>
+    <a href="#intro">Introduction</a>
+    <a href="#lan">LAN & WAN</a>
+    <a href="#topology">Network Topologies</a>
+    <a href="#ip">IP Addressing</a>
+    <a href="#dns">DNS & URL</a>
+    <a href="#streaming">Streaming</a>
+    <a href="#pstn">PSTN</a>
+  </div>
+
+  <div class="content">
+
+    <section id="intro">
+      <h2>Introduction to Communication & Networking</h2>
+      <p>
+        This chapter explores how devices communicate across networks,
+        how data is addressed, transmitted, routed and resolved.
+        By the end of this chapter, you will be able to explain
+        networking structures, IP addressing, DNS, streaming technologies
+        and public/private addressing systems.
+      </p>
+
+      <a href="AS9618-Ch2-Practice.html" class="page-link">
+        Go to Practice Page →
+      </a>
+
+    </section>
+
+    <section id="lan">
+
+<h2>LAN and WAN (Local Area Network vs Wide Area Network)</h2>
+
+<h3>1. Definition of LAN</h3>
+
+<p>
+A <strong>Local Area Network (LAN)</strong> is a network that connects computers and devices
+within a limited geographical area such as:
+</p>
+
+<ul>
+<li>A single building</li>
+<li>A school campus</li>
+<li>An office block</li>
+<li>A factory site</li>
+</ul>
+
+<p>
+A LAN is usually owned and managed by a single organisation.
+</p>
+
+<!-- LAN SVG -->
+<div style="margin-top:20px;">
+<svg width="100%" height="260" viewBox="0 0 600 260">
+
+  <!-- Switch -->
+  <circle cx="300" cy="130" r="40" stroke="var(--accent-color)" stroke-width="3" fill="none"/>
+  <text x="300" y="135" text-anchor="middle" fill="var(--text-color)">Switch</text>
+
+  <!-- Devices -->
+  <rect x="60" y="40" width="100" height="50" stroke="var(--accent-color)" fill="none"/>
+  <text x="110" y="70" text-anchor="middle" fill="var(--text-color)">PC 1</text>
+
+  <rect x="440" y="40" width="100" height="50" stroke="var(--accent-color)" fill="none"/>
+  <text x="490" y="70" text-anchor="middle" fill="var(--text-color)">PC 2</text>
+
+  <rect x="60" y="170" width="100" height="50" stroke="var(--accent-color)" fill="none"/>
+  <text x="110" y="200" text-anchor="middle" fill="var(--text-color)">Printer</text>
+
+  <rect x="440" y="170" width="100" height="50" stroke="var(--accent-color)" fill="none"/>
+  <text x="490" y="200" text-anchor="middle" fill="var(--text-color)">Server</text>
+
+  <!-- Lines -->
+  <line x1="300" y1="130" x2="160" y2="65" stroke="var(--accent-color)"/>
+  <line x1="300" y1="130" x2="440" y2="65" stroke="var(--accent-color)"/>
+  <line x1="300" y1="130" x2="160" y2="195" stroke="var(--accent-color)"/>
+  <line x1="300" y1="130" x2="440" y2="195" stroke="var(--accent-color)"/>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>2. Definition of WAN</h3>
+
+<p>
+A <strong>Wide Area Network (WAN)</strong> connects computers or entire LANs over
+a large geographical area such as:
+</p>
+
+<ul>
+<li>Between cities</li>
+<li>Between countries</li>
+<li>Globally</li>
+</ul>
+
+<p>
+The Internet is the largest WAN in existence.
+</p>
+
+<!-- WAN SVG -->
+<div style="margin-top:20px;">
+<svg width="100%" height="240" viewBox="0 0 600 240">
+
+  <rect x="40" y="80" width="150" height="80" stroke="var(--accent-color)" fill="none"/>
+  <text x="115" y="120" text-anchor="middle" fill="var(--text-color)">Building A LAN</text>
+
+  <ellipse cx="300" cy="120" rx="80" ry="50"
+           stroke="var(--accent-color)" fill="none"/>
+
+  <text x="300" y="125" text-anchor="middle" fill="var(--text-color)">
+    Internet (WAN)
+  </text>
+
+  <rect x="410" y="80" width="150" height="80" stroke="var(--accent-color)" fill="none"/>
+  <text x="485" y="120" text-anchor="middle" fill="var(--text-color)">Building B LAN</text>
+
+  <line x1="190" y1="120" x2="220" y2="120" stroke="var(--accent-color)" stroke-width="2"/>
+  <line x1="380" y1="120" x2="410" y2="120" stroke="var(--accent-color)" stroke-width="2"/>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>3. Key Differences Between LAN and WAN</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid var(--accent-color); padding:8px;">Feature</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">LAN</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">WAN</th>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Geographical Area</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Small</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Large</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Ownership</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Private</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Uses public infrastructure</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Speed</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">High</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Lower than LAN</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Latency</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Low</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Higher</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>4. Bandwidth and Latency Explained</h3>
+
+<p><strong>Bandwidth</strong> is the amount of data that can be transmitted per second.</p>
+
+<p><strong>Latency</strong> is the delay before data transfer begins following a request.</p>
+
+<p>
+LANs typically have high bandwidth and low latency because devices are close together.
+WANs have lower bandwidth and higher latency due to long-distance transmission.
+</p>
+
+<hr>
+
+<h3>5. Advantages and Disadvantages</h3>
+
+<h4>Advantages of LAN</h4>
+<ul>
+<li>High speed</li>
+<li>Easy file sharing</li>
+<li>Centralised backup</li>
+<li>Low communication cost</li>
+</ul>
+
+<h4>Disadvantages of LAN</h4>
+<ul>
+<li>Limited coverage area</li>
+<li>Requires maintenance</li>
+</ul>
+
+<h4>Advantages of WAN</h4>
+<ul>
+<li>Global communication</li>
+<li>Remote access</li>
+<li>Supports international business</li>
+</ul>
+
+<h4>Disadvantages of WAN</h4>
+<ul>
+<li>Higher latency</li>
+<li>More security risks</li>
+<li>Dependence on service providers</li>
+</ul>
+
+<hr>
+
+<h3>6. Exam-Style 4-Mark Answer Example</h3>
+
+<p><strong>Question:</strong> Explain two differences between a LAN and a WAN. [4]</p>
+
+<p><strong>Model Answer:</strong></p>
+
+<p>
+A LAN connects devices within a small geographical area such as a school or office,
+whereas a WAN connects networks across large geographical areas such as cities or countries.
+Additionally, LANs are typically privately owned and provide higher speeds,
+while WANs rely on public infrastructure and have higher latency.
+</p>
+
+<hr>
+
+<h3>7. Real-World Scenario</h3>
+
+<p>
+A company with multiple office buildings on one site would use a LAN.
+If it connects its offices across different countries,
+it would use a WAN.
+</p>
+
+</section>
+
+
+    <section id="topology">
+
+<h2>Network Topologies</h2>
+
+<p>
+A <strong>network topology</strong> describes the physical or logical arrangement
+of devices and communication links within a network.
+</p>
+
+<p>
+Understanding topology is crucial because it affects:
+</p>
+
+<ul>
+<li>Performance</li>
+<li>Fault tolerance</li>
+<li>Scalability</li>
+<li>Cost</li>
+<li>Maintenance</li>
+</ul>
+
+<hr>
+
+<h3>1. Bus Topology</h3>
+
+<p>
+In a bus topology, all devices share a single backbone cable.
+</p>
+
+<!-- BUS SVG -->
+<div>
+<svg width="100%" height="150" viewBox="0 0 600 150">
+
+  <line x1="50" y1="75" x2="550" y2="75"
+        stroke="var(--accent-color)" stroke-width="4"/>
+
+  <circle cx="120" cy="75" r="20" stroke="var(--accent-color)" fill="none"/>
+  <circle cx="240" cy="75" r="20" stroke="var(--accent-color)" fill="none"/>
+  <circle cx="360" cy="75" r="20" stroke="var(--accent-color)" fill="none"/>
+  <circle cx="480" cy="75" r="20" stroke="var(--accent-color)" fill="none"/>
+
+</svg>
+</div>
+
+<h4>Advantages</h4>
+<ul>
+<li>Cheap to install</li>
+<li>Uses less cable</li>
+<li>Simple design</li>
+</ul>
+
+<h4>Disadvantages</h4>
+<ul>
+<li>If backbone fails, entire network fails</li>
+<li>Difficult fault detection</li>
+<li>Performance decreases as devices increase</li>
+</ul>
+
+<hr>
+
+<h3>2. Star Topology</h3>
+
+<p>
+All devices connect to a central hub or switch.
+</p>
+
+<!-- STAR SVG -->
+<div>
+<svg width="100%" height="200" viewBox="0 0 500 200">
+
+  <circle cx="250" cy="100" r="30"
+          stroke="var(--accent-color)" fill="none"/>
+  <text x="250" y="105" text-anchor="middle"
+        fill="var(--text-color)">Switch</text>
+
+  <circle cx="80" cy="30" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="420" cy="30" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="80" cy="170" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="420" cy="170" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+
+  <line x1="250" y1="100" x2="80" y2="30"
+        stroke="var(--accent-color)"/>
+  <line x1="250" y1="100" x2="420" y2="30"
+        stroke="var(--accent-color)"/>
+  <line x1="250" y1="100" x2="80" y2="170"
+        stroke="var(--accent-color)"/>
+  <line x1="250" y1="100" x2="420" y2="170"
+        stroke="var(--accent-color)"/>
+
+</svg>
+</div>
+
+<h4>Advantages</h4>
+<ul>
+<li>Easy fault detection</li>
+<li>Failure of one device does not affect others</li>
+<li>High performance</li>
+</ul>
+
+<h4>Disadvantages</h4>
+<ul>
+<li>Central device failure stops entire network</li>
+<li>More cabling required</li>
+</ul>
+
+<hr>
+
+<h3>3. Ring Topology</h3>
+
+<p>
+Each device connects to exactly two others, forming a circular path.
+</p>
+
+<!-- RING SVG -->
+<div>
+<svg width="100%" height="220" viewBox="0 0 300 220">
+
+  <circle cx="150" cy="110" r="80"
+          stroke="var(--accent-color)"
+          stroke-width="3"
+          fill="none"/>
+
+  <circle cx="150" cy="30" r="15"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="230" cy="110" r="15"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="150" cy="190" r="15"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="70" cy="110" r="15"
+          stroke="var(--accent-color)" fill="none"/>
+
+</svg>
+</div>
+
+<h4>Advantages</h4>
+<ul>
+<li>Predictable performance</li>
+<li>No collisions (if token-based)</li>
+</ul>
+
+<h4>Disadvantages</h4>
+<ul>
+<li>Failure of one device may affect entire ring</li>
+<li>Difficult to reconfigure</li>
+</ul>
+
+<hr>
+
+<h3>4. Mesh Topology</h3>
+
+<p>
+Each device connects to multiple other devices.
+</p>
+
+<!-- MESH SVG -->
+<div>
+<svg width="100%" height="220" viewBox="0 0 400 220">
+
+  <circle cx="80" cy="40" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="320" cy="40" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="80" cy="180" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+  <circle cx="320" cy="180" r="20"
+          stroke="var(--accent-color)" fill="none"/>
+
+  <line x1="80" y1="40" x2="320" y2="40"
+        stroke="var(--accent-color)"/>
+  <line x1="80" y1="180" x2="320" y2="180"
+        stroke="var(--accent-color)"/>
+  <line x1="80" y1="40" x2="80" y2="180"
+        stroke="var(--accent-color)"/>
+  <line x1="320" y1="40" x2="320" y2="180"
+        stroke="var(--accent-color)"/>
+  <line x1="80" y1="40" x2="320" y2="180"
+        stroke="var(--accent-color)"/>
+  <line x1="320" y1="40" x2="80" y2="180"
+        stroke="var(--accent-color)"/>
+
+</svg>
+</div>
+
+<h4>Advantages</h4>
+<ul>
+<li>Very reliable</li>
+<li>No single point of failure</li>
+<li>High redundancy</li>
+</ul>
+
+<h4>Disadvantages</h4>
+<ul>
+<li>Expensive</li>
+<li>Complex cabling</li>
+</ul>
+
+<hr>
+
+<h3>5. Hybrid Topology</h3>
+
+<p>
+A hybrid topology combines two or more topologies.
+Example: Star-Bus network.
+</p>
+
+<hr>
+
+<h3>6. Comparison Table</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid var(--accent-color); padding:8px;">Topology</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">Fault Tolerance</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">Cost</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">Scalability</th>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Bus</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Low</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Low</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Limited</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Star</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Medium</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Medium</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">High</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Mesh</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Very High</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">High</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Moderate</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>7. 6-Mark Evaluation Example</h3>
+
+<p><strong>Question:</strong> Evaluate the suitability of star topology for a school network. [6]</p>
+
+<p><strong>Model Answer:</strong></p>
+
+<p>
+Star topology is suitable for a school because failure of one device does not
+affect the rest of the network. It allows easy addition of new computers,
+making it scalable. However, if the central switch fails, the entire network
+stops functioning. Despite this, star topology is widely used in schools due
+to ease of maintenance and reliability.
+</p>
+
+</section>
+<section id="media">
+
+<h2>Transmission Media and Network Hardware</h2>
+
+<h3>1. Transmission Media</h3>
+
+<p>
+Transmission media refers to the physical or wireless pathway through which data travels
+between devices.
+</p>
+
+<hr>
+
+<h3>A. Twisted Pair Cable (Copper)</h3>
+
+<p>
+Twisted pair cable consists of pairs of copper wires twisted together
+to reduce electromagnetic interference.
+</p>
+
+<!-- Twisted Pair SVG -->
+<div>
+<svg width="100%" height="150" viewBox="0 0 500 150">
+  <path d="M50 75 Q100 20 150 75 T250 75 T350 75 T450 75"
+        stroke="var(--accent-color)"
+        stroke-width="3"
+        fill="none"/>
+  <path d="M50 85 Q100 140 150 85 T250 85 T350 85 T450 85"
+        stroke="var(--accent-color)"
+        stroke-width="3"
+        fill="none"/>
+</svg>
+</div>
+
+<strong>Advantages:</strong>
+<ul>
+<li>Cheap</li>
+<li>Easy to install</li>
+<li>Widely used in LANs</li>
+</ul>
+
+<strong>Disadvantages:</strong>
+<ul>
+<li>Limited to ~100m</li>
+<li>Susceptible to interference</li>
+<li>Lower bandwidth than fibre</li>
+</ul>
+
+<hr>
+
+<h3>B. Coaxial Cable</h3>
+
+<p>
+Coaxial cable has a central conductor surrounded by insulation and shielding.
+</p>
+
+<!-- Coaxial SVG -->
+<div>
+<svg width="100%" height="120" viewBox="0 0 400 120">
+  <circle cx="200" cy="60" r="40"
+          stroke="var(--accent-color)"
+          fill="none"
+          stroke-width="3"/>
+  <circle cx="200" cy="60" r="15"
+          stroke="var(--accent-color)"
+          fill="none"
+          stroke-width="3"/>
+</svg>
+</div>
+
+<strong>Advantages:</strong>
+<ul>
+<li>Better shielding than twisted pair</li>
+<li>Higher bandwidth</li>
+</ul>
+
+<strong>Disadvantages:</strong>
+<ul>
+<li>More expensive</li>
+<li>Less flexible</li>
+</ul>
+
+<hr>
+
+<h3>C. Fibre Optic Cable</h3>
+
+<p>
+Fibre optic cable transmits data as pulses of light.
+</p>
+
+<!-- Fibre SVG -->
+<div>
+<svg width="100%" height="120" viewBox="0 0 500 120">
+  <line x1="50" y1="60" x2="450" y2="60"
+        stroke="var(--accent-color)"
+        stroke-width="6"/>
+  <circle cx="150" cy="60" r="6" fill="var(--text-color)">
+    <animate attributeName="cx" from="50" to="450"
+             dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>
+</div>
+
+<strong>Advantages:</strong>
+<ul>
+<li>Very high bandwidth</li>
+<li>Long distance transmission</li>
+<li>Immune to electromagnetic interference</li>
+<li>More secure</li>
+</ul>
+
+<strong>Disadvantages:</strong>
+<ul>
+<li>Expensive</li>
+<li>Fragile</li>
+<li>Requires specialist installation</li>
+</ul>
+
+<hr>
+
+<h3>D. Wireless Transmission</h3>
+
+<p>
+Wireless networks use radio waves or microwaves to transmit data.
+</p>
+
+<!-- Wireless SVG -->
+<div>
+<svg width="100%" height="150" viewBox="0 0 300 150">
+  <circle cx="150" cy="100" r="10"
+          fill="var(--accent-color)"/>
+  <path d="M120 80 Q150 40 180 80"
+        stroke="var(--accent-color)"
+        fill="none"
+        stroke-width="3"/>
+  <path d="M100 60 Q150 10 200 60"
+        stroke="var(--accent-color)"
+        fill="none"
+        stroke-width="3"/>
+</svg>
+</div>
+
+<strong>Advantages:</strong>
+<ul>
+<li>Mobility</li>
+<li>Easy installation</li>
+<li>No physical cables</li>
+</ul>
+
+<strong>Disadvantages:</strong>
+<ul>
+<li>Security risks</li>
+<li>Interference</li>
+<li>Lower speed than fibre</li>
+</ul>
+
+<hr>
+
+<h3>2. Bandwidth and Interference</h3>
+
+<p>
+<strong>Bandwidth</strong> refers to how much data can be transmitted per second.
+Measured in bits per second (bps).
+</p>
+
+<p>
+<strong>Interference</strong> occurs when unwanted signals disrupt data transmission.
+Copper cables are more susceptible than fibre.
+</p>
+
+<hr>
+
+<h3>3. Network Hardware Devices</h3>
+
+<h4>Router</h4>
+
+<p>
+A router connects different networks and forwards data packets using IP addresses.
+</p>
+
+<h4>Switch</h4>
+
+<p>
+A switch connects devices within a LAN and forwards frames using MAC addresses.
+</p>
+
+<h4>NIC (Network Interface Card)</h4>
+
+<p>
+A NIC enables a device to connect to a network.
+Each NIC has a unique MAC address.
+</p>
+
+<h4>Wireless Access Point (WAP)</h4>
+
+<p>
+A WAP allows wireless devices to connect to a wired network.
+</p>
+
+<h4>Modem</h4>
+
+<p>
+A modem converts digital signals to analogue signals (and vice versa)
+for transmission over telephone lines.
+</p>
+
+<h4>Firewall</h4>
+
+<p>
+A firewall monitors and controls incoming and outgoing network traffic
+based on security rules.
+</p>
+
+<hr>
+
+<h3>4. Data Flow Example</h3>
+
+<div>
+<svg width="100%" height="120" viewBox="0 0 600 120">
+
+  <rect x="40" y="40" width="100" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="90" y="65" text-anchor="middle"
+        fill="var(--text-color)">PC</text>
+
+  <rect x="250" y="40" width="100" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="300" y="65" text-anchor="middle"
+        fill="var(--text-color)">Switch</text>
+
+  <rect x="460" y="40" width="100" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="510" y="65" text-anchor="middle"
+        fill="var(--text-color)">Router</text>
+
+  <line x1="140" y1="60" x2="250" y2="60"
+        stroke="var(--accent-color)"/>
+  <line x1="350" y1="60" x2="460" y2="60"
+        stroke="var(--accent-color)"/>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>5. 4-Mark Exam Question Example</h3>
+
+<p><strong>Question:</strong> Explain two differences between fibre optic and copper cable. [4]</p>
+
+<p><strong>Model Answer:</strong></p>
+
+<p>
+Fibre optic cable transmits data as light pulses,
+whereas copper cable transmits electrical signals.
+Fibre offers higher bandwidth and longer transmission distance,
+while copper is cheaper but more susceptible to interference.
+</p>
+
+<hr>
+
+<h3>6. 6-Mark Evaluation Example</h3>
+
+<p><strong>Question:</strong> Evaluate the use of wireless networking in a school. [6]</p>
+
+<p>
+Wireless networking allows mobility and flexible installation.
+However, it may suffer from interference and security vulnerabilities.
+Although installation cost may be lower, performance may not match fibre.
+Therefore, a hybrid approach may be most suitable.
+</p>
+
+</section>
+
+
+    <section id="ip">
+
+<h2>IP Addressing – Deep Dive</h2>
+
+<p>
+IP stands for <strong>Internet Protocol</strong>.  
+An IP address uniquely identifies a device on a network.
+</p>
+
+<hr>
+
+<h3>1. IPv4 Structure</h3>
+
+<p>
+IPv4 uses a 32-bit binary number divided into four 8-bit sections (octets).
+It is written in dotted decimal notation.
+</p>
+
+<p><strong>Example:</strong> 205.124.16.152</p>
+
+<!-- 32-bit Visual -->
+<div>
+<svg width="100%" height="100" viewBox="0 0 800 100">
+
+  <rect x="0" y="30" width="200" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <rect x="200" y="30" width="200" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <rect x="400" y="30" width="200" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <rect x="600" y="30" width="200" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+
+  <text x="100" y="55" text-anchor="middle"
+        fill="var(--text-color)">8 bits</text>
+  <text x="300" y="55" text-anchor="middle"
+        fill="var(--text-color)">8 bits</text>
+  <text x="500" y="55" text-anchor="middle"
+        fill="var(--text-color)">8 bits</text>
+  <text x="700" y="55" text-anchor="middle"
+        fill="var(--text-color)">8 bits</text>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>2. Dotted Decimal ↔ Binary Example</h3>
+
+<p>
+205 = 11001101  
+124 = 01111100  
+16 = 00010000  
+152 = 10011000
+</p>
+
+<hr>
+
+<h3>3. Interactive Binary to Denary Converter</h3>
+
+<p>Enter 8-bit binary:</p>
+
+<input type="text" id="binaryInput" maxlength="8">
+<button onclick="convertBinary()">Convert</button>
+
+<p id="binaryResult"></p>
+
+<script>
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".sidebar a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+window.onscroll = function() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  document.getElementById("progressBar").style.width = scrolled + "%";
+};
+
+function convertBinary() {
+  let bin = document.getElementById("binaryInput").value;
+  if (/^[01]{8}$/.test(bin)) {
+    let decimal = parseInt(bin, 2);
+    document.getElementById("binaryResult").innerHTML =
+      "Denary value: " + decimal;
+  } else {
+    document.getElementById("binaryResult").innerHTML =
+      "Enter exactly 8 binary digits.";
+  }
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+
+window.addEventListener("scroll", function() {
+  document.getElementById("topBtn").style.display =
+    window.scrollY > 300 ? "block" : "none";
+});
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+sections.forEach(section => {
+  section.classList.add("hidden");
+  observer.observe(section);
+});
+
+
+</script>
+
+<hr>
+
+<h3>4. Classful Addressing</h3>
+
+<p>
+Class A → first bit = 0  
+Class B → first two bits = 10  
+Class C → first three bits = 110
+</p>
+
+<p>
+205 in binary begins with 110 → Therefore Class C.
+</p>
+
+<hr>
+
+<h3>5. NetID and HostID</h3>
+
+<p>
+An IP address consists of:
+</p>
+
+<ul>
+<li><strong>NetID</strong> – identifies the network</li>
+<li><strong>HostID</strong> – identifies the device</li>
+</ul>
+
+<!-- NetID HostID Visual -->
+<div>
+<svg width="100%" height="100" viewBox="0 0 600 100">
+
+  <rect x="0" y="30" width="450" height="40"
+        fill="none" stroke="var(--accent-color)"/>
+  <rect x="450" y="30" width="150" height="40"
+        fill="none" stroke="var(--accent-color)"/>
+
+  <text x="225" y="55" text-anchor="middle"
+        fill="var(--text-color)">NetID (24 bits)</text>
+  <text x="525" y="55" text-anchor="middle"
+        fill="var(--text-color)">HostID (8 bits)</text>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>6. CIDR Notation</h3>
+
+<p>
+CIDR (Classless Inter-Domain Routing) uses slash notation.
+</p>
+
+<p>
+205.124.16.152/24
+</p>
+
+<p>
+/24 means first 24 bits are network bits.
+Remaining 8 bits = host bits.
+</p>
+
+<hr>
+
+<h3>7. Private vs Public IP Addresses</h3>
+
+<p><strong>Private ranges:</strong></p>
+
+<ul>
+<li>10.0.0.0 – 10.255.255.255</li>
+<li>172.16.0.0 – 172.31.255.255</li>
+<li>192.168.0.0 – 192.168.255.255</li>
+</ul>
+
+<p>
+Private addresses are used within local networks.
+Public addresses are used on the Internet.
+</p>
+
+<hr>
+
+<h3>8. NAT (Network Address Translation)</h3>
+
+<p>
+NAT translates private IP addresses into public IP addresses.
+</p>
+
+<!-- NAT SVG -->
+<div>
+<svg width="100%" height="120" viewBox="0 0 600 120">
+
+  <rect x="40" y="40" width="120" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="100" y="65" text-anchor="middle"
+        fill="var(--text-color)">192.168.1.5</text>
+
+  <rect x="240" y="40" width="120" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="300" y="65" text-anchor="middle"
+        fill="var(--text-color)">Router (NAT)</text>
+
+  <rect x="440" y="40" width="120" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="500" y="65" text-anchor="middle"
+        fill="var(--text-color)">205.124.16.152</text>
+
+  <line x1="160" y1="60" x2="240" y2="60"
+        stroke="var(--accent-color)"/>
+  <line x1="360" y1="60" x2="440" y2="60"
+        stroke="var(--accent-color)"/>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>9. Exam-Style 4-Mark Example</h3>
+
+<p><strong>Question:</strong> Explain why an IPv4 address defines a NetID and a HostID. [4]</p>
+
+<p>
+The NetID identifies the network to which a device belongs,
+while the HostID identifies the specific device within that network.
+This allows routers to route data between networks
+while switches identify devices within a local network.
+</p>
+
+<hr>
+
+<h3>10. 6-Mark Evaluation</h3>
+
+<p><strong>Question:</strong> Evaluate the need for CIDR. [6]</p>
+
+<p>
+CIDR improves IP address allocation efficiency
+by allowing flexible subnetting.
+It reduces waste compared to classful addressing.
+However, it requires careful network planning.
+Overall, CIDR allows better scalability of the Internet.
+</p>
+
+</section>
+
+
+    <section id="dns">
+
+<h2>Domain Name System (DNS) and URL Resolution</h2>
+
+<h3>1. What is DNS?</h3>
+
+<p>
+The <strong>Domain Name System (DNS)</strong> translates human-readable domain names
+(e.g., www.example.com) into IP addresses.
+</p>
+
+<p>
+DNS software runs on dedicated DNS servers.
+These servers are specialised hardware machines distributed globally.
+</p>
+
+<hr>
+
+<h3>2. URL Breakdown</h3>
+
+<p><strong>Example URL:</strong></p>
+
+<p>https://www.schoolsite.org/resources/video.mp4</p>
+
+<ul>
+<li><strong>https</strong> → Protocol</li>
+<li><strong>www.schoolsite.org</strong> → Domain name</li>
+<li><strong>/resources/video.mp4</strong> → Resource path</li>
+</ul>
+
+<hr>
+
+<h3>3. DNS Resolution Process (Step-by-Step)</h3>
+
+<ol>
+<li>User enters URL in browser</li>
+<li>Browser checks local cache</li>
+<li>If not found, query sent to local DNS resolver</li>
+<li>Resolver queries root server</li>
+<li>Root refers to TLD server (.org, .com)</li>
+<li>TLD refers to authoritative server</li>
+<li>Authoritative server returns IP address</li>
+<li>Browser connects to IP address</li>
+</ol>
+
+<hr>
+
+<h3>4. Animated DNS Lookup</h3>
+
+<div>
+<svg width="100%" height="150" viewBox="0 0 800 150">
+
+  <!-- Client -->
+  <rect x="20" y="50" width="120" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="80" y="75" text-anchor="middle"
+        fill="var(--text-color)">Client</text>
+
+  <!-- DNS -->
+  <rect x="300" y="50" width="120" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="360" y="75" text-anchor="middle"
+        fill="var(--text-color)">DNS Server</text>
+
+  <!-- Web Server -->
+  <rect x="600" y="50" width="140" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="670" y="75" text-anchor="middle"
+        fill="var(--text-color)">Web Server</text>
+
+  <!-- Lines -->
+  <line x1="140" y1="70" x2="300" y2="70"
+        stroke="var(--accent-color)"/>
+  <line x1="420" y1="70" x2="600" y2="70"
+        stroke="var(--accent-color)"/>
+
+  <!-- Moving Packet -->
+  <circle r="6" fill="var(--text-color)">
+    <animateMotion dur="3s" repeatCount="indefinite"
+      path="M140 70 L300 70 L600 70"/>
+  </circle>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>5. Applications That Use DNS</h3>
+
+<ul>
+<li><strong>Web Browsers</strong> → Convert domain names into IP addresses</li>
+<li><strong>Email Clients</strong> → Locate mail servers using MX records</li>
+</ul>
+
+<hr>
+
+<h3>6. Streaming Technologies</h3>
+
+<h4>On-Demand Bit Streaming</h4>
+
+<p>
+Video is divided into small packets and streamed continuously.
+The video begins playing before the entire file downloads.
+</p>
+
+<hr>
+
+<h3>7. Buffering Explained</h3>
+
+<p>
+Buffering stores a small portion of the video temporarily
+to prevent interruptions if network speed fluctuates.
+</p>
+
+<!-- Buffer Animation -->
+<div>
+<svg width="100%" height="120" viewBox="0 0 600 120">
+
+  <rect x="50" y="50" width="400" height="30"
+        stroke="var(--accent-color)"
+        fill="none"/>
+
+  <rect x="50" y="50" width="0" height="30"
+        fill="var(--accent-color)">
+    <animate attributeName="width"
+             from="0" to="400"
+             dur="4s"
+             repeatCount="indefinite"/>
+  </rect>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>8. Measures to Prevent Video Pausing</h3>
+
+<ul>
+<li>High bandwidth connection</li>
+<li>Low latency</li>
+<li>Content Delivery Networks (CDNs)</li>
+<li>Adaptive bitrate streaming</li>
+<li>Sufficient buffer size</li>
+</ul>
+
+<hr>
+
+<h3>9. 4-Mark Exam Example</h3>
+
+<p><strong>Question:</strong> Explain how a URL and DNS are used to locate a resource. [4]</p>
+
+<p>
+The URL specifies the protocol and domain name.
+The DNS translates the domain name into an IP address.
+The browser then uses the IP address to request the resource from the server.
+</p>
+
+<hr>
+
+<h3>10. 6-Mark Streaming Question Example</h3>
+
+<p><strong>Question:</strong> Describe measures needed to ensure video does not pause. [6]</p>
+
+<p>
+A stable high-bandwidth connection is required.
+Buffering stores part of the video locally.
+Adaptive bitrate streaming adjusts quality based on speed.
+CDNs reduce distance between server and user.
+These measures reduce latency and packet loss.
+</p>
+
+</section>
+
+
+    
+
+   <section id="pstn">
+
+<h2>Public Switched Telephone Network (PSTN)</h2>
+
+<h3>1. Definition</h3>
+
+<p>
+The <strong>Public Switched Telephone Network (PSTN)</strong> is the traditional
+circuit-switched telephone network used worldwide for voice communication.
+</p>
+
+<p>
+It connects telephones using dedicated physical circuits established for the
+duration of a call.
+</p>
+
+<hr>
+
+<h3>2. Circuit Switching Explained</h3>
+
+<p>
+Circuit switching establishes a dedicated communication path between two devices
+before data transmission begins.
+</p>
+
+<ul>
+<li>A connection is set up</li>
+<li>The path remains reserved</li>
+<li>Data flows continuously</li>
+<li>The circuit is released after communication ends</li>
+</ul>
+
+<!-- Circuit Switching SVG -->
+<div>
+<svg width="100%" height="180" viewBox="0 0 700 180">
+
+  <rect x="40" y="60" width="100" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="90" y="85" text-anchor="middle"
+        fill="var(--text-color)">Caller</text>
+
+  <rect x="560" y="60" width="100" height="40"
+        stroke="var(--accent-color)" fill="none"/>
+  <text x="610" y="85" text-anchor="middle"
+        fill="var(--text-color)">Receiver</text>
+
+  <line x1="140" y1="80" x2="560" y2="80"
+        stroke="var(--accent-color)"
+        stroke-width="3"/>
+
+  <text x="350" y="60" text-anchor="middle"
+        fill="var(--text-color)">Dedicated Circuit</text>
+
+</svg>
+</div>
+
+<hr>
+
+<h3>3. PSTN as a Network Option for a Company</h3>
+
+<p>
+A company could use PSTN in the following ways:
+</p>
+
+<ul>
+<li>Dial-up Internet access</li>
+<li>Remote branch communication</li>
+<li>Voice communication between buildings</li>
+</ul>
+
+<p>
+However, PSTN provides lower bandwidth compared to modern broadband fibre connections.
+</p>
+
+<hr>
+
+<h3>4. Circuit Switching vs Packet Switching</h3>
+
+<table style="width:100%; border-collapse: collapse;">
+<tr>
+<th style="border:1px solid var(--accent-color); padding:8px;">Feature</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">Circuit Switching</th>
+<th style="border:1px solid var(--accent-color); padding:8px;">Packet Switching</th>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Connection Type</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Dedicated</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Shared</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Efficiency</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Lower</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Higher</td>
+</tr>
+
+<tr>
+<td style="border:1px solid var(--accent-color); padding:8px;">Used In</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Traditional telephone calls</td>
+<td style="border:1px solid var(--accent-color); padding:8px;">Internet</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>5. 4-Mark Exam Example</h3>
+
+<p><strong>Question:</strong> Define what a PSTN is or does. [2]</p>
+
+<p>
+The Public Switched Telephone Network is a circuit-switched telephone network
+that establishes a dedicated communication path between callers
+for the duration of a call.
+</p>
+
+<hr>
+
+<h3>6. 4-Mark Explanation Example</h3>
+
+<p><strong>Question:</strong> Explain how a PSTN could provide a network for a company. [4]</p>
+
+<p>
+A PSTN can connect remote offices using telephone lines.
+It establishes dedicated circuits between locations.
+Data or voice can be transmitted over these circuits.
+However, bandwidth may be limited compared to fibre-based WANs.
+</p>
+
+<hr>
+
+<h3>7. Integration Summary – Chapter Overview</h3>
+
+<p>
+This chapter has covered:
+</p>
+
+<ul>
+<li>LAN and WAN structures</li>
+<li>Network topologies</li>
+<li>Transmission media</li>
+<li>Network hardware</li>
+<li>IP addressing and CIDR</li>
+<li>DNS resolution</li>
+<li>Streaming technologies</li>
+<li>PSTN and circuit switching</li>
+</ul>
+
+<p>
+Together, these concepts explain how devices communicate,
+how resources are located,
+and how data flows across networks.
+</p>
+
+<a href="AS9618-Chapter2-Practice.html" class="page-link">
+Proceed to Practice →
+</a>
+
+</section>
+
+
+  </div>
+</div>
+
+<footer>
+Prepared by Ravi Raju
+</footer>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("light-theme");
+}
+</script>
+<button id="topBtn" onclick="scrollToTop()">↑</button>
+
+</body>
+</html>

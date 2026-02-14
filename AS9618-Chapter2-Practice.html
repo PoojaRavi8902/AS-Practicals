@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS 9618 Chapter 2 – Practice</title>
+
+<style>
+
+/* ================= THEME ================= */
+
+:root {
+  --bg-color: #064e3b;
+  --text-color: #ffff33;
+  --accent-color: #22c55e;
+  --section-bg: #065f46;
+}
+
+.light-theme {
+  --bg-color: #fff44f;
+  --text-color: #064e3b;
+  --accent-color: #064e3b;
+  --section-bg: #fff8a6;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.4s ease;
+}
+
+header {
+  text-align: center;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent-color);
+  position: sticky;
+  top: 0;
+  background: var(--bg-color);
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 60px;
+  padding: 25px;
+  background: var(--section-bg);
+  border-left: 6px solid var(--accent-color);
+}
+
+h2 {
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 8px;
+}
+
+/* QUESTION BLOCK */
+
+.question {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid var(--accent-color);
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--accent-color);
+  padding: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: var(--accent-color);
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.answer {
+  display: none;
+  margin-top: 10px;
+  border-top: 1px solid var(--accent-color);
+  padding-top: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 2px solid var(--accent-color);
+}
+
+.progress {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.page-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 14px;
+  border: 2px solid var(--accent-color);
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.page-link:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+Designed by Ravi Raju
+<div class="theme-toggle">
+<button onclick="toggleTheme()">Switch Theme</button>
+</div>
+</header>
+
+<div class="container">
+
+<h1>Chapter 2 Practice Engine</h1>
+
+<div class="progress">
+Questions Attempted: <span id="attemptCount">0</span>
+</div>
+
+<label>Student Name:</label>
+<input type="text" id="studentName" oninput="saveName()">
+<br><br>
+
+<a href="AS9618-Ch2-Learning.html" class="page-link">
+← Back to Learning Page
+</a>
+
+<!-- ================= LAN & WAN ================= -->
+
+<section>
+<section>
+<h2>LAN & WAN Practice</h2>
+
+<!-- 1 -->
+<div class="question">
+<p>1. Define a LAN. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A LAN is a network that connects devices within a limited geographical area such as a building or campus.
+</div>
+</div>
+
+<!-- 2 -->
+<div class="question">
+<p>2. Define a WAN. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A WAN is a network that connects devices or LANs across large geographical areas such as cities or countries.
+</div>
+</div>
+
+<!-- 3 -->
+<div class="question">
+<p>3. State one advantage of a LAN. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+High data transfer speed.
+</div>
+</div>
+
+<!-- 4 -->
+<div class="question">
+<p>4. State one disadvantage of a WAN. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Higher latency compared to LAN.
+</div>
+</div>
+
+<!-- 5 -->
+<div class="question">
+<p>5. Explain two differences between LAN and WAN. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+LAN covers a small geographical area and is privately owned, whereas WAN covers large areas and often uses public infrastructure. LAN typically offers higher speeds and lower latency than WAN.
+</div>
+</div>
+
+<!-- 6 -->
+<div class="question">
+<p>6. Explain why latency is generally higher in a WAN. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Data must travel longer distances and pass through multiple routers and networks, increasing delay.
+</div>
+</div>
+
+<!-- 7 -->
+<div class="question">
+<p>7. A company has three buildings on one campus. Which network type is suitable and why? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A LAN is suitable because the buildings are within a limited geographical area and require high-speed internal communication.
+</div>
+</div>
+
+<!-- 8 -->
+<div class="question">
+<p>8. A company operates offices in different countries. Which network type is required? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A WAN is required because the offices are geographically separated.
+</div>
+</div>
+
+<!-- 9 -->
+<div class="question">
+<p>9. Explain the term bandwidth. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Bandwidth is the maximum amount of data that can be transmitted per second, usually measured in bits per second.
+</div>
+</div>
+
+<!-- 10 -->
+<div class="question">
+<p>10. Explain the term latency. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Latency is the delay before data begins transferring after a request.
+</div>
+</div>
+
+<!-- 11 -->
+<div class="question">
+<p>11. Explain two advantages of using a WAN for business. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+WAN allows communication between remote offices and enables global collaboration. It supports remote access to shared resources.
+</div>
+</div>
+
+<!-- 12 -->
+<div class="question">
+<p>12. Identify two factors other than cost when choosing network infrastructure. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Bandwidth requirements and security.
+</div>
+</div>
+
+<!-- 13 -->
+<div class="question">
+<p>13. Describe how a WAN can connect multiple LANs. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Each LAN connects to a router. Routers connect through public or private communication lines forming a WAN.
+</div>
+</div>
+
+<!-- 14 -->
+<div class="question">
+<p>14. Explain why LANs typically have lower error rates than WANs. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+LANs use shorter cables and fewer intermediate devices, reducing interference and transmission errors.
+</div>
+</div>
+
+<!-- 15 -->
+<div class="question">
+<p>15. Give two security concerns associated with WANs. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Data interception and unauthorised access.
+</div>
+</div>
+
+<!-- 16 -->
+<div class="question">
+<p>16. Explain why a LAN may be more secure than a WAN. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+LANs are privately controlled and not exposed directly to public networks.
+</div>
+</div>
+
+<!-- 17 -->
+<div class="question">
+<p>17. What is meant by privately owned network infrastructure? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+The network hardware and cables are owned and managed by the organisation itself.
+</div>
+</div>
+
+<!-- 18 -->
+<div class="question">
+<p>18. State one reason why WANs are more expensive to maintain. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+They rely on third-party service providers.
+</div>
+</div>
+
+<!-- 19 -->
+<div class="question">
+<p>19. Evaluate whether a small school needs a WAN. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A small school on one site likely only needs a LAN. A WAN is only necessary if connecting multiple campuses.
+</div>
+</div>
+
+<!-- 20 -->
+<div class="question">
+<p>20. Describe how fibre optic cable improves WAN performance. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Fibre offers higher bandwidth, longer transmission distance and immunity to interference.
+</div>
+</div>
+
+<!-- 21 -->
+<div class="question">
+<p>21. Explain the term packet switching. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Data is divided into packets and transmitted independently across a shared network.
+</div>
+</div>
+
+<!-- 22 -->
+<div class="question">
+<p>22. Explain why packet switching is efficient for WAN communication. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+It allows multiple users to share network paths, improving utilisation and reducing wasted bandwidth.
+</div>
+</div>
+
+<!-- 23 -->
+<div class="question">
+<p>23. Compare circuit switching and packet switching. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Circuit switching establishes a dedicated path, while packet switching shares network resources. Packet switching is more efficient for data communication.
+</div>
+</div>
+
+<!-- 24 -->
+<div class="question">
+<p>24. Suggest a suitable network type for a hospital with multiple city branches. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A WAN is suitable because it connects multiple geographically separated sites.
+</div>
+</div>
+
+<!-- 25 -->
+<div class="question">
+<p>25. Evaluate the suitability of a WAN for international banking systems. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+WAN is essential for international banking to allow secure communication between branches globally. However, high security measures and redundancy are required to ensure reliability.
+</div>
+</div>
+
+</section>
+
+<section>
+<h2>Network Topologies Practice</h2>
+
+<!-- 1 -->
+<div class="question">
+<p>1. Define network topology. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Network topology is the physical or logical arrangement of devices and connections in a network.
+</div>
+</div>
+
+<!-- 2 -->
+<div class="question">
+<p>2. Describe a bus topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+In a bus topology, all devices are connected to a single backbone cable. Data travels along this cable and is received by all devices.
+</div>
+</div>
+
+<!-- 3 -->
+<div class="question">
+<p>3. State one advantage of a bus topology. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Uses less cabling compared to other topologies.
+</div>
+</div>
+
+<!-- 4 -->
+<div class="question">
+<p>4. State one disadvantage of a bus topology. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+If the main cable fails, the whole network fails.
+</div>
+</div>
+
+<!-- 5 -->
+<div class="question">
+<p>5. Describe a star topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+In a star topology, all devices are connected to a central hub or switch. Communication passes through this central device.
+</div>
+</div>
+
+<!-- 6 -->
+<div class="question">
+<p>6. Explain one advantage of star topology over bus. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+If one cable fails, only one device is affected, unlike bus where entire network may fail.
+</div>
+</div>
+
+<!-- 7 -->
+<div class="question">
+<p>7. Explain one disadvantage of star topology. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+If the central hub or switch fails, the entire network stops functioning.
+</div>
+</div>
+
+<!-- 8 -->
+<div class="question">
+<p>8. Describe a ring topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+In a ring topology, devices are connected in a circular structure, where each device connects to two others forming a closed loop.
+</div>
+</div>
+
+<!-- 9 -->
+<div class="question">
+<p>9. Explain how data travels in a ring topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Data travels in one direction around the ring, passing through each device until it reaches its destination.
+</div>
+</div>
+
+<!-- 10 -->
+<div class="question">
+<p>10. State one disadvantage of ring topology. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A break in the ring can disrupt the entire network.
+</div>
+</div>
+
+<!-- 11 -->
+<div class="question">
+<p>11. Describe a mesh topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+In a mesh topology, devices are interconnected with multiple paths between nodes, providing redundancy.
+</div>
+</div>
+
+<!-- 12 -->
+<div class="question">
+<p>12. Explain why mesh topology is highly reliable. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Multiple paths exist between devices, so if one link fails, data can take an alternative route.
+</div>
+</div>
+
+<!-- 13 -->
+<div class="question">
+<p>13. State one disadvantage of mesh topology. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Requires a large amount of cabling.
+</div>
+</div>
+
+<!-- 14 -->
+<div class="question">
+<p>14. Define hybrid topology. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A hybrid topology combines two or more different network topologies.
+</div>
+</div>
+
+<!-- 15 -->
+<div class="question">
+<p>15. Explain why hybrid topology is used in large organisations. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+It allows flexibility by combining advantages of different topologies for different areas of the organisation.
+</div>
+</div>
+
+<!-- 16 -->
+<div class="question">
+<p>16. Compare star and mesh topology in terms of cost. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Star topology is cheaper due to less cabling. Mesh is expensive because of multiple connections between nodes.
+</div>
+</div>
+
+<!-- 17 -->
+<div class="question">
+<p>17. Compare bus and star topology in terms of fault tolerance. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Bus has low fault tolerance since backbone failure stops network. Star isolates failures to individual devices.
+</div>
+</div>
+
+<!-- 18 -->
+<div class="question">
+<p>18. A small classroom network needs low cost and simple installation. Suggest a suitable topology. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Star topology is suitable due to ease of installation and manageable cost.
+</div>
+</div>
+
+<!-- 19 -->
+<div class="question">
+<p>19. A military communication system requires maximum reliability. Which topology is best? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Mesh topology due to redundancy and fault tolerance.
+</div>
+</div>
+
+<!-- 20 -->
+<div class="question">
+<p>20. Explain scalability in network topologies. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Scalability refers to how easily devices can be added to the network without major disruption.
+</div>
+</div>
+
+<!-- 21 -->
+<div class="question">
+<p>21. Which topology is easiest to expand? Explain. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Star topology, because new devices can connect directly to the central switch.
+</div>
+</div>
+
+<!-- 22 -->
+<div class="question">
+<p>22. Explain how traffic collisions occur in a bus topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+If two devices transmit at the same time, signals interfere causing collision and data corruption.
+</div>
+</div>
+
+<!-- 23 -->
+<div class="question">
+<p>23. Why are switches preferred over hubs in star topology? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Switches send data only to the intended device, reducing collisions.
+</div>
+</div>
+
+<!-- 24 -->
+<div class="question">
+<p>24. Evaluate the suitability of bus topology for a modern office. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Bus is inexpensive but unreliable and not scalable, making it unsuitable for modern office environments.
+</div>
+</div>
+
+<!-- 25 -->
+<div class="question">
+<p>25. Evaluate the suitability of mesh topology for a data centre. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Mesh provides redundancy and high reliability, essential for data centres. However, it is expensive and complex to maintain.
+</div>
+</div>
+
+<!-- 26 -->
+<div class="question">
+<p>26. Describe how a token works in a ring topology. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A token circulates around the ring; only the device holding the token can transmit data.
+</div>
+</div>
+
+<!-- 27 -->
+<div class="question">
+<p>27. Explain why bus topology is rarely used today. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+It has low fault tolerance, limited scalability, and higher risk of collisions.
+</div>
+</div>
+
+<!-- 28 -->
+<div class="question">
+<p>28. Identify one topology commonly used in home networks. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Star topology.
+</div>
+</div>
+
+<!-- 29 -->
+<div class="question">
+<p>29. Suggest a hybrid topology combining star and mesh and explain its benefit. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Multiple star networks interconnected in mesh form improve reliability while controlling cost.
+</div>
+</div>
+
+<!-- 30 -->
+<div class="question">
+<p>30. Discuss how topology affects network performance. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Topology influences data flow, collision risk, fault tolerance and scalability. Star reduces collisions, mesh improves reliability, while bus may suffer congestion.
+</div>
+</div>
+
+<section>
+<h2>IP Addressing Monster Bank</h2>
+
+<!-- BASIC DEFINITIONS -->
+
+<div class="question">
+<p>1. What does IP stand for? [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">Internet Protocol.</div>
+</div>
+
+<div class="question">
+<p>2. What is an IPv4 address? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A 32-bit binary address used to uniquely identify devices on a network.
+</div>
+</div>
+
+<div class="question">
+<p>3. How many bits are in IPv4? [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">32 bits.</div>
+</div>
+
+<div class="question">
+<p>4. How many octets are in IPv4? [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">4 octets.</div>
+</div>
+
+<div class="question">
+<p>5. What is dotted decimal notation? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A way of writing 32-bit IPv4 addresses as four decimal numbers separated by dots.
+</div>
+</div>
+
+<!-- BINARY CONVERSIONS -->
+
+<div class="question">
+<p>6. Convert 192 to binary. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">11000000</div>
+</div>
+
+<div class="question">
+<p>7. Convert 255 to binary. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">11111111</div>
+</div>
+
+<div class="question">
+<p>8. Convert 128 to binary. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">10000000</div>
+</div>
+
+<div class="question">
+<p>9. Convert 11001101 to decimal. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">205</div>
+</div>
+
+<div class="question">
+<p>10. Convert 11111100 to decimal. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">252</div>
+</div>
+
+<!-- VALID / INVALID -->
+
+<div class="question">
+<p>11. Is 256.12.5.1 valid? Give reason. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Invalid because each octet must be between 0 and 255.
+</div>
+</div>
+
+<div class="question">
+<p>12. Is 192.168.1.300 valid? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Invalid because 300 exceeds maximum 255.
+</div>
+</div>
+
+<div class="question">
+<p>13. Is 10.0.0.1 valid? [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">Yes, valid IPv4 address.</div>
+</div>
+
+<!-- CLASSFUL ADDRESSING -->
+
+<div class="question">
+<p>14. Identify class of 10.5.3.1. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Class A (first bit 0).
+</div>
+</div>
+
+<div class="question">
+<p>15. Identify class of 172.16.4.5. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Class B.
+</div>
+</div>
+
+<div class="question">
+<p>16. Identify class of 205.124.16.152. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Class C (first three bits 110).
+</div>
+</div>
+
+<div class="question">
+<p>17. Explain why IPv4 defines NetID and HostID. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+NetID identifies network, HostID identifies specific device within that network.
+</div>
+</div>
+
+<!-- CIDR -->
+
+<div class="question">
+<p>18. What does /24 mean in CIDR notation? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+First 24 bits represent network portion.
+</div>
+</div>
+
+<div class="question">
+<p>19. In 192.168.1.5/24, how many host bits? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+8 host bits (32 - 24).
+</div>
+</div>
+
+<div class="question">
+<p>20. In 10.0.0.0/8, how many network bits? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+8 network bits.
+</div>
+</div>
+
+<div class="question">
+<p>21. Calculate number of hosts in /30 network. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+2 host bits → 2² = 4 addresses.
+</div>
+</div>
+
+<!-- PRIVATE / PUBLIC -->
+
+<div class="question">
+<p>22. State one private IP range. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+192.168.0.0 – 192.168.255.255
+</div>
+</div>
+
+<div class="question">
+<p>23. Explain difference between public and private IP. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Public IP is globally routable. Private IP is used within local networks.
+</div>
+</div>
+
+<div class="question">
+<p>24. Why is NAT required? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+NAT translates private IP addresses into public IP addresses for Internet communication.
+</div>
+</div>
+
+<!-- SCENARIO QUESTIONS -->
+
+<div class="question">
+<p>25. A device has IP 192.168.1.10. Is this public or private? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Private IP.
+</div>
+</div>
+
+<div class="question">
+<p>26. Explain how routers use IP addresses. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Routers read destination IP address to determine where to forward packets.
+</div>
+</div>
+
+<div class="question">
+<p>27. Describe why IPv4 addresses are running out. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Limited 32-bit address space leads to address exhaustion.
+</div>
+</div>
+
+<div class="question">
+<p>28. What is IPv6? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+128-bit IP addressing system.
+</div>
+</div>
+
+<div class="question">
+<p>29. Compare IPv4 and IPv6. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+IPv4 uses 32 bits; IPv6 uses 128 bits providing much larger address space.
+</div>
+</div>
+
+<!-- EXTENDED -->
+
+<div class="question">
+<p>30. Evaluate benefits of CIDR over classful addressing. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+CIDR allows flexible subnetting, reduces waste, improves efficiency of IP allocation.
+</div>
+</div>
+
+<!-- Continue with conceptual expansion -->
+
+<div class="question">
+<p>31. Explain subnetting. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Subnetting divides a network into smaller sub-networks by borrowing host bits.
+</div>
+</div>
+
+<div class="question">
+<p>32. Why is subnetting useful? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Improves network organisation, reduces broadcast traffic, increases security.
+</div>
+</div>
+
+<div class="question">
+<p>33. What is a default gateway? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Device that forwards traffic from local network to other networks.
+</div>
+</div>
+
+<div class="question">
+<p>34. Explain broadcast address. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Special address used to send data to all devices in network.
+</div>
+</div>
+
+<div class="question">
+<p>35. Explain loopback address. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+127.0.0.1 used for testing local machine.
+</div>
+</div>
+
+<!-- Evaluation / Higher Order -->
+
+<div class="question">
+<p>36. Discuss advantages of private addressing. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Improves security and conserves public IP addresses.
+</div>
+</div>
+
+<div class="question">
+<p>37. Discuss limitations of NAT. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Can complicate peer-to-peer communication and adds processing overhead.
+</div>
+</div>
+
+<div class="question">
+<p>38. Calculate total addresses in /16 network. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+16 host bits → 2^16 = 65,536 addresses.
+</div>
+</div>
+
+<div class="question">
+<p>39. Identify host bits in 205.124.16.152/24. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Last 8 bits represent host.
+</div>
+</div>
+
+<div class="question">
+<p>40. Explain importance of IP addressing in routing. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Routers use IP addresses to determine packet destination and optimal path.
+</div>
+</div>
+
+<!-- Final Conceptual Questions -->
+
+<div class="question">
+<p>41. Define subnet mask. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+A 32-bit number used to separate network and host portions.
+</div>
+</div>
+
+<div class="question">
+<p>42. Write subnet mask for /24. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+255.255.255.0
+</div>
+</div>
+
+<div class="question">
+<p>43. Write subnet mask for /16. [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+255.255.0.0
+</div>
+</div>
+
+<div class="question">
+<p>44. Explain role of DHCP. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DHCP automatically assigns IP addresses to devices.
+</div>
+</div>
+
+<div class="question">
+<p>45. Explain static vs dynamic IP. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Static IP is manually configured. Dynamic IP is automatically assigned by DHCP.
+</div>
+</div>
+
+<div class="question">
+<p>46. Why are IP addresses hierarchical? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+To allow efficient routing by dividing into network and host portions.
+</div>
+</div>
+
+<div class="question">
+<p>47. Explain why routers do not use MAC addresses for routing across networks. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+MAC addresses operate within LAN; IP addresses identify networks globally.
+</div>
+</div>
+
+<div class="question">
+<p>48. Describe role of ARP. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+ARP translates IP addresses into MAC addresses within a LAN.
+</div>
+</div>
+
+<div class="question">
+<p>49. Evaluate IPv6 as a long-term solution. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+IPv6 provides massive address space and improved routing efficiency, solving IPv4 exhaustion.
+</div>
+</div>
+
+<div class="question">
+<p>50. Discuss challenges of IPv6 adoption. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Requires hardware upgrades and dual-stack implementation.
+</div>
+</div>
+
+<div class="question">
+<p>51. Explain difference between unicast, multicast and broadcast. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Unicast is one-to-one, multicast is one-to-many selected, broadcast is one-to-all.
+</div>
+</div>
+
+<div class="question">
+<p>52. What is CIDR mainly designed to improve? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Efficient allocation of IP addresses.
+</div>
+</div>
+
+<div class="question">
+<p>53. Why is 127.0.0.1 reserved? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+It is the loopback address for local testing.
+</div>
+</div>
+
+<div class="question">
+<p>54. Explain why broadcast traffic should be limited. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Too much broadcast traffic reduces network performance.
+</div>
+</div>
+
+<div class="question">
+<p>55. Evaluate the importance of IP addressing in modern networking. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+IP addressing enables global routing, device identification, scalability and Internet communication.
+</div>
+</div>
+
+</section>
+
+
+</section>
+
+
+</section>
+================================================================= 
+
+<!-- ================= IP ADDRESSING ================= -->
+
+<section>
+<h2>IP Addressing Practice</h2>
+
+<section>
+<h2>DNS, URL & Streaming Monster Bank</h2>
+
+<!-- DNS BASICS -->
+
+<div class="question">
+<p>1. What does DNS stand for? [1]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">Domain Name System.</div>
+</div>
+
+<div class="question">
+<p>2. What is the main purpose of DNS? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DNS translates domain names into IP addresses.
+</div>
+</div>
+
+<div class="question">
+<p>3. Identify the type of software used by DNS and the hardware it runs on. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DNS server software running on a DNS server (specialised server hardware).
+</div>
+</div>
+
+<div class="question">
+<p>4. Explain why DNS is necessary. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Humans use domain names; computers communicate using IP addresses. DNS bridges this gap.
+</div>
+</div>
+
+<div class="question">
+<p>5. Describe the process when a user enters a URL into a browser. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Browser queries DNS server, DNS resolves domain to IP address, browser connects to server using IP, resource is retrieved.
+</div>
+</div>
+
+<!-- DNS RESOLUTION -->
+
+<div class="question">
+<p>6. What is a recursive DNS query? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DNS server fully resolves the query on behalf of the client.
+</div>
+</div>
+
+<div class="question">
+<p>7. What is an iterative DNS query? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DNS server returns the best answer it has, referring client to another server if necessary.
+</div>
+</div>
+
+<div class="question">
+<p>8. Explain caching in DNS. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DNS stores resolved addresses temporarily to reduce future lookup time.
+</div>
+</div>
+
+<div class="question">
+<p>9. Explain how DNS improves Internet efficiency. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Caching reduces repeated lookups, decreasing latency and network traffic.
+</div>
+</div>
+
+<div class="question">
+<p>10. What happens if DNS fails? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Users cannot access websites using domain names.
+</div>
+</div>
+
+<!-- URL -->
+
+<div class="question">
+<p>11. Define URL. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Uniform Resource Locator; it specifies the address of a resource on the Internet.
+</div>
+</div>
+
+<div class="question">
+<p>12. Identify components of https://www.example.com/index.html [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Protocol (https), domain name (www.example.com), file path (index.html).
+</div>
+</div>
+
+<div class="question">
+<p>13. Explain role of HTTPS. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+HTTPS encrypts data between browser and server for security.
+</div>
+</div>
+
+<div class="question">
+<p>14. Explain difference between domain name and IP address. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Domain name is human-readable; IP address is numeric machine-readable.
+</div>
+</div>
+
+<!-- STREAMING BASICS -->
+
+<div class="question">
+<p>15. Define streaming. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Streaming is continuous transmission of media data allowing playback before download completes.
+</div>
+</div>
+
+<div class="question">
+<p>16. What is on-demand streaming? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+User selects content and it is streamed when requested.
+</div>
+</div>
+
+<div class="question">
+<p>17. What is live streaming? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Real-time broadcast of content over the Internet.
+</div>
+</div>
+
+<div class="question">
+<p>18. Explain buffering. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Temporary storage of video data before playback to prevent interruptions.
+</div>
+</div>
+
+<div class="question">
+<p>19. Why does buffering reduce pauses? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Ensures enough data is stored before playback continues.
+</div>
+</div>
+
+<!-- ADAPTIVE STREAMING -->
+
+<div class="question">
+<p>20. What is adaptive bitrate streaming? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Streaming adjusts video quality based on available bandwidth.
+</div>
+</div>
+
+<div class="question">
+<p>21. Explain why adaptive streaming improves user experience. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Prevents buffering by lowering resolution when bandwidth drops.
+</div>
+</div>
+
+<!-- CDN -->
+
+<div class="question">
+<p>22. What is a CDN? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Content Delivery Network; distributed servers delivering content closer to users.
+</div>
+</div>
+
+<div class="question">
+<p>23. Explain how CDNs reduce latency. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Content is delivered from geographically closer servers.
+</div>
+</div>
+
+<div class="question">
+<p>24. Why are CDNs important for streaming platforms? [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+They handle high traffic and ensure fast, reliable delivery.
+</div>
+</div>
+
+<!-- SCENARIO -->
+
+<div class="question">
+<p>25. A video keeps pausing while streaming. Suggest causes. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Low bandwidth, high latency, network congestion, insufficient buffering.
+</div>
+</div>
+
+<div class="question">
+<p>26. Suggest measures to prevent streaming interruptions. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+High-speed connection, buffering, adaptive bitrate streaming, CDNs, low latency, QoS prioritisation.
+</div>
+</div>
+
+<!-- ADVANCED DNS -->
+
+<div class="question">
+<p>27. Explain DNS hierarchy. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Root servers → TLD servers → Authoritative name servers.
+</div>
+</div>
+
+<div class="question">
+<p>28. What is an authoritative DNS server? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Server that holds official DNS records for a domain.
+</div>
+</div>
+
+<div class="question">
+<p>29. Explain DNS spoofing. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Attack where false DNS data redirects users to malicious sites.
+</div>
+</div>
+
+<div class="question">
+<p>30. Explain how DNSSEC improves security. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Adds cryptographic signatures to verify DNS responses.
+</div>
+</div>
+
+<!-- URL + DNS EVALUATION -->
+
+<div class="question">
+<p>31. Evaluate importance of DNS for global Internet. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+DNS enables human-friendly addressing, scalability, distributed resolution and efficient web access.
+</div>
+</div>
+
+<div class="question">
+<p>32. Discuss risks if DNS servers are attacked. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Websites become inaccessible, phishing risk increases, service disruption occurs.
+</div>
+</div>
+
+<!-- LATENCY & QoS -->
+
+<div class="question">
+<p>33. Define latency. [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Delay between request and response.
+</div>
+</div>
+
+<div class="question">
+<p>34. Explain how latency affects streaming. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+High latency causes delays and buffering interruptions.
+</div>
+</div>
+
+<div class="question">
+<p>35. What is Quality of Service (QoS)? [2]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Network mechanism to prioritise certain types of traffic.
+</div>
+</div>
+
+<div class="question">
+<p>36. Explain how QoS improves streaming. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Prioritises video packets over less critical traffic.
+</div>
+</div>
+
+<!-- COMPARISON -->
+
+<div class="question">
+<p>37. Compare downloading and streaming. [4]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Downloading requires full file before playback; streaming plays while downloading.
+</div>
+</div>
+
+<div class="question">
+<p>38. Compare live and on-demand streaming. [3]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Live is real-time broadcast; on-demand is pre-recorded content.
+</div>
+</div>
+
+<!-- EXTENDED ANALYSIS -->
+
+<div class="question">
+<p>39. Discuss advantages of streaming over traditional broadcasting. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+User control, global access, adaptive quality, cost efficiency.
+</div>
+</div>
+
+<div class="question">
+<p>40. Evaluate importance of CDNs in modern Internet. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+CDNs reduce latency, handle traffic spikes and improve reliability.
+</div>
+</div>
+
+<!-- FINAL CONSOLIDATION -->
+
+<div class="question">
+<p>41–50. Create 10 additional scenario-based questions for classroom discussion and exam preparation.</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+Students should create DNS, URL, and streaming scenarios incorporating latency, buffering, caching, security and infrastructure considerations.
+</div>
+</div>
+
+</section>
+
+</section>
+
+<!-- ================= EXAM STYLE ================= -->
+
+<section>
+<h2>Exam-Style Questions</h2>
+
+<div class="question">
+<p>Describe measures needed to ensure video does not pause when streamed. [6]</p>
+<textarea></textarea>
+<button onclick="showAnswer(this)">Submit</button>
+<div class="answer">
+High bandwidth, buffering, adaptive bitrate streaming, CDNs, low latency connection.
+</div>
+</div>
+
+</section>
+
+<a href="AS9618-Chapter2-Communication.html" class="page-link">
+← Return to Learning
+</a>
+
+</div>
+
+<footer>
+Prepared by Ravi Raju
+</footer>
+
+<script>
+
+function toggleTheme() {
+  document.body.classList.toggle("light-theme");
+}
+
+function showAnswer(button) {
+  let answer = button.nextElementSibling;
+  if (answer.style.display === "block") return;
+  answer.style.display = "block";
+
+  let count = document.getElementById("attemptCount");
+  count.innerText = parseInt(count.innerText) + 1;
+}
+
+function saveName() {
+  localStorage.setItem("studentName", document.getElementById("studentName").value);
+}
+
+window.onload = function() {
+  let saved = localStorage.getItem("studentName");
+  if (saved) {
+    document.getElementById("studentName").value = saved;
+  }
+};
+
+</script>
+
+</body>
+</html>
